@@ -1,15 +1,21 @@
-const express = require("express");
+const express = require('express');
+const mongoose = require('mongoose');
 
-// Set port to production env or 5000 for dev
+
+
 const port = process.env.PORT || 5000;
 
-// Create Express app instance
 const app = express();
-
-
-
-// app.get("/", (req, res) => res.send("Hello World"));
-
-
-// Tell app to run on port variable defined earlier
+const db = require('./config/keys').mongoURI;
+//Connect database using mongoose
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => console.log(err));
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+// Setup base API routes
+// const users = require('./routes/api/users');
+// app.use('/api/users', users);
+
+app.get('/', (req, res) => res.send('Hello Wrld'));
