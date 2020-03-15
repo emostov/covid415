@@ -1,6 +1,9 @@
+/* eslint-disable no-shadow */
+/* eslint-disable consistent-return */
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
@@ -12,6 +15,7 @@ const router = express.Router();
 
 router.get('/test', (req, res) => res.json({ msg: 'This is the users route' }));
 
+// Register and create a first time user
 router.post('/register', (req, res) => {
   // This will do all validations, including matching passwords
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -24,7 +28,7 @@ router.post('/register', (req, res) => {
     .then((user) => {
       if (user) {
         // The user is trying to sign up with an email that already exists
-        errors.email = 'Email already exists';
+        errors.email = 'Email already in use';
         return res.status(400).json(errors);
       }
       const {
@@ -43,13 +47,25 @@ router.post('/register', (req, res) => {
           if (err) throw err;
           newUser.password = hash;
           newUser.save()
-            .then((userSaved) => res.json(userSaved))
-            .catch((errSave) => console.log(errSave));
+            .then((user) => {
+              const payload = { id: user.id, handle: user.handle };
+              // Expire token after 24 hours
+              jwt.sign(payload, keys.secretOrKey, { expiresIn: 60 * 60 * 24 },
+                (err, token) => {
+                  if (err) res.json(err);
+                  res.json({
+                    success: true,
+                    token: `Bearer ${token}`,
+                  });
+                });
+            })
+            .catch((err) => console.log(err));
         });
       });
     });
 });
 
+// Login a user that has an existing account
 router.post('/login', (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
@@ -62,22 +78,51 @@ router.post('/login', (req, res) => {
   User.findOne({ email })
     .then((user) => {
       if (!user) {
-        errors.email = 'User not found';
+        errors.email = 'User with that email not found';
         return res.status(404).json(errors);
       }
 
       bcrypt.compare(password, user.password)
         .then((isMatch) => {
           if (isMatch) {
-            res.json({ msg: 'Success' });
+            const { id, email } = user;
+            const payload = { id, email };
+
+            jwt.sign(
+              payload,
+              keys.secretOrKey,
+              // Tell the key to expire in one day
+              { expiresIn: 60 * 60 * 24 },
+              (err, token) => {
+                if (err) res.json(err);
+                res.json({
+                  success: true,
+                  token: `Bearer ${token}`,
+                });
+              },
+            );
           } else {
-            // And here:
             errors.password = 'Incorrect password';
             return res.status(400).json(errors);
           }
         });
     });
 });
+
+// Current user authentication - succesful when header contains correct jwt
+// In header key:Authorization value:Bearer+' '+jwt
+router.get('/current',
+  passport.authenticate('jwt', { session: false }), (req, res) => {
+    const {
+      id, email, firstName, lastName,
+    } = req.user;
+    res.json({
+      id,
+      email,
+      firstName,
+      lastName,
+    });
+  });
 
 
 module.exports = router;
