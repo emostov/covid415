@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
-
+const users = require('./routes/api/users');
 
 const port = process.env.PORT || 5000;
 
@@ -12,10 +13,15 @@ mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
-app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-// Setup base API routes
-// const users = require('./routes/api/users');
-// app.use('/api/users', users);
+// Setup middlware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
+// Setup base routes
+app.use('/api/users', users);
 app.get('/', (req, res) => res.send('Hello Wrld'));
+
+
+// Lastly, setup our app to listen
+app.listen(port, () => console.log(`Server is running on port ${port}`));
