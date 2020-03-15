@@ -8,11 +8,11 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 const db = require('./config/keys').mongoURI;
-//Connect database using mongoose
+// Connect database using mongoose
 mongoose
   .connect(db, { useNewUrlParser: true })
-  .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(err => console.log(err));
+  .then(() => console.log('Connected to MongoDB successfully'))
+  .catch((err) => console.log(err));
 
 // Setup middlware
 app.use(bodyParser.urlencoded({ extended: false }));
