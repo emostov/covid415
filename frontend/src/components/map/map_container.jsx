@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SideBar from './sidebar';
+import Map from './map';
 
 const mSTP = state => ({
 
@@ -9,4 +9,4 @@ const mDTP = dispatch => ({
 
 });
 
-export default connect(mSTP, mDTP)(SideBar)
+export default (mSTP, mDTP)(Map);

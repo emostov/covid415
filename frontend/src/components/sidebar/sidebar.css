@@ -1,0 +1,18 @@
+.sidebar-container{
+   border: 1px solid rgb(241, 0, 0);
+   height: calc(100vh);
+   width: 500px;
+}
+
+
+.sidebar-inner-container {
+   display: flex;
+   flex-direction: column;
+   
+}
+
+.sidebar-container-header {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+}
