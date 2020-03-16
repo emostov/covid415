@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-
+import Logo from '../../public/COVID415.png';
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
 
 // import './navbar.css'
@@ -41,7 +41,9 @@ class NavBar extends React.Component {
       <div>
         <>
           <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">COVID415</Navbar.Brand>
+            <Navbar.Brand href="#home">
+              <img className="logo-covid415" src={Logo} width="200" />
+            </Navbar.Brand>
             <Nav className="mr-auto justify-content-space-between">
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#features">Features</Nav.Link>

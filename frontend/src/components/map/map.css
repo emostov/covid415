@@ -1,0 +1,7 @@
+.mapContainer {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    left: 500px;
+    bottom: 0;
+}
