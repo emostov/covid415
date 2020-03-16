@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import jwt_decode from 'jwt-decode';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import mapboxgl from 'mapbox-gl';
 import Root from './components/root';
 import configureStore from './store/store';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
+mapboxgl.accessToken = 'MAPBOX_ACCESS_TOKEN';
 
 document.addEventListener('DOMContentLoaded', () => {
+  
   let store;
 
   // If a returning user has a session token stored in localStorage

@@ -1,16 +1,41 @@
-import React from 'react'   
+import React from 'react';
+import ReactDOM from 'react-dom';
+import mapboxgl from 'mapbox-gl';
+// import mapboxtoken from '../../config/keys_mapbox'
+import './map.css'
 
 class Map extends React.Component {
     constructor(props) {
         super(props)
+        
+        this.state = {
+            lng: -122.44,
+            lat: 37.76,
+            zoom: 12.2
+        }
+    }
 
+    componentDidMount() {
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaGltdXJheDN4IiwiYSI6ImNrN3UwYmptNjB3eGEzZnB1MGZyMXN4eGIifQ.KzlIQPQU2VgrhC7y_8eMcw';
+
+        const map = new mapboxgl.Map({
+            container: this.mapContainer,
+            style: 'mapbox://styles/mapbox/dark-v10',
+            center: [this.state.lng, this.state.lat],
+            zoom: this.state.zoom
+        });
     }
 
     render() {
+
         return (
-            <div><img src="https://66.media.tumblr.com/105af8b674fe9ca5b032240b2062e6c5/tumblr_n4hs8oGmEp1s4df8ko1_r1_1280.png" /></div>
+            <div>
+                <div ref={el => this.mapContainer = el} className="mapContainer" />
+            </div>
         )
     }
 }
+
+
 
 export default Map;
