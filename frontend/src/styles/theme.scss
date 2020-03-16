@@ -1,0 +1,31 @@
+body{
+  height: 100vh;
+  width: 100vw;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  background: #343A40;
+}
+
+.test-1{
+  color: red;
+}
+
+//bg = background
+
+// first and secodn are for buttons/ dropdowns on black backgrounds
+$first-grey-bg: #4c5159;
+$second-grey-bg: #C4C4C4;
+
+// light grey should be used for pains on white bg
+$light-grey-bg: #EDEDED;
+
+//text colors
+$second-grey-txt: #aaadb3;
+$third-grey-txt: #4c5159;
+
+//general theme colors from figma color pallette
+$figma-green: #9FB89B;
+$figma-peach:  #F6CFAF;
+$figma-grapefruit: #E68981;
+$fimga-red: #DA5663;
