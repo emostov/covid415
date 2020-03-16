@@ -14,7 +14,8 @@ export default class SideBar extends Component {
         <div className="sidebar-inner-container">
           <div className="sidebar-container-header">
             <div className="sidebar-container-header-available">
-              available
+            available
+
             </div>
             <div className="sidebar-container-header-active">
               active

@@ -2,6 +2,7 @@ import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch, Route } from 'react-router-dom';
 
+import '../styles/theme.scss'
 import NavBarContainer from './nav/navbar_container';
 import MainPage from './main/main_page.jsx';
 import LoginFormContainer from './session/login_form_container';
