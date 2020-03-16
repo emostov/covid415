@@ -14,7 +14,11 @@ const TaskSchema = new Schema({
   deliveryAddress: {
     type: String,
     required: true,
-  },  
+  },
+  deliveryLatLong: {
+    type: Array,
+    required: true,
+  },
   deliveryInstructions: {
     type: String,
     required: true,
