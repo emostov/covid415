@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import './sidebar.css';
+
+import '../../styles/sidebar.scss';
 
 export default class SideBar extends Component {
   constructor(props) {
     super(props)
-    
+
   }
 
   render() {
@@ -28,4 +29,3 @@ export default class SideBar extends Component {
     )
   }
 }
- 

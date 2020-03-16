@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import Logo from '../../public/COVID415.png';
-import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 
-// import './navbar.css'
+import Logo from '../../public/COVID415.png';
+import '../../styles/navbar.scss'
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -51,13 +51,13 @@ class NavBar extends React.Component {
               <Nav className="justify-content-end">
                 {this.getLinks()}
               </Nav>
-              
+
             </Nav>
-        
+
           </Navbar>
 
         </>
-        
+
       </div>
     );
   }
