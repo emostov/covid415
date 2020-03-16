@@ -1,5 +1,7 @@
+@import './theme.scss';
+
 .mainpage-container {
     display: flex;
     flex-direction: row;
-    border: 1px solid red;
+    border: 1px solid $fimga-red;
 }
