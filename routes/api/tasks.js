@@ -6,6 +6,8 @@ const passport = require('passport');
 const Task = require('../../models/Task');
 const validateTaskInput = require('../../validation/tasks');
 
+import parseAddress from '../../frontend/src/util/geocode_util';
+
 router.get("/test", (req, res) => res.json({ msg: "This is the tasks route" }));
 
 router.get('/', (req, res) => {
@@ -29,6 +31,7 @@ router.post('/',
         details: req.body.details,
         requester: req.user.id,
         deliveryAddress: req.body.deliveryAddress,
+        deliveryLatLong: parseAddress(deliveryAddress),
         deliveryInstructions: req.body.deliveryInstructions
       });
   
