@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap'
+
 // import './navbar.css'
 
 class NavBar extends React.Component {
@@ -19,22 +21,16 @@ class NavBar extends React.Component {
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <div>
-          <Link to={'/link1'}>link 1</Link>
-          &nbsp;
-          <Link to={'/link2'}>link 2</Link>
-          &nbsp;
-          <Link to={'/link3'}>link 3</Link>
-          &nbsp;
-          <button onClick={this.logoutUser}>Logout</button>
-        </div>
+        <Button onClick={this.logoutUser}>Logout</Button>
       );
     } else {
       return (
         <div>
-          <Link to={'/signup'}>Signup</Link>
-          &nbsp;
-          <Link to={'/login'}>Login</Link>
+          <Nav>
+            <Nav.Link href="#signup">Sign up</Nav.Link>
+            <Nav.Link href="#login">Log in</Nav.Link>
+          </Nav>
+
         </div>
       );
     }
@@ -43,9 +39,23 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <h4>NavBar place holder</h4>
-        &nbsp;
-        {this.getLinks()}
+        <>
+          <Navbar bg="dark" variant="dark">
+            <Navbar.Brand href="#home">COVID415</Navbar.Brand>
+            <Nav className="mr-auto">
+              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#features">Features</Nav.Link>
+              <Nav.Link href="#pricing">Pricing</Nav.Link>
+              <Nav className="justify-content-end">
+                {this.getLinks()}
+              </Nav>
+              
+            </Nav>
+        
+          </Navbar>
+
+        </>
+        
       </div>
     );
   }

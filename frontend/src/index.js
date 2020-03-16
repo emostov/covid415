@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import jwt_decode from 'jwt-decode';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Root from './components/root';
 import configureStore from './store/store';
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (decodedUser.exp < currentTime) {
       // Logout the user and redirect to the login page
       store.dispatch(logout());
-      window.location.href = '/login';
+      // window.location.href = '/login'; // TODO might change to no redirect
     }
   } else {
     // If this is a first time user, start with an empty store

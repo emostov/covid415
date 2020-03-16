@@ -36,6 +36,7 @@ export const signup = user => dispatch => (
     APIUtil.setAuthToken(token);
     const decoded = jwt_decode(token);
     dispatch(receiveCurrentUser(decoded))
+    // APIUtil.current -> gives back full user obj
   }, (err) => (
     dispatch(receiveErrors(err.response.data))
   ))
