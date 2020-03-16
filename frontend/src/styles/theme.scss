@@ -9,18 +9,20 @@ body{
 
 //bg = background
 
-// first and secodn are for buttons/ dropdowns on black backgrounds
+// Button / small element colors
+// First and second are for buttons/ dropdowns on black backgrounds
 $first-grey-bg: #4c5159;
 $second-grey-bg: #C4C4C4;
 
+// Element colors
 // light grey should be used for pains on white bg
 $light-grey-bg: #EDEDED;
 
-//text colors
+//Text colors for non-white text
 $second-grey-txt: #aaadb3;
 $third-grey-txt: #4c5159;
 
-//general theme colors from figma color pallette
+//General theme colors from figma color pallette
 $figma-green: #9FB89B;
 $figma-peach:  #F6CFAF;
 $figma-grapefruit: #E68981;
