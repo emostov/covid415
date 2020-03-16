@@ -14,7 +14,7 @@ export const receiveCurrentUser = currentUser => ({
 
 // This will be used to redirect the user to the home page
 export const receiveUserSignIn = () => ({
-  type: RECEIVE_USER_SIGN_IN
+  type: RECEIVE_USER_SIGN_IN,
 });
 
 export const receiveErrors = errors => ({
@@ -29,9 +29,14 @@ export const logoutUser = () => ({
 // Upon signup, dispatch the approporiate action depending on which type of 
 // response we receieve from the backend
 export const signup = user => dispatch => (
-  APIUtil.signup(user).then(() => (
+  APIUtil.signup(user).then((res) => {
     dispatch(receiveUserSignIn())
-  ), (err) => (
+    const { token } = res.data;
+    localStorage.setItem('jwtToken', token);
+    APIUtil.setAuthToken(token);
+    const decoded = jwt_decode(token);
+    dispatch(receiveCurrentUser(decoded))
+  }, (err) => (
     dispatch(receiveErrors(err.response.data))
   ))
 );
