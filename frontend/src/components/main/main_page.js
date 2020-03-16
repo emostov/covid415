@@ -1,7 +1,7 @@
 import React from 'react';
 import SideBar from '../sidebar/sidebar'
 import Map from '../map/map'
-import './main_page.css'
+import '../../styles/main_page.scss'
 
 class MainPage extends React.Component {
 
