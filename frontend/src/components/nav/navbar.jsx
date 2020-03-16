@@ -41,11 +41,11 @@ class NavBar extends React.Component {
       <div>
         <>
           <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="#">
               <img className="logo-covid415" src={Logo} width="200" />
             </Navbar.Brand>
             <Nav className="mr-auto justify-content-space-between">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#">Home</Nav.Link>
               <Nav.Link href="#features">Features</Nav.Link>
               <Nav.Link href="#pricing">Pricing</Nav.Link>
               <Nav className="justify-content-end">
