@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 const users = require('./routes/api/users');
+const tasks = require('./routes/api/tasks');
 
 const port = process.env.PORT || 5000;
 
@@ -24,6 +25,7 @@ require('./config/passport')(passport);
 
 // Setup base routes
 app.use('/api/users', users);
+app.use('/api/tasks', tasks);
 app.get('/', (req, res) => res.send('Hello Wrld'));
 
 

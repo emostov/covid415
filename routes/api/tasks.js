@@ -1,63 +1,39 @@
-const express = require('express');
+const express = require("express");
+const router = express.Router();
+const mongoose = require('mongoose');
 const passport = require('passport');
 
-const router = express.Router();
-const validateTaskInput = require('../../validation/tasks');
 const Task = require('../../models/Task');
+const validateTaskInput = require('../../validation/tasks');
 
-router.get('/test', (req, res) => res.json({ msg: 'This is the tasks route' }));
-
-router.post('/',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    // request object now has a user key on it that is current user - based on jwt
-
-    const { isValid, errors } = validateTaskInput(req.body);
-
-    if (!isValid) {
-      res.status(400).json(errors);
-    }
-
-    const { 
-        type, body, deliveryAddress, deliveryInstructions, 
-        requester, volunteer, status 
-    } = req;
-
-    const newTask = new Task({
-      type,
-      body,
-      deliveryAddress,
-      deliveryInstructions,
-      requester,
-      volunteer,
-      status
-    });
-
-    newTask
-      .save()
-      .then((task) => res.json(task))
-      .catch((err) => res.json(err));
-  });
+router.get("/test", (req, res) => res.json({ msg: "This is the tasks route" }));
 
 router.get('/', (req, res) => {
-  Task
-    .find()
-    .sort({ createdAt: -1 })
-    .then((t) => res.json(t))
-    .catch((err) => res.status(400).json(err));
+    Task.find()
+        .sort({ createdAt: -1 })
+        .then(tasks => res.json(tasks))
+        .catch(err => res.status(404).json({ notasksfound: 'No tasks found' }));
 });
 
-// router.get('/user/:user_id', (req, res) => {
-//   Task
-//     .find({ user: req.params.user_id })
-//     .then((tasks) => res.json(tasks))
-//     .catch((err) => res.status(400).json(err));
-// });
-
-router.get('/:id', (req, res) => {
-  Tweet.findById(req.params.id)
-    .then((tweets) => res.json(tweets))
-    .catch((err) => res.status(400).json(err));
-});
+router.post('/',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+      const { errors, isValid } = validateTaskInput(req.body);
+  
+      if (!isValid) {
+        return res.status(400).json(errors);
+      }
+  
+      const newTask = new Task ({
+        type: req.body.type,
+        details: req.body.details,
+        requester: req.user.id,
+        deliveryAddress: req.body.deliveryAddress,
+        deliveryInstructions: req.body.deliveryInstructions
+      });
+  
+      newTask.save().then(task => res.json(task));
+    }
+  );
 
 module.exports = router;

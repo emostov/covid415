@@ -5,9 +5,9 @@ const { Schema } = mongoose;
 const TaskSchema = new Schema({
   type: {
     type: String,
-    required: true,
+    required: true
   },
-  body: {
+  details: {
     type: String,
     required: true,
   },
@@ -26,11 +26,13 @@ const TaskSchema = new Schema({
   },
   volunteer: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'users',
+    default: null
   },
   status: {
-    type: Integer,
-    default: 0
+    type: Number,
+    default: 0,
+    enum: [0,1,2]
   },
   createdAt: {
     type: Date,
@@ -43,4 +45,4 @@ const TaskSchema = new Schema({
 });
 
 const Task = mongoose.model('Task', TaskSchema);
-module.exports = Task
+module.exports = Task;

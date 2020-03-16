@@ -1,3 +1,4 @@
+const Validator = require('validator');
 const validText = require('./valid-text');
 
 module.exports = function validateTaskInput(dat) {
@@ -13,11 +14,11 @@ module.exports = function validateTaskInput(dat) {
     errors.text = 'Please select a task type.';
   }
 
-  if (Validator.isEmpty(data.body)) {
+  if (Validator.isEmpty(data.details)) {
     errors.text = 'Request detail is required.';
   }
   
-  if (!Validator.isLength(data.body, { min: 100})) {
+  if (!Validator.isLength(data.details, { min: 30, max: 200 })) {
     errors.text = 'Request detail should be at least 100 characters. Please provide more details so that your volunteer has enough information to help.';
   }
 
