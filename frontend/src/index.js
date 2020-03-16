@@ -9,6 +9,7 @@ import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 mapboxgl.accessToken = 'MAPBOX_ACCESS_TOKEN';
 
+
 document.addEventListener('DOMContentLoaded', () => {
   
   let store;
