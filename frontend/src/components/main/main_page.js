@@ -1,14 +1,15 @@
 import React from 'react';
+import SideBar from '../sidebar/sidebar'
+import Map from '../map/map'
+import './main_page.css'
 
 class MainPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>the Covid415 MainPage</h1>
-        <footer>
-          Covid footer
-        </footer>
+      <div className="mainpage-container">
+        <SideBar />
+        <Map />
       </div>
     );
   }
