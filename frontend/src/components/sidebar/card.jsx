@@ -28,9 +28,19 @@ class Card extends React.Component {
                     ?
                     (
                         <div className={"card-box-active"} onClick={this.clickHandler}>
-                            <div className="card-box-top-container">
+                            <div className="">
                                 <div className={"card-head-active"}>
                                     0.1 Miles Away
+                                </div>
+                            </div>
+                            <div className="card-box-top-container">
+                                <div className="card-box-task-type">
+                                    <div className="card-box-type-of-prop">
+                                        Task type:
+                                    </div>
+                                    <div className="card-box-task-content">
+                                        {this.props.task.type}
+                                    </div> 
                                 </div>
                                 <div className={"card-body-active"}>
                                     {this.props.task.details}
@@ -39,8 +49,18 @@ class Card extends React.Component {
                                     {this.props.task.deliveryAddress}
                                 </div>
                             </div>
-                            <div>
-                                
+                            <div className="card-box-bottom-container">
+                                <div className="card-box-instructions-container">
+                                    <div className="card-box-type-of-prop">
+                                        Delivery Instructions:
+                                    </div>
+                                    <div className="instructions-body">
+                                        {this.props.task.deliveryInstructions}
+                                    </div>
+                                </div>
+                                <div className="accept-button-container">
+                                    <button className="accept-button">Accept</button>
+                                </div>
                             </div>
                         </div>
                     ) : (

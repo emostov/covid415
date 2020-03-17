@@ -123,6 +123,7 @@
 }
 
 .card-box-active {
+   position: relative;
    display: flex;
    flex-direction: column;
    padding: 15px;
@@ -137,6 +138,7 @@
 
 .card-body-active {
    color: #2A363A;
+   margin-top: 10px;
 }
 
 .card-head {
@@ -151,6 +153,45 @@
    color: #2A363A; 
 }
 
+.card-box-task-type {
+   color: #2A363A; 
+}
+
 .card-address-active:hover {
    color: $fimga-red;
+   cursor: pointer;
+}
+
+.instructions-header {
+   color: #2A363A;
+}
+
+.instructions-body {
+   color: #2A363A;
+}
+
+.card-box-task-type {
+   display: flex;
+   
+}
+
+.card-box-task-content{
+   margin-left: 6px;
+}
+
+.card-box-type-of-prop {
+   color: #2A363A;
+   font-weight: 700;
+}
+
+.card-box-bottom-container {
+   display: flex;
+   width: 90%;
+   justify-content: space-between;
+   position: absolute;
+   bottom: 10px;
+}
+
+.card-box-top-container {
+   margin-top: 20px;
 }
