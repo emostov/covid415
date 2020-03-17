@@ -1,5 +1,5 @@
+/* eslint-disable no-param-reassign */
 const express = require('express');
-const mongoose = require('mongoose');
 const passport = require('passport');
 
 const geocodeUtil = require('../../util/geocode_util');
@@ -55,36 +55,28 @@ router.patch('/:id',
     const {
       type,
       details,
-      deliveryAddress,
-      deliveryLatLong,
       deliveryInstructions,
-      requester,
-      volunteer,
       status,
-      createdAt,
-      updatedAt
+      // deliveryAddress,
+      // deliveryLatLong,
+      // requester,
+      // volunteer,
+      // createdAt,
+      // updatedAt,
     } = req.body;
 
     Task.findById(req.params.id)
       .then((task) => {
-        const updatedTask = {
-          ...task,
-          type,
-          details,
-          // deliveryAddress,
-          // deliveryLatLong,
-          deliveryInstructions,
-          // requester,
-          volunteer,
-          status,
-          // createdAt,
-          updatedAt,
-        };
-        updatedTask.save()
-          .then((savedTask) => res.json(savedTask))
-          .catch((err) => console.log(err));
-      });
+        task.type = type;
+        task.status = status;
+        task.details = details;
+        task.deliveryInstructions = deliveryInstructions;
 
+        task.save()
+          .then((savedTask) => res.json(savedTask))
+          // eslint-disable-next-line no-console
+          .catch((err) => res.json(err));
+      });
   });
 
 
