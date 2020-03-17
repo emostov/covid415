@@ -61,7 +61,7 @@ class Card extends React.Component {
                                     </div>
                                 </div>
                                 <div className="accept-button-container">
-                                    <button onClick={() => openModal()} className="accept-button">Accept</button>
+                                    <button onClick={() => openModal('status')} className="accept-button">Accept</button>
                                 </div>
                             </div>
                         </div>
