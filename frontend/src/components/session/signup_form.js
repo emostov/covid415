@@ -135,7 +135,6 @@ class SignupForm extends React.Component {
                         <Form.Control type="password"
                           placeholder="Confirm Password"
                           onChange={this.update('password2')}
-                          placeholder="Confirm Password"
                         />
                       </Col>
                     </Row>
