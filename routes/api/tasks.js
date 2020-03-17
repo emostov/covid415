@@ -23,19 +23,20 @@ router.post('/',
       if (!isValid) {
         return res.status(400).json(errors);
       }
-
+      
       geocodeUtil.parseAddress(req.body.deliveryAddress).then(
         (latLongArr) => {
         const newTask = new Task ({
           type: req.body.type,
           details: req.body.details,
-          requester: req.user.id,
+          requester: req.user,
           deliveryAddress: req.body.deliveryAddress,
           deliveryLatLong: latLongArr,
           deliveryInstructions: req.body.deliveryInstructions
         })
 
-        newTask.save().then(task => res.json(task));
+        newTask.save().then(task => res.json(task))
+          .catch(err => res.json(err))
 
         }
       );
