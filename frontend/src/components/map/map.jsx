@@ -34,7 +34,16 @@ class Map extends React.Component {
           zoom: this.state.zoom
         });
 
-        map.addControl(new mapboxgl.NavigationControl());   
+        map.addControl(new mapboxgl.NavigationControl());
+        
+        map.addControl(
+            new mapboxgl.GeolocateControl({
+            positionOptions: {
+            enableHighAccuracy: true
+            },
+            trackUserLocation: true
+            })
+            );
 
         map.setMaxBounds(bounds);
 
