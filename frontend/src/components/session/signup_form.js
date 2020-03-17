@@ -67,10 +67,16 @@ class SignupForm extends React.Component {
           <Row>
             <Col>
               <Card className='session'>
-                <Card.Title>Sign Up </Card.Title>
+                <Card.Title><strong>Sign Up</strong></Card.Title>
+                {this.renderErrors()}
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    value={this.state.email}
+                    onChange={this.update('email')}
+                  />
                   <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                 </Form.Text>
@@ -80,11 +86,19 @@ class SignupForm extends React.Component {
                   <Row>
                     <Col>
                       <Form.Label>First Name</Form.Label>
-                      <Form.Control placeholder="First name" />
+                      <Form.Control
+                        placeholder="First Name"
+                        value={this.state.firstName}
+                        onChange={this.update('firstName')}
+                      />
                     </Col>
                     <Col>
                       <Form.Label>Last Name</Form.Label>
-                      <Form.Control placeholder="Last name" />
+                      <Form.Control
+                        placeholder="Last Name"
+                        value={this.state.lastName}
+                        onChange={this.update('lastName')}
+                      />
                     </Col>
                   </Row>
                 </Form.Group>
@@ -93,21 +107,30 @@ class SignupForm extends React.Component {
                   <Row>
                     <Col>
                       <Form.Label>Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" />
+                      <Form.Control
+                        type="password"
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={this.update('password')}
+                      />
                     </Col>
                     <Col>
                       <Form.Label>Confirm Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" />
+                      <Form.Control type="password"
+                        placeholder="Confirm Password"
+                        onChange={this.update('password2')}
+                        placeholder="Confirm Password"
+                      />
                     </Col>
                   </Row>
-                 
                 </Form.Group>
+
                 <Form.Group controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="I agree to be a good neighbor" />
                 </Form.Group>
 
                 <Button className='session-btn' type="submit">
-                  Submit
+                  Creat My Account
                 </Button>
               </Card>
             </Col>
