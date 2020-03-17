@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import TaskIndex from './task_index';
-import { fetchTasks } from '../../actions/task_action'
+import { fetchTasks } from '../../actions/task_actions'
 
 const mSTP = state => {
     return {

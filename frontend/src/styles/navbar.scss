@@ -9,7 +9,7 @@
 }
 
 .border-right-grey {
-  border-right: 1px solid $light-gray-bg;
+  border-right: 1px solid $third-gray-txt;
 }
 
 .nv-dp {
@@ -21,6 +21,10 @@
   padding: 0;
   margin: 0;
   border-color: transparent;
+}
+
+.nav-link:hover {
+  color: white!important;
 }
 
 .user-circle {

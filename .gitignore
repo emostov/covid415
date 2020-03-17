@@ -1,3 +1,7 @@
 /node_modules
-/config/keys.js
-/config/keys_geocode.js
+/frontend/node_modules
+
+/config/keys_mapbox.js
+/config/keys_dev.js
+
+*DS_Store

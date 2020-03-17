@@ -1,7 +1,7 @@
 import * as APIUtil from '../util/task_api_util'
 
 export const RECEIVE_TASKS = 'RECEIVE_TASKS';
-export const RECEIVE_TASK = 'RECEIVE_TASK';
+export const RECEIVE_NEW_TASK = 'RECEIVE_NEW_TASK';
 
 export const receiveTasks = tasks => {
     return {
@@ -12,7 +12,7 @@ export const receiveTasks = tasks => {
 
 export const receiveNewTask = task => {
     return {
-        type: RECEIVE_TASK,
+        type: RECEIVE_NEW_TASK,
         task
     }
 };

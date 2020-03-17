@@ -7,7 +7,7 @@ import Root from './components/root';
 import configureStore from './store/store';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
-import { fetchTasks } from './actions/task_action';
+import { fetchTasks } from './actions/task_actions';
 
 mapboxgl.accessToken = 'MAPBOX_ACCESS_TOKEN';
 
@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // If this is a first time user, start with an empty store
     store = configureStore({});
   }
+  window.getState = store.getState;
   window.dispatch = store.dispatch;
   window.fetchTasks = fetchTasks;
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import { AuthRoute } from '../util/route_util';
+// , ProtectedRoute ^ pop in above import when needed
 import { Switch, Route } from 'react-router-dom';
 
 import '../styles/theme.scss'

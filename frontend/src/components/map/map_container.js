@@ -1,18 +1,17 @@
 import { connect } from 'react-redux';
-
-import MainPage from './main_page.jsx';
+import Map from './map';
 import { fetchTasks } from '../../actions/task_actions';
 
 const mSTP = state => {
-    return {
+    return ({
         tasks: Object.values(state.tasks)
-    }
+    })
 };
 
 const mDTP = dispatch => {
-    return {
+    return ({
         fetchTasks: () => dispatch(fetchTasks())
-    }
+    })
 };
 
-export default connect(mSTP, mDTP)(MainPage);
+export default connect(mSTP, mDTP)(Map);
