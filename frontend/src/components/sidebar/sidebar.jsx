@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ActiveSidebar from './active';
 import AvailableSidebar from './available'
 import '../../styles/sidebar.scss';
-// import '../../styles/modal.scss';
 
 export default class SideBar extends Component {
   constructor(props) {
@@ -44,7 +43,7 @@ export default class SideBar extends Component {
     return (
       <div className='sidebar-container'>
         <div className="sidebar-inner-container">
-          <div className="sidebar-container-header">
+          <div className="sidebar-container-header" onClick={() => openModal()}>
             <div className="sidebar-container-inner-header">
               <div className="sidebar-container-header-available"
                    onClick={e =>{e.preventDefault(); this.clickHandler('available')}}>
