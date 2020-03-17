@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+/config/keys_geocode.js
 # production
 /build
 

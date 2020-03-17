@@ -9,4 +9,4 @@ const mDTP = dispatch => ({
 
 });
 
-export default (mSTP, mDTP)(Map);
+export default connect(mSTP, mDTP)(Map);

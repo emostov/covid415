@@ -7,5 +7,5 @@ export const getTasks = () => {
 }
 
 export const createTask = data => {
-    return axios.post('/api/tasks/', data)
+    return axios.post('/api/tasks', data)
 }
