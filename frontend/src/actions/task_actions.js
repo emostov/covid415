@@ -28,3 +28,9 @@ export const createNewTask = data => dispatch => {
         .then(task => dispatch(receiveNewTask(task)))
         .catch(err => console.log(err))
 };
+
+export const updateTask = data => dispatch => {
+    return APIUtil.updateTask(data)
+        .then(task => dispatch(receiveNewTask(task)))
+        .catch(err => console.log(err))
+}

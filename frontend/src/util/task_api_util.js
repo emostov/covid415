@@ -7,5 +7,9 @@ export const getTasks = () => {
 }
 
 export const createTask = data => {
-    return axios.post('/api/tasks/', data)
+    return axios.post('/api/tasks', data)
+}
+
+export const updateTask = data => {
+    return axios.patch(`/api/tasks/${data.id}`, data)
 }

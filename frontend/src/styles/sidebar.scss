@@ -1,4 +1,3 @@
-
 @import './theme.scss';
 
 .sidebar-container{
@@ -10,11 +9,192 @@
 .sidebar-inner-container {
    display: flex;
    flex-direction: column;
-   
+   // margin: 20px;
+   height: 100%
 }
 
 .sidebar-container-header {
    display: flex;
    flex-direction: row;
    justify-content: space-around;
+   height: 100px;
+
 }
+
+.sidebar-container-inner-header {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   height: 80%;
+   width: 100%;
+   transform: translateY(10px);
+}
+
+.sidebar-container-header-available {
+   border-right: 1px solid rgb(179, 179, 179);
+   width: 50%;
+   height: 100%;
+   text-align: center;
+   cursor: pointer;
+}
+
+.sidebar-container-header-available:hover {
+   color: $fimga-red;
+}
+
+.sidebar-container-header-active {
+   width: 50%;
+   height: 100%;
+   text-align: center;
+   cursor: pointer;
+}
+
+.sidebar-container-header-active:hover {
+   color: $fimga-red;
+}
+
+.available-title-name {
+   transform: translateY(20px);
+   font-size: 24px;
+}
+
+.available-title-name-active {
+   transform: translateY(20px);
+   font-size: 24px;
+   color: $fimga-red;
+}
+
+.active-title-name {
+   transform: translateY(20px);
+   font-size: 24px;
+}
+
+.active-title-name-active {
+   transform: translateY(20px);
+   font-size: 24px;
+   color: $fimga-red;
+}
+
+.sidebar-container-body {
+   // border: 1px solid red;
+   height: 86.5%;
+   // padding: 9px;
+
+}
+
+.sidebar-container-inner-body {
+   // margin: 20px;
+   // border: 1px solid red;
+   height: 95%;
+   // background: linear-gradient(#99b898 0%, #FECEA8 40%, #FF847C 85%, #E84A5F 100%);;
+   
+   background: linear-gradient(#99b898 15%, #FECEA8 );
+}
+
+.card-container {
+   padding: 20px;
+   height: 100%;
+   overflow: scroll;
+}
+
+.card-head {
+   font: 26px 'Helvetica';
+   color: #2A363A;
+   // color: white;
+   cursor: pointer;
+}
+
+.card-box {
+   display: flex;
+   flex-direction: column;
+   padding: 15px;
+   // background-color: $light-gray-bg;
+   background-color: #2A363A;
+   opacity: .9;
+   margin-bottom: 10px;
+   border-radius: 3px;
+   height: 150px;
+   transition: .5s;
+   overflow: hidden;
+}
+
+.card-box:hover {
+   box-shadow: 2px 2px 8px 4px rgb(88, 88, 88);
+}
+
+.card-box-active {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   padding: 15px;
+   background-color:#ffffff;
+   // background-color: rgb(228, 228, 228);
+   opacity: .9;
+   margin-bottom: 10px;
+   border-radius: 3px;
+   transition: .5s;
+   height: 400px;
+   box-shadow: 2px 2px 8px 3px rgb(168, 168, 168);
+}
+
+.card-body-active {
+   color: #2A363A;
+   margin-top: 10px;
+}
+
+.card-head {
+   color: white;
+}
+
+.card-head-active {
+   color: #2A363A;
+}
+
+.card-address-active {
+   color: #2A363A; 
+}
+
+.card-box-task-type {
+   color: #2A363A; 
+}
+
+.card-address-active:hover {
+   color: $fimga-red;
+   cursor: pointer;
+}
+
+.instructions-header {
+   color: #2A363A;
+}
+
+.instructions-body {
+   color: #2A363A;
+}
+
+.card-box-task-type {
+   display: flex;
+   
+}
+
+.card-box-task-content{
+   margin-left: 6px;
+}
+
+.card-box-type-of-prop {
+   color: #2A363A;
+   font-weight: 700;
+}
+
+.card-box-bottom-container {
+   display: flex;
+   width: 90%;
+   justify-content: space-between;
+   position: absolute;
+   bottom: 10px;
+}
+
+.card-box-top-container {
+   margin-top: 20px;
+}
+
+::-webkit-scrollbar { width: 0 !important }

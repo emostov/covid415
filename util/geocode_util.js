@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { geocodeKey } = require('../config/keys');
+const  { geocodeKey }  = require('../config/keys')
 
 module.exports = {
   parseAddress: (address) => {
