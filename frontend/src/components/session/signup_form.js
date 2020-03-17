@@ -17,6 +17,7 @@ class SignupForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,6 +49,17 @@ class SignupForm extends React.Component {
     this.props.signup(user, this.props.history);
   }
 
+  demoLogin(e) {
+    e.preventDefault();
+
+    let user = {
+      email: 'rayleensharp@gmail.com',
+      password: 'password',
+    };
+
+    this.props.login(user);
+  }
+
   renderErrors() {
     return (
       <ul>
@@ -67,9 +79,9 @@ class SignupForm extends React.Component {
       <div className="signup-form-container  ">
         <Container fluid='sm'>
           <Row>
-            <Col>
+            <Col xs='12' md={{ span: 8, offset: 2 }}>
               <Card className='session'>
-                <Card.Title>Sign <strong>up</strong></Card.Title>
+                <Card.Title><strong>Sign up</strong></Card.Title>
                 {this.renderErrors()}
                 {/*  */}
                 <Form onSubmit={this.handleSubmit}>
@@ -139,7 +151,13 @@ class SignupForm extends React.Component {
                   className='session-btn'
                   type="submit"
                   onClick={this.handleSubmit}>
-                  Creat My Account
+                  Create My Account
+                </Button>
+                <Button
+                  className='demo-btn'
+                  type="submit"
+                  onClick={this.demoLogin}>
+                  Just demo for now
                 </Button>
               </Card>
             </Col>
