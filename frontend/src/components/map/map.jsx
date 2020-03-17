@@ -74,10 +74,6 @@ class Map extends React.Component {
           // make a marker for each feature and add to the map
           new mapboxgl.Marker(el)
             .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
-
-          new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
             .setPopup(
               new mapboxgl.Popup({ offset: 25 }) // add popups
                 .setHTML(
