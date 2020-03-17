@@ -76,12 +76,10 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="signup-form-container  ">
-        <Container fluid='sm'>
-          <Row>
-            <Col xs='12' md={{ span: 8, offset: 2 }}>
-              <Card className='session'>
-                <Card.Title><strong>Sign up</strong></Card.Title>
+              <Card className='session signup'>
+                <Card.Title className='session'>
+                  <strong>Sign up.</strong>
+                </Card.Title>
                 {this.renderErrors()}
                 {/*  */}
                 <Form onSubmit={this.handleSubmit}>
@@ -159,10 +157,6 @@ class SignupForm extends React.Component {
                   Just demo for now
                 </Button>
               </Card>
-            </Col>
-          </Row>
-        </Container>
-      </div >
     );
   }
 }
