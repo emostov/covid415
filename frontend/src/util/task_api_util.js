@@ -11,5 +11,5 @@ export const createTask = data => {
 }
 
 export const updateTask = data => {
-    return axios.patch(`/api/tasks/${data.id}`, data)
+    return axios.patch(`/api/tasks/${data._id}`, data)
 }
