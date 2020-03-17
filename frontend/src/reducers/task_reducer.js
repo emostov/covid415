@@ -1,4 +1,4 @@
-import { RECEIVE_TASKS, RECEIVE_NEW_TASK } from '../actions/task_action';
+import { RECEIVE_TASKS, RECEIVE_TASK } from '../actions/task_action';
 
 // Each case needs some review on how we want to structure our state in 
 // our reducer
@@ -40,7 +40,7 @@ const TasksReducer = (state = {}, action) => {
         case RECEIVE_TASKS:
             nextState = action.tasks.data
             return nextState
-        case RECEIVE_NEW_TASK:
+        case RECEIVE_TASK:
             nextState[action.task.id] = action.task
             return nextState
         default:

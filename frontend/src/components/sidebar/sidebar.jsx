@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AciveSidebar from './active';
+import ActiveSidebar from './active';
 import AvailableSidebar from './available'
 import '../../styles/sidebar.scss';
 
@@ -26,8 +26,20 @@ export default class SideBar extends Component {
       return null
     }
   }
-
+  
   render() {
+    const { updateTask } = this.props
+
+    let available = []
+    let active = []
+    this.props.tasks.forEach((task, i) => {
+      if (task.status === 0) {
+        available.push(task)
+      } else if (task.status === 1) {
+        active.push(task)
+      }
+    })
+
     return (
       <div className='sidebar-container'>
         <div className="sidebar-inner-container">
@@ -36,13 +48,13 @@ export default class SideBar extends Component {
               <div className="sidebar-container-header-available"
                    onClick={e =>{e.preventDefault(); this.clickHandler('available')}}>
                 <div className="available-title-name">
-                  Available
+                  Available Tasks
                 </div>
               </div>
               <div className="sidebar-container-header-active"
                    onClick={e=> {e.preventDefault(); this.clickHandler('active')}}>
                 <div className="active-title-name">
-                  Active
+                  My Tasks
                 </div>
               </div>
             </div>
@@ -53,9 +65,9 @@ export default class SideBar extends Component {
                 this.state.available
                 ?
                 (
-                  <AvailableSidebar />
+                  <AvailableSidebar available={available} updateTask={updateTask}/>
                 ) : (
-                  <AciveSidebar />
+                    <ActiveSidebar active={active} updateTask={updateTask}/>
                 )
               }
             </div>

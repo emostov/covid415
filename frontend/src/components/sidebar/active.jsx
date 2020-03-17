@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './card'
 
 class ActiveSidebar extends React.Component {
     constructor(props) {
@@ -7,9 +8,16 @@ class ActiveSidebar extends React.Component {
     }
 
     render() {
+        const { active } = this.props
         return (
-            <div>
-                active
+            <div className='card-container'>
+                {
+                    active.map((task, i) => {
+                        return <Card 
+                                    key={`card-active-${i}`}
+                                    task={task}/>
+                    })
+                }
             </div>
         )
     }

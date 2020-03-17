@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './card'
 
 class AvailableSidebar extends React.Component {
     constructor(props) {
@@ -7,9 +8,17 @@ class AvailableSidebar extends React.Component {
     }
 
     render() {
+        const { available } = this.props
+        console.log(available)
         return (
-            <div>
-                available
+            <div className='card-container'>
+                {
+                    available.map((task, i) => {
+                        return <Card 
+                                    key={`card-available-${i}`}
+                                    task={task}/>
+                    })
+                }
             </div>
         )
     }
