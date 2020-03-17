@@ -9,7 +9,6 @@ import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 import { fetchTasks } from './actions/task_action';
 
-import  parseAddress from './util/geocode_util';
 mapboxgl.accessToken = 'MAPBOX_ACCESS_TOKEN';
 
 
@@ -47,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   window.dispatch = store.dispatch;
   window.fetchTasks = fetchTasks;
-  window.parseAddress = parseAddress;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);

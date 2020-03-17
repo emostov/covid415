@@ -3,3 +3,4 @@
 
 /config/keys.js
 /config/keys_mapbox.js
+/config/keys_geocode.js
