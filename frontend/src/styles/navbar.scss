@@ -1,1 +1,48 @@
 @import './theme.scss';
+
+.upcase {
+  text-transform: uppercase;
+}
+
+.white-txt {
+  color: #ffffff !important;
+}
+
+.border-right-grey {
+  border-right: 1px solid $light-gray-bg;
+}
+
+.nv-dp {
+  background-color: $first-gray-bg;
+}
+
+.light-gray-btn {
+  background-color: $second-gray-txt !important;
+  padding: 0;
+  margin: 0;
+  border-color: transparent;
+}
+
+.user-circle {
+  width: 25px!important;
+  height: 25px!important;
+  // color: #ffffff !important;
+}
+
+
+.dropdown-toggle.nav-link{
+  padding-bottom: .25rem;
+}
+
+.navbar.bg-dark {
+  border-bottom: 2px solid $fimga-red;
+  z-index: 3;
+}
+
+.dropdown-toggle::after {
+  padding-bottom: 3px;
+}
+
+.nav-link {
+  color: $second-gray-txt!important;
+}
