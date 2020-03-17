@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import TaskUpdate from './task_update';
 
-const mSTP = state ({
+const mSTP = state => ({
 
 });
 
-const mDTP = dispatch ({
+const mDTP = dispatch => ({
 
 });
 
