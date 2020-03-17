@@ -20,7 +20,9 @@ class Card extends React.Component {
     }
 
     render() {
+        const { openModal, closeModal } = this.props;
         console.log(this.props)
+
         return (
             <div>
                 {
@@ -59,7 +61,7 @@ class Card extends React.Component {
                                     </div>
                                 </div>
                                 <div className="accept-button-container">
-                                    <button className="accept-button">Accept</button>
+                                    <button onClick={() => openModal()} className="accept-button">Accept</button>
                                 </div>
                             </div>
                         </div>
