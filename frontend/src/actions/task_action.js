@@ -18,6 +18,7 @@ export const receiveNewTask = task => {
 };
 
 export const fetchTasks = () => dispatch => {
+    debugger
     return APIUtil.getTasks()
         .then(tasks => dispatch(receiveTasks(tasks)))
         .catch(err => console.log(err))
