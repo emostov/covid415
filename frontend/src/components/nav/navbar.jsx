@@ -1,6 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom'
-import { Navbar, Nav, NavDropdown, Button, Dropdown } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -72,7 +71,7 @@ class NavBar extends React.Component {
           <div className='d-flex justify-content-between w-full'>
             <Nav className="mr-auto ">
               <Navbar.Brand href="#">
-                <img className="logo-covid415" src={Logo} width="200" />
+                <img className="logo-covid415" src={Logo} alt='' width="200" />
               </Navbar.Brand>
               <Nav className='align-items-end'>
                 <Nav.Link className='upcase text-center primary-txt' href="#">
