@@ -128,6 +128,7 @@
    flex-direction: column;
    padding: 15px;
    background-color:#ffffff;
+   // background-color: rgb(228, 228, 228);
    opacity: .9;
    margin-bottom: 10px;
    border-radius: 3px;
@@ -195,3 +196,5 @@
 .card-box-top-container {
    margin-top: 20px;
 }
+
+::-webkit-scrollbar { width: 0 !important }
