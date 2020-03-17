@@ -35,13 +35,13 @@ class Map extends React.Component {
         });
 
         map.addControl(new mapboxgl.NavigationControl());
-        
+
         map.addControl(
             new mapboxgl.GeolocateControl({
             positionOptions: {
-            enableHighAccuracy: true
+                enableHighAccuracy: true
             },
-            trackUserLocation: true
+                trackUserLocation: true
             })
             );
 
