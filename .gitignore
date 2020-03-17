@@ -4,5 +4,6 @@
 /config/keys.js
 /config/keys_mapbox.js
 /config/keys_geocode.js
+/config/keys_dev.js
 
 *DS_Store
