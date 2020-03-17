@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Form, Row, Col, Button, Card, Container, Alert } from 'react-bootstrap';
 
+import '../../styles/session_form.scss'
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +17,7 @@ class SignupForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,12 +49,25 @@ class SignupForm extends React.Component {
     this.props.signup(user, this.props.history);
   }
 
+  demoLogin(e) {
+    e.preventDefault();
+
+    let user = {
+      email: 'rayleensharp@gmail.com',
+      password: 'password',
+    };
+
+    this.props.login(user);
+  }
+
   renderErrors() {
     return (
       <ul>
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
+          <li>
+            <Alert key={`error-${i}`} variant='warning'>
+              {this.state.errors[error]}
+            </Alert>
           </li>
         ))}
       </ul>
@@ -60,51 +76,93 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="signup-form-container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="signup-form">
-            <br />
-            <input type="text"
-              value={this.state.email}
-              onChange={this.update('email')}
-              placeholder="Email"
-            />
-            <br />
-            <br />
-            <br />
-            <input type="text"
-              value={this.state.firstName}
-              onChange={this.update('firstName')}
-              placeholder="First Name"
-            />
-            <br />
-            <br />
-            <input type="text"
-              value={this.state.lastName}
-              onChange={this.update('lastName')}
-              placeholder="Last Name"
-            />
-            <br />
-            <br />
-            <input type="password"
-              value={this.state.password}
-              onChange={this.update('password')}
-              placeholder="Password"
-            />
-            <br />
-            <br />
-            <input type="password"
-              value={this.state.password2}
-              onChange={this.update('password2')}
-              placeholder="Confirm Password"
-            />
-            <br />
-            <br />
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
-          </div>
-        </form>
-      </div>
+      <div className="signup-form-container  ">
+        <Container fluid='sm'>
+          <Row>
+            <Col xs='12' md={{ span: 8, offset: 2 }}>
+              <Card className='session'>
+                <Card.Title><strong>Sign up</strong></Card.Title>
+                {this.renderErrors()}
+                {/*  */}
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter email"
+                      value={this.state.email}
+                      onChange={this.update('email')}
+                    />
+                    <Form.Text className="text-muted">
+                      We'll never share your email with anyone else.
+                </Form.Text>
+                  </Form.Group>
+
+                  <Form.Group>
+                    <Row>
+                      <Col>
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control
+                          placeholder="First Name"
+                          value={this.state.firstName}
+                          onChange={this.update('firstName')}
+                        />
+                      </Col>
+                      <Col>
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control
+                          placeholder="Last Name"
+                          value={this.state.lastName}
+                          onChange={this.update('lastName')}
+                        />
+                      </Col>
+                    </Row>
+                  </Form.Group>
+
+                  <Form.Group controlId="formBasicPassword">
+                    <Row>
+                      <Col>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                          type="password"
+                          placeholder="Password"
+                          value={this.state.password}
+                          onChange={this.update('password')}
+                        />
+                      </Col>
+                      <Col>
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control type="password"
+                          placeholder="Confirm Password"
+                          onChange={this.update('password2')}
+                        />
+                      </Col>
+                    </Row>
+                  </Form.Group>
+
+                  <Form.Group controlId="formBasicCheckbox">
+                    <Form.Check type="checkbox" label="I agree to be a good neighbor" />
+                  </Form.Group>
+
+
+                </Form>
+                <Button
+                  className='session-btn'
+                  type="submit"
+                  onClick={this.handleSubmit}>
+                  Create My Account
+                </Button>
+                <Button
+                  className='demo-btn'
+                  type="submit"
+                  onClick={this.demoLogin}>
+                  Just demo for now
+                </Button>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div >
     );
   }
 }
