@@ -1,6 +1,0 @@
-/node_modules
-/frontend/node_modules
-
-/config/keys.js
-/config/keys_mapbox.js
-/frontend/src/config/keys_geocode.js

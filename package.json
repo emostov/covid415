@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/emostov/covid415#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.9",
