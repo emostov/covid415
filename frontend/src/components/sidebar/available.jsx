@@ -8,15 +8,17 @@ class AvailableSidebar extends React.Component {
     }
 
     render() {
-        const { available } = this.props
-        console.log(available)
+        const { available, openModal, closeModal } = this.props
+        // console.log(available)
         return (
             <div className='card-container'>
                 {
                     available.map((task, i) => {
                         return <Card 
                                     key={`card-available-${i}`}
-                                    task={task}/>
+                                    task={task}
+                                    openModal={openModal}
+                                    closeModal={closeModal} />
                     })
                 }
             </div>

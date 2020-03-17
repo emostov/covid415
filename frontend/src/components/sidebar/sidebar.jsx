@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ActiveSidebar from './active';
 import AvailableSidebar from './available'
 import '../../styles/sidebar.scss';
+// import '../../styles/modal.scss';
 
 export default class SideBar extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class SideBar extends Component {
   }
   
   render() {
-    const { updateTask } = this.props
+    const { updateTask, openModal, closeModal } = this.props
 
     let available = []
     let active = []
@@ -65,9 +66,17 @@ export default class SideBar extends Component {
                 this.state.available
                 ?
                 (
-                  <AvailableSidebar available={available} updateTask={updateTask}/>
+                  <AvailableSidebar 
+                        available={available} 
+                        updateTask={updateTask} 
+                        openModal={openModal} 
+                        closeModal={closeModal}/>
                 ) : (
-                  <ActiveSidebar active={active} updateTask={updateTask}/>
+                  <ActiveSidebar 
+                        active={active} 
+                        updateTask={updateTask} 
+                        openModal={openModal} 
+                        closeModal={closeModal}/>
                 )
               }
             </div>
