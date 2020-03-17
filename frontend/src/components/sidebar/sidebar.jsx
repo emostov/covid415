@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ActiveSidebar from './active';
 import AvailableSidebar from './available'
 import '../../styles/sidebar.scss';
+// import '../../styles/modal.scss';
 
 export default class SideBar extends Component {
   constructor(props) {
