@@ -3,8 +3,10 @@
 .session.card {
   padding: 2rem;
   margin-top: 150px;
-  border-color: transparent;
-  background-image: linear-gradient(to bottom right,  $figma-peach, $figma-grapefruit);
+  border-radius: 1rem;
+  border-color: #343A40;
+  // background-image: linear-gradient(to bottom right,  $figma-peach, $figma-grapefruit);
+  background-image: linear-gradient(to bottom right,  $figma-grapefruit, $figma-peach );
   // background-image: linear-gradient( signup-btn, $figma-peach, $figma-grapefruit, $fimga-red, #343A40);
 }
 

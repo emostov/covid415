@@ -67,6 +67,7 @@ class SignupForm extends React.Component {
           <Row>
             <Col>
               <Card className='session'>
+                <Card.Title>Sign Up </Card.Title>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
                   <Form.Control type="email" placeholder="Enter email" />
@@ -78,20 +79,33 @@ class SignupForm extends React.Component {
                 <Form.Group>
                   <Row>
                     <Col>
+                      <Form.Label>First Name</Form.Label>
                       <Form.Control placeholder="First name" />
                     </Col>
                     <Col>
+                      <Form.Label>Last Name</Form.Label>
                       <Form.Control placeholder="Last name" />
                     </Col>
                   </Row>
                 </Form.Group>
+
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Row>
+                    <Col>
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control type="password" placeholder="Password" />
+                    </Col>
+                    <Col>
+                      <Form.Label>Confirm Password</Form.Label>
+                      <Form.Control type="password" placeholder="Password" />
+                    </Col>
+                  </Row>
+                 
                 </Form.Group>
                 <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Check me out" />
+                  <Form.Check type="checkbox" label="I agree to be a good neighbor" />
                 </Form.Group>
+
                 <Button className='session-btn' type="submit">
                   Submit
                 </Button>
