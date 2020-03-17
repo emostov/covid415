@@ -1,4 +1,4 @@
-import { RECEIVE_TASKS, RECEIVE_NEW_TASK } from '../actions/task_action';
+import { RECEIVE_TASKS, RECEIVE_NEW_TASK } from '../actions/task_actions';
 
 // Each case needs some review on how we want to structure our state in 
 // our reducer
