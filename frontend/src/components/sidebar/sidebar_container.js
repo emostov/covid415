@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SideBar from './sidebar';
-import { updateTask } from '../../actions/task_action';
+import { updateTask } from '../../actions/task_actions';
 
 const mSTP = state => ({
 
