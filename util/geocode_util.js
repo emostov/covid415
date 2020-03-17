@@ -1,5 +1,4 @@
 const axios = require('axios');
-// const geocodeKey = require('../config/keys_geocode');
 const { geocodeKey } = require('../config/keys');
 
 module.exports = {
