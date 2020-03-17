@@ -4,13 +4,21 @@ class TaskUpdate extends React.Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            
+        }
+    }
+
+    handleClaim () {
+        debugger;
     }
 
     render() {
         console.log('the whale has landed')
         return (
             <div>
-                Hello   
+                
+                <button onClick={() => this.handleClaim()}>CLAIM</button>
             </div>
         )
     }
