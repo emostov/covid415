@@ -47,13 +47,13 @@ export default class SideBar extends Component {
             <div className="sidebar-container-inner-header">
               <div className="sidebar-container-header-available"
                    onClick={e =>{e.preventDefault(); this.clickHandler('available')}}>
-                <div className="available-title-name">
+                <div className={this.state.available ? "available-title-name-active" : "available-title-name"}>
                   Available Tasks
                 </div>
               </div>
               <div className="sidebar-container-header-active"
                    onClick={e=> {e.preventDefault(); this.clickHandler('active')}}>
-                <div className="active-title-name">
+                <div className={this.state.available ? "active-title-name" : "active-title-name-active"}>
                   My Tasks
                 </div>
               </div>
@@ -67,7 +67,7 @@ export default class SideBar extends Component {
                 (
                   <AvailableSidebar available={available} updateTask={updateTask}/>
                 ) : (
-                    <ActiveSidebar active={active} updateTask={updateTask}/>
+                  <ActiveSidebar active={active} updateTask={updateTask}/>
                 )
               }
             </div>

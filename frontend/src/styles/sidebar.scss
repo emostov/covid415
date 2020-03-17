@@ -26,7 +26,7 @@
    flex-direction: row;
    justify-content: space-around;
    height: 80%;
-   width: 90%;
+   width: 100%;
    transform: translateY(10px);
 }
 
@@ -39,7 +39,7 @@
 }
 
 .sidebar-container-header-available:hover {
-   background-color: rgb(46, 46, 46);
+   color: $fimga-red;
 }
 
 .sidebar-container-header-active {
@@ -50,7 +50,7 @@
 }
 
 .sidebar-container-header-active:hover {
-   background-color: rgb(46, 46, 46);
+   color: $fimga-red;
 }
 
 .available-title-name {
@@ -58,9 +58,21 @@
    font-size: 24px;
 }
 
+.available-title-name-active {
+   transform: translateY(20px);
+   font-size: 24px;
+   color: $fimga-red;
+}
+
 .active-title-name {
    transform: translateY(20px);
    font-size: 24px;
+}
+
+.active-title-name-active {
+   transform: translateY(20px);
+   font-size: 24px;
+   color: $fimga-red;
 }
 
 .sidebar-container-body {
@@ -93,28 +105,52 @@
 }
 
 .card-box {
+   display: flex;
+   flex-direction: column;
    padding: 15px;
-   background-color: $light-gray-bg;
+   // background-color: $light-gray-bg;
+   background-color: #2A363A;
    opacity: .9;
    margin-bottom: 10px;
    border-radius: 3px;
-   max-height: 150px;
-   transition: 1s
+   height: 150px;
+   transition: .5s;
+   overflow: hidden;
+}
+
+.card-box:hover {
+   box-shadow: 2px 2px 8px 4px rgb(88, 88, 88);
 }
 
 .card-box-active {
-   // border: 1px solid black;
-   // border: 1px solid white;
+   display: flex;
+   flex-direction: column;
    padding: 15px;
-   // background-color: rgb(46, 46, 46);
    background-color:#ffffff;
    opacity: .9;
    margin-bottom: 10px;
    border-radius: 3px;
-   transition: 1.5s;
+   transition: .5s;
    height: 400px;
+   box-shadow: 2px 2px 8px 3px rgb(168, 168, 168);
 }
 
-.accordian-button {
-   border: none;
+.card-body-active {
+   color: #2A363A;
+}
+
+.card-head {
+   color: white;
+}
+
+.card-head-active {
+   color: #2A363A;
+}
+
+.card-address-active {
+   color: #2A363A; 
+}
+
+.card-address-active:hover {
+   color: $fimga-red;
 }
