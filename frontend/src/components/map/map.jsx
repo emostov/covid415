@@ -11,7 +11,7 @@ class Map extends React.Component {
     this.state = {
       lng: -122.44,
       lat: 37.76,
-      zoom: 12.2
+      zoom: 11
     }
   }
 
@@ -22,8 +22,8 @@ class Map extends React.Component {
         mapboxgl.accessToken = mapboxkeys.public_key;
 
         var bounds = [
-          [-122.54, 37.7], // [west, south]
-          [-122.34, 37.81]  // [east, north]
+          [-122.54, 37], // [west, south]
+          [-122.34, 38]  // [east, north]
         ];
         // Set the map's max bounds
 
@@ -34,29 +34,32 @@ class Map extends React.Component {
           zoom: this.state.zoom
         });
 
+        map.addControl(new mapboxgl.NavigationControl());   
+
         map.setMaxBounds(bounds);
 
-        let geojson = {
-          type: 'FeatureCollection',
-          features:
-            this.props.tasks.map(task => ({
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
-              },
-              properties: {
-                title: `${task.type} request`,
-                description: 'Volunteer Needed'
-              }
-            }))
+            let geojson = {
+            type: 'FeatureCollection',
+            features:
+                this.props.tasks.map(task => ({
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
+                },
+                properties: {
+                    title: `${task.type} request`,
+                    description: 'Volunteer Needed',
+                    taskId: task._id
+                }
+                }))
         };
         // add markers to map
 
         geojson.features.forEach(function (marker) {
 
           // create a HTML element for each feature
-          var el = document.createElement('div');
+          const el = document.createElement('div');
           el.className = 'marker';
 
           // make a marker for each feature and add to the map
@@ -73,13 +76,17 @@ class Map extends React.Component {
                   + '<p>' + marker.properties.description + '</p>'
                 )
             )
+            //if popup is the active state ID popup, then open it
+            //else make sure it's closed
+            //also perhaps make the marker bigger
             .addTo(map);
         });
       })
   }
 
   render() {
-
+    //recreate geoJSON for task
+    //close if doesn't match id of state
     return (
       <div>
         <div ref={el => this.mapContainer = el} className="mapContainer" />
