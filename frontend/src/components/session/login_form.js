@@ -76,13 +76,10 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form-container  ">
-        <Container fluid='sm'>
-          <Row>
-          
-            <Col xs='12' md={{ span: 8, offset: 2 }}>
-              <Card className=' login'>
-                <Card.Title><strong>Welcome back</strong></Card.Title>
+              <Card className=' login session'>
+                <Card.Title className='session'>
+                  <strong>Welcome back, neighbor.</strong>
+                </Card.Title>
                 {this.renderErrors()}
                 {/*  */}
                 <Form onSubmit={this.handleSubmit}>
@@ -119,11 +116,6 @@ class LoginForm extends React.Component {
                   Just demo for now
                 </Button>
               </Card>
-            </Col>
-           
-          </Row>
-        </Container>
-      </div >
     );
   }
 }
