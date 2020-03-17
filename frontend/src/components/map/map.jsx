@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 import mapboxgl from 'mapbox-gl';
 import mapboxkeys from '../../config/keys_mapbox';
-
 import '../../styles/map.scss'
 
 class Map extends React.Component {
