@@ -4,29 +4,31 @@ import '../../styles/task_update.scss'
 class TaskUpdate extends React.Component {
     constructor(props) {
         super(props)
+        
         this.state = this.props.task
+
+        this.handleClaim = this.handleClaim.bind(this)
     }
 
     componentDidMount() {
-
+        console.log(this.state);
     }
 
     handleClaim () {
         if (this.state.status === 0){
-            debugger;
-            this.setState({
-                status: 1,
+            this.setState(prevState => ({
+                status: prevState.status+1,
                 volunteer: this.props.currentUserId
-            })
+            }), () => this.props.updateTask(this.state)
+                .then(() => this.props.fetchTasks()))
         } else if (this.state.status === 1) {
-            this.setState({
-                status: 2
-            })
+            this.setState(prevState => ({
+                status: prevState.status+1
+            }), () => this.props.updateTask(this.state)
+                .then(() => this.props.fetchTasks()))
         }
 
-        console.log(this.state);
-        this.props.updateTask(this.state);
-        setTimeout(() => this.props.closeModal(), 2000);
+        setTimeout(() => this.props.closeModal(), 500);
     }
 
     render() {
