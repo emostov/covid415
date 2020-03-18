@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../styles/card.scss'
 
 class Card extends React.Component {
     constructor(props) {

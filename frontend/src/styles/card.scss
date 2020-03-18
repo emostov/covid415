@@ -1,0 +1,21 @@
+@import './theme.scss';
+
+.accept-button {
+    text-decoration: none;
+    background-color: $figma-green;
+    border-radius: 2px;
+    width: 100px;
+    height: 35px;
+    border: none;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    color: white;
+}
+
+.accept-button:hover {
+    box-shadow: 2px 2px 8px 3px rgba(197, 197, 197, 0.5);
+}
+
+.accept-button:focus {
+    outline: none;
+}

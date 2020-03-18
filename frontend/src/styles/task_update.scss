@@ -1,0 +1,12 @@
+@import './theme.scss';
+
+.claim-button {
+    border: none;
+    color: white;
+    background-color: $figma-green;
+    border-radius: 2px;
+}
+
+.claim-button:focus {
+    outline: none;
+}

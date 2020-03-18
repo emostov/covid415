@@ -9,7 +9,7 @@ class AvailableSidebar extends React.Component {
 
     render() {
         const { available, openModal, closeModal } = this.props
-        // console.log(available)
+
         return (
             <div className='card-container'>
                 {
