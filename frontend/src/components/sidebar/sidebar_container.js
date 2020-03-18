@@ -14,7 +14,8 @@ const mSTP = state => {
 
     return {
         currentUserId: currentUserId,
-        activeTask: state.ui.activeTask
+        activeTask: state.ui.activeTask,
+        session: state.session
     }
 };
 
