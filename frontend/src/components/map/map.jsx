@@ -65,7 +65,7 @@ class Map extends React.Component {
             coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
           },
           properties: {
-            title: `${task.type} request`,
+            title: `${task.type}`,
             deliveryAddress: task.deliveryAddress,
             taskId: task._id
           }
@@ -90,7 +90,7 @@ class Map extends React.Component {
           }) // add popups
             .setHTML(
               '<h3>' + marker.properties.title + '</h3>'
-              + '<p>' + marker.properties.deliveryAddress + '</p>'
+              + '<p>' + 'Volunteer Needed' + '</p>'
             )
         )
         .addTo(this.state.map);

@@ -18,12 +18,69 @@
 }
 
 .mapboxgl-popup {
-    max-width: 200px;
+    min-width: 150px;
 }
   
 .mapboxgl-popup-content {
-    text-align: center;
-    color: $first-gray-bg;
-    font-family: 'Open Sans', sans-serif;
+    height: 75px!important;
+    text-align: left;
+    background-color: $light-gray-bg;
+    border-radius: 5px;
+    // padding-left: 20px;
 }
 
+.mapboxgl-popup-content > h3{
+    font: 20px 'Open Sans', sans-serif;
+    color: $third-gray-txt;
+}
+
+.mapboxgl-popup-content > p{
+    font: 15px 'Open Sans', sans-serif;
+    color: $fimga-red;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+    border-top-color: $light-gray-bg!important
+}
+
+
+.completed  .mapboxgl-popup {
+    width: 150px;
+}
+
+.completed .mapboxgl-popup-content {
+
+    background-color: $figma-green;
+}
+
+.completed .mapboxgl-popup-content > h3{
+ 
+    color: white;
+}
+
+.completed .mapboxgl-popup-content > p{
+
+    color: white;
+}
+
+.completed .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+    border-top-color: $figma-green!important
+}
+
+
+// $first-gray-bg: #4c5159;
+// $second-gray-bg: #C4C4C4;
+
+// // Element colors
+// // light gray should be used for pains on white bg
+// $light-gray-bg: #EDEDED;
+
+// //Text colors for non-white text
+// $second-gray-txt: #aaadb3;
+// $third-gray-txt: #4c5159;
+
+// //General theme colors from figma color pallette
+// $figma-green: #9FB89B;
+// $figma-peach:  #F6CFAF;
+// $figma-grapefruit: #E68981;
+// $fimga-red: #DA5663;
