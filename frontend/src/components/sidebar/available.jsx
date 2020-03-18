@@ -20,11 +20,14 @@ class AvailableSidebar extends React.Component {
                                     openModal={openModal}
                                     closeModal={closeModal}
                                     currentUserId={currentUserId}
-                                    history={history} />
+                                    history={history}
+                                    activeTask={this.props.activeTask}
+                                    receiveActiveTaskId={this.props.receiveActiveTaskId}     />
                     })
                 }
             </div>
         )
+
     }
 }
 

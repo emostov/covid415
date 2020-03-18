@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import modalReducer from './modal_reducer';
+import modal from './modal_reducer'
+import activeTask from './active_task_reducer'
 
 const uiReducer = combineReducers({
-    modal: modalReducer
+    modal,
+    activeTask
 });
 
 export default uiReducer;
