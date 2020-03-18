@@ -11,7 +11,8 @@ class Map extends React.Component {
     this.state = {
       lng: -122.44,
       lat: 37.76,
-      zoom: 11
+      zoom: 11,
+      map: '',
     }
   }
 
@@ -37,31 +38,31 @@ class Map extends React.Component {
         map.addControl(new mapboxgl.NavigationControl());
 
         map.addControl(
-            new mapboxgl.GeolocateControl({
+          new mapboxgl.GeolocateControl({
             positionOptions: {
-                enableHighAccuracy: true
+              enableHighAccuracy: true
             },
-                trackUserLocation: true
-            })
-            );
+            trackUserLocation: true
+          })
+        );
 
         map.setMaxBounds(bounds);
 
-            let geojson = {
-            type: 'FeatureCollection',
-            features:
-                this.props.tasks.map(task => ({
-                type: 'Feature',
-                geometry: {
-                    type: 'Point',
-                    coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
-                },
-                properties: {
-                    title: `${task.type} request`,
-                    deliveryAddress: task.deliveryAddress,
-                    taskId: task._id
-                }
-                }))
+        let geojson = {
+          type: 'FeatureCollection',
+          features:
+            this.props.tasks.map(task => ({
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
+              },
+              properties: {
+                title: `${task.type} request`,
+                deliveryAddress: task.deliveryAddress,
+                taskId: task._id
+              }
+            }))
         };
         // add markers to map
 
@@ -72,7 +73,7 @@ class Map extends React.Component {
           el.className = 'marker';
 
           // make a marker for each feature and add to the map
-          new mapboxgl.Marker(el)
+          const mapBoxMarker = new mapboxgl.Marker(el)
             .setLngLat(marker.geometry.coordinates)
             .setPopup(
               new mapboxgl.Popup({ offset: 25 }) // add popups
@@ -81,23 +82,38 @@ class Map extends React.Component {
                   + '<p>' + marker.properties.deliveryAddress + '</p>'
                 )
             )
-            //if popup is the active state ID popup, then open it
-            //else make sure it's closed
-            //also perhaps make the marker bigger
             .addTo(map);
+          
+          const markerEl = mapBoxMarker.getElement();
+          markerEl.addEventListener('mouseenter', () => {
+            // dispatch state indicating that this marker is being shown
+            mapBoxMarker.togglePopup()
+          });
+          markerEl.addEventListener('mouseleave', () => { 
+            // dispatch state indicating this marker is no longer being show
+            mapBoxMarker.togglePopup()
+          });
         });
       })
   }
 
+
+
+
+
   render() {
     //recreate geoJSON for task
     //close if doesn't match id of state
+    console.log(this.state.map)
     return (
-      <div>
+
+      < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />
-      </div>
+      </div >
     )
   }
+
+
 }
 
 
