@@ -9,7 +9,7 @@ const TasksReducer = (state = {}, action) => {
             nextState = action.tasks.data
             return nextState
         case RECEIVE_NEW_TASK:
-            nextState[action.task.id] = action.task
+            nextState[action.task.id] = action.task.data
             return nextState
         default:
             return state
