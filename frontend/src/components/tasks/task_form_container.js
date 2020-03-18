@@ -4,7 +4,6 @@ import { closeModal } from '../../actions/modal_actions';
 import TaskForm from './task_form';
 
 const mSTP = (state, ownProps) => {
-    debugger;
     return{
     task: {
         type: '',
