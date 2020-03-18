@@ -7,7 +7,7 @@ const modalReducer = (state = null, action) => {
     switch (action.type) {
         case OPEN_MODAL:
             newState.modal = action.modal
-            newState.task = action.task
+            newState.taskId = action.taskId
             return newState
         case CLOSE_MODAL:
             return null;

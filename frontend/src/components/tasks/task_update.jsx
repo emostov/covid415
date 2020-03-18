@@ -4,8 +4,11 @@ import '../../styles/task_update.scss'
 class TaskUpdate extends React.Component {
     constructor(props) {
         super(props)
+        this.state = this.props.tasks
+    }
 
-        this.state = this.props.task
+    componentDidMount() {
+
     }
 
     handleClaim () {

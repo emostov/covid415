@@ -22,7 +22,7 @@ class Card extends React.Component {
 
     handleModal(e) {
         e.stopPropagation()
-        this.props.openModal('status', this.props.task);
+        this.props.openModal('status', this.props.task._id);
     }
 
     render() {
