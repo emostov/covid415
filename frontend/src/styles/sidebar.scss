@@ -25,7 +25,7 @@
    justify-content: space-around;
    height: 80%;
    width: 100%;
-   transform: translateY(10px);
+   transform: translateY(8px);
 }
 
 .sidebar-container-header-available {
@@ -52,25 +52,25 @@
 }
 
 .available-title-name {
-   transform: translateY(10px);
+   transform: translateY(8px);
    font-size: 22px;
    color: $second-gray-bg
 }
 
 .available-title-name-active {
-   transform: translateY(10px);
+   transform: translateY(8px);
    font-size: 22px;
    color: white;
 }
 
 .active-title-name {
-   transform: translateY(10px);
+   transform: translateY(8px);
    font-size: 22px;
    color: $second-gray-bg
 }
 
 .active-title-name-active {
-   transform: translateY(10px);
+   transform: translateY(8px);
    font-size: 22px;
    color: white;
 }
@@ -104,7 +104,7 @@
 }
 
 .card-head {
-   font: 26px 'Helvetica';
+   font-size: 22px;
    color: #2A363A;
    // color: white;
    cursor: pointer;
