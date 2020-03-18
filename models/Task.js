@@ -24,7 +24,7 @@ const TaskSchema = new Schema({
     required: true,
   },
   requester: {
-    type: Schema.Types.ObjectId,
+    type: Schema.Types.Mixed,
     ref: 'users',
     required: true,
   },

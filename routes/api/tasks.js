@@ -32,7 +32,7 @@ router.post('/',
         const newTask = new Task({
           type: req.body.type,
           details: req.body.details,
-          requester: req.user.id,
+          requester: req.user,
           deliveryAddress: req.body.deliveryAddress,
           deliveryLatLong: latLongArr,
           deliveryInstructions: req.body.deliveryInstructions,

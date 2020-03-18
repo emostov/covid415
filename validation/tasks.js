@@ -19,7 +19,7 @@ module.exports = function validateTaskInput(dat) {
   }
   
   if (!Validator.isLength(data.details, { min: 30, max: 200 })) {
-    errors.text = 'Request detail should be at least 100 characters. Please provide more details so that your volunteer has enough information to help.';
+    errors.text = 'Request detail should be at least 30 characters. Please provide more details so that your volunteer has enough information to help.';
   }
 
   if (Validator.isEmpty(data.deliveryAddress)) {
