@@ -64,47 +64,96 @@ class Map extends React.Component {
               }
             }))
         };
+        this.setState({ map })
         // add markers to map
 
-        geojson.features.forEach(function (marker) {
+        // geojson.features.forEach(function (marker) {
 
-          // create a HTML element for each feature
-          const el = document.createElement('div');
-          el.className = 'marker';
+        //   // create a HTML element for each feature
+        //   const el = document.createElement('div');
+        //   el.className = 'marker';
 
-          // make a marker for each feature and add to the map
-          const mapBoxMarker = new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
-            .setPopup(
-              new mapboxgl.Popup({ offset: 25 }) // add popups
-                .setHTML(
-                  '<h3>' + marker.properties.title + '</h3>'
-                  + '<p>' + marker.properties.deliveryAddress + '</p>'
-                )
-            )
-            .addTo(map);
-          
-          const markerEl = mapBoxMarker.getElement();
-          markerEl.addEventListener('mouseenter', () => {
-            // dispatch state indicating that this marker is being shown
-            mapBoxMarker.togglePopup()
-          });
-          markerEl.addEventListener('mouseleave', () => { 
-            // dispatch state indicating this marker is no longer being show
-            mapBoxMarker.togglePopup()
-          });
-        });
+        //   // make a marker for each feature and add to the map
+        //   const mapBoxMarker = new mapboxgl.Marker(el)
+        //     .setLngLat(marker.geometry.coordinates)
+        //     .setPopup(
+        //       new mapboxgl.Popup({ offset: 25 }) // add popups
+        //         .setHTML(
+        //           '<h3>' + marker.properties.title + '</h3>'
+        //           + '<p>' + marker.properties.deliveryAddress + '</p>'
+        //         )
+        //     )
+        //     .addTo(map);
+
+        //   const markerEl = mapBoxMarker.getElement();
+        //   markerEl.addEventListener('mouseenter', () => {
+        //     // dispatch state indicating that this marker is being shown
+        //     mapBoxMarker.togglePopup()
+        //   });
+        //   markerEl.addEventListener('mouseleave', () => { 
+        //     // dispatch state indicating this marker is no longer being show
+        //     mapBoxMarker.togglePopup()
+        //   });
+        // });
       })
   }
 
 
+  placeMapMarkers() {
+    let geojson = {
+      type: 'FeatureCollection',
+      features:
+        this.props.tasks.map(task => ({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
+          },
+          properties: {
+            title: `${task.type} request`,
+            deliveryAddress: task.deliveryAddress,
+            taskId: task._id
+          }
+        }))
+    };
 
+    // add markers to map
+    geojson.features.forEach((marker) => {
 
+      // create a HTML element for each feature
+      const el = document.createElement('div');
+      el.className = 'marker';
+      debugger
+      // make a marker for each feature and add to the map
+      const mapBoxMarker = new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .setPopup(
+          new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(
+              '<h3>' + marker.properties.title + '</h3>'
+              + '<p>' + marker.properties.deliveryAddress + '</p>'
+            )
+        )
+        .addTo(this.state.map);
+
+      const markerEl = mapBoxMarker.getElement();
+
+      markerEl.addEventListener('mouseenter', () => {
+        // dispatch state indicating that this marker is being shown
+        mapBoxMarker.togglePopup()
+      });
+      
+      markerEl.addEventListener('mouseleave', () => {
+        // dispatch state indicating this marker is no longer being show
+        mapBoxMarker.togglePopup()
+      });
+    });
+  }
 
   render() {
-    //recreate geoJSON for task
-    //close if doesn't match id of state
-    console.log(this.state.map)
+    if (this.state.map && this.props.tasks) {
+      this.placeMapMarkers()
+    }
     return (
 
       < div >
