@@ -54,6 +54,8 @@ class Map extends React.Component {
 
 
   placeMapMarkers() {
+    const map = this.state.map
+
     let geojson = {
       type: 'FeatureCollection',
       features:
@@ -88,28 +90,38 @@ class Map extends React.Component {
           + '<p>' + 'Volunteer Needed' + '</p>'
         )
 
-      // popup.addClassName('completed')
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(popup)
         .addTo(this.state.map);
 
+      const { activeTask } = this.props;
+      if (activeTask && activeTask.taskId === marker.properties.taskId) {
+        mapBoxMarker.togglePopup()
+      }
+
       const markerEl = mapBoxMarker.getElement();
 
       markerEl.addEventListener('mouseenter', () => {
         // dispatch state indicating that this marker is being shown
-        const { activeTask } = this.props;
+
         // if (!activeTask || activeTask.taskId !== marker.properties.taskId) {
         //   this.props.receiveActiveTaskId(marker.properties.taskId)
         // }
 
-        mapBoxMarker.togglePopup()
+        // mapBoxMarker.togglePopup()
+
+        // Add popup to map 
+        popup.addTo(map);
       });
 
       markerEl.addEventListener('mouseleave', () => {
         // dispatch state indicating this marker is no longer being show
-        mapBoxMarker.togglePopup()
+        // mapBoxMarker.togglePopup()
+
+        // Remove popup from map
+        popup.remove();
       });
     });
   }
@@ -121,7 +133,6 @@ class Map extends React.Component {
     }
 
     return (
-
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />
       </div >
