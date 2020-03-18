@@ -1,3 +1,5 @@
+@import './theme.scss';
+
 .modal-background {
   position: fixed;
   top: 0;
@@ -8,7 +10,7 @@
   z-index: 10;
 }
 
-.modal-child {
+.modal-child-status {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -16,6 +18,19 @@
   width: 500px;
   height: 300px; 
   background-color: rgba(255, 255, 255, 0.95);
+  color: black;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.modal-child-taskform {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 500px; 
+  background-color: #343a40;
   color: black;
   border-radius: 3px;
   padding: 20px;
