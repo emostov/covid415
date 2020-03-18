@@ -16,7 +16,7 @@ class Card extends React.Component {
 
     clickHandler(e) {
         e.preventDefault();
-        // console.log("the dolphin has landed")
+        
         let curActive = this.state.active;
         this.setState( { active: !curActive} )
     }
@@ -78,7 +78,7 @@ class Card extends React.Component {
                     ) : (
                         <div className={"card-box"} onClick={this.clickHandler}>
                             <div className={"card-head"}>
-                                0.1 Miles Away
+                                0.1 Miles Away!
                         </div>
                             <div className={"card-body"}>
                                 {this.props.task.details}
