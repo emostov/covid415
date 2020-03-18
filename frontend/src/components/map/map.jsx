@@ -49,24 +49,7 @@ class Map extends React.Component {
 
         map.setMaxBounds(bounds);
 
-        let geojson = {
-          type: 'FeatureCollection',
-          features:
-            this.props.tasks.map(task => ({
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
-              },
-              properties: {
-                title: `${task.type} request`,
-                deliveryAddress: task.deliveryAddress,
-                taskId: task._id
-              }
-            }))
-        };
-        this.setState({ map })
-      // })
+        this.setState({ map });
 
   }
 
@@ -95,12 +78,16 @@ class Map extends React.Component {
       // create a HTML element for each feature
       const el = document.createElement('div');
       el.className = 'marker';
-      debugger
+      
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(
-          new mapboxgl.Popup({ offset: 25 }) // add popups
+          new mapboxgl.Popup({ 
+            offset: 25,
+            closeButton: false,
+            closeOnClick: false
+          }) // add popups
             .setHTML(
               '<h3>' + marker.properties.title + '</h3>'
               + '<p>' + marker.properties.deliveryAddress + '</p>'
