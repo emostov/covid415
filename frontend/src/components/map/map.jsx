@@ -18,8 +18,7 @@ class Map extends React.Component {
 
   componentDidMount() {
 
-    // this.props.fetchTasks()
-      // .then(() => {
+ 
 
         mapboxgl.accessToken = mapboxkeys.public_key;
 
@@ -66,7 +65,7 @@ class Map extends React.Component {
             }))
         };
         this.setState({ map })
-      // })
+   
 
   }
 
