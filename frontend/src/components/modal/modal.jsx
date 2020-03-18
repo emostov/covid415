@@ -2,6 +2,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import React from 'react';
 import TaskUpdateContainer from '../tasks/task_update_container';
+import TaskFormContainer from '../tasks/task_form_container';
 import '../../styles/modal.scss';
 
 const Modal = ({modal, closeModal}) => {
@@ -15,6 +16,9 @@ const Modal = ({modal, closeModal}) => {
     switch (modal.modal) {
         case 'status':
             component = <TaskUpdateContainer taskId={modal.taskId}/>;
+            break;
+        case 'taskform':
+            component = <TaskFormContainer />;
             break;
         default: 
             return null;

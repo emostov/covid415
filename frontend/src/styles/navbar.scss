@@ -50,3 +50,17 @@
 .nav-link {
   color: $second-gray-txt!important;
 }
+
+.request-help-button {
+  height: 24px;
+  color: $figma-grapefruit;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  margin-right: 10px;
+}
+
+.request-help-button:focus {
+  outline: none;
+}

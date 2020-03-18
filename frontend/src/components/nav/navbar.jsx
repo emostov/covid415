@@ -68,7 +68,7 @@ class NavBar extends React.Component {
       <div>
         <Navbar bg="dark" variant="dark" >
           {/*  */}
-          <div className='d-flex justify-content-between w-full'>
+          <div className='d-flex justify-content-between w-full align-items-center'>
             <Nav className="mr-auto ">
               <Navbar.Brand href="#">
                 <img className="logo-covid415" src={Logo} alt='' width="200" />
@@ -85,6 +85,7 @@ class NavBar extends React.Component {
                 </Nav.Link>
               </Nav>
             </Nav>
+            <button className='request-help-button' onClick={() => this.props.openModal('taskform')}>I NEED HELP</button>
             <Nav
               className="justify-content-end upcase white-txt align-items-end">
               {this.getLinks()}
