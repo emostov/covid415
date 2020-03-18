@@ -13,6 +13,7 @@ class Map extends React.Component {
       lat: 37.76,
       zoom: 11,
       map: '',
+      allMarkers: [],
     }
   }
 
@@ -50,11 +51,20 @@ class Map extends React.Component {
 
     this.setState({ map });
 
+    // display the markers after 2 seconds
+    setTimeout(() => {
+      if (this.state.map && this.props.tasks) {
+        this.placeMapMarkers()
+      }
+    }, 2 * 1000)
+
+
   }
 
 
   placeMapMarkers() {
-    const map = this.state.map
+    const { map } = this.state
+    const allMarkers = [];
 
     let geojson = {
       type: 'FeatureCollection',
@@ -96,42 +106,41 @@ class Map extends React.Component {
         .setPopup(popup)
         .addTo(this.state.map);
 
-      const { activeTask } = this.props;
-      if (activeTask && activeTask.taskId === marker.properties.taskId) {
-        mapBoxMarker.togglePopup()
-      }
-
+      allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
       const markerEl = mapBoxMarker.getElement();
-
       markerEl.addEventListener('mouseenter', () => {
-        // dispatch state indicating that this marker is being shown
-
-        // if (!activeTask || activeTask.taskId !== marker.properties.taskId) {
-        //   this.props.receiveActiveTaskId(marker.properties.taskId)
-        // }
-
-        // mapBoxMarker.togglePopup()
-
         // Add popup to map 
         popup.addTo(map);
       });
-
       markerEl.addEventListener('mouseleave', () => {
-        // dispatch state indicating this marker is no longer being show
-        // mapBoxMarker.togglePopup()
-
         // Remove popup from map
         popup.remove();
       });
     });
+
+    this.setState({ allMarkers });
+  }
+
+  updatePopups() {
+    const { allMarkers, map } = this.state;
+    const { activeTask } = this.props;
+    allMarkers.length && allMarkers.forEach((markerObj) => {
+      const { mBMarker, id } = markerObj;
+
+      if (
+        activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
+      ) {
+        mBMarker.getPopup().addTo(map)
+      } else if (mBMarker.getPopup().isOpen()) {
+        console.log('removing popup')
+        mBMarker.getPopup().remove();
+      }
+    })
+
   }
 
   render() {
-
-    if (this.state.map && this.props.tasks) {
-      this.placeMapMarkers()
-    }
-
+    { this.updatePopups() }
     return (
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />
