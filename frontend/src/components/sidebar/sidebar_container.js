@@ -12,7 +12,8 @@ const mSTP = state => {
     }
 
     return {
-        currentUserId: currentUserId
+        currentUserId: currentUserId,
+        session: state.session
     }
 };
 
