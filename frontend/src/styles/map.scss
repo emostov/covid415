@@ -25,8 +25,8 @@
     height: 75px!important;
     text-align: left;
     background-color: $light-gray-bg;
-    border-radius: 5px;
-    // padding-left: 20px;
+    border-radius: 3px!important
+
 }
 
 .mapboxgl-popup-content > h3{
@@ -54,12 +54,10 @@
 }
 
 .completed .mapboxgl-popup-content > h3{
- 
     color: white;
 }
 
 .completed .mapboxgl-popup-content > p{
-
     color: white;
 }
 
