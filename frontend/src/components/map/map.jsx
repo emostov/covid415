@@ -12,59 +12,82 @@ class Map extends React.Component {
       lng: -122.44,
       lat: 37.76,
       zoom: 11,
-      map: ""
+      map: '',
     }
   }
 
   componentDidMount() {
-    mapboxgl.accessToken = mapboxkeys.public_key;
 
-    var bounds = [
-      [-122.54, 37.6], // [west, south]
-      [-122.34, 37.9]  // [east, north]
-    ];
-    // Set the map's max bounds
+    // this.props.fetchTasks()
+      // .then(() => {
 
-    const map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/dark-v10',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom
-    });
+        mapboxgl.accessToken = mapboxkeys.public_key;
 
-    map.addControl(new mapboxgl.NavigationControl());
+        var bounds = [
+          [-122.54, 37.6], // [west, south]
+          [-122.34, 37.9]  // [east, north]
+        ];
+        // Set the map's max bounds
 
-    map.addControl(
-        new mapboxgl.GeolocateControl({
-        positionOptions: {
-            enableHighAccuracy: true
-        },
+        const map = new mapboxgl.Map({
+          container: this.mapContainer,
+          style: 'mapbox://styles/mapbox/dark-v10',
+          center: [this.state.lng, this.state.lat],
+          zoom: this.state.zoom
+        });
+
+        map.addControl(new mapboxgl.NavigationControl());
+
+        map.addControl(
+          new mapboxgl.GeolocateControl({
+            positionOptions: {
+              enableHighAccuracy: true
+            },
             trackUserLocation: true
-        })
+          })
         );
 
-    map.setMaxBounds(bounds);
+        map.setMaxBounds(bounds);
 
-    this.setState( { map })
+        let geojson = {
+          type: 'FeatureCollection',
+          features:
+            this.props.tasks.map(task => ({
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
+              },
+              properties: {
+                title: `${task.type} request`,
+                deliveryAddress: task.deliveryAddress,
+                taskId: task._id
+              }
+            }))
+        };
+        this.setState({ map })
+      // })
+
   }
+
 
   placeMapMarkers() {
     let geojson = {
       type: 'FeatureCollection',
       features:
-          this.props.tasks.map(task => ({
+        this.props.tasks.map(task => ({
           type: 'Feature',
           geometry: {
-              type: 'Point',
-              coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
+            type: 'Point',
+            coordinates: [task.deliveryLatLong[1], task.deliveryLatLong[0]]
           },
           properties: {
-              title: `${task.type} request`,
-              deliveryAddress: task.deliveryAddress,
-              taskId: task._id
+            title: `${task.type} request`,
+            deliveryAddress: task.deliveryAddress,
+            taskId: task._id
           }
-          }))
-      };
+        }))
+    };
 
     // add markers to map
     geojson.features.forEach((marker) => {
@@ -74,7 +97,7 @@ class Map extends React.Component {
       el.className = 'marker';
       debugger
       // make a marker for each feature and add to the map
-      new mapboxgl.Marker(el)
+      const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(
           new mapboxgl.Popup({ offset: 25 }) // add popups
@@ -83,24 +106,37 @@ class Map extends React.Component {
               + '<p>' + marker.properties.deliveryAddress + '</p>'
             )
         )
-        //if popup is the active state ID popup, then open it
-        //else make sure it's closed
-        //also perhaps make the marker bigger
         .addTo(this.state.map);
-    })
+
+      const markerEl = mapBoxMarker.getElement();
+
+      markerEl.addEventListener('mouseenter', () => {
+        // dispatch state indicating that this marker is being shown
+        mapBoxMarker.togglePopup()
+      });
+
+      markerEl.addEventListener('mouseleave', () => {
+        // dispatch state indicating this marker is no longer being show
+        mapBoxMarker.togglePopup()
+      });
+    });
   }
 
   render() {
+
     if (this.state.map && this.props.tasks) { 
       this.placeMapMarkers()
     }
 
     return (
-      <div>
+
+      < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />
-      </div>
+      </div >
     )
   }
+
+
 }
 
 
