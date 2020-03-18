@@ -1,7 +1,7 @@
 @import './theme.scss';
 
 .sidebar-container{
-   height: calc(100vh - 147px);;
+   height: calc(100vh);
    width: 500px;
 }
 
@@ -10,13 +10,14 @@
    display: flex;
    flex-direction: column;
    // margin: 20px;
+   height: 100vh
 }
 
 .sidebar-container-header {
    display: flex;
    flex-direction: row;
    justify-content: space-around;
-   height: 85px;
+   height: 69px;
 }
 
 .sidebar-container-inner-header {
@@ -31,7 +32,7 @@
 .sidebar-container-header-available {
    border-right: 1px solid rgb(179, 179, 179);
    width: 50%;
-   height: 100%;
+   height: 80%;
    text-align: center;
    cursor: pointer;
 }
@@ -52,27 +53,37 @@
 }
 
 .available-title-name {
-   transform: translateY(20px);
+   transform: translateY(10px);
    font-size: 22px;
-   color: $second-gray-bg
+   color: $second-gray-txt
 }
 
 .available-title-name-active {
-   transform: translateY(20px);
+   transform: translateY(10px);
    font-size: 22px;
    color: white;
+   text-decoration: underline white;
+
 }
 
 .active-title-name {
-   transform: translateY(20px);
+   transform: translateY(10px);
    font-size: 22px;
-   color: $second-gray-bg
+   color: $second-gray-txt
 }
 
 .active-title-name-active {
-   transform: translateY(20px);
+   transform: translateY(10px);
    font-size: 22px;
    color: white;
+   text-decoration: underline white;
+}
+
+.sidebar-container-body {
+   // border: 1px solid red;
+   height: 86.5%;
+   // padding: 9px;
+
 }
 
 .sidebar-container-inner-body {
