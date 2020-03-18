@@ -1,14 +1,10 @@
 import React from 'react';
-import Card from './card'
+import Card from './card';
+import { Link } from 'react-router-dom'
 
 class ActiveSidebar extends React.Component {
     constructor(props) {
         super(props)
-
-        this.handleReRoute = this.handleReRoute.bind(this);
-    }
-
-    handleReRoute(field) {
 
     }
 
@@ -39,19 +35,22 @@ class ActiveSidebar extends React.Component {
                     ) : (
                         <div className="card-container-demo">
                             <div className="card-demo-content">
+                                Welcome! <br/>
                                 You are currently not logged in. If you would like to be a volunteer 
                             </div>
 
                             <br/>
 
                             <div className="register-or-login">
-                                <div onClick={this.handleReRoute}>
-                                    Register 
+                                <Link to="/signup">
+                                    Sign up 
+                                </Link>
+                                <div className="middle-statement">
+                                    or if you're already a volunteer
                                 </div>
-                                    or
-                                <div>
+                                <Link to="/login">
                                     Log In
-                                </div> 
+                                </Link> 
                             </div>
                         </div>
                     )
