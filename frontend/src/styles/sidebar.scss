@@ -1,7 +1,7 @@
 @import './theme.scss';
 
 .sidebar-container{
-   height: calc(100vh);
+   height: calc(100vh - 147px);;
    width: 500px;
 }
 
@@ -10,15 +10,13 @@
    display: flex;
    flex-direction: column;
    // margin: 20px;
-   height: 100%
 }
 
 .sidebar-container-header {
    display: flex;
    flex-direction: row;
    justify-content: space-around;
-   height: 100px;
-
+   height: 85px;
 }
 
 .sidebar-container-inner-header {
@@ -39,7 +37,7 @@
 }
 
 .sidebar-container-header-available:hover {
-   color: $fimga-red;
+   color: white;
 }
 
 .sidebar-container-header-active {
@@ -50,51 +48,52 @@
 }
 
 .sidebar-container-header-active:hover {
-   color: $fimga-red;
+   color: white;
 }
 
 .available-title-name {
    transform: translateY(20px);
-   font-size: 24px;
+   font-size: 22px;
+   color: $second-gray-bg
 }
 
 .available-title-name-active {
    transform: translateY(20px);
-   font-size: 24px;
-   color: $fimga-red;
+   font-size: 22px;
+   color: white;
 }
 
 .active-title-name {
    transform: translateY(20px);
-   font-size: 24px;
+   font-size: 22px;
+   color: $second-gray-bg
 }
 
 .active-title-name-active {
    transform: translateY(20px);
-   font-size: 24px;
-   color: $fimga-red;
-}
-
-.sidebar-container-body {
-   // border: 1px solid red;
-   height: 86.5%;
-   // padding: 9px;
-
+   font-size: 22px;
+   color: white;
 }
 
 .sidebar-container-inner-body {
    // margin: 20px;
    // border: 1px solid red;
    height: 95%;
-   // background: linear-gradient(#99b898 0%, #FECEA8 40%, #FF847C 85%, #E84A5F 100%);;
-   
-   background: linear-gradient(#99b898 15%, #FECEA8 );
+   // background: linear-gradient(#99b898 0%, #FECEA8 40%, #FF847C 85%, #E84A5F 100%);
 }
 
-.card-container {
+.card-container-available {
    padding: 20px;
-   height: 100%;
+   height: calc(100vh - 147px);
    overflow: scroll;
+   background: linear-gradient(#DA5663 15%, #FECEA8 );
+}
+
+.card-container-2 {
+   padding: 20px;
+   height: calc(100vh - 147px);
+   overflow: scroll;
+   background: linear-gradient(#FECEA8 15%, #9FB89B );
 }
 
 .card-head {

@@ -48,7 +48,7 @@ export default class SideBar extends Component {
               <div className="sidebar-container-header-available"
                    onClick={e =>{e.preventDefault(); this.clickHandler('available')}}>
                 <div className={this.state.available ? "available-title-name-active" : "available-title-name"}>
-                  Available Tasks
+                  Help Needed
                 </div>
               </div>
               <div className="sidebar-container-header-active"
@@ -59,35 +59,33 @@ export default class SideBar extends Component {
               </div>
             </div>
           </div>
-          <div className="sidebar-container-body">
-            <div className="sidebar-container-inner-body">
-              {
-                this.state.available
-                ?
-                (
-                  <AvailableSidebar 
-                        available={available} 
-                        updateTask={updateTask} 
-                        openModal={openModal} 
-                        closeModal={closeModal}
-                        currentUserId={currentUserId}
-                        history={history}
-                        activeTask={this.props.activeTask}
-                        receiveActiveTaskId={this.props.receiveActiveTaskId}/>
-                ) : (
-                  <ActiveSidebar
-                        session={session} 
-                        active={active} 
-                        updateTask={updateTask} 
-                        openModal={openModal} 
-                        closeModal={closeModal}
-                        currentUserId={currentUserId}
-                        history={history}
-                        activeTask={this.props.activeTask}
-                        receiveActiveTaskId={this.props.receiveActiveTaskId}/>
-                )
-              }
-            </div>
+          <div className="sidebar-container-inner-body">
+            {
+              this.state.available
+              ?
+              (
+                <AvailableSidebar 
+                      available={available} 
+                      updateTask={updateTask} 
+                      openModal={openModal} 
+                      closeModal={closeModal}
+                      currentUserId={currentUserId}
+                      history={history}
+                      activeTask={this.props.activeTask}
+                      receiveActiveTaskId={this.props.receiveActiveTaskId}/>
+              ) : (
+                <ActiveSidebar
+                      session={session} 
+                      active={active} 
+                      updateTask={updateTask} 
+                      openModal={openModal} 
+                      closeModal={closeModal}
+                      currentUserId={currentUserId}
+                      history={history}
+                      activeTask={this.props.activeTask}
+                      receiveActiveTaskId={this.props.receiveActiveTaskId}/>
+              )
+            }
           </div>
         </div>
       </div>
