@@ -10,6 +10,7 @@
 .task-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 90%;
 }
 
@@ -17,6 +18,24 @@
     font-size: 20px;
 }
 
+.task-form-label {
+    margin-top: 20px;
+}
+
 .task-form-type {
     display: flex;
+}
+
+.task-form-input {
+    width: 100%;
+    border-radius: 2px;
+    border: none;
+}
+
+.task-form-submit {
+    width: 120px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }

@@ -85,7 +85,14 @@ class NavBar extends React.Component {
                 </Nav.Link>
               </Nav>
             </Nav>
-            <button className='request-help-button' onClick={() => this.props.openModal('taskform')}>I NEED HELP</button>
+
+            {this.props.loggedIn ? (
+              <button className='request-help-button' onClick={() => this.props.openModal('taskform')}>I NEED HELP</button>
+            ) : (
+              <div></div>
+            )
+            }
+
             <Nav
               className="justify-content-end upcase white-txt align-items-end">
               {this.getLinks()}
