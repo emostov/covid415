@@ -95,7 +95,6 @@ class Map extends React.Component {
       // create a HTML element for each feature
       const el = document.createElement('div');
       el.className = 'marker';
-      debugger
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)

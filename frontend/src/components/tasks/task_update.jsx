@@ -36,12 +36,29 @@ class TaskUpdate extends React.Component {
 
         return (
             <div>
-                <h4>Delivery for {task.requester.firstName}</h4>
-                <p>Deliver to: {task.deliveryAddress}</p>
-                <p>Contact: {task.requester.email}</p>
-                <p>Can you bring {task.requester.firstName} their goods?</p>
-                <button className='claim-button' onClick={() => this.handleClaim()}>Confirm</button>
+                {
+                    this.state.status === 0
+                    ? 
+                    (
+                        <div>
+                            <h4>Delivery for {task.requester.firstName}</h4>
+                            <p>Deliver to: {task.deliveryAddress}</p>
+                            <p>Contact: {task.requester.email}</p>
+                            <p>Can you bring {task.requester.firstName} their goods?</p>
+                            <button className='claim-button' onClick={() => this.handleClaim()}>Confirm</button>
+                        </div>
+                    ) : (
+                        <div>
+                            <h4>You have accepted a delivery for {task.requester.firstName}</h4>
+                            <p>Deliver to: {task.deliveryAddress}</p>
+                            <p>Contact: {task.requester.email}</p>
+                            <p>Please presse complete once you bring {task.requester.firstName} their goods?</p>
+                            <button className='claim-button' onClick={() => this.handleClaim()}>Complete</button>
+                        </div>
+                    )
+                }
             </div>
+            
         )
     }
 }
