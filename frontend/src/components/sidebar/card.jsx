@@ -9,19 +9,25 @@ class Card extends React.Component {
         }
 
         this.clickHandler = this.clickHandler.bind(this)
+        this.handleModal = this.handleModal.bind(this)
     }
 
     clickHandler(e) {
         e.preventDefault();
-        console.log("the dolphin has landed")
+        // console.log("the dolphin has landed")
         
         let curActive = this.state.active;
         this.setState( { active: !curActive} )
     }
 
+    handleModal(e) {
+        e.stopPropagation()
+        this.props.openModal('status');
+    }
+
     render() {
         const { openModal, closeModal } = this.props;
-        console.log(this.props)
+        // console.log(this.props)
 
         return (
             <div>
@@ -61,7 +67,7 @@ class Card extends React.Component {
                                     </div>
                                 </div>
                                 <div className="accept-button-container">
-                                    <button onClick={() => openModal('status')} className="accept-button">Accept</button>
+                                    <button onClick={this.handleModal} className="accept-button">Accept</button>
                                 </div>
                             </div>
                         </div>

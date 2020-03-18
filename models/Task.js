@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const TaskSchema = new Schema({
   type: {
     type: String,
-    required: true
+    required: true,
   },
   details: {
     type: String,
@@ -26,26 +26,26 @@ const TaskSchema = new Schema({
   requester: {
     type: Schema.Types.Mixed,
     ref: 'users',
-    required: true
+    required: true,
   },
   volunteer: {
     type: Schema.Types.ObjectId,
     ref: 'users',
-    default: null
+    default: null,
   },
   status: {
     type: Number,
     default: 0,
-    enum: [0,1,2]
+    enum: [0, 1, 2],
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   updatedAt: {
     type: Date,
-    default: null
-  }
+    default: null,
+  },
 });
 
 const Task = mongoose.model('Task', TaskSchema);

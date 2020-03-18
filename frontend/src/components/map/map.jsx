@@ -22,8 +22,8 @@ class Map extends React.Component {
         mapboxgl.accessToken = mapboxkeys.public_key;
 
         var bounds = [
-          [-122.54, 37], // [west, south]
-          [-122.34, 38]  // [east, north]
+          [-122.54, 37.6], // [west, south]
+          [-122.34, 37.9]  // [east, north]
         ];
         // Set the map's max bounds
 
@@ -58,7 +58,7 @@ class Map extends React.Component {
                 },
                 properties: {
                     title: `${task.type} request`,
-                    description: 'Volunteer Needed',
+                    deliveryAddress: task.deliveryAddress,
                     taskId: task._id
                 }
                 }))
@@ -74,15 +74,11 @@ class Map extends React.Component {
           // make a marker for each feature and add to the map
           new mapboxgl.Marker(el)
             .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
-
-          new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
             .setPopup(
               new mapboxgl.Popup({ offset: 25 }) // add popups
                 .setHTML(
                   '<h3>' + marker.properties.title + '</h3>'
-                  + '<p>' + marker.properties.description + '</p>'
+                  + '<p>' + marker.properties.deliveryAddress + '</p>'
                 )
             )
             //if popup is the active state ID popup, then open it
