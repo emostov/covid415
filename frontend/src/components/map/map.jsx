@@ -18,37 +18,37 @@ class Map extends React.Component {
 
   componentDidMount() {
 
- 
 
-        mapboxgl.accessToken = mapboxkeys.public_key;
 
-        var bounds = [
-          [-122.54, 37.6], // [west, south]
-          [-122.34, 37.9]  // [east, north]
-        ];
-        // Set the map's max bounds
+    mapboxgl.accessToken = mapboxkeys.public_key;
 
-        const map = new mapboxgl.Map({
-          container: this.mapContainer,
-          style: 'mapbox://styles/mapbox/dark-v10',
-          center: [this.state.lng, this.state.lat],
-          zoom: this.state.zoom
-        });
+    var bounds = [
+      [-122.54, 37.6], // [west, south]
+      [-122.34, 37.9]  // [east, north]
+    ];
+    // Set the map's max bounds
 
-        map.addControl(new mapboxgl.NavigationControl());
+    const map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: 'mapbox://styles/mapbox/dark-v10',
+      center: [this.state.lng, this.state.lat],
+      zoom: this.state.zoom
+    });
 
-        map.addControl(
-          new mapboxgl.GeolocateControl({
-            positionOptions: {
-              enableHighAccuracy: true
-            },
-            trackUserLocation: true
-          })
-        );
+    map.addControl(new mapboxgl.NavigationControl());
 
-        map.setMaxBounds(bounds);
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      })
+    );
 
-        this.setState({ map });
+    map.setMaxBounds(bounds);
+
+    this.setState({ map });
 
   }
 
@@ -76,7 +76,7 @@ class Map extends React.Component {
 
       // create a HTML element for each feature
       const el = document.createElement('div');
-     
+
       el.className = 'marker';
       const popup = new mapboxgl.Popup({
         offset: 25,
@@ -99,6 +99,11 @@ class Map extends React.Component {
 
       markerEl.addEventListener('mouseenter', () => {
         // dispatch state indicating that this marker is being shown
+        const { activeTask } = this.props;
+        // if (!activeTask || activeTask.taskId !== marker.properties.taskId) {
+        //   this.props.receiveActiveTaskId(marker.properties.taskId)
+        // }
+
         mapBoxMarker.togglePopup()
       });
 
@@ -111,7 +116,7 @@ class Map extends React.Component {
 
   render() {
 
-    if (this.state.map && this.props.tasks) { 
+    if (this.state.map && this.props.tasks) {
       this.placeMapMarkers()
     }
 
