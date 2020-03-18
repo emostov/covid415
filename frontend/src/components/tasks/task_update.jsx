@@ -19,10 +19,9 @@ class TaskUpdate extends React.Component {
                 status: 2
             })
         }
-        console.log(this.state);
-        
-        // this.props.updateTask(this.state);
 
+        console.log(this.state);
+        // this.props.updateTask(this.state);
         setTimeout(() => this.props.closeModal(), 2000);
     }
 
