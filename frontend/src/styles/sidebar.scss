@@ -16,7 +16,7 @@
    display: flex;
    flex-direction: row;
    justify-content: space-around;
-   height: 85px;
+   height: 65px;
 }
 
 .sidebar-container-inner-header {
@@ -52,25 +52,25 @@
 }
 
 .available-title-name {
-   transform: translateY(20px);
+   transform: translateY(10px);
    font-size: 22px;
    color: $second-gray-bg
 }
 
 .available-title-name-active {
-   transform: translateY(20px);
+   transform: translateY(10px);
    font-size: 22px;
    color: white;
 }
 
 .active-title-name {
-   transform: translateY(20px);
+   transform: translateY(10px);
    font-size: 22px;
    color: $second-gray-bg
 }
 
 .active-title-name-active {
-   transform: translateY(20px);
+   transform: translateY(10px);
    font-size: 22px;
    color: white;
 }
@@ -91,14 +91,14 @@
 
 .card-container-available {
    padding: 20px;
-   height: calc(100vh - 147px);
+   height: calc(100vh - 127px);
    overflow: scroll;
    background: linear-gradient(#DA5663 15%, #FECEA8 );
 }
 
 .card-container-2 {
    padding: 20px;
-   height: calc(100vh - 147px);
+   height: calc(100vh - 127px);
    overflow: scroll;
    background: linear-gradient(#FECEA8 15%, #9FB89B );
 }
