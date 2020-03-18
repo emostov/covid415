@@ -65,36 +65,6 @@ class Map extends React.Component {
             }))
         };
         this.setState({ map })
-        // add markers to map
-
-        // geojson.features.forEach(function (marker) {
-
-        //   // create a HTML element for each feature
-        //   const el = document.createElement('div');
-        //   el.className = 'marker';
-
-        //   // make a marker for each feature and add to the map
-        //   const mapBoxMarker = new mapboxgl.Marker(el)
-        //     .setLngLat(marker.geometry.coordinates)
-        //     .setPopup(
-        //       new mapboxgl.Popup({ offset: 25 }) // add popups
-        //         .setHTML(
-        //           '<h3>' + marker.properties.title + '</h3>'
-        //           + '<p>' + marker.properties.deliveryAddress + '</p>'
-        //         )
-        //     )
-        //     .addTo(map);
-
-        //   const markerEl = mapBoxMarker.getElement();
-        //   markerEl.addEventListener('mouseenter', () => {
-        //     // dispatch state indicating that this marker is being shown
-        //     mapBoxMarker.togglePopup()
-        //   });
-        //   markerEl.addEventListener('mouseleave', () => { 
-        //     // dispatch state indicating this marker is no longer being show
-        //     mapBoxMarker.togglePopup()
-        //   });
-        // });
       })
   }
 
@@ -142,7 +112,7 @@ class Map extends React.Component {
         // dispatch state indicating that this marker is being shown
         mapBoxMarker.togglePopup()
       });
-      
+
       markerEl.addEventListener('mouseleave', () => {
         // dispatch state indicating this marker is no longer being show
         mapBoxMarker.togglePopup()
