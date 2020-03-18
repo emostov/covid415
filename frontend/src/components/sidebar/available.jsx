@@ -8,7 +8,7 @@ class AvailableSidebar extends React.Component {
     }
 
     render() {
-        const { available, openModal, closeModal } = this.props
+        const { currentUserId, history, available, openModal, closeModal } = this.props
 
         return (
             <div className='card-container'>
@@ -18,7 +18,9 @@ class AvailableSidebar extends React.Component {
                                     key={`card-available-${i}`}
                                     task={task}
                                     openModal={openModal}
-                                    closeModal={closeModal} />
+                                    closeModal={closeModal}
+                                    currentUserId={currentUserId}
+                                    history={history} />
                     })
                 }
             </div>

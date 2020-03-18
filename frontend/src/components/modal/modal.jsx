@@ -14,7 +14,7 @@ const Modal = ({modal, closeModal}) => {
     // console.log("the starfish has drowned")
     switch (modal.modal) {
         case 'status':
-            component = <TaskUpdateContainer task={modal.task}/>;
+            component = <TaskUpdateContainer taskId={modal.taskId}/>;
             break;
         default: 
             return null;
@@ -32,7 +32,7 @@ const Modal = ({modal, closeModal}) => {
 const msp = (state) => {
     return {
         modal: state.ui.modal,
-        task: state.ui.task
+        taskId: state.ui.taskId
     }
 }
 

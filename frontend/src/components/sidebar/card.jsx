@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import '../../styles/card.scss'
 
 class Card extends React.Component {
@@ -22,7 +23,11 @@ class Card extends React.Component {
 
     handleModal(e) {
         e.stopPropagation()
-        this.props.openModal('status', this.props.task);
+        if (this.props.currentUserId) {
+            this.props.openModal('status', this.props.task._id)
+        } else {
+            this.props.history.push('/login')
+        }
     }
 
     render() {

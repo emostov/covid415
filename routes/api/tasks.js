@@ -60,7 +60,7 @@ router.patch('/:id',
       // deliveryAddress,
       // deliveryLatLong,
       // requester,
-      // volunteer,
+      volunteer,
       // createdAt,
       // updatedAt,
     } = req.body;
@@ -71,6 +71,7 @@ router.patch('/:id',
         task.status = status;
         task.details = details;
         task.deliveryInstructions = deliveryInstructions;
+        task.volunteer = volunteer;
 
         task.save()
           .then((savedTask) => res.json(savedTask))

@@ -15,11 +15,11 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const { tasks } = this.props
+    const { tasks, history } = this.props
     return (
       <div className="mainpage-container">
         <MapContainer />
-        <SideBarContainer tasks={tasks}/>
+        <SideBarContainer tasks={tasks} history={history}/>
       </div>
     );
   }
