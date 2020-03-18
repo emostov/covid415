@@ -1,7 +1,6 @@
 @import './theme.scss';
 
 .sidebar-container{
-   height: calc(100vh);
    width: 500px;
 }
 
@@ -10,14 +9,14 @@
    display: flex;
    flex-direction: column;
    // margin: 20px;
-   height: 100vh
+   height: 100
 }
 
 .sidebar-container-header {
    display: flex;
    flex-direction: row;
    justify-content: space-around;
-   height: 69px;
+   height: 85px;
 }
 
 .sidebar-container-inner-header {
@@ -32,7 +31,7 @@
 .sidebar-container-header-available {
    border-right: 1px solid rgb(179, 179, 179);
    width: 50%;
-   height: 80%;
+   height: 100%;
    text-align: center;
    cursor: pointer;
 }
@@ -53,30 +52,27 @@
 }
 
 .available-title-name {
-   transform: translateY(10px);
+   transform: translateY(20px);
    font-size: 22px;
-   color: $second-gray-txt
+   color: $second-gray-bg
 }
 
 .available-title-name-active {
-   transform: translateY(10px);
+   transform: translateY(20px);
    font-size: 22px;
    color: white;
-   text-decoration: underline white;
-
 }
 
 .active-title-name {
-   transform: translateY(10px);
+   transform: translateY(20px);
    font-size: 22px;
-   color: $second-gray-txt
+   color: $second-gray-bg
 }
 
 .active-title-name-active {
-   transform: translateY(10px);
+   transform: translateY(20px);
    font-size: 22px;
    color: white;
-   text-decoration: underline white;
 }
 
 .sidebar-container-body {
