@@ -28,7 +28,7 @@ export default class SideBar extends Component {
   }
   
   render() {
-    const { updateTask, openModal, closeModal } = this.props
+    const { currentUserId, history, updateTask, openModal, closeModal } = this.props
 
     let available = []
     let active = []
@@ -69,13 +69,17 @@ export default class SideBar extends Component {
                         available={available} 
                         updateTask={updateTask} 
                         openModal={openModal} 
-                        closeModal={closeModal}/>
+                        closeModal={closeModal}
+                        currentUserId={currentUserId}
+                        history={history}/>
                 ) : (
                   <ActiveSidebar 
                         active={active} 
                         updateTask={updateTask} 
                         openModal={openModal} 
-                        closeModal={closeModal}/>
+                        closeModal={closeModal}
+                        currentUserId={currentUserId}
+                        history={history} />
                 )
               }
             </div>

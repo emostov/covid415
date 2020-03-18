@@ -4,7 +4,7 @@ import '../../styles/task_update.scss'
 class TaskUpdate extends React.Component {
     constructor(props) {
         super(props)
-        this.state = this.props.tasks
+        this.state = this.props.task
     }
 
     componentDidMount() {
@@ -13,9 +13,10 @@ class TaskUpdate extends React.Component {
 
     handleClaim () {
         if (this.state.status === 0){
+            debugger;
             this.setState({
-                status: 1
-                // volunteer: 
+                status: 1,
+                volunteer: this.props.currentUserId
             })
         } else if (this.state.status === 1) {
             this.setState({
@@ -24,7 +25,7 @@ class TaskUpdate extends React.Component {
         }
 
         console.log(this.state);
-        // this.props.updateTask(this.state);
+        this.props.updateTask(this.state);
         setTimeout(() => this.props.closeModal(), 2000);
     }
 

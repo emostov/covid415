@@ -6,7 +6,8 @@ import { closeModal } from '../../actions/modal_actions';
 const mSTP = state => {
     let taskId = state.ui.modal.taskId;
     return {
-        task: Object.values(state.tasks).filter(task => task._id === taskId)[0]
+        task: Object.values(state.tasks).filter(task => task._id === taskId)[0],
+        currentUserId: state.session.user.id
     }
 };
 
