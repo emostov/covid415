@@ -28,8 +28,8 @@ export default class SideBar extends Component {
   }
   
   render() {
-    const { currentUserId, history, updateTask, openModal, closeModal } = this.props
-
+    const { currentUserId, history, updateTask, openModal, closeModal, session } = this.props
+  
     let available = []
     let active = []
     this.props.tasks.forEach((task, i) => {
@@ -75,7 +75,8 @@ export default class SideBar extends Component {
                         activeTask={this.props.activeTask}
                         receiveActiveTaskId={this.props.receiveActiveTaskId}/>
                 ) : (
-                  <ActiveSidebar 
+                  <ActiveSidebar
+                        session={session} 
                         active={active} 
                         updateTask={updateTask} 
                         openModal={openModal} 
