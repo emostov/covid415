@@ -58,7 +58,7 @@ class Map extends React.Component {
                 },
                 properties: {
                     title: `${task.type} request`,
-                    description: 'Volunteer Needed',
+                    deliveryAddress: task.deliveryAddress,
                     taskId: task._id
                 }
                 }))
@@ -78,7 +78,7 @@ class Map extends React.Component {
               new mapboxgl.Popup({ offset: 25 }) // add popups
                 .setHTML(
                   '<h3>' + marker.properties.title + '</h3>'
-                  + '<p>' + marker.properties.address + '</p>'
+                  + '<p>' + marker.properties.deliveryAddress + '</p>'
                 )
             )
             //if popup is the active state ID popup, then open it
