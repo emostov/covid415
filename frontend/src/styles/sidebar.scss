@@ -17,6 +17,7 @@
    flex-direction: row;
    justify-content: space-around;
    height: 70px;
+   border-bottom: solid 1px #b3b3b3
 }
 
 .sidebar-container-inner-header {
@@ -31,7 +32,7 @@
 .sidebar-container-header-available {
    border-right: 1px solid rgb(179, 179, 179);
    width: 50%;
-   height: 100%;
+   height: 88%;
    text-align: center;
    cursor: pointer;
 }
@@ -63,10 +64,18 @@
    color: white;
 }
 
+.available-title-name:hover {
+   text-decoration: underline;
+}
+
 .active-title-name {
    transform: translateY(10px);
    font-size: 22px;
    color: $second-gray-bg
+}
+
+.active-title-name:hover {
+   text-decoration: underline;
 }
 
 .active-title-name-active {
@@ -76,30 +85,24 @@
 }
 
 .sidebar-container-body {
-   // border: 1px solid red;
    height: 86.5%;
-   // padding: 9px;
-
 }
 
 .sidebar-container-inner-body {
-   // margin: 20px;
-   // border: 1px solid red;
    height: 95%;
-   // background: linear-gradient(#99b898 0%, #FECEA8 40%, #FF847C 85%, #E84A5F 100%);
 }
 
 .card-container-available {
    padding: 20px;
    height: calc(100vh - 132px);
-   overflow: scroll;
+   overflow: auto;
    background: linear-gradient(#DA5663 15%, #FECEA8 );
 }
 
 .card-container-2 {
    padding: 20px;
    height: calc(100vh - 132px);
-   overflow: scroll;
+   overflow: auto;
    background: linear-gradient(#FECEA8 15%, #9FB89B );
 }
 
