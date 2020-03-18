@@ -15,14 +15,14 @@ class Card extends React.Component {
     clickHandler(e) {
         e.preventDefault();
         // console.log("the dolphin has landed")
-        
+        console.log(this.state);
         let curActive = this.state.active;
         this.setState( { active: !curActive} )
     }
 
     handleModal(e) {
         e.stopPropagation()
-        this.props.openModal('status');
+        this.props.openModal('status', this.props.task);
     }
 
     render() {

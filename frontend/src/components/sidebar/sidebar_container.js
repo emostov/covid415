@@ -9,7 +9,7 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
     updateTask: () => dispatch(updateTask()),
-    openModal: () => dispatch(openModal('status')),
+    openModal: (modal, task) => dispatch(openModal('status', task)),
     closeModal: () => dispatch(closeModal())
 });
 

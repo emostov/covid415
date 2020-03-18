@@ -10,10 +10,11 @@ const Modal = ({modal, closeModal}) => {
     }
 
     let component;
+
     console.log("the starfish has drowned")
-    switch (modal) {
+    switch (modal.modal) {
         case 'status':
-            component = <TaskUpdateContainer />;
+            component = <TaskUpdateContainer task={modal.task}/>;
             break;
         default: 
             return null;
@@ -30,7 +31,8 @@ const Modal = ({modal, closeModal}) => {
 
 const msp = (state) => {
     return {
-        modal: state.ui.modal
+        modal: state.ui.modal,
+        task: state.ui.task
     }
 }
 
