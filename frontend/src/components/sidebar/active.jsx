@@ -1,6 +1,7 @@
 import React from 'react';
-import Card from './card';
 import { Link } from 'react-router-dom'
+
+import Card from './card';
 
 class ActiveSidebar extends React.Component {
     constructor(props) {
