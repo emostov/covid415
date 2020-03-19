@@ -84,11 +84,13 @@ class Card extends React.Component {
   }}
       
   distanceFromCurrentToTask() {
+    const { task, currentPosition } = this.props
     if (this.props.task.deliveryLatLong === undefined) {
       return null
     }
-    console.log(this.props)
-    const { task, currentPosition } = this.props
+    if (currentPosition.length === 0) {
+      return null
+    }
     let from = turf.point([currentPosition[1], currentPosition[0]])
     let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
     let options = { units: 'miles' }
