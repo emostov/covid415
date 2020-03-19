@@ -48,7 +48,7 @@
     border-radius: 3px;
     height: 150px;
     width: 455px;
-    transition: all .5s;
+    transition: height .3s ease;
     cursor: pointer;
  }
  
@@ -67,8 +67,23 @@
     border-radius: 3px;
     height: 450px;
     width: 455px;
-    transition: all .5s; 
+    transition: height .3s ease;
     box-shadow: 2px 2px 8px 3px rgb(204, 204, 204);
+ }
+
+ .card-box-top-container {
+   animation-name: card-fade-in;
+   animation-duration: 1s;
+ }
+
+ .card-box-bottom-container {
+   animation-name: card-fade-in;
+   animation-duration: 1.3s;
+ }
+
+ @keyframes card-fade-in {
+   from {opacity: 0;}
+   to {opacity: 1}
  }
  
  .card-body {
