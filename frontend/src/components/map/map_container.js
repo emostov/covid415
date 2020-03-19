@@ -4,30 +4,36 @@ import Map from './map';
 import { fetchTasks } from '../../actions/task_actions';
 import { receiveActiveTaskId } from '../../actions/active_task_actions';
 
-const selectCurrentUserTask = (current) => {
-
+const selectCurrentUserTask = (state) => {
+  const { id } = state.session.user;
+  const { tasks } = state;
+  return Object.values(tasks).filter((task) => task.volunteer === id)
 };
 
-const mSTP = state => {
-  let currentUserId;
+const mSTP = (state) => {
+  let currentUserId, currentUserTasks;
   if (state.session.user) {
-    currentUserId = state.session.user.id
+    currentUserId = state.session.user.id;
+    currentUserTasks = selectCurrentUserTask(state);
   } else {
-    currentUserId = undefined
+    currentUserId = undefined;
+    currentUserTasks = undefined;
   }
-  
+
   return ({
     tasks: Object.values(state.tasks),
     activeTask: state.ui.activeTask,
-    currentUserId: state.session.user.id
+    currentUserId,
+    currentUserTasks,
+
   })
 };
 
-const mDTP = (dispatch, getState) => {
+const mDTP = (dispatch) => {
   return ({
     fetchTasks: () => dispatch(fetchTasks()),
     receiveActiveTaskId: (taskId) => dispatch(receiveActiveTaskId(taskId)),
-    
+
   })
 };
 
