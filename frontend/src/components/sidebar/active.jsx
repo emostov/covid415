@@ -25,7 +25,7 @@ class ActiveSidebar extends React.Component {
                                 currentUserTasks.map((task, i) => {
                                     return <Card
                                         key={`card-active-${i}`}
-                                        type={'active'}
+                                        cardType={'active'}
                                         task={task}
                                         openModal={openModal}
                                         closeModal={closeModal}

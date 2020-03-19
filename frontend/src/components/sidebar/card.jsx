@@ -75,7 +75,7 @@ class Card extends React.Component {
                   </div>
                 </div>
                 <div className="card-box-top-container">
-                  <div className="card-box-type-of-prop">Get driving drections:
+                  <div className="card-box-type-of-prop">Deliver to:
                     </div>
                     <div className="instructions-body">
                     <a className="card-address-link"
@@ -102,7 +102,11 @@ class Card extends React.Component {
                 </div>
                 <div className="card-box-bottom-container">
                   <div className="accept-button-container">
-                    <button onClick={this.handleModal} className="accept-button">I Can Help</button>
+                    { this.props.cardType === 'available' ? 
+                      <button onClick={this.handleModal} className="accept-button">I Can Help</button>
+                      :
+                      <button onClick={this.handleModal} className="complete-button">Delivery Details</button>
+                    }
                   </div>
                 </div>
               </div>

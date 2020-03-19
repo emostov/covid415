@@ -16,7 +16,7 @@ class AvailableSidebar extends React.Component {
                     available.map((task, i) => {
                         return <Card 
                                     key={`card-available-${i}`}
-                                    type={'available'}
+                                    cardType={'available'}
                                     task={task}
                                     openModal={openModal}
                                     closeModal={closeModal}
