@@ -34,7 +34,7 @@ class TaskForm extends React.Component {
     render() {
         return(
             <div className='task-form-container'>
-                <Card.Title className='task-form-title'><strong>Under quarantine? Request a Delivery.</strong></Card.Title>
+                <Card.Title className='task-form-title'><strong>Under quarantine? Request a delivery.</strong></Card.Title>
                 <Form className='task-form'>
                     <Form.Group>
                         <Form.Label className='task-form-label'>What are you requesting?</Form.Label>
