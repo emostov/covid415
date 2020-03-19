@@ -65,15 +65,16 @@
     opacity: .9;
     margin-bottom: 10px;
     border-radius: 3px;
-    height: 380px;
+    height: 450px;
     width: 455px;
     transition: height .3s ease;
     box-shadow: 2px 2px 8px 3px rgb(204, 204, 204);
+    position: relative;
  }
 
  .card-box-top-container {
    animation-name: card-fade-in;
-   animation-duration: 1s;
+   animation-duration: .5s;
  }
 
  @keyframes card-fade-in {
@@ -136,15 +137,6 @@
     font-weight: 700;
  }
  
- .card-box-bottom-container {
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    animation-name: card-fade-in;
-    animation-duration: 1.3s;
-    
- }
- 
  .card-box-top-container {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -190,7 +182,10 @@
    font-size: 20px;
    font-weight: 500;
    position: absolute;
-   right: 0px;
+   right: 20px;
+   bottom: 30px;
+   animation-name: card-fade-in;
+   animation-duration: 1s;
 }
 
 .accept-button:hover {
@@ -214,7 +209,10 @@
    font-size: 20px;
    font-weight: 500;
    position: absolute;
-   right: 0px;
+   right: 20px;
+   bottom: 30px;
+   animation-name: card-fade-in;
+   animation-duration: 1s;
 }
 
 .complete-button:hover {

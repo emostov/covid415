@@ -76,6 +76,8 @@ class Card extends React.Component {
                 </div>
                 <div className="card-box-top-container">
                   <div className="card-box-type-of-prop">Deliver to:
+                  </div>
+                  <div className="card-box-type-of-prop">{ this.props.task.deliveryNeighborhood }
                     </div>
                     <div className="instructions-body">
                     <a className="card-address-link"
@@ -100,27 +102,23 @@ class Card extends React.Component {
                       {this.props.task.details}
                     </div>
                 </div>
-                <div className="card-box-bottom-container">
-                  <div className="accept-button-container">
-                    { this.props.cardType === 'available' ? 
-                      <button onClick={this.handleModal} className="accept-button">I Can Help</button>
-                      :
-                      <button onClick={this.handleModal} className="complete-button">Delivery Details</button>
-                    }
+                  { this.props.cardType === 'available' ? 
+                    <button onClick={this.handleModal} className="accept-button">I Can Help</button>
+                    :
+                    <button onClick={this.handleModal} className="complete-button">Delivery Details</button>
+                  }
                   </div>
-                </div>
-              </div>
             ) : (
               <div className="card-box" onClick={this.clickHandler}>
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-plus" icon={faPlus} />
                 <div className={"card-head"}>
-                  0.1 Miles Away
+                { this.props.task.deliveryNeighborhood } - 0.1 Miles Away
                 </div>
                 </div>
-                <div className={"card-body"}>
-                  {this.props.task.details}
-                </div>
+                {/* <div className={"card-body"}>
+                  {this.props.task.type}
+                </div> */}
               </div>
             )
         }
