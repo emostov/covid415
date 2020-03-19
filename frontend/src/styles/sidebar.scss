@@ -123,8 +123,9 @@
    margin-bottom: 10px;
    border-radius: 3px;
    height: 150px;
-   transition: .5s;
+   transition: height .3s ease-out;
    overflow: hidden;
+   cursor: pointer;
 }
 
 .card-box:hover {
@@ -132,23 +133,21 @@
 }
 
 .card-box-active {
-   position: relative;
    display: flex;
    flex-direction: column;
-   padding: 15px;
-   background-color:#ffffff;
+   padding: 25px;
+   background-color:#ffffff; 
    // background-color: rgb(228, 228, 228);
    opacity: .9;
    margin-bottom: 10px;
    border-radius: 3px;
-   transition: .5s;
-   height: 400px;
+   height: 450px;
+   transition: height .2s ease-in;
    box-shadow: 2px 2px 8px 3px rgb(168, 168, 168);
 }
 
 .card-body-active {
    color: #2A363A;
-   margin-top: 10px;
 }
 
 .card-head {
@@ -157,6 +156,7 @@
 
 .card-head-active {
    color: #2A363A;
+   padding-bottom: 10px;
 }
 
 .card-address-active {
@@ -167,9 +167,10 @@
    color: #2A363A; 
 }
 
-.card-address-active:hover {
+.card-address-link:hover {
    color: $fimga-red;
    cursor: pointer;
+   text-decoration: none;
 }
 
 .instructions-header {
@@ -178,6 +179,7 @@
 
 .instructions-body {
    color: #2A363A;
+   padding-bottom: 15px;
 }
 
 .card-box-task-type {
@@ -187,6 +189,7 @@
 
 .card-box-task-content{
    margin-left: 6px;
+   padding-bottom: 10px;
 }
 
 .card-box-type-of-prop {
@@ -196,14 +199,13 @@
 
 .card-box-bottom-container {
    display: flex;
-   width: 90%;
-   justify-content: space-between;
-   position: absolute;
-   bottom: 10px;
+   justify-content: flex-end;
+   
 }
 
 .card-box-top-container {
    margin-top: 20px;
+   margin-bottom: 20px;
 }
 
 .card-container-demo {
@@ -228,7 +230,10 @@
    padding-right: 5px;
 }
 
+.fa-external-link-alt {
+   color: #2A363A;;
+   padding-left: 10px;
+   width: 24px!important;
+}
+
 ::-webkit-scrollbar { width: 0 !important }
-
-
-
