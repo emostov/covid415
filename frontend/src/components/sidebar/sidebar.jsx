@@ -8,7 +8,7 @@ export default class SideBar extends Component {
     super(props)
 
     this.state = {
-      available: true
+      available: true,
     }
 
     this.clickHandler = this.clickHandler.bind(this)
@@ -29,6 +29,7 @@ export default class SideBar extends Component {
       return null
     }
   }
+
 
   render() {
     const { currentUserId, history, updateTask, openModal, closeModal, session } = this.props
@@ -75,7 +76,7 @@ export default class SideBar extends Component {
                     currentUserId={currentUserId}
                     history={history}
                     activeTask={this.props.activeTask}
-                    receiveActiveTaskId={this.props.receiveActiveTaskId} />
+                    receiveActiveTaskId={this.props.receiveActiveTaskId}/>
                 ) : (
                   <ActiveSidebar
                     session={session}
@@ -86,7 +87,7 @@ export default class SideBar extends Component {
                     currentUserId={currentUserId}
                     history={history}
                     activeTask={this.props.activeTask}
-                    receiveActiveTaskId={this.props.receiveActiveTaskId} />
+                    receiveActiveTaskId={this.props.receiveActiveTaskId}/>
                 )
             }
           </div>
