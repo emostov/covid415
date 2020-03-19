@@ -102,7 +102,7 @@ class Map extends React.Component {
       const { status, volunteerId } = marker.properties
       const { currentUserId } = this.props
       if (status === 0) {
-        el.className = 'marker inActive'
+        el.className = 'marker notActive'
       } else if (status === 1) {
         el.className = 'marker active'
       } else if (status === 2) {
