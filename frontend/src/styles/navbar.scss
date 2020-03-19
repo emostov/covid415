@@ -45,7 +45,7 @@
 }
 
 .navbar.bg-dark {
-  border-bottom: 2px solid $fimga-red;
+  border-bottom: 2px solid $figma-red;
   z-index: 3;
 }
 
@@ -74,4 +74,29 @@
 
 .request-help-button:focus {
   outline: none;
+
 }
+
+.dropdown-menu {
+  background-color: $light-gray-bg!important
+}
+
+.text-left {
+  text-transform: none;
+}
+
+.dropdown-menu {
+  right: -15px;
+  top: 49px;
+  border-radius: 3px;
+}
+
+.dropdown-menu > button {
+  text-decoration: none;
+}
+
+.log-out {
+  color: $figma-red;
+  border-top: 1px solid $second-gray-bg
+}
+

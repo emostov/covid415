@@ -1,7 +1,7 @@
 @import './theme.scss';
 
 .card-container-available {
-    padding: 20px;
+    padding: 20px 20px 20px 16px;
     height: calc(100vh - 132px);
     overflow-y: auto;
     background: linear-gradient(#DA5663 15%, #FECEA8 );
@@ -81,7 +81,7 @@
  }
  
  .card-address-link:hover {
-    color: $fimga-red;
+    color: $figma-red;
     cursor: pointer;
     text-decoration: none;
  }
