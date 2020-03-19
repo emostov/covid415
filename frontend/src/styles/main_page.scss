@@ -3,5 +3,6 @@
 .mainpage-container {
     display: flex;
     flex-direction: row;
+    height: calc(100vh - 130px);
     // border: 1px solid $fimga-red;
 }

@@ -1,5 +1,8 @@
-import React from 'react'
-import { Redirect } from 'react-router-dom'
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+
 import '../../styles/card.scss'
 
 class Card extends React.Component {
@@ -18,18 +21,21 @@ class Card extends React.Component {
 
   clickHandler(e) {
     e.preventDefault();
-    // console.log("the dolphin has landed")
     let curActive = this.state.active;
     this.setState({ active: !curActive })
   }
 
   handleModal(e) {
-    e.stopPropagation()
+    e.stopPropagation();
     if (this.props.currentUserId) {
       this.props.openModal('status', this.props.task._id)
     } else {
       this.props.history.push('/login')
     }
+  }
+
+  handleDirectionsClick(e) {
+    e.stopPropagation();
   }
 
   handleCardHover(e) {
@@ -60,38 +66,41 @@ class Card extends React.Component {
             ?
             (
               <div className={"card-box-active"} onClick={this.clickHandler}>
-                <div className="">
-                  <div className={"card-head-active"}>
-                    0.1 Miles Away
-                                </div>
+                <div className={"card-head-active"}>
+                  0.1 Miles Away
                 </div>
                 <div className="card-box-top-container">
-                  <div className="card-box-task-type">
+                  <div className="card-box-type-of-prop">Get Directions:
+                    </div>
+                    <div className="instructions-body">
+                    <a className="card-address-link"
+                      target="_blank"
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${this.props.task.deliveryAddress}`}>
+                        { this.props.task.deliveryAddress }</a>
+                        <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
+                    </div>
                     <div className="card-box-type-of-prop">
-                      Task type:
-                                    </div>
-                    <div className="card-box-task-content">
+                        Type:
+                    </div>
+                    <div className="instructions-body">
                       {this.props.task.type}
                     </div>
-                  </div>
-                  <div className={"card-body-active"}>
-                    {this.props.task.details}
-                  </div>
-                  <div className="card-address-active">
-                    {this.props.task.deliveryAddress}
-                  </div>
-                </div>
-                <div className="card-box-bottom-container">
-                  <div className="card-box-instructions-container">
                     <div className="card-box-type-of-prop">
-                      Delivery Instructions:
-                                    </div>
+                        Details:
+                    </div>
+                    <div className="instructions-body">
+                      {this.props.task.details}
+                    </div>
+                    <div className="card-box-type-of-prop">
+                        Delivery instructions:
+                    </div>
                     <div className="instructions-body">
                       {this.props.task.deliveryInstructions}
                     </div>
-                  </div>
+                </div>
+                <div className="card-box-bottom-container">
                   <div className="accept-button-container">
-                    <button onClick={this.handleModal} className="accept-button">Accept</button>
+                    <button onClick={this.handleModal} className="accept-button">I Can Help</button>
                   </div>
                 </div>
               </div>

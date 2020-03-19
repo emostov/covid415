@@ -1,10 +1,158 @@
 @import './theme.scss';
 
+.card-container-available {
+    padding: 20px;
+    height: calc(100vh - 132px);
+    overflow-y: auto;
+    background: linear-gradient(#DA5663 15%, #FECEA8 );
+ }
+ 
+ .card-container-2 {
+    padding: 20px;
+    height: calc(100vh - 132px);
+    overflow-y: auto;
+    background: linear-gradient(#FECEA8 15%, #9FB89B );
+ }
+ 
+ .card-head {
+    font-size: 22px;
+    color: #2A363A;
+    // color: white;
+    cursor: pointer;
+ }
+ 
+ .card-box {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    // background-color: $light-gray-bg;
+    background-color: #2A363A;
+    opacity: .9;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    height: 150px;
+    width: 455px;
+    transition: height .3s ease-out;
+    cursor: pointer;
+ }
+ 
+ .card-box:hover {
+    box-shadow: 2px 2px 8px 4px rgb(88, 88, 88);
+ }
+ 
+ .card-box-active {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    background-color:#ffffff; 
+    // background-color: rgb(228, 228, 228);
+    opacity: .9;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    height: 450px;
+    transition: height .2s ease-in;
+    box-shadow: 2px 2px 8px 3px rgb(168, 168, 168);
+ }
+ 
+ .card-body {
+     padding: 10px 0px
+ }
+
+ .card-body-active {
+    color: #2A363A;
+ }
+ 
+ .card-head {
+    color: white;
+ }
+ 
+ .card-head-active {
+    color: #2A363A;
+    padding-bottom: 10px;
+ }
+ 
+ .card-address-active {
+    color: #2A363A; 
+ }
+ 
+ .card-box-task-type {
+    color: #2A363A; 
+ }
+ 
+ .card-address-link:hover {
+    color: $fimga-red;
+    cursor: pointer;
+    text-decoration: none;
+ }
+ 
+ .instructions-header {
+    color: #2A363A;
+ }
+ 
+ .instructions-body {
+    color: #2A363A;
+    padding-bottom: 15px;
+ }
+ 
+ .card-box-task-type {
+    display: flex;
+    
+ }
+ 
+ .card-box-task-content{
+    margin-left: 6px;
+    padding-bottom: 10px;
+ }
+ 
+ .card-box-type-of-prop {
+    color: #2A363A;
+    font-weight: 700;
+ }
+ 
+ .card-box-bottom-container {
+    display: flex;
+    justify-content: flex-end;
+    
+ }
+ 
+ .card-box-top-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+ 
+ .card-container-demo {
+    border: 1px solid black;
+    height: 25%;
+    border-radius: 3px;
+    background-color: #2A363A;
+    opacity: .9;
+ }
+ 
+ .card-demo-content {
+    margin: 10px;
+ }
+ 
+ .register-or-login {
+    margin: 10px;
+    display: flex;
+ }
+ 
+ .middle-statement {
+    padding-left: 5px;
+    padding-right: 5px;
+ }
+ 
+ .fa-external-link-alt {
+    color: #2A363A;;
+    padding-left: 10px;
+    width: 24px!important;
+ } 
+
 .accept-button {
     text-decoration: none;
     background-color: $figma-green;
     border-radius: 2px;
-    width: 100px;
+    width: auto;
     height: 35px;
     border: none;
     letter-spacing: 0.5px;
