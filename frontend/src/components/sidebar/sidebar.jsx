@@ -30,6 +30,15 @@ export default class SideBar extends Component {
     }
   }
 
+  getCurrentPosition() {
+    console.log("outside of the render function")
+    navigator.geolocation.getCurrentPosition(position => {
+      userPos = [position.coords.longitude, position.coords.latitude]
+      console.log("this is the user position", userPos)
+      return userPos
+    })
+  }
+
   render() {
     const { currentUserId, history, updateTask, openModal, closeModal, session } = this.props
 
@@ -42,9 +51,10 @@ export default class SideBar extends Component {
         active.push(task)
       }
     })
+    this.getCurrentPosition();
 
     return (
-      <div className='sidebar-container'>
+      <div className='sidebar-container' onClick={this.getCurrentPosition}>
         <div className="sidebar-inner-container">
           <div className="sidebar-container-header">
             <div className="sidebar-container-inner-header">

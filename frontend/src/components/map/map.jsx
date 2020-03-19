@@ -180,10 +180,20 @@ class Map extends React.Component {
     })
   }
 
+  getCurrentPosition() {
+    console.log("outside of the render function")
+    navigator.geolocation.getCurrentPosition(position => {
+      userPos = [position.coords.longitude, position.coords.latitude]
+      console.log("this is the user position", userPos)
+      return userPos
+    })
+  }
+
   render() {
     console.log(this.props.currentUserTasks, this.props.helpNeededTasks)
     this.updateMarkers();
     this.updatePopups();
+    this.getCurrentPosition();
     return (
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />
