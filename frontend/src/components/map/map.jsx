@@ -99,26 +99,23 @@ class Map extends React.Component {
     geojson.features.forEach((marker) => {
       // create a HTML element for each feature
       const el = document.createElement('div');
-      const volunteerId = marker.properties.volunteerId
-      const status = marker.properties.status
+      const { status, volunteerId } = marker.properties
       const { currentUserId } = this.props
-
-      if (volunteerId !== null && volunteerId === currentUserId && status === 1) {
-        el.className = 'marker active'
-      } else if (volunteerId === currentUserId && status === 2) {
+      if (status === 0) {
         el.className = 'marker inActive'
-      } else {
+      } else if (status === 1) {
+        el.className = 'marker active'
+      } else if (status === 2) {
         el.className = 'marker completed'
       }
       const popup = new mapboxgl.Popup({
         offset: 25,
         closeButton: false,
         closeOnClick: false,
-      }) // add popups
-        .setHTML(
-          '<h3>' + marker.properties.title + '</h3>'
-          + '<p>' + 'Volunteer Needed' + '</p>'
-        )
+      }).setHTML(
+        '<h3>' + marker.properties.title + '</h3>'
+        + '<p>' + 'Volunteer Needed' + '</p>'
+      )
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)

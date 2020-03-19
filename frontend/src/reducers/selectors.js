@@ -6,5 +6,5 @@ export const selectCurrentUserTask = (state) => {
 
 export const selectHelpNeededTasks = (state) => {
   const { tasks } = state;
-  return Object.values(tasks).filter((task) => !task.status)
+  return Object.values(tasks).filter((task) => task.status === 0)
 };
