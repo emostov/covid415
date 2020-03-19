@@ -12,7 +12,6 @@ const Modal = ({modal, closeModal}) => {
 
     let component;
 
-    // console.log("the starfish has drowned")
     switch (modal.modal) {
         case 'status':
             component = <TaskUpdateContainer taskId={modal.taskId}/>;

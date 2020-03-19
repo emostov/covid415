@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { fetchTasks, createNewTask } from '../../actions/task_actions';
-import { createTask } from '../../util/task_api_util';
 import { closeModal } from '../../actions/modal_actions';
 import TaskForm from './task_form';
 
