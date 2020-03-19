@@ -14,13 +14,11 @@ class Map extends React.Component {
       zoom: 11,
       map: '',
       allMarkers: [],
+      dispalyNotAssignedTasks: true,
     }
   }
 
   componentDidMount() {
-
-
-
     mapboxgl.accessToken = mapboxkeys.public_key;
     // Set the map's max bounds
     const bounds = [
@@ -45,29 +43,31 @@ class Map extends React.Component {
       })
     );
     map.setMaxBounds(bounds);
-    this.setState({ map });
+
+    this.setState({
+      map,
+      dispalyNotAssignedTasks: this.props.dispalyNotAssignedTasks
+    });
+
     this.callPlaceMarkers();
   }
-  // Calls place markers once the task and map are loaded
+
   // Recursively sets a timeout and calls itself if not loaded
+  // Essentially a recursive while loop
   callPlaceMarkers() {
     if (this.state.map && this.props.tasks.length) {
-      // console.log(this.props.tasks)
-      this.placeMapMarkers(this.props.tasks);
-      // console.log(this.props.tasks)
-      // console.log(this.props.currentUserTasks);
-      console.log(this.props.helpNeededTasks);
-
+      const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
+      const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
+      this.setState({ userMarkers, helpNeededMarkers })
     } else {
       setTimeout(() => {
-
-        this.callPlaceMarkers(this.props.tasks)
+        this.callPlaceMarkers()
       }, 1 * 100)
     }
   }
-
-
+  
   placeMapMarkers(tasks) {
+    if (!tasks) return;
     const { map } = this.state
     const allMarkers = [];
     const geojson = {
@@ -116,7 +116,9 @@ class Map extends React.Component {
       const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(popup)
-        .addTo(this.state.map);
+
+      // .addTo(this.state.map);
+
       // Add mapBox marker and associated id to array
       allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
 
@@ -131,7 +133,36 @@ class Map extends React.Component {
       });
     });
 
-    this.setState({ allMarkers });
+    return allMarkers;
+  }
+
+  // Removes all current markers from map
+  clearMarkers(markers) {
+    if (!markers) return;
+    markers.forEach((marker) => {
+      marker.mBMarker.remove();
+    })
+  }
+
+  addMarkers(markers) {
+    if (!markers) return;
+    console.log(markers)
+    markers.forEach((marker) => {
+      marker.mBMarker.addTo(this.state.map);
+    })
+  }
+
+  updateMarkers() {
+    const { userMarkers, helpNeededMarkers } = this.state;
+    if (this.props.dispalyNotAssignedTasks) {
+      // display the helped needed markers
+      this.clearMarkers(userMarkers);
+      this.addMarkers(helpNeededMarkers);
+    } else {
+      this.clearMarkers(helpNeededMarkers);
+      this.addMarkers(userMarkers);
+    }
+
   }
 
   updatePopups() {
@@ -150,7 +181,9 @@ class Map extends React.Component {
   }
 
   render() {
-    { this.updatePopups() }
+    console.log(this.props.currentUserTasks, this.props.helpNeededTasks)
+    this.updateMarkers();
+    this.updatePopups();
     return (
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />

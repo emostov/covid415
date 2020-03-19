@@ -41,7 +41,9 @@ class TaskUpdate extends React.Component {
                     ? 
                     (
                         <div className="modal-child-confirm-delivery">
-                            <div className="delivery-header">Hey neighbor! Thanks for helping out.</div>
+                            <div className="delivery-header-container">
+                                <div className="delivery-header">Thanks for helping out.</div>
+                            </div>
                             <div className="delivery-details-container">
                                 <div className="delivery-details-type">Delivery details:</div>
                                 <span className="delivery-details-text">{task.details}</span>
@@ -52,8 +54,10 @@ class TaskUpdate extends React.Component {
                                 <div className="delivery-details-type">Contact:</div>
                                 <span className="delivery-details-text">{task.requester.email}</span>
                             </div>
-                                {/* <div className="delivery-details-confirmation">Confirm below to let <span className="recipientName"> {task.requester.firstName} know you're on it!</span></div> */}
+                            <div className="button-container">
                                 <button className='claim-button' onClick={() => this.handleClaim()}>I'm on it!</button>
+                                <button className='cancel-button' onClick={() => this.handleClaim()}>Cancel</button>
+                            </div>
                         </div>
                     ) : (
                         <div className="modal-confirm-delivery">

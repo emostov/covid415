@@ -46,34 +46,28 @@
   height: auto; 
   background-color: $light-gray-bg;
   border-radius: 3px;
-  padding: 20px;
+  padding-bottom: 40px;
 }
 
-.delivery-header {
-  color: $figma-red; 
-}
-
-.modal-child-confirm-delivery > button {
-  background-image: linear-gradient(to right, $figma-grapefruit, $figma-green);
-  filter: brightness(90%);
+.delivery-header-container{
+  background-image: linear-gradient(to top right, $figma-red, $figma-grapefruit, $figma-peach );
+  height:  auto;
   width: 100%;
-  height: 50px;
-  border-radius: 3px;
-  text-transform: uppercase;
-  font-size: 20px;
 }
 
-.modal-child-confirm-delivery > button:hover {
-  filter: brightness(110%);
+
+.button-container > button:hover {
+  filter: brightness(100%);
 }
 
 .delivery-header {
-  color: $figma-red;
-  font-size: 26px;
+  color: white;
+  font-size: 35px;
+  padding: 15px 15px 15px 15px
 }
 
 .delivery-details-container {
-  padding: 10px 0px 40px 0px
+  padding: 10px 0px 40px 35px
 }
 
 .delivery-details-type{
@@ -93,4 +87,33 @@
   font-weight: 500;
   font-size: 20px;
   padding-bottom: 15px;
+}
+
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.claim-button {
+  background-color: $figma-grapefruit;
+  color: white;
+  filter: brightness(90%);
+  width: 40%;
+  height: 50px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.cancel-button {
+  background-color: $second-gray-txt;
+  color: white;
+  filter: brightness(90%);
+  width: 40%;
+  height: 50px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 20px;
 }

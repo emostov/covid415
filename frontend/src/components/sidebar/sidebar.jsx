@@ -15,21 +15,24 @@ export default class SideBar extends Component {
   }
 
   clickHandler(field) {
+    const { receieveDisplayAssignedTasks } = this.props
     if (field === 'available' && this.state.available === true) {
       return null
     } else if (field === 'available') {
-      this.setState({ available: true })
+      this.setState({ available: true });
+      receieveDisplayAssignedTasks(true);
     }
     if (field === 'active' && this.state.available === true) {
-      this.setState({ available: false })
+      this.setState({ available: false });
+      receieveDisplayAssignedTasks(false);
     } else {
       return null
     }
   }
-  
+
   render() {
     const { currentUserId, history, updateTask, openModal, closeModal, session } = this.props
-  
+
     let available = []
     let active = []
     this.props.tasks.forEach((task, i) => {
@@ -46,13 +49,13 @@ export default class SideBar extends Component {
           <div className="sidebar-container-header">
             <div className="sidebar-container-inner-header">
               <div className="sidebar-container-header-available"
-                   onClick={e =>{e.preventDefault(); this.clickHandler('available')}}>
+                onClick={e => { e.preventDefault(); this.clickHandler('available') }}>
                 <div className={this.state.available ? "available-title-name-active" : "available-title-name"}>
                   Delivery Requests
                 </div>
               </div>
               <div className="sidebar-container-header-active"
-                   onClick={e=> {e.preventDefault(); this.clickHandler('active')}}>
+                onClick={e => { e.preventDefault(); this.clickHandler('active') }}>
                 <div className={this.state.available ? "active-title-name" : "active-title-name-active"}>
                   My Deliveries
                 </div>
@@ -62,29 +65,29 @@ export default class SideBar extends Component {
           <div className="sidebar-container-inner-body">
             {
               this.state.available
-              ?
-              (
-                <AvailableSidebar 
-                      available={available} 
-                      updateTask={updateTask} 
-                      openModal={openModal} 
-                      closeModal={closeModal}
-                      currentUserId={currentUserId}
-                      history={history}
-                      activeTask={this.props.activeTask}
-                      receiveActiveTaskId={this.props.receiveActiveTaskId}/>
-              ) : (
-                <ActiveSidebar
-                      session={session} 
-                      active={active} 
-                      updateTask={updateTask} 
-                      openModal={openModal} 
-                      closeModal={closeModal}
-                      currentUserId={currentUserId}
-                      history={history}
-                      activeTask={this.props.activeTask}
-                      receiveActiveTaskId={this.props.receiveActiveTaskId}/>
-              )
+                ?
+                (
+                  <AvailableSidebar
+                    available={available}
+                    updateTask={updateTask}
+                    openModal={openModal}
+                    closeModal={closeModal}
+                    currentUserId={currentUserId}
+                    history={history}
+                    activeTask={this.props.activeTask}
+                    receiveActiveTaskId={this.props.receiveActiveTaskId} />
+                ) : (
+                  <ActiveSidebar
+                    session={session}
+                    active={active}
+                    updateTask={updateTask}
+                    openModal={openModal}
+                    closeModal={closeModal}
+                    currentUserId={currentUserId}
+                    history={history}
+                    activeTask={this.props.activeTask}
+                    receiveActiveTaskId={this.props.receiveActiveTaskId} />
+                )
             }
           </div>
         </div>
