@@ -10,6 +10,11 @@
     padding-bottom: 10px;
 }
 
+.task-form-title {
+    font-size: 30px;
+    margin: 10px 0px 15px 0px;
+}
+
 .task-form {
     display: flex;
     flex-direction: column;
@@ -17,20 +22,51 @@
     margin-top: -20px;
 }
 
-.task-form-title {
-    font-size: 30px;
-    margin: 10px 0px 15px 0px;
-}
-
 .task-form-label {
     letter-spacing: 0.5px;
     font-weight: 500;
 }
 
+.task-type-group {
+    display: flex;
+    justify-content: center;
+}
 .task-form-type {
+    width: 70%;
     display: flex;
     justify-content: space-around;
-    margin-bottom: -5px;
+    margin-bottom: -10px;
+}
+
+.task-type-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.task-type-label {
+    margin-top: 5px;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+[type=radio] + img {
+  cursor: pointer;
+}
+
+[type=radio]:checked + img {
+  outline: 2px solid #f00;
+}
+
+.radio-img {
+    width: 100px;
 }
 
 .task-form-input-long {
@@ -41,6 +77,7 @@
     font-weight: 600;
     background-color: $figma-green;
     border: none;
+    letter-spacing: 0.5px;
 }
 
 .task-form-submit:hover {

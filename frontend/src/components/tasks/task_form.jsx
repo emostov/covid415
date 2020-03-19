@@ -2,6 +2,9 @@ import React from 'react';
 import '../../styles/task_form.scss'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 
+import Food from '../../public/groceries.png';
+import Medicine from '../../public/medicine.png';
+import Other from '../../public/other.png';
 
 class TaskForm extends React.Component {
     constructor(props) {
@@ -36,8 +39,9 @@ class TaskForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        this.props.createNewTask(this.state)
-            .then(() => this.props.fetchTasks())
+        debugger;
+        // this.props.createNewTask(this.state)
+        //     .then(() => this.props.fetchTasks())
 
         // if (Object.values(this.state.errors).length !== 0) {
         //     setTimeout(() => this.props.closeModal(), 1000);
@@ -52,23 +56,27 @@ class TaskForm extends React.Component {
                 <Form className='task-form'>
                     <Form.Group>
                         <Form.Label className='task-form-label'>What are you requesting?</Form.Label>
-                        <Form.Group className='task-form-type'>
-                            <Form.Check type='radio' name='task-type' onChange={this.update('type')} value='Food' label='Food'/>
-                            <Form.Check type='radio' name='task-type' onChange={this.update('type')} value='Medicine' label='Medicine'/>
-                            <Form.Check type='radio' name='task-type' onChange={this.update('type')} value='Other' label='Other'/>
-                        </Form.Group>
+                        <div className='task-type-group'>
+                            <Form.Group className='task-form-type'>
+                                <label className='task-type-select'>
+                                    <input type="radio" name='task-type' onChange={this.update('type')} value='Food'/>
+                                    <img className='radio-img' src={Food} alt="grocery-pic"/>
+                                    <div className='task-type-label'>Food</div>
+                                </label>
+                                <label className='task-type-select'>
+                                    <input type="radio" name='task-type' onChange={this.update('type')} value='Medicine'/>
+                                    <img className='radio-img' src={Medicine} alt="medicine-pic"/>
+                                    <div className='task-type-label'>Medicine</div>
+                                </label>
+                                <label className='task-type-select'>
+                                    <input type="radio" name='task-type' onChange={this.update('type')} value='Other'/>
+                                    <img className='radio-img' src={Other} alt="other-pic"/>
+                                    <div className='task-type-label'>Other</div>
+                                </label>
+                            </Form.Group>
+                        </div>
                     </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label className='task-form-label'>Details</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder='Please bring me some fuji apples and Sour Diesel'
-                            onChange={this.update('details')}
-                            className='task-form-input-short'
-                        />
-                    </Form.Group>
-                    
                     <Form.Group>
                         <Form.Label className='task-form-label'>Where is this being delivered to?</Form.Label>
                         <Form.Control
@@ -80,14 +88,23 @@ class TaskForm extends React.Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label className='task-form-label'>Please provide additional delivery instructions</Form.Label>
+                        <Form.Label className='task-form-label'>Details</Form.Label>
                         <Form.Control
                             as='textarea'
-                            onChange={this.update('deliveryInstructions')}
+                            placeholder='Please bring me some fuji apples and Sour Diesel'
+                            onChange={this.update('details')}
                             className='task-form-input-long'
                         />
                     </Form.Group>
-
+                    
+                    <Form.Group>
+                        <Form.Label className='task-form-label'>Please provide additional delivery instructions</Form.Label>
+                        <Form.Control
+                            // as='textarea'
+                            onChange={this.update('deliveryInstructions')}
+                            className='task-form-input-short'
+                        />
+                    </Form.Group>
                 </Form>
                 <Button className='task-form-submit' onClick={this.handleSubmit}>Request Delivery</Button>
             </div>
