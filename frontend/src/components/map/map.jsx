@@ -159,6 +159,9 @@ class Map extends React.Component {
       this.clearMarkers(userMarkers);
       this.addMarkers(helpNeededMarkers);
     } else {
+      console.log('updating to show user markers')
+      console.log('userMarkers length', userMarkers.length)
+      console.log('helpNeededMarkers length', helpNeededMarkers.length)
       this.clearMarkers(helpNeededMarkers);
       this.addMarkers(userMarkers);
     }
