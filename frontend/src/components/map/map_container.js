@@ -9,6 +9,13 @@ const selectCurrentUserTask = (current) => {
 };
 
 const mSTP = state => {
+  let currentUserId;
+  if (state.session.user) {
+    currentUserId = state.session.user.id
+  } else {
+    currentUserId = undefined
+  }
+  
   return ({
     tasks: Object.values(state.tasks),
     activeTask: state.ui.activeTask,
