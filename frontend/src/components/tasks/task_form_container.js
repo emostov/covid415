@@ -12,7 +12,8 @@ const mSTP = (state, ownProps) => {
         deliveryAddress: '',
         deliveryInstructions: ''
     },
-    history: ownProps.history
+    history: ownProps.history,
+    errors: state.errors.task
 }};
 
 const mDTP = dispatch => ({

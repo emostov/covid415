@@ -64,8 +64,8 @@ class LoginForm extends React.Component {
     return (
       <ul>
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            <Alert>
+          <li className='list-item' key={`error-${i}`}>
+            <Alert variant='warning'>
               {this.state.errors[error]}
             </Alert>
           </li>
