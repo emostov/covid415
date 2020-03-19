@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import frontendUtil from '../../util/frontend_util';
 
 import '../../styles/card.scss'
 
@@ -75,8 +76,8 @@ class Card extends React.Component {
     let options = { units: 'miles' }
 
     let distanceTo = turf.distance(from, to, options)
-    
-    this.setState({distance: distanceTo})
+    const dist = frontendUtil.parseDistance(distanceTo)
+    this.setState({distance: dist})
   }
 
   render() {
@@ -94,7 +95,7 @@ class Card extends React.Component {
                 <div className="card-header-container">
                     <FontAwesomeIcon className="fa-minus" icon={faMinus} />
                   <div className={"card-head-active"}>
-                    {this.state.distance}
+                    {`${this.state.distance} miles away`}
                   </div>
                 </div>
                 <div className="card-box-top-container">
@@ -138,7 +139,7 @@ class Card extends React.Component {
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-plus" icon={faPlus} />
                 <div className={"card-head"}>
-                  {this.state.distance}
+                    {`${this.state.distance} miles away`}
                 </div>
                 </div>
                 <div className={"card-body"}>
