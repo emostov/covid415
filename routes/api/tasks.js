@@ -5,9 +5,9 @@ const passport = require('passport');
 const geocodeUtil = require('../../util/geocode_util');
 const Task = require('../../models/Task');
 const validateTaskInput = require('../../validation/tasks');
+const backendUtil = require('../../util/backend_util')
 
 const router = express.Router();
-
 
 router.get('/test', (req, res) => res.json({ msg: 'This is the tasks route' }));
 
@@ -27,18 +27,21 @@ router.post('/',
       return res.status(400).json(errors);
     }
 
+    const unFrozenParser = backendUtil.pullKeys(req.user)
     geocodeUtil.parseAddress(req.body.deliveryAddress).then(
       (latLongArr) => {
         const newTask = new Task({
           type: req.body.type,
           details: req.body.details,
-          requester: req.user,
+          requester: unFrozenParser,
           deliveryAddress: req.body.deliveryAddress,
           deliveryLatLong: latLongArr,
           deliveryInstructions: req.body.deliveryInstructions,
         });
 
-        newTask.save().then((task) => res.json(task));
+        newTask.save()
+          .then((task) => res.json(task))
+          .catch(err => res.json(err))
       },
     );
   });
