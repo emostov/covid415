@@ -13,12 +13,28 @@
    overflow-y: auto;
    background: linear-gradient(#FECEA8 15%, #9FB89B );
  }
+
+ .card-header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+ }
  
  .card-head {
     font-size: 22px;
     color: #2A363A;
     // color: white;
     cursor: pointer;
+ }
+
+ .fa-plus {
+   font-size: 20px;
+ }
+
+ .fa-minus {
+   font-size: 20px;
+   color: #2A363A
  }
  
  .card-box {
@@ -32,7 +48,7 @@
     border-radius: 3px;
     height: 150px;
     width: 455px;
-    transition: height .3s ease-out;
+    transition: all .5s;
     cursor: pointer;
  }
  
@@ -50,12 +66,13 @@
     margin-bottom: 10px;
     border-radius: 3px;
     height: 450px;
-    transition: height .2s ease-in;
+    width: 455px;
+    transition: all .5s; 
     box-shadow: 2px 2px 8px 3px rgb(204, 204, 204);
  }
  
  .card-body {
-     padding: 10px 0px
+     padding: 25px 0px
  }
 
  .card-body-active {
@@ -69,7 +86,6 @@
  .card-head-active {
     color: #2A363A;
     font-size: 22px;
-    padding-bottom: 10px;
  }
  
  .card-address-active {
