@@ -117,7 +117,7 @@ class SignupForm extends React.Component {
                     </Row>
                   </Form.Group>
 
-                  <Form.Group controlId="formBasicPassword">
+                  {/* <Form.Group controlId="formBasicPassword"> */}
                     <Row>
                       <Col>
                         <Form.Label>Password</Form.Label>
@@ -130,13 +130,13 @@ class SignupForm extends React.Component {
                       </Col>
                       <Col>
                         <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control type="password"
+                        <Form.Control type="password2"
                           placeholder="Confirm Password"
                           onChange={this.update('password2')}
                         />
                       </Col>
                     </Row>
-                  </Form.Group>
+                  {/* </Form.Group> */}
 
                   <Form.Group controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="I agree to be a good neighbor" />
