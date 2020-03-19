@@ -65,7 +65,7 @@ class Map extends React.Component {
   placeMapMarkers() {
     const { map } = this.state
     const allMarkers = [];
-    console.log("this is the props for the map.jsx", this.props)
+  
     let geojson = {
       type: 'FeatureCollection',
       features:
@@ -87,12 +87,12 @@ class Map extends React.Component {
 
     // add markers to map
     geojson.features.forEach((marker) => {
-      const { currentUserId } = this.props
       // create a HTML element for each feature
       const el = document.createElement('div');
       const volunteerId = marker.properties.volunteerId
       const status = marker.properties.status
-      debugger
+      const { currentUserId } = this.props
+  
       if(volunteerId !== null && volunteerId === currentUserId && status === 1) {
         el.className = 'marker active'
       } else if (volunteerId === currentUserId && status === 2) {
