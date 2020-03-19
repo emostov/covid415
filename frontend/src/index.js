@@ -11,7 +11,7 @@ import { setAuthToken } from './util/session_api_util';
 
 import { logout } from './actions/session_actions';
 import { fetchTasks, updateTask } from './actions/task_actions';
-import { receieveDisplayAssignedTasks } from './actions/displayed_tasks_actions';
+import { receiveDisplayAssignedTasks } from './actions/displayed_tasks_actions';
 
 mapboxgl.accessToken = 'MAPBOX_ACCESS_TOKEN';
 
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.dispatch = store.dispatch;
   window.fetchTasks = fetchTasks;
   window.updateTask = updateTask;
-  window.receieveDisplayAssignedTasks = receieveDisplayAssignedTasks;
+  window.receiveDisplayAssignedTasks = receiveDisplayAssignedTasks;
 
   window.task = {
     "deliveryLatLong": [

@@ -6,7 +6,5 @@ module.exports = {
     const addr = address.split(' ').join('+');
 
     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${addr}&key=${geocodeKey}`)
-      .then((res) => (
-        Object.values(res.data.results[0].geometry.location)));
-  }
+  },
 };

@@ -28,14 +28,16 @@ router.post('/',
     }
 
     const unFrozenParser = backendUtil.pullKeys(req.user)
+    
     geocodeUtil.parseAddress(req.body.deliveryAddress).then(
-      (latLongArr) => {
+      (gMapsResponse) => {
         const newTask = new Task({
           type: req.body.type,
           details: req.body.details,
           requester: unFrozenParser,
-          deliveryAddress: req.body.deliveryAddress,
-          deliveryLatLong: latLongArr,
+          deliveryAddress: gMapsResponse.data.results[0].formatted_address,
+          deliveryLatLong: Object.values(gMapsResponse.data.results[0].geometry.location),
+          deliveryNeighborhood: gMapsResponse.data.results[0].address_components[2].short_name,
           deliveryInstructions: req.body.deliveryInstructions,
         });
 
@@ -43,7 +45,8 @@ router.post('/',
           .then((task) => res.json(task))
           .catch(err => res.json(err))
       },
-    );
+    )
+    .catch(err => res.json(err));
   });
 
 router.patch('/:id',
