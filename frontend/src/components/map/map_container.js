@@ -4,6 +4,10 @@ import Map from './map';
 import { fetchTasks } from '../../actions/task_actions';
 import { receiveActiveTaskId } from '../../actions/active_task_actions';
 
+const selectCurrentUserTask = (current) => {
+
+};
+
 const mSTP = state => {
   return ({
     tasks: Object.values(state.tasks),
