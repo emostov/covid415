@@ -91,11 +91,14 @@ class Map extends React.Component {
       // create a HTML element for each feature
       const el = document.createElement('div');
       const volunteerId = marker.properties.volunteerId
+      const status = marker.properties.status
       debugger
-      if(volunteerId !== null && volunteerId === currentUserId && marker.properties.status === 1) {
+      if(volunteerId !== null && volunteerId === currentUserId && status === 1) {
         el.className = 'marker active'
-      } else if (volunteerId === null) {
+      } else if (volunteerId === currentUserId && status === 2) {
         el.className = 'marker inActive'
+      } else {
+        el.className = 'marker completed'
       }
       const popup = new mapboxgl.Popup({
         offset: 25,
