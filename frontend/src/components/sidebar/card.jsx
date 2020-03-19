@@ -1,9 +1,11 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import * as turf from '@turf/turf'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import frontendUtil from '../../util/frontend_util';
 
 import '../../styles/card.scss'
 
@@ -12,13 +14,19 @@ class Card extends React.Component {
     super(props)
 
     this.state = {
-      active: false
+      active: false,
+      distance: ''
     }
 
     this.clickHandler = this.clickHandler.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.handleCardHover = this.handleCardHover.bind(this);
     this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
+    this.distanceFromCurrentToTask = this.distanceFromCurrentToTask.bind(this)
+  }
+
+  componentDidMount() {
+    this.distanceFromCurrentToTask();
   }
 
   clickHandler(e) {
@@ -57,8 +65,24 @@ class Card extends React.Component {
     }
   }
 
+  distanceFromCurrentToTask() {
+    if (this.props.task.deliveryLatLong === undefined) {
+      return null
+    }
+    console.log(this.props)
+    const { task, currentPosition } = this.props
+    let from = turf.point([currentPosition[1], currentPosition[0]])
+    let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
+    let options = { units: 'miles' }
+
+    let distanceTo = turf.distance(from, to, options)
+    const dist = frontendUtil.parseDistance(distanceTo)
+    this.setState({distance: dist})
+  }
+
   render() {
     const { openModal, closeModal } = this.props;
+    console.log(this.state)
     return (
       <div onMouseEnter={this.handleCardHover}
         onMouseLeave={this.handleCardMouseLeave}
@@ -71,7 +95,7 @@ class Card extends React.Component {
                 <div className="card-header-container">
                     <FontAwesomeIcon className="fa-minus" icon={faMinus} />
                   <div className={"card-head-active"}>
-                    0.1 Miles Away
+                    {`${this.state.distance} miles away`}
                   </div>
                 </div>
                 <div className="card-box-top-container">
@@ -115,7 +139,7 @@ class Card extends React.Component {
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-plus" icon={faPlus} />
                 <div className={"card-head"}>
-                  0.1 Miles Away
+                    {`${this.state.distance} miles away`}
                 </div>
                 </div>
                 <div className={"card-body"}>
