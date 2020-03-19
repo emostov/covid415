@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/task_form.scss'
-import { Form, Button, Card } from 'react-bootstrap'
+import { Form, Button, Card, Alert } from 'react-bootstrap'
 
 
 class TaskForm extends React.Component {
@@ -11,6 +11,10 @@ class TaskForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps)
+    // }
+
     update(field) {
         return e => this.setState({ [field]: e.currentTarget.value })
     }
@@ -18,7 +22,13 @@ class TaskForm extends React.Component {
     renderErrors() {
         return (
             <ul>
-
+                {Object.values(this.props.errors).map((error, i) => (
+                    <li className='list-item'>
+                        <Alert key={`error=${i}`} variant='warning'>
+                            {error}
+                        </Alert>
+                    </li>
+                ))}
             </ul>
         )
     }
@@ -28,13 +38,14 @@ class TaskForm extends React.Component {
 
         this.props.createNewTask(this.state)
             .then(() => this.props.fetchTasks())
-        setTimeout(() => this.props.closeModal(), 500);
+        // setTimeout(() => this.props.closeModal(), 500);
     }
 
     render() {
         return(
             <div className='task-form-container'>
                 <Card.Title className='task-form-title'><strong>Under quarantine? Request a delivery.</strong></Card.Title>
+                {this.renderErrors()}
                 <Form className='task-form'>
                     <Form.Group>
                         <Form.Label className='task-form-label'>What are you requesting?</Form.Label>
