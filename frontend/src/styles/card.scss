@@ -19,13 +19,23 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-weight: 300;
  }
+
+ .card-footer-container {
+   margin-top: 8px;
+   margin-left: 50px;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+   align-items: center;
+   text-transform: capitalize;
+}
  
  .card-head {
     font-size: 22px;
-    color: #2A363A;
-    // color: white;
-    cursor: pointer;
+    color: white;
+    font-weight: 200;
  }
 
  .fa-plus {
@@ -51,6 +61,14 @@
     transition: height .3s ease;
     cursor: pointer;
  }
+
+ .card-task-type-text {
+   font-size: 18px;
+   font-weight: 200;
+   color: white;
+   padding-left: 10px;
+   text-transform: uppercase;
+ }
  
  .card-box:hover {
     box-shadow: 2px 2px 8px 2px rgb(58, 58, 58);
@@ -65,15 +83,16 @@
     opacity: .9;
     margin-bottom: 10px;
     border-radius: 3px;
-    height: 380px;
+    height: 450px;
     width: 455px;
     transition: height .3s ease;
     box-shadow: 2px 2px 8px 3px rgb(204, 204, 204);
+    position: relative;
  }
 
  .card-box-top-container {
    animation-name: card-fade-in;
-   animation-duration: 1s;
+   animation-duration: .5s;
  }
 
  @keyframes card-fade-in {
@@ -87,10 +106,6 @@
 
  .card-body-active {
     color: #2A363A;
- }
- 
- .card-head {
-    color: white;
  }
  
  .card-head-active {
@@ -134,15 +149,6 @@
  .card-box-type-of-prop {
     color: #2A363A;
     font-weight: 700;
- }
- 
- .card-box-bottom-container {
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    animation-name: card-fade-in;
-    animation-duration: 1.3s;
-    
  }
  
  .card-box-top-container {
@@ -190,7 +196,10 @@
    font-size: 20px;
    font-weight: 500;
    position: absolute;
-   right: 0px;
+   right: 20px;
+   bottom: 30px;
+   animation-name: card-fade-in;
+   animation-duration: 1s;
 }
 
 .accept-button:hover {
@@ -214,7 +223,10 @@
    font-size: 20px;
    font-weight: 500;
    position: absolute;
-   right: 0px;
+   right: 20px;
+   bottom: 30px;
+   animation-name: card-fade-in;
+   animation-duration: 1s;
 }
 
 .complete-button:hover {
@@ -224,4 +236,9 @@
 
 .complete-button:focus {
     outline: none;
+}
+
+.card-type-img {
+   width: 50px;
+   margin-left: 10px;
 }
