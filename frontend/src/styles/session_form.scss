@@ -28,14 +28,14 @@
   border-color: $second-gray-bg;
 }
 
-.demo-btn:hover, .demo-btn:active {
-  background-color: rgb(146, 145, 145);
-  border-color: rgb(146, 145, 145);
+.demo-btn:hover, .demo-btn:active, .demo-btn:active:focus, .demo-btn:active:focus-within, .demo-btn:focus {
+  background-color: rgb(146, 145, 145)!important;
+  border-color: rgb(146, 145, 145)!important;
 }
 
-.session-btn:hover, .session-btn:active {
-  background-color: rgb(115, 139, 111);
-  border-color: rgb(115, 139, 111);
+.session-btn:hover, .session-btn:active, .session-btn:active:focus, .session-btn:focus-within, .session-btn:focus {
+  background-color: rgb(115, 139, 111)!important;
+  border-color: rgb(115, 139, 111)!important;
 }
 
 .card-title.h5.session{

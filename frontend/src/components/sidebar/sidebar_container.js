@@ -5,7 +5,7 @@ import { updateTask } from '../../actions/task_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { receiveActiveTaskId } from '../../actions/active_task_actions';
 import {
-  receieveDisplayAssignedTasks
+  receiveDisplayAssignedTasks
 } from '../../actions/displayed_tasks_actions';
 
 const mSTP = state => {
@@ -28,8 +28,8 @@ const mDTP = dispatch => ({
   openModal: (modal, taskId) => dispatch(openModal(modal, taskId)),
   closeModal: () => dispatch(closeModal()),
   receiveActiveTaskId: (taskId) => dispatch(receiveActiveTaskId(taskId)),
-  receieveDisplayAssignedTasks:
-    (bool) => dispatch(receieveDisplayAssignedTasks(bool)),
+  receiveDisplayAssignedTasks:
+    (bool) => dispatch(receiveDisplayAssignedTasks(bool)),
 });
 
 export default connect(mSTP, mDTP)(SideBar)

@@ -2,6 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import '../../styles/card.scss'
 
@@ -65,12 +67,15 @@ class Card extends React.Component {
           this.state.active
             ?
             (
-              <div className={"card-box-active"} onClick={this.clickHandler}>
-                <div className={"card-head-active"}>
-                  0.1 Miles Away
+              <div className="card-box-active" onClick={this.clickHandler}>
+                <div className="card-header-container">
+                    <FontAwesomeIcon className="fa-minus" icon={faMinus} />
+                  <div className={"card-head-active"}>
+                    0.1 Miles Away
+                  </div>
                 </div>
                 <div className="card-box-top-container">
-                  <div className="card-box-type-of-prop">Get driving drections:
+                  <div className="card-box-type-of-prop">Deliver to:
                     </div>
                     <div className="instructions-body">
                     <a className="card-address-link"
@@ -94,24 +99,25 @@ class Card extends React.Component {
                     <div className="instructions-body">
                       {this.props.task.details}
                     </div>
-                    <div className="card-box-type-of-prop">
-                        Delivery instructions:
-                    </div>
-                    <div className="instructions-body">
-                      {this.props.task.deliveryInstructions}
-                    </div>
                 </div>
                 <div className="card-box-bottom-container">
                   <div className="accept-button-container">
-                    <button onClick={this.handleModal} className="accept-button">I Can Help</button>
+                    { this.props.cardType === 'available' ? 
+                      <button onClick={this.handleModal} className="accept-button">I Can Help</button>
+                      :
+                      <button onClick={this.handleModal} className="complete-button">Delivery Details</button>
+                    }
                   </div>
                 </div>
               </div>
             ) : (
-              <div className={"card-box"} onClick={this.clickHandler}>
+              <div className="card-box" onClick={this.clickHandler}>
+                <div className="card-header-container">
+                  <FontAwesomeIcon className="fa-plus" icon={faPlus} />
                 <div className={"card-head"}>
                   0.1 Miles Away
-                        </div>
+                </div>
+                </div>
                 <div className={"card-body"}>
                   {this.props.task.details}
                 </div>
