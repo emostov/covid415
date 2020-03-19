@@ -51,7 +51,10 @@ class MainPage extends React.Component {
     return (
       <div className="mainpage-container">
         <MapContainer />
-        <SideBarContainer tasks={tasks} history={history}/>
+        <SideBarContainer 
+          tasks={tasks} 
+          history={history}
+          currentPosition={this.state.currentPosition}/>
       </div>
     );
   }
