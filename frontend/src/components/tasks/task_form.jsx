@@ -1,5 +1,7 @@
 import React from 'react';
 import '../../styles/task_form.scss'
+import { Form, Button, Card } from 'react-bootstrap'
+
 
 class TaskForm extends React.Component {
     constructor(props) {
@@ -13,6 +15,14 @@ class TaskForm extends React.Component {
         return e => this.setState({ [field]: e.currentTarget.value })
     }
 
+    renderErrors() {
+        return (
+            <ul>
+
+            </ul>
+        )
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
@@ -24,32 +34,48 @@ class TaskForm extends React.Component {
     render() {
         return(
             <div className='task-form-container'>
-                <h3 className='task-form-title'>Request Form</h3>
-                <form className='task-form' onSubmit={this.handleSubmit}>
+                <Card.Title className='task-form-title'><strong>Request a Delivery</strong></Card.Title>
+                <Form className='task-form'>
+                    <Form.Group>
+                        <Form.Label className='task-form-label'>What are you requesting?</Form.Label>
+                        <Form.Group className='task-form-type'>
+                            <Form.Check type='radio' name='task-type' onChange={this.update('type')} value='Food' label='Food'/>
+                            <Form.Check type='radio' name='task-type' onChange={this.update('type')} value='Medicine' label='Medicine'/>
+                            <Form.Check type='radio' name='task-type' onChange={this.update('type')} value='Other' label='Other'/>
+                        </Form.Group>
+                    </Form.Group>
 
-                    <label className='task-form-label'>What are you requesting?</label>
-                    <div className='task-form-type'> 
-                        <input type="radio" name='task-type' onChange={this.update('type')} value="Food"/>Food
-                        <input type="radio" name='task-type' onChange={this.update('type')} value="Medicine"/>Medicine
-                        <input type="radio" name='task-type' onChange={this.update('type')} value="Other"/>Other
-                    </div>
+                    <Form.Group>
+                        <Form.Label className='task-form-label'>Details</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder='Please bring me some fuji apples and Sour Diesel'
+                            onChange={this.update('details')}
+                            className='task-form-input-short'
+                        />
+                    </Form.Group>
                     
-                    <label className='task-form-label'>Details</label>
-                    <input type="text" placeholder='Please bring me some fuji apples and Sour Diesel'
-                        onChange={this.update('details')} 
-                        className='task-form-input'/>
+                    <Form.Group>
+                        <Form.Label className='task-form-label'>Where is this being delivered to?</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='123 Fake St, San Francisco, CA'
+                            onChange={this.update('deliveryAddress')}
+                            className='task-form-input-short'
+                        />
+                    </Form.Group>
 
-                    <label className='task-form-label'>Where is this being delivered to? SF only</label>
-                    <input type="text" placeholder='123 Fake St, San Francisco, CA'
-                        onChange={this.update('deliveryAddress')}
-                        className='task-form-input' />
+                    <Form.Group>
+                        <Form.Label className='task-form-label'>Please provide additional delivery instructions</Form.Label>
+                        <Form.Control
+                            as='textarea'
+                            onChange={this.update('deliveryInstructions')}
+                            className='task-form-input-long'
+                        />
+                    </Form.Group>
 
-                    <label className='task-form-label'>Please provide additional delivery instructions</label>
-                    <textarea onChange={this.update('deliveryInstructions')}
-                        className='task-form-input'></textarea>
-
-                    <input className='task-form-submit' type="submit" value='Request Task!'/>
-                </form>
+                </Form>
+                <Button className='task-form-submit' onClick={this.handleSubmit}>Request Task!</Button>
             </div>
         )
     }

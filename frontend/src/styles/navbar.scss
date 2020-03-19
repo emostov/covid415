@@ -2,6 +2,8 @@
 
 .upcase {
   text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .white-txt {
@@ -21,6 +23,10 @@
   padding: 0;
   margin: 0;
   border-color: transparent;
+}
+
+.dropdown-item:active {
+  // background-color: white;
 }
 
 .nav-link:hover {
@@ -52,13 +58,18 @@
 }
 
 .request-help-button {
-  height: 24px;
+  height: 28px;
   color: $figma-grapefruit;
-  font-size: 17px;
+  font-size: 18px;
   letter-spacing: 0.5px;
+  font-weight: 500;
   border: none;
   background-color: rgba(255, 255, 255, 0);
   margin-right: 10px;
+}
+
+.request-help-button:hover {
+  color: white;
 }
 
 .request-help-button:focus {
