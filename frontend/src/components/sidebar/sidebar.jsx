@@ -15,16 +15,16 @@ export default class SideBar extends Component {
   }
 
   clickHandler(field) {
-    const { receieveDisplayAssignedTasks } = this.props
+    const { receiveDisplayAssignedTasks } = this.props
     if (field === 'available' && this.state.available === true) {
       return null
     } else if (field === 'available') {
       this.setState({ available: true });
-      receieveDisplayAssignedTasks(true);
+      receiveDisplayAssignedTasks(true);
     }
     if (field === 'active' && this.state.available === true) {
       this.setState({ available: false });
-      receieveDisplayAssignedTasks(false);
+      receiveDisplayAssignedTasks(false);
     } else {
       return null
     }

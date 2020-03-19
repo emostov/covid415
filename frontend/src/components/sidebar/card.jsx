@@ -99,12 +99,6 @@ class Card extends React.Component {
                     <div className="instructions-body">
                       {this.props.task.details}
                     </div>
-                    <div className="card-box-type-of-prop">
-                        Delivery instructions:
-                    </div>
-                    <div className="instructions-body">
-                      {this.props.task.deliveryInstructions}
-                    </div>
                 </div>
                 <div className="card-box-bottom-container">
                   <div className="accept-button-container">
