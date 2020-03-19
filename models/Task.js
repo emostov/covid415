@@ -23,6 +23,10 @@ const TaskSchema = new Schema({
     type: String,
     required: true,
   },
+  deliveryNeighborhood: {
+    type: String,
+    required: true,
+  },
   requester: {
     type: Schema.Types.Mixed,
     ref: 'users',
