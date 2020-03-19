@@ -69,7 +69,7 @@ class Card extends React.Component {
     if (this.props.task.deliveryLatLong === undefined) {
       return null
     }
-    console.log(this.props)
+    // console.log(this.props)
     const { task, currentPosition } = this.props
     let from = turf.point([currentPosition[1], currentPosition[0]])
     let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
@@ -82,7 +82,7 @@ class Card extends React.Component {
 
   render() {
     const { openModal, closeModal } = this.props;
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div onMouseEnter={this.handleCardHover}
         onMouseLeave={this.handleCardMouseLeave}
