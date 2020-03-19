@@ -70,14 +70,17 @@ class Card extends React.Component {
                   0.1 Miles Away
                 </div>
                 <div className="card-box-top-container">
-                  <div className="card-box-type-of-prop">Get Directions:
+                  <div className="card-box-type-of-prop">Get driving drections:
                     </div>
                     <div className="instructions-body">
                     <a className="card-address-link"
                       target="_blank"
-                      href={`https://www.google.com/maps/dir/?api=1&destination=${this.props.task.deliveryAddress}`}>
-                        { this.props.task.deliveryAddress }</a>
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${this.props.task.deliveryAddress}`}
+                      onClick={this.handleDirectionsClick}
+                      >
+                        { this.props.task.deliveryAddress }
                         <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
+                    </a>
                     </div>
                     <div className="card-box-type-of-prop">
                         Type:
