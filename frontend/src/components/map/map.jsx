@@ -188,6 +188,7 @@ class Map extends React.Component {
   render() {
     this.updateMarkers();
     this.updatePopups();
+
     return (
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />

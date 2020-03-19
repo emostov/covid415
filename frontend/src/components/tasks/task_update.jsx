@@ -14,7 +14,6 @@ class TaskUpdate extends React.Component {
     }
 
     componentDidMount() {
-        // console.log(this.state);
     }
 
     handleClaim () {

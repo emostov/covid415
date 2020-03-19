@@ -8,6 +8,7 @@
 # testing
 /coverage
 /config/keys_geocode.js
+/config/keys_mapbox.js
 # production
 /build
 
@@ -23,3 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/config/keys_geocode.js
+/src/config/keys_mapbox.js
