@@ -81,7 +81,7 @@ class Card extends React.Component {
         return <img className='card-type-img' src={OtherRedCircle} alt="medicine-pic"/>;
       default:
         return null;
-  }
+  }}
       
   distanceFromCurrentToTask() {
     if (this.props.task.deliveryLatLong === undefined) {
