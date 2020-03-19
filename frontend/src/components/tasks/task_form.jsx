@@ -21,9 +21,9 @@ class TaskForm extends React.Component {
 
     renderErrors() {
         return (
-            <ul>
+            <ul className='errors-list'>
                 {Object.values(this.props.errors).map((error, i) => (
-                    <li className='list-item'>
+                    <li>
                         <Alert key={`error=${i}`} variant='warning'>
                             {error}
                         </Alert>
