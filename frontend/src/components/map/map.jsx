@@ -22,13 +22,12 @@ class Map extends React.Component {
 
 
     mapboxgl.accessToken = mapboxkeys.public_key;
-
-    var bounds = [
+    // Set the map's max bounds
+    const bounds = [
       [-122.54, 37.6], // [west, south]
       [-122.34, 37.9]  // [east, north]
     ];
-    // Set the map's max bounds
-
+    
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/dark-v10',
@@ -37,7 +36,6 @@ class Map extends React.Component {
     });
 
     map.addControl(new mapboxgl.NavigationControl());
-
     map.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -46,27 +44,28 @@ class Map extends React.Component {
         trackUserLocation: true
       })
     );
-
     map.setMaxBounds(bounds);
-
     this.setState({ map });
+    this.callPlaceMarkers();
+  }
 
-    // display the markers after 2 seconds
-    setTimeout(() => {
-      if (this.state.map && this.props.tasks) {
-        this.placeMapMarkers()
-      }
-    }, 2 * 1000)
-
-
+  // Calls place markers once the task and map are loaded
+  // Recursively sets a timeout and calls itself if not loaded
+  callPlaceMarkers() {
+    if (this.state.map && this.props.tasks) {
+      this.placeMapMarkers()
+    } else {
+      setTimeout(() => {
+        this.callPlaceMarkers()
+      }, 1 * 100)
+    }
   }
 
 
   placeMapMarkers() {
     const { map } = this.state
     const allMarkers = [];
-  
-    let geojson = {
+    const geojson = {
       type: 'FeatureCollection',
       features:
         this.props.tasks.map(task => ({
@@ -84,7 +83,6 @@ class Map extends React.Component {
           }
         }))
     };
-
     // add markers to map
     geojson.features.forEach((marker) => {
       // create a HTML element for each feature
@@ -109,14 +107,14 @@ class Map extends React.Component {
           '<h3>' + marker.properties.title + '</h3>'
           + '<p>' + 'Volunteer Needed' + '</p>'
         )
-
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(popup)
         .addTo(this.state.map);
-
+      // Add mapBox marker and associated id to array
       allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
+
       const markerEl = mapBoxMarker.getElement();
       markerEl.addEventListener('mouseenter', () => {
         // Add popup to map 
@@ -136,17 +134,14 @@ class Map extends React.Component {
     const { activeTask } = this.props;
     allMarkers.length && allMarkers.forEach((markerObj) => {
       const { mBMarker, id } = markerObj;
-
       if (
         activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
       ) {
         mBMarker.getPopup().addTo(map)
       } else if (mBMarker.getPopup().isOpen()) {
-        console.log('removing popup')
         mBMarker.getPopup().remove();
       }
     })
-
   }
 
   render() {
@@ -157,8 +152,6 @@ class Map extends React.Component {
       </div >
     )
   }
-
-
 }
 
 
