@@ -25,14 +25,12 @@ class Map extends React.Component {
       [-122.54, 37.6], // [west, south]
       [-122.34, 37.9]  // [east, north]
     ];
-
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/dark-v10',
       center: [this.state.lng, this.state.lat],
       zoom: this.state.zoom
     });
-
     map.addControl(new mapboxgl.NavigationControl());
     map.addControl(
       new mapboxgl.GeolocateControl({
@@ -43,15 +41,12 @@ class Map extends React.Component {
       })
     );
     map.setMaxBounds(bounds);
-
     this.setState({
       map,
       dispalyNotAssignedTasks: this.props.dispalyNotAssignedTasks
     });
-
     this.callPlaceMarkers();
   }
-
   // Recursively sets a timeout and calls itself if not loaded
   // Essentially a recursive while loop
   callPlaceMarkers() {
@@ -65,7 +60,7 @@ class Map extends React.Component {
       }, 1 * 100)
     }
   }
-  
+
   placeMapMarkers(tasks) {
     if (!tasks) return;
     const { map } = this.state
@@ -116,9 +111,6 @@ class Map extends React.Component {
       const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(popup)
-
-      // .addTo(this.state.map);
-
       // Add mapBox marker and associated id to array
       allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
 
@@ -146,7 +138,6 @@ class Map extends React.Component {
 
   addMarkers(markers) {
     if (!markers) return;
-    console.log(markers)
     markers.forEach((marker) => {
       marker.mBMarker.addTo(this.state.map);
     })
@@ -162,12 +153,14 @@ class Map extends React.Component {
       this.clearMarkers(helpNeededMarkers);
       this.addMarkers(userMarkers);
     }
-
   }
 
   updatePopups() {
-    const { allMarkers, map } = this.state;
+    const { userMarkers, helpNeededMarkers, map } = this.state;
     const { activeTask } = this.props;
+    if (!(userMarkers && helpNeededMarkers)) return;
+
+    const allMarkers = userMarkers.concat(helpNeededMarkers);
     allMarkers.length && allMarkers.forEach((markerObj) => {
       const { mBMarker, id } = markerObj;
       if (
@@ -181,7 +174,6 @@ class Map extends React.Component {
   }
 
   render() {
-    console.log(this.props.currentUserTasks, this.props.helpNeededTasks)
     this.updateMarkers();
     this.updatePopups();
     return (
