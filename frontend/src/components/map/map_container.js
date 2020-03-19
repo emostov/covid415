@@ -3,15 +3,12 @@ import { connect } from 'react-redux';
 import Map from './map';
 import { fetchTasks } from '../../actions/task_actions';
 import { receiveActiveTaskId } from '../../actions/active_task_actions';
-
-const selectCurrentUserTask = (state) => {
-  const { id } = state.session.user;
-  const { tasks } = state;
-  return Object.values(tasks).filter((task) => task.volunteer === id)
-};
+import {
+  selectHelpNeededTasks, selectCurrentUserTask
+} from '../../reducers/selectors';
 
 const mSTP = (state) => {
-  let currentUserId, currentUserTasks;
+  let currentUserId, currentUserTasks, helpNeededTasks;
   if (state.session.user) {
     currentUserId = state.session.user.id;
     currentUserTasks = selectCurrentUserTask(state);
@@ -25,6 +22,7 @@ const mSTP = (state) => {
     activeTask: state.ui.activeTask,
     currentUserId,
     currentUserTasks,
+    helpNeededTasks: selectHelpNeededTasks(state),
 
   })
 };

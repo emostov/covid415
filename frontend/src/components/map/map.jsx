@@ -51,10 +51,12 @@ class Map extends React.Component {
   // Calls place markers once the task and map are loaded
   // Recursively sets a timeout and calls itself if not loaded
   callPlaceMarkers() {
-    if (this.state.map && this.props.tasks) {
-
+    if (this.state.map && this.props.tasks.length) {
+      // console.log(this.props.tasks)
       this.placeMapMarkers(this.props.tasks);
-      console.log(this.props.currentUserTasks);
+      // console.log(this.props.tasks)
+      // console.log(this.props.currentUserTasks);
+      console.log(this.props.helpNeededTasks);
 
     } else {
       setTimeout(() => {
