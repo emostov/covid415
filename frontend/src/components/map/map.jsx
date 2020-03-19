@@ -61,6 +61,18 @@ class Map extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.tasks !== prevProps.tasks) {
+      this.clearMarkers(this.state.userMarkers);
+      this.clearMarkers(this.state.helpNeededMarkers);
+
+      const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
+      const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
+      this.setState({ userMarkers, helpNeededMarkers })
+    }
+  }
+
   placeMapMarkers(tasks) {
     if (!tasks) return;
     const { map } = this.state
