@@ -62,8 +62,9 @@ class Map extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
+    // Make sure to compare props to prevent infinit loop
     if (this.props.tasks !== prevProps.tasks) {
+      // this.clearMarkers(this.state.helpNeededMarkers);
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
@@ -102,7 +103,7 @@ class Map extends React.Component {
       const { status, volunteerId } = marker.properties
       const { currentUserId } = this.props
       if (status === 0) {
-        el.className = 'marker inActive'
+        el.className = 'marker notActive'
       } else if (status === 1) {
         el.className = 'marker active'
       } else if (status === 2) {
@@ -159,6 +160,9 @@ class Map extends React.Component {
       this.clearMarkers(userMarkers);
       this.addMarkers(helpNeededMarkers);
     } else {
+      // console.log('updating to show user markers')
+      // console.log('userMarkers length', userMarkers.length)
+      // console.log('helpNeededMarkers length', helpNeededMarkers.length)
       this.clearMarkers(helpNeededMarkers);
       this.addMarkers(userMarkers);
     }
@@ -185,6 +189,7 @@ class Map extends React.Component {
   render() {
     this.updateMarkers();
     this.updatePopups();
+
     return (
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />

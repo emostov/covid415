@@ -23,7 +23,8 @@ class AvailableSidebar extends React.Component {
                                     currentUserId={currentUserId}
                                     history={history}
                                     activeTask={this.props.activeTask}
-                                    receiveActiveTaskId={this.props.receiveActiveTaskId} />
+                                    receiveActiveTaskId={this.props.receiveActiveTaskId}
+                                    currentPosition={this.props.currentPosition}/>
                     })
                 }
             </div>
