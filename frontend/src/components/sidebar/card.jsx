@@ -64,9 +64,12 @@ class Card extends React.Component {
                     <div className="instructions-body">
                     <a className="card-address-link"
                       target="_blank"
-                      href={`https://www.google.com/maps/dir/?api=1&destination=${this.props.task.deliveryAddress}`}>
-                        { this.props.task.deliveryAddress }</a>
-                        <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${this.props.task.deliveryAddress}`}
+                      onClick={this.handleDirectionsClick}
+                      >
+                        { this.props.task.deliveryAddress }
+                    </a>
+                      <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
                     </div>
                     <div className="card-box-type-of-prop">
                         Type:
