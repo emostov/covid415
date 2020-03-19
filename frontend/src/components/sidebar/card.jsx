@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import FoodRedCircle from '../../public/groceries_red_circle.png';
+import MedicineRedCircle from '../../public/medicine_red_circle.png';
+import OtherRedCircle from '../../public/other_red_circle.png';
 
 import '../../styles/card.scss'
 
@@ -19,6 +22,7 @@ class Card extends React.Component {
     this.handleModal = this.handleModal.bind(this);
     this.handleCardHover = this.handleCardHover.bind(this);
     this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
+    this.cardTypeIcon = this.cardTypeIcon.bind(this);
   }
 
   clickHandler(e) {
@@ -54,6 +58,19 @@ class Card extends React.Component {
     const { activeTask, task } = this.props;
     if (activeTask && activeTask.taskId === task._id) {
       this.props.receiveActiveTaskId(null);
+    }
+  }
+
+  cardTypeIcon() {
+    switch (this.props.task.type.toLowerCase()) {
+      case 'medicine':
+        return <img className='card-type-img' src={MedicineRedCircle} alt="medicine-pic"/>;
+      case 'food':
+        return <img className='card-type-img' src={FoodRedCircle} alt="medicine-pic"/>;
+      case 'other':
+        return <img className='card-type-img' src={OtherRedCircle} alt="medicine-pic"/>;
+      default:
+        return null;
     }
   }
 
@@ -112,13 +129,14 @@ class Card extends React.Component {
               <div className="card-box" onClick={this.clickHandler}>
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-plus" icon={faPlus} />
-                <div className={"card-head"}>
-                { this.props.task.deliveryNeighborhood } - 0.1 Miles Away
+                  <div className={"card-head"}>
+                  { this.props.task.deliveryNeighborhood } - 0.1 Miles Away
+                  </div>
                 </div>
+                <div className="card-footer-container">
+                  <div className="card-task-type-text">{ this.props.task.type }</div>
+                  <div>{ this.cardTypeIcon() }</div>
                 </div>
-                {/* <div className={"card-body"}>
-                  {this.props.task.type}
-                </div> */}
               </div>
             )
         }

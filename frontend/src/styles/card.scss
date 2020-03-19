@@ -19,13 +19,22 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-weight: 300;
  }
+
+ .card-footer-container {
+   margin-top: 8px;
+   margin-left: 50px;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+   align-items: center;
+   text-transform: capitalize;
+}
  
  .card-head {
     font-size: 22px;
-    color: #2A363A;
-    // color: white;
-    cursor: pointer;
+    color: white;
  }
 
  .fa-plus {
@@ -50,6 +59,14 @@
     width: 455px;
     transition: height .3s ease;
     cursor: pointer;
+ }
+
+ .card-task-type-text {
+   font-size: 18px;
+   font-weight: 200;
+   color: white;
+   padding-left: 10px;
+   text-transform: uppercase;
  }
  
  .card-box:hover {
@@ -88,10 +105,6 @@
 
  .card-body-active {
     color: #2A363A;
- }
- 
- .card-head {
-    color: white;
  }
  
  .card-head-active {
@@ -222,4 +235,9 @@
 
 .complete-button:focus {
     outline: none;
+}
+
+.card-type-img {
+   width: 50px;
+   margin-left: 10px;
 }
