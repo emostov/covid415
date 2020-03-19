@@ -35,3 +35,62 @@
   border-radius: 4px;
   padding: 20px;
 }
+
+.modal-child-confirm-delivery {
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: auto; 
+  background-color: $light-gray-bg;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.delivery-header {
+  color: $figma-red; 
+}
+
+.modal-child-confirm-delivery > button {
+  background-image: linear-gradient(to right, $figma-grapefruit, $figma-green);
+  filter: brightness(90%);
+  width: 100%;
+  height: 50px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.modal-child-confirm-delivery > button:hover {
+  filter: brightness(110%);
+}
+
+.delivery-header {
+  color: $figma-red;
+  font-size: 26px;
+}
+
+.delivery-details-container {
+  padding: 10px 0px 40px 0px
+}
+
+.delivery-details-type{
+  color: $figma-red;
+  font-size: 19px;
+  padding-top: 15px;
+  text-transform: uppercase;
+}
+
+.delivery-details-text{
+  color: black;
+  font-size: 16px;
+}
+
+.delivery-details-confirmation {
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+  padding-bottom: 15px;
+}

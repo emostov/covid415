@@ -40,15 +40,23 @@ class TaskUpdate extends React.Component {
                     this.state.status === 0
                     ? 
                     (
-                        <div>
-                            <h4>Delivery for {task.requester.firstName}</h4>
-                            <p>Deliver to: {task.deliveryAddress}</p>
-                            <p>Contact: {task.requester.email}</p>
-                            <p>Can you bring {task.requester.firstName} their goods?</p>
-                            <button className='claim-button' onClick={() => this.handleClaim()}>Confirm</button>
+                        <div className="modal-child-confirm-delivery">
+                            <div className="delivery-header">Hey neighbor! Thanks for helping out.</div>
+                            <div className="delivery-details-container">
+                                <div className="delivery-details-type">Delivery details:</div>
+                                <span className="delivery-details-text">{task.details}</span>
+                                <div className="delivery-details-type">Recipient name:</div>
+                                <span className="delivery-details-text">{task.requester.firstName}</span>
+                                <div className="delivery-details-type">Deliver to:</div>
+                                <span className="delivery-details-text">{task.deliveryAddress}</span>
+                                <div className="delivery-details-type">Contact:</div>
+                                <span className="delivery-details-text">{task.requester.email}</span>
+                            </div>
+                                {/* <div className="delivery-details-confirmation">Confirm below to let <span className="recipientName"> {task.requester.firstName} know you're on it!</span></div> */}
+                                <button className='claim-button' onClick={() => this.handleClaim()}>I'm on it!</button>
                         </div>
                     ) : (
-                        <div>
+                        <div className="modal-confirm-delivery">
                             <h4>You have accepted a delivery for {task.requester.firstName}</h4>
                             <p>Deliver to: {task.deliveryAddress}</p>
                             <p>Contact: {task.requester.email}</p>
