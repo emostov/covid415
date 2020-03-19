@@ -9,12 +9,23 @@
 }
 
 .marker {
-    background-image: url('../public/map_marker_red.png');
     background-size: cover;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 35px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.active {
+    background-image: url('../public/figma-peach35-marker.png');
+}
+
+.inActive {
+    background-image: url('../public/figma-red35-marker.png')
+}
+
+.completed {
+    background-image: url('../public/figma-green35-marker.png')
 }
 
 .mapboxgl-popup {

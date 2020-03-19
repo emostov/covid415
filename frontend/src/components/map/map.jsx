@@ -77,7 +77,9 @@ class Map extends React.Component {
           properties: {
             title: `${task.type}`,
             deliveryAddress: task.deliveryAddress,
-            taskId: task._id
+            taskId: task._id,
+            volunteerId: task.volunteer,
+            status: task.status
           }
         }))
     };
@@ -85,8 +87,17 @@ class Map extends React.Component {
     geojson.features.forEach((marker) => {
       // create a HTML element for each feature
       const el = document.createElement('div');
-
-      el.className = 'marker';
+      const volunteerId = marker.properties.volunteerId
+      const status = marker.properties.status
+      const { currentUserId } = this.props
+  
+      if(volunteerId !== null && volunteerId === currentUserId && status === 1) {
+        el.className = 'marker active'
+      } else if (volunteerId === currentUserId && status === 2) {
+        el.className = 'marker inActive'
+      } else {
+        el.className = 'marker completed'
+      }
       const popup = new mapboxgl.Popup({
         offset: 25,
         closeButton: false,

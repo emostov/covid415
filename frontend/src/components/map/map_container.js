@@ -7,7 +7,8 @@ import { receiveActiveTaskId } from '../../actions/active_task_actions';
 const mSTP = state => {
   return ({
     tasks: Object.values(state.tasks),
-    activeTask: state.ui.activeTask
+    activeTask: state.ui.activeTask,
+    currentUserId: state.session.user.id
   })
 };
 
