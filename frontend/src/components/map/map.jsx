@@ -13,6 +13,7 @@ class Map extends React.Component {
       lat: 37.76,
       zoom: 11,
       map: '',
+      allMarkers: [],
     }
   }
 
@@ -21,13 +22,12 @@ class Map extends React.Component {
 
 
     mapboxgl.accessToken = mapboxkeys.public_key;
-
-    var bounds = [
+    // Set the map's max bounds
+    const bounds = [
       [-122.54, 37.6], // [west, south]
       [-122.34, 37.9]  // [east, north]
     ];
-    // Set the map's max bounds
-
+    
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/dark-v10',
@@ -36,7 +36,6 @@ class Map extends React.Component {
     });
 
     map.addControl(new mapboxgl.NavigationControl());
-
     map.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -45,16 +44,28 @@ class Map extends React.Component {
         trackUserLocation: true
       })
     );
-
     map.setMaxBounds(bounds);
-
     this.setState({ map });
+    this.callPlaceMarkers();
+  }
 
+  // Calls place markers once the task and map are loaded
+  // Recursively sets a timeout and calls itself if not loaded
+  callPlaceMarkers() {
+    if (this.state.map && this.props.tasks) {
+      this.placeMapMarkers()
+    } else {
+      setTimeout(() => {
+        this.callPlaceMarkers()
+      }, 1 * 100)
+    }
   }
 
 
   placeMapMarkers() {
-    let geojson = {
+    const { map } = this.state
+    const allMarkers = [];
+    const geojson = {
       type: 'FeatureCollection',
       features:
         this.props.tasks.map(task => ({
@@ -66,18 +77,27 @@ class Map extends React.Component {
           properties: {
             title: `${task.type}`,
             deliveryAddress: task.deliveryAddress,
-            taskId: task._id
+            taskId: task._id,
+            volunteerId: task.volunteer,
+            status: task.status
           }
         }))
     };
-
     // add markers to map
     geojson.features.forEach((marker) => {
-
       // create a HTML element for each feature
       const el = document.createElement('div');
-
-      el.className = 'marker';
+      const volunteerId = marker.properties.volunteerId
+      const status = marker.properties.status
+      const { currentUserId } = this.props
+  
+      if(volunteerId !== null && volunteerId === currentUserId && status === 1) {
+        el.className = 'marker active'
+      } else if (volunteerId === currentUserId && status === 2) {
+        el.className = 'marker inActive'
+      } else {
+        el.className = 'marker completed'
+      }
       const popup = new mapboxgl.Popup({
         offset: 25,
         closeButton: false,
@@ -87,48 +107,51 @@ class Map extends React.Component {
           '<h3>' + marker.properties.title + '</h3>'
           + '<p>' + 'Volunteer Needed' + '</p>'
         )
-
-      // popup.addClassName('completed')
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(popup)
         .addTo(this.state.map);
+      // Add mapBox marker and associated id to array
+      allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
 
       const markerEl = mapBoxMarker.getElement();
-
       markerEl.addEventListener('mouseenter', () => {
-        // dispatch state indicating that this marker is being shown
-        const { activeTask } = this.props;
-        // if (!activeTask || activeTask.taskId !== marker.properties.taskId) {
-        //   this.props.receiveActiveTaskId(marker.properties.taskId)
-        // }
-
-        mapBoxMarker.togglePopup()
+        // Add popup to map 
+        popup.addTo(map);
       });
-
       markerEl.addEventListener('mouseleave', () => {
-        // dispatch state indicating this marker is no longer being show
-        mapBoxMarker.togglePopup()
+        // Remove popup from map
+        popup.remove();
       });
     });
+
+    this.setState({ allMarkers });
+  }
+
+  updatePopups() {
+    const { allMarkers, map } = this.state;
+    const { activeTask } = this.props;
+    allMarkers.length && allMarkers.forEach((markerObj) => {
+      const { mBMarker, id } = markerObj;
+      if (
+        activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
+      ) {
+        mBMarker.getPopup().addTo(map)
+      } else if (mBMarker.getPopup().isOpen()) {
+        mBMarker.getPopup().remove();
+      }
+    })
   }
 
   render() {
-
-    if (this.state.map && this.props.tasks) {
-      this.placeMapMarkers()
-    }
-
+    { this.updatePopups() }
     return (
-
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />
       </div >
     )
   }
-
-
 }
 
 

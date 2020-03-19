@@ -16,6 +16,7 @@ class Card extends React.Component {
     this.clickHandler = this.clickHandler.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.handleCardHover = this.handleCardHover.bind(this);
+    this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
   }
 
   clickHandler(e) {
@@ -45,11 +46,21 @@ class Card extends React.Component {
     }
   }
 
+  // On mouse leave set activeTask to null
+  handleCardMouseLeave(e) {
+    e.stopPropagation();
+    const { activeTask, task } = this.props;
+    if (activeTask && activeTask.taskId === task._id) {
+      this.props.receiveActiveTaskId(null);
+    }
+  }
+
   render() {
     const { openModal, closeModal } = this.props;
-
     return (
-      <div onMouseEnter={this.handleCardHover}>
+      <div onMouseEnter={this.handleCardHover}
+        onMouseLeave={this.handleCardMouseLeave}
+      >
         {
           this.state.active
             ?

@@ -2,6 +2,8 @@
 
 .upcase {
   text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .white-txt {
@@ -21,6 +23,10 @@
   padding: 0;
   margin: 0;
   border-color: transparent;
+}
+
+.dropdown-item:active {
+  // background-color: white;
 }
 
 .nav-link:hover {
@@ -68,6 +74,7 @@
 
 .request-help-button:focus {
   outline: none;
+
 }
 
 .dropdown-menu {
@@ -92,3 +99,4 @@
   color: $figma-red;
   border-top: 1px solid $second-gray-bg
 }
+

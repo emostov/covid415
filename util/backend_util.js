@@ -1,13 +1,31 @@
-const userObjectParser = (userObject) => {
-    let user = {}
-
-    const keys = Object.keys(userObject)
-
-    for(let i = 0; i < keys.length; i++) {
-        if (keys[i] !== 'password') {
-            user[keys[i]] = userObject[keys[i]]
-        }
+module.exports = {
+  userObjectParser: (userObject, key) => {
+    const user = {};
+    
+    for(let i in userObject) {
+      if(userObject[i] !== key) {
+        user[i] = userObject[i]
+      }
     }
 
-    return user
+    return user;
+  },
+  defreezeObject: (obj) => {
+    let tempObj = {}
+
+    for(let i in obj) {
+      tempObj[i] = obj[i]
+    }
+
+    return obj
+  },
+  pullKeys: (obj) => {
+    return  {
+      "_id": obj.id,
+      "firstName": obj.firstName,
+      "lastName": obj.lastName,
+      "email": obj.email,
+      "date": obj.date
+    }
+  }
 }
