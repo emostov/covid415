@@ -62,8 +62,9 @@ class Map extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
+    // Make sure to compare props to prevent infinit loop
     if (this.props.tasks !== prevProps.tasks) {
+      // this.clearMarkers(this.state.helpNeededMarkers);
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
@@ -159,9 +160,9 @@ class Map extends React.Component {
       this.clearMarkers(userMarkers);
       this.addMarkers(helpNeededMarkers);
     } else {
-      console.log('updating to show user markers')
-      console.log('userMarkers length', userMarkers.length)
-      console.log('helpNeededMarkers length', helpNeededMarkers.length)
+      // console.log('updating to show user markers')
+      // console.log('userMarkers length', userMarkers.length)
+      // console.log('helpNeededMarkers length', helpNeededMarkers.length)
       this.clearMarkers(helpNeededMarkers);
       this.addMarkers(userMarkers);
     }

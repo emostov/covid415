@@ -130,7 +130,7 @@ class SignupForm extends React.Component {
                       </Col>
                       <Col>
                         <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control type="password"
+                        <Form.Control type="password2"
                           placeholder="Confirm Password"
                           onChange={this.update('password2')}
                         />
