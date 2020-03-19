@@ -56,7 +56,7 @@ class TaskUpdate extends React.Component {
                             </div>
                             <div className="button-container">
                                 <button className='claim-button' onClick={() => this.handleClaim()}>Confirm</button>
-                                <button className='cancel-button' onClick={() => this.handleClaim()}>Cancel</button>
+                                <button className='cancel-button' onClick={() => this.props.closeModal()}>Cancel</button>
                             </div>
                         </div>
                     ) : (
