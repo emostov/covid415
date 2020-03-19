@@ -39,9 +39,8 @@ class TaskForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        debugger;
-        // this.props.createNewTask(this.state)
-        //     .then(() => this.props.fetchTasks())
+        this.props.createNewTask(this.state)
+            .then(() => this.props.fetchTasks())
 
         // if (Object.values(this.state.errors).length !== 0) {
         //     setTimeout(() => this.props.closeModal(), 1000);
@@ -58,17 +57,17 @@ class TaskForm extends React.Component {
                         <Form.Label className='task-form-label'>What are you requesting?</Form.Label>
                         <div className='task-type-group'>
                             <Form.Group className='task-form-type'>
-                                <label className='task-type-select'>
+                                <label>
                                     <input type="radio" name='task-type' onChange={this.update('type')} value='Food'/>
                                     <img className='radio-img' src={Food} alt="grocery-pic"/>
                                     <div className='task-type-label'>Food</div>
                                 </label>
-                                <label className='task-type-select'>
+                                <label>
                                     <input type="radio" name='task-type' onChange={this.update('type')} value='Medicine'/>
                                     <img className='radio-img' src={Medicine} alt="medicine-pic"/>
                                     <div className='task-type-label'>Medicine</div>
                                 </label>
-                                <label className='task-type-select'>
+                                <label>
                                     <input type="radio" name='task-type' onChange={this.update('type')} value='Other'/>
                                     <img className='radio-img' src={Other} alt="other-pic"/>
                                     <div className='task-type-label'>Other</div>
@@ -100,7 +99,7 @@ class TaskForm extends React.Component {
                     <Form.Group>
                         <Form.Label className='task-form-label'>Please provide additional delivery instructions</Form.Label>
                         <Form.Control
-                            // as='textarea'
+                            placeholder='Leave it on the front porch'
                             onChange={this.update('deliveryInstructions')}
                             className='task-form-input-short'
                         />

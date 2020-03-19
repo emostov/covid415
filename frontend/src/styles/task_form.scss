@@ -38,6 +38,10 @@
     margin-bottom: -10px;
 }
 
+.radio-img {
+    border-radius: 4px;
+}
+
 .task-type-label {
     display: flex;
     flex-direction: column;
@@ -47,7 +51,7 @@
     margin-top: 5px;
     text-align: center;
     font-weight: 500;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
 }
 
 [type=radio] { 
@@ -61,8 +65,12 @@
   cursor: pointer;
 }
 
+[type=radio] + img:hover {
+    box-shadow: 0 0 0 2px rgba(223, 223, 223, 0.973);
+}
+
 [type=radio]:checked + img {
-  outline: 2px solid #f00;
+    box-shadow: 0 0 0 2px $figma-red;
 }
 
 .radio-img {
