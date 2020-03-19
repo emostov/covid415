@@ -25,13 +25,15 @@
 
 .modal-child-taskform {
   position: absolute;
+  display: flex;
+  align-items: space-around;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 650px;
-  height: 550px; 
+  height: 600px; 
   background-image: linear-gradient(to bottom left, #343A40, $figma-grapefruit );
   color: black;
   border-radius: 4px;
-  padding: 20px;
+  padding: 30px 20px;
 }
