@@ -59,7 +59,7 @@ class Card extends React.Component {
                   0.1 Miles Away
                 </div>
                 <div className="card-box-top-container">
-                  <div className="card-box-type-of-prop">Get Directions:
+                  <div className="card-box-type-of-prop">Get driving drections:
                     </div>
                     <div className="instructions-body">
                     <a className="card-address-link"
@@ -68,8 +68,8 @@ class Card extends React.Component {
                       onClick={this.handleDirectionsClick}
                       >
                         { this.props.task.deliveryAddress }
+                        <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
                     </a>
-                      <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
                     </div>
                     <div className="card-box-type-of-prop">
                         Type:
