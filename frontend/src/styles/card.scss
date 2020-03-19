@@ -3,14 +3,14 @@
 .card-container-available {
     padding: 20px;
     height: calc(100vh - 132px);
-    overflow: auto;
+    overflow-y: auto;
     background: linear-gradient(#DA5663 15%, #FECEA8 );
  }
  
  .card-container-2 {
     padding: 20px;
     height: calc(100vh - 132px);
-    overflow: auto;
+    overflow-y: auto;
     background: linear-gradient(#FECEA8 15%, #9FB89B );
  }
  
@@ -31,8 +31,8 @@
     margin-bottom: 10px;
     border-radius: 3px;
     height: 150px;
+    width: 455px;
     transition: height .3s ease-out;
-    overflow: hidden;
     cursor: pointer;
  }
  
