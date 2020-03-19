@@ -8,7 +8,7 @@ export default class SideBar extends Component {
     super(props)
 
     this.state = {
-      available: true
+      available: true,
     }
 
     this.clickHandler = this.clickHandler.bind(this)
@@ -30,14 +30,6 @@ export default class SideBar extends Component {
     }
   }
 
-  getCurrentPosition() {
-    console.log("outside of the render function")
-    navigator.geolocation.getCurrentPosition(position => {
-      userPos = [position.coords.longitude, position.coords.latitude]
-      console.log("this is the user position", userPos)
-      return userPos
-    })
-  }
 
   render() {
     const { currentUserId, history, updateTask, openModal, closeModal, session } = this.props
@@ -51,10 +43,9 @@ export default class SideBar extends Component {
         active.push(task)
       }
     })
-    this.getCurrentPosition();
 
     return (
-      <div className='sidebar-container' onClick={this.getCurrentPosition}>
+      <div className='sidebar-container'>
         <div className="sidebar-inner-container">
           <div className="sidebar-container-header">
             <div className="sidebar-container-inner-header">
@@ -85,7 +76,7 @@ export default class SideBar extends Component {
                     currentUserId={currentUserId}
                     history={history}
                     activeTask={this.props.activeTask}
-                    receiveActiveTaskId={this.props.receiveActiveTaskId} />
+                    receiveActiveTaskId={this.props.receiveActiveTaskId}/>
                 ) : (
                   <ActiveSidebar
                     session={session}
@@ -96,7 +87,7 @@ export default class SideBar extends Component {
                     currentUserId={currentUserId}
                     history={history}
                     activeTask={this.props.activeTask}
-                    receiveActiveTaskId={this.props.receiveActiveTaskId} />
+                    receiveActiveTaskId={this.props.receiveActiveTaskId}/>
                 )
             }
           </div>
