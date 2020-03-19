@@ -89,7 +89,7 @@ class Card extends React.Component {
                 </div>
                 <div className="card-box-bottom-container">
                   <div className="accept-button-container">
-                    <button onClick={this.handleModal} className="accept-button">Accept</button>
+                    <button onClick={this.handleModal} className="accept-button">I Can Help</button>
                   </div>
                 </div>
               </div>
