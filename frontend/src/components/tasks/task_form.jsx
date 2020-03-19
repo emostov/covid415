@@ -11,9 +11,9 @@ class TaskForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     if (nextProps)
-    // }
+    componentWillReceiveProps(nextProps) {
+        this.setState({ errors: nextProps.errors})
+    }
 
     update(field) {
         return e => this.setState({ [field]: e.currentTarget.value })
@@ -22,9 +22,9 @@ class TaskForm extends React.Component {
     renderErrors() {
         return (
             <ul className='errors-list'>
-                {Object.values(this.props.errors).map((error, i) => (
-                    <li>
-                        <Alert key={`error=${i}`} variant='warning'>
+                {Object.values(this.state.errors).map((error, i) => (
+                    <li key={`error=${i}`}>
+                        <Alert variant='warning'>
                             {error}
                         </Alert>
                     </li>
@@ -38,7 +38,10 @@ class TaskForm extends React.Component {
 
         this.props.createNewTask(this.state)
             .then(() => this.props.fetchTasks())
-        // setTimeout(() => this.props.closeModal(), 500);
+
+        // if (Object.values(this.state.errors).length !== 0) {
+        //     setTimeout(() => this.props.closeModal(), 1000);
+        // }
     }
 
     render() {

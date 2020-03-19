@@ -28,7 +28,7 @@ class TaskUpdate extends React.Component {
                 .then(() => this.props.fetchTasks()))
         }
 
-        setTimeout(() => this.props.closeModal(), 500);
+        setTimeout(() => this.props.closeModal(), 1000);
     }
 
     render() {
