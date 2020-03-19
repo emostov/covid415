@@ -17,6 +17,14 @@
     cursor: pointer;
 }
 
+.active {
+    background-color: blue;
+}
+
+.inActive {
+    background-color: green;
+}
+
 .mapboxgl-popup {
     min-width: 150px;
 }
