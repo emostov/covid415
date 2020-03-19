@@ -87,7 +87,7 @@ class NavBar extends React.Component {
             </Nav>
 
             {this.props.loggedIn ? (
-              <button className='request-help-button' onClick={() => this.props.openModal('taskform')}>I NEED HELP</button>
+              <button className='request-help-button' onClick={() => this.props.openModal('taskform')}>Request Help</button>
             ) : (
               <div></div>
             )
