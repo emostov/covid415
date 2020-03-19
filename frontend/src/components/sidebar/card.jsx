@@ -5,7 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
+
+import FoodRedCircle from '../../public/groceries_red_circle.png';
+import MedicineRedCircle from '../../public/medicine_red_circle.png';
+import OtherRedCircle from '../../public/other_red_circle.png';
 import frontendUtil from '../../util/frontend_util';
+
 
 import '../../styles/card.scss'
 
@@ -22,6 +27,7 @@ class Card extends React.Component {
     this.handleModal = this.handleModal.bind(this);
     this.handleCardHover = this.handleCardHover.bind(this);
     this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
+    this.cardTypeIcon = this.cardTypeIcon.bind(this);
     this.distanceFromCurrentToTask = this.distanceFromCurrentToTask.bind(this)
   }
 
@@ -65,6 +71,18 @@ class Card extends React.Component {
     }
   }
 
+  cardTypeIcon() {
+    switch (this.props.task.type.toLowerCase()) {
+      case 'medicine':
+        return <img className='card-type-img' src={MedicineRedCircle} alt="medicine-pic"/>;
+      case 'food':
+        return <img className='card-type-img' src={FoodRedCircle} alt="medicine-pic"/>;
+      case 'other':
+        return <img className='card-type-img' src={OtherRedCircle} alt="medicine-pic"/>;
+      default:
+        return null;
+  }
+      
   distanceFromCurrentToTask() {
     if (this.props.task.deliveryLatLong === undefined) {
       return null
@@ -100,6 +118,8 @@ class Card extends React.Component {
                 </div>
                 <div className="card-box-top-container">
                   <div className="card-box-type-of-prop">Deliver to:
+                  </div>
+                  <div className="card-box-type-of-prop">{ this.props.task.deliveryNeighborhood }
                     </div>
                     <div className="instructions-body">
                     <a className="card-address-link"
@@ -124,26 +144,23 @@ class Card extends React.Component {
                       {this.props.task.details}
                     </div>
                 </div>
-                <div className="card-box-bottom-container">
-                  <div className="accept-button-container">
-                    { this.props.cardType === 'available' ? 
-                      <button onClick={this.handleModal} className="accept-button">I Can Help</button>
-                      :
-                      <button onClick={this.handleModal} className="complete-button">Delivery Details</button>
-                    }
+                  { this.props.cardType === 'available' ? 
+                    <button onClick={this.handleModal} className="accept-button">I Can Help</button>
+                    :
+                    <button onClick={this.handleModal} className="complete-button">Delivery Details</button>
+                  }
                   </div>
-                </div>
-              </div>
             ) : (
               <div className="card-box" onClick={this.clickHandler}>
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-plus" icon={faPlus} />
-                <div className={"card-head"}>
-                    {`${this.state.distance} miles away`}
+                  <div className={"card-head"}>
+                  { this.props.task.deliveryNeighborhood } - {`${this.state.distance} miles away`}
+                  </div>
                 </div>
-                </div>
-                <div className={"card-body"}>
-                  {this.props.task.details}
+                <div className="card-footer-container">
+                  <div className="card-task-type-text">{ this.props.task.type }</div>
+                  <div>{ this.cardTypeIcon() }</div>
                 </div>
               </div>
             )
