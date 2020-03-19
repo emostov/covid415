@@ -87,7 +87,7 @@ class SignupForm extends React.Component {
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                       type="email"
-                      placeholder="Enter email"
+                      placeholder="Email"
                       value={this.state.email}
                       onChange={this.update('email')}
                     />
@@ -148,7 +148,7 @@ class SignupForm extends React.Component {
                   className='session-btn'
                   type="submit"
                   onClick={this.handleSubmit}>
-                  Create My Account
+                  Create account
                 </Button>
                 <Button
                   className='demo-btn'

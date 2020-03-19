@@ -53,6 +53,10 @@
   padding-bottom: 3px;
 }
 
+.dropdown-item:active {
+  background-color: whitesmoke!important;
+}
+
 .nav-link {
   color: $second-gray-txt!important;
 }
