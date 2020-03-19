@@ -10,7 +10,8 @@ const mSTP = (state, ownProps) => {
         details: '',
         requester: state.session.user.id,
         deliveryAddress: '',
-        deliveryInstructions: ''
+        deliveryInstructions: '',
+        errors: {}
     },
     history: ownProps.history,
     errors: state.errors.task

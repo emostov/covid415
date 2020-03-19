@@ -62,9 +62,9 @@ class LoginForm extends React.Component {
   // Render the session errors if there are any
   renderErrors() {
     return (
-      <ul>
+      <ul className='errors-list'>
         {Object.keys(this.state.errors).map((error, i) => (
-          <li className='list-item' key={`error-${i}`}>
+          <li key={`error-${i}`}>
             <Alert variant='warning'>
               {this.state.errors[error]}
             </Alert>
