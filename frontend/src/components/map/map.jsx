@@ -49,34 +49,23 @@ class Map extends React.Component {
       dispalyNotAssignedTasks: this.props.dispalyNotAssignedTasks
     });
 
-    const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
-    const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTask);
-
-    this.setState({ userMarkers, helpNeededMarkers })
+    this.callPlaceMarkers();
   }
 
-  // Calls place markers once the task and map are loaded
   // Recursively sets a timeout and calls itself if not loaded
   // Essentially a recursive while loop
-  callPlaceMarkers(tasks) {
-    if (this.state.map && tasks.length) {
-      this.placeMapMarkers(tasks);
+  callPlaceMarkers() {
+    if (this.state.map && this.props.tasks.length) {
+      const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
+      const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
+      this.setState({ userMarkers, helpNeededMarkers })
     } else {
       setTimeout(() => {
-        this.callPlaceMarkers(tasks)
+        this.callPlaceMarkers()
       }, 1 * 100)
     }
   }
-
-  replaceMarkers() {
-    const tasks = this.props.dispalyNotAssignedTasks
-      ? this.props.helpNeededTasks : this.props.currentUserTasks
-
-    this.clearMarkers()
-    this.placeMapMarkers(tasks);
-  }
-
-
+  
   placeMapMarkers(tasks) {
     if (!tasks) return;
     const { map } = this.state
@@ -149,12 +138,15 @@ class Map extends React.Component {
 
   // Removes all current markers from map
   clearMarkers(markers) {
+    if (!markers) return;
     markers.forEach((marker) => {
       marker.mBMarker.remove();
     })
   }
 
   addMarkers(markers) {
+    if (!markers) return;
+    console.log(markers)
     markers.forEach((marker) => {
       marker.mBMarker.addTo(this.state.map);
     })
@@ -189,12 +181,9 @@ class Map extends React.Component {
   }
 
   render() {
-    // if (
-    //   this.props.dispalyNotAssignedTasks !== this.state.dispalyNotAssignedTasks
-    // ) {
-    // this.replaceMarkers()
-    // }
-    this.updatePopups()
+    console.log(this.props.currentUserTasks, this.props.helpNeededTasks)
+    this.updateMarkers();
+    this.updatePopups();
     return (
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />
