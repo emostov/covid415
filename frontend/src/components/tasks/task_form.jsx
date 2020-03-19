@@ -34,7 +34,7 @@ class TaskForm extends React.Component {
     render() {
         return(
             <div className='task-form-container'>
-                <Card.Title className='task-form-title'><strong>Request a Delivery</strong></Card.Title>
+                <Card.Title className='task-form-title'><strong>Under quarantine? Request a Delivery.</strong></Card.Title>
                 <Form className='task-form'>
                     <Form.Group>
                         <Form.Label className='task-form-label'>What are you requesting?</Form.Label>
@@ -59,7 +59,7 @@ class TaskForm extends React.Component {
                         <Form.Label className='task-form-label'>Where is this being delivered to?</Form.Label>
                         <Form.Control
                             type='text'
-                            placeholder='123 Fake St, San Francisco, CA'
+                            placeholder='825 Battery Street, San Francisco, CA 94111'
                             onChange={this.update('deliveryAddress')}
                             className='task-form-input-short'
                         />
@@ -75,7 +75,7 @@ class TaskForm extends React.Component {
                     </Form.Group>
 
                 </Form>
-                <Button className='task-form-submit' onClick={this.handleSubmit}>Request Task!</Button>
+                <Button className='task-form-submit' onClick={this.handleSubmit}>Request Delivery</Button>
             </div>
         )
     }
