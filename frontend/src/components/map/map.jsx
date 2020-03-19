@@ -27,7 +27,7 @@ class Map extends React.Component {
       [-122.54, 37.6], // [west, south]
       [-122.34, 37.9]  // [east, north]
     ];
-    
+
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/dark-v10',
@@ -48,27 +48,32 @@ class Map extends React.Component {
     this.setState({ map });
     this.callPlaceMarkers();
   }
-
   // Calls place markers once the task and map are loaded
   // Recursively sets a timeout and calls itself if not loaded
   callPlaceMarkers() {
-    if (this.state.map && this.props.tasks) {
-      this.placeMapMarkers()
+    if (this.state.map && this.props.tasks.length) {
+      // console.log(this.props.tasks)
+      this.placeMapMarkers(this.props.tasks);
+      // console.log(this.props.tasks)
+      // console.log(this.props.currentUserTasks);
+      console.log(this.props.helpNeededTasks);
+
     } else {
       setTimeout(() => {
-        this.callPlaceMarkers()
+
+        this.callPlaceMarkers(this.props.tasks)
       }, 1 * 100)
     }
   }
 
 
-  placeMapMarkers() {
+  placeMapMarkers(tasks) {
     const { map } = this.state
     const allMarkers = [];
     const geojson = {
       type: 'FeatureCollection',
       features:
-        this.props.tasks.map(task => ({
+        tasks.map(task => ({
           type: 'Feature',
           geometry: {
             type: 'Point',
@@ -90,8 +95,8 @@ class Map extends React.Component {
       const volunteerId = marker.properties.volunteerId
       const status = marker.properties.status
       const { currentUserId } = this.props
-  
-      if(volunteerId !== null && volunteerId === currentUserId && status === 1) {
+
+      if (volunteerId !== null && volunteerId === currentUserId && status === 1) {
         el.className = 'marker active'
       } else if (volunteerId === currentUserId && status === 2) {
         el.className = 'marker inActive'
