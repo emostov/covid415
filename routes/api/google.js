@@ -18,3 +18,5 @@ router.post('/distancematrix',
       })
       .catch((err) => res.json(err));
   });
+
+module.exports = router;
