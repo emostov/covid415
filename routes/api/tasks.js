@@ -53,7 +53,7 @@ router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateTaskInput(req.body);
-
+  
     if (!isValid) {
       return res.status(400).json(errors);
     }
@@ -70,7 +70,7 @@ router.patch('/:id',
       // createdAt,
       // updatedAt,
     } = req.body;
-
+    
     Task.findById(req.params.id)
       .then((task) => {
         task.type = type;

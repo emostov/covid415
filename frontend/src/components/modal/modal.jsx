@@ -17,7 +17,7 @@ const Modal = ({modal, closeModal}) => {
         case 'status':
             component = <TaskUpdateContainer taskId={modal.taskId}/>;
             break;
-        case 'TaskTakeConfirmation':
+        case 'takeTaskConfirmed':
             component = <TaskTakeConfirmation />;
             break;
         case 'taskform':
@@ -26,7 +26,7 @@ const Modal = ({modal, closeModal}) => {
         default: 
             return null;
     }
-    debugger
+    
     return (
         <div className="modal-background" onClick={closeModal}>
             <div className={modal.modal ==='status' ? "modal-child-status" : 'modal-child-taskform' } onClick={e => e.stopPropagation()}>

@@ -7,20 +7,23 @@ import '../../styles/task_update.scss'
 class TaskUpdate extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.task;
+        this.state = this.props.task
         this.handleClaim = this.handleClaim.bind(this);
     }
 
     handleClaim () {
         this.setState(prevState => ({
-            status: prevState.status+1
+            status: prevState.status + 1,
+            volunteer: this.props.currentUserId
         }), () => this.props.updateTask(this.state)
-            .then(() => this.props.fetchTasks())
-            .then(() => this.props.closeModal()))
+                .then(()=>this.setState({ taken: true}))
+                .then(()=>this.props.fetchTasks())
+                .then(()=>this.props.openModal('takeTaskConfirmed'))
+        )
     }
 
     render() {
-        const { task } = this.props
+        const { task, closeModal } = this.props
 
         return (
             <div className="modal-child-confirm-delivery">
@@ -48,7 +51,7 @@ class TaskUpdate extends React.Component {
                 </div>
                 <div className="button-container">
                     <button className='claim-button' onClick={() => this.handleClaim()}>Confirm</button>
-                    <button className='cancel-button' onClick={() => this.props.closeModal()}>Cancel</button>
+                    <button className='cancel-button' onClick={() => closeModal()}>Cancel</button>
                 </div>
             </div>
         )

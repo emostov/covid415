@@ -14,7 +14,7 @@ const mSTP = state => {
 const mDTP = dispatch => ({
     fetchTasks: () => dispatch(fetchTasks()),
     updateTask: task => dispatch(updateTask(task)),
-    openModal: () => dispatch(openModal()),
+    openModal: modal => dispatch(openModal(modal)),
     closeModal: () => dispatch(closeModal())
 });
 
