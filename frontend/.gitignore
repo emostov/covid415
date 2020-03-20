@@ -23,5 +23,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/src/config/keys_geocode.js
-/src/config/keys_mapbox.js
+# historical keys
+/src/config/keys_geocode
+/src/config/keys_mapbox
+
+# current keys
+/src/config/keys_dev_front.js
+/src/config/keys_dev_front

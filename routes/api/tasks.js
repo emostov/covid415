@@ -27,8 +27,8 @@ router.post('/',
       return res.status(400).json(errors);
     }
 
-    const unFrozenParser = backendUtil.pullKeys(req.user)
-    
+    const unFrozenParser = backendUtil.pullKeys(req.user);
+
     geocodeUtil.parseAddress(req.body.deliveryAddress).then(
       (gMapsResponse) => {
         const newTask = new Task({
@@ -46,7 +46,7 @@ router.post('/',
           .catch(err => res.json(err))
       },
     )
-    .catch(err => res.json(err));
+      .catch(err => res.json(err));
   });
 
 router.patch('/:id',

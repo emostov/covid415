@@ -1,7 +1,8 @@
 import React from 'react';
 
 import mapboxgl from 'mapbox-gl';
-import mapboxkeys from '../../config/keys_mapbox';
+// import mapboxkeys from '../../config/keys_mapbox';
+import { mapBoxPublicKey} from '../../config/keys_front'
 import '../../styles/map.scss'
 import { typeIconString, statusPopupClass } from '../../util/card_icon_util';
 import MedicineRedCircle from '../../public/medicine_red_circle.png';
@@ -21,7 +22,9 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    mapboxgl.accessToken = mapboxkeys.public_key;
+    console.log(mapBoxPublicKey)
+    mapboxgl.accessToken = mapBoxPublicKey;
+    // mapboxgl.accessToken = mapboxkeys.public_key;
     // Set the map's max bounds
     const bounds = [
       [-122.54, 37.6], // [west, south]
@@ -193,7 +196,7 @@ class Map extends React.Component {
   render() {
     this.updateMarkers();
     this.updatePopups();
-    console.log({MedicineRedCircle});
+    console.log({ MedicineRedCircle });
 
     return (
       < div >
