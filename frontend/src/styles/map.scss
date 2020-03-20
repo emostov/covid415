@@ -33,14 +33,31 @@
   width:23.33px;
 }
   
-.mapboxgl-popup-content {
+.popup-avail > .mapboxgl-popup-content {
     height: 90px;
     text-align: center;
     background: linear-gradient(#DA5663 15%, #FECEA8 );
     border-radius: 10px!important;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: white;
 }
 
-.mapboxgl-popup-content {
+.popup-active > .mapboxgl-popup-content {
+    height: 90px;
+    text-align: center;
+    background: linear-gradient($figma-green 15%, $figma-peach);
+    border-radius: 10px!important;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: white;
+}
+
+.popup-done > .mapboxgl-popup-content {
+    height: 90px;
+    text-align: center;
+    background: linear-gradient($figma-green 15%, $light-gray-bg );
+    border-radius: 10px!important;
     font-weight: 300;
     text-transform: uppercase;
     color: white;

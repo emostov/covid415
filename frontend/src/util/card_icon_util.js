@@ -78,3 +78,16 @@ export const typeIconString = (type, status) => {
         }
     }
 };
+
+export const statusPopupClass = (status) => {
+    switch (status) {
+        case 0:
+            return "popup-avail"
+        case 1:
+            return "popup-active"
+        case 2:
+            return "popup-done"
+        default:
+            break;
+    }
+};
