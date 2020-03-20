@@ -1,7 +1,7 @@
 import React from 'react';
 
 import mapboxgl from 'mapbox-gl';
-import mapboxkeys from '../../config/keys_mapbox';
+// import mapboxkeys from '../../config/keys_mapbox';
 import '../../styles/map.scss'
 import { typeIconString } from '../../util/card_icon_util';
 import MedicineRedCircle from '../../public/medicine_red_circle.png';
