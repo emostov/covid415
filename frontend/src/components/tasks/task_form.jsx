@@ -14,7 +14,6 @@ class TaskForm extends React.Component {
 
         this.state=this.props.task
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.update = this.update.bind(this)
     }
 
     componentDidMount() {
@@ -49,6 +48,7 @@ class TaskForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
+        debugger;
         this.props.createNewTask(this.state)
             .then(() => this.props.fetchTasks())
             .then(() => this.props.closeModal())
@@ -121,7 +121,7 @@ class TaskForm extends React.Component {
                         <Form.Label className='task-form-label'>Please provide additional delivery instructions</Form.Label>
                         <Form.Control
                             placeholder='Leave it on the front porch'
-                            onChange={() => this.update('deliveryInstructions')}
+                            onChange={this.update('deliveryInstructions')}
                             className='task-form-input-short'
                         />
                     </Form.Group>
