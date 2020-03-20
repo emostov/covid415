@@ -92,7 +92,8 @@ class Map extends React.Component {
             deliveryAddress: task.deliveryAddress,
             taskId: task._id,
             volunteerId: task.volunteer,
-            status: task.status
+            status: task.status,
+            type: task.type
           }
         }))
     };
@@ -114,8 +115,9 @@ class Map extends React.Component {
         closeButton: false,
         closeOnClick: false,
       }).setHTML(
-        '<h3>' + marker.properties.title + '</h3>'
-        + '<p>' + 'Volunteer Needed' + '</p>'
+        // '<h3>' + marker.properties.title + '</h3>'
+        // + '<p>' + 'Volunteer Needed' + '</p>'
+        marker.properties.type
       )
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
