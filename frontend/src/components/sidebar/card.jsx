@@ -9,10 +9,8 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 // import {  } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
 
-import FoodRedCircle from '../../public/groceries_red_circle.png';
-import MedicineRedCircle from '../../public/medicine_red_circle.png';
-import OtherRedCircle from '../../public/other_red_circle.png';
 import frontendUtil from '../../util/frontend_util';
+import { typeIcon } from '../../util/card_icon_util';
 
 
 
@@ -31,7 +29,6 @@ class Card extends React.Component {
     this.handleModal = this.handleModal.bind(this);
     this.handleCardHover = this.handleCardHover.bind(this);
     this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
-    this.cardTypeIcon = this.cardTypeIcon.bind(this);
     this.distanceFromCurrentToTask = this.distanceFromCurrentToTask.bind(this)
   }
 
@@ -82,18 +79,6 @@ class Card extends React.Component {
       this.props.receiveActiveTaskId(null);
     }
   }
-
-  cardTypeIcon() {
-    switch (this.props.task.type.toLowerCase()) {
-      case 'medicine':
-        return <img className='card-type-img' src={MedicineRedCircle} alt="medicine-pic"/>;
-      case 'food':
-        return <img className='card-type-img' src={FoodRedCircle} alt="medicine-pic"/>;
-      case 'other':
-        return <img className='card-type-img' src={OtherRedCircle} alt="medicine-pic"/>;
-      default:
-        return null;
-  }}
       
   distanceFromCurrentToTask() {
     const { task, currentPosition } = this.props
@@ -185,7 +170,7 @@ class Card extends React.Component {
                 </div>
                 <div className="card-footer-container">
                   <div className="card-task-type-text">{ this.props.task.type }</div>
-                  <div>{ this.cardTypeIcon() }</div>
+                  <div>{ typeIcon(this.props.task.type) }</div>
                 </div>
               </div>
             )
