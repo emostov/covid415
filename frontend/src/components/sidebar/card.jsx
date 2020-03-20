@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import * as turf from '@turf/turf'
+import { distance } from '@turf/distance'
+import { point } from '@turf/distance'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -88,21 +90,25 @@ class Card extends React.Component {
     if (this.props.task.deliveryLatLong === undefined) {
       return null
     }
+    
     if (currentPosition.length === 0) {
       return null
     }
-    let from = turf.point([currentPosition[1], currentPosition[0]])
+    const {latitude, longitude} = currentPosition.coords;
+    
+    let from = turf.point([longitude, latitude])
     let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
     let options = { units: 'miles' }
 
     let distanceTo = turf.distance(from, to, options)
     const dist = frontendUtil.parseDistance(distanceTo)
+    
     this.setState({distance: dist})
   }
 
   render() {
     const { openModal, closeModal } = this.props;
-    // console.log(this.state)
+    
     return (
       <div onMouseEnter={this.handleCardHover}
         onMouseLeave={this.handleCardMouseLeave}

@@ -8,7 +8,16 @@ class AvailableSidebar extends React.Component {
     }
 
     render() {
-        const { currentUserId, history, available, openModal, closeModal } = this.props
+        const { 
+            currentUserId, 
+            history, 
+            available, 
+            openModal, 
+            closeModal, 
+            currentPosition, 
+            receiveActiveTaskId, 
+            activeTask 
+        } = this.props
 
         return (
             <div className='card-container-available'>
@@ -22,9 +31,9 @@ class AvailableSidebar extends React.Component {
                                     closeModal={closeModal}
                                     currentUserId={currentUserId}
                                     history={history}
-                                    activeTask={this.props.activeTask}
-                                    receiveActiveTaskId={this.props.receiveActiveTaskId}
-                                    currentPosition={this.props.currentPosition}/>
+                                    activeTask={activeTask}
+                                    receiveActiveTaskId={receiveActiveTaskId}
+                                    currentPosition={currentPosition}/>
                     })
                 }
             </div>
