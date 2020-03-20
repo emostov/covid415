@@ -1,7 +1,7 @@
 import { RECEIVE_CURRENT_LOCATION} from '../actions/location_actions';
 
-const locationReducer = (state = [37.7364777, -122.4671154], action) => {
-    
+const userReducer = (state = [], action) => {
+    debugger
     switch(action.type) {
         case RECEIVE_CURRENT_LOCATION:
             return action.data
@@ -10,4 +10,4 @@ const locationReducer = (state = [37.7364777, -122.4671154], action) => {
     }
 }
 
-export default locationReducer;
+export default userReducer;

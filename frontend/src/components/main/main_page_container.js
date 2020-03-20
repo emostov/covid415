@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import MainPage from './main_page.jsx';
 import { fetchTasks } from '../../actions/task_actions';
+import { getUserLocation } from '../../actions/location_actions'
 
 const mSTP = (state, ownProps) => {
     return {
@@ -12,7 +13,8 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = dispatch => {
     return {
-        fetchTasks: () => dispatch(fetchTasks())
+        fetchTasks: () => dispatch(fetchTasks()),
+        getUserLocation: () => dispatch(getUserLocation())
     }
 };
 

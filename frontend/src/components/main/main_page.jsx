@@ -18,6 +18,7 @@ class MainPage extends React.Component {
 
   componentDidMount() {
     this.props.fetchTasks()
+    this.props.getUserLocation();
   }
 
   getCurrentPosition() {

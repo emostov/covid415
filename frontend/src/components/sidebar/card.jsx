@@ -93,20 +93,20 @@ class Card extends React.Component {
     if (currentPosition.length === 0) {
       return null
     }
-    debugger
+    // debugger
     let from = turf.point([currentPosition[1], currentPosition[0]])
     let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
     let options = { units: 'miles' }
 
     let distanceTo = turf.distance(from, to, options)
     const dist = frontendUtil.parseDistance(distanceTo)
-    debugger
+    // debugger
     this.setState({distance: dist})
   }
 
   render() {
     const { openModal, closeModal } = this.props;
-    debugger
+    // debugger
     return (
       <div onMouseEnter={this.handleCardHover}
         onMouseLeave={this.handleCardMouseLeave}
