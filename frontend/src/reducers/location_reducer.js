@@ -1,7 +1,7 @@
 import { RECEIVE_CURRENT_LOCATION} from '../actions/location_actions';
 
 const userReducer = (state = [], action) => {
-    debugger
+    
     switch(action.type) {
         case RECEIVE_CURRENT_LOCATION:
             return action.data

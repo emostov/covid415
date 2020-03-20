@@ -90,17 +90,19 @@ class Card extends React.Component {
     if (this.props.task.deliveryLatLong === undefined) {
       return null
     }
+    
     if (currentPosition.length === 0) {
       return null
     }
-    // debugger
-    let from = turf.point([currentPosition[1], currentPosition[0]])
+    const {latitude, longitude} = currentPosition.coords;
+    
+    let from = turf.point([longitude, latitude])
     let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
     let options = { units: 'miles' }
 
     let distanceTo = turf.distance(from, to, options)
     const dist = frontendUtil.parseDistance(distanceTo)
-    // debugger
+    
     this.setState({distance: dist})
   }
 
