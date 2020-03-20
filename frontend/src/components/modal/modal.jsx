@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import TaskUpdateContainer from '../tasks/task_update_container';
 import TaskFormContainer from '../tasks/task_form_container';
+import TaskTakeConfirmation from '../tasks/task_take_confirmation';
 import '../../styles/modal.scss';
 
 const Modal = ({modal, closeModal}) => {
@@ -16,13 +17,16 @@ const Modal = ({modal, closeModal}) => {
         case 'status':
             component = <TaskUpdateContainer taskId={modal.taskId}/>;
             break;
+        case 'TaskTakeConfirmation':
+            component = <TaskTakeConfirmation />;
+            break;
         case 'taskform':
             component = <TaskFormContainer />;
             break;
         default: 
             return null;
     }
-
+    debugger
     return (
         <div className="modal-background" onClick={closeModal}>
             <div className={modal.modal ==='status' ? "modal-child-status" : 'modal-child-taskform' } onClick={e => e.stopPropagation()}>
