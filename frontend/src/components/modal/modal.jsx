@@ -12,24 +12,29 @@ const Modal = ({modal, closeModal}) => {
     }
 
     let component;
+    let childClass;
 
     switch (modal.modal) {
         case 'status':
             component = <TaskUpdateContainer taskId={modal.taskId}/>;
+            childClass = "modal-child-status"
             break;
         case 'takeTaskConfirmed':
             component = <TaskTakeConfirmation />;
+            childClass = "modal-child-taketask"
             break;
         case 'taskform':
             component = <TaskFormContainer />;
+            childClass = "modal-child-taskform"
             break;
         default: 
             return null;
     }
     
+    
     return (
         <div className="modal-background" onClick={closeModal}>
-            <div className={modal.modal ==='status' ? "modal-child-status" : 'modal-child-taskform' } onClick={e => e.stopPropagation()}>
+            <div className={childClass} onClick={e => e.stopPropagation()}>
                { component }
             </div>
         </div>

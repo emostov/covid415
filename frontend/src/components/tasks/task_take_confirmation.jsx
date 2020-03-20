@@ -11,10 +11,10 @@ class TaskTakeConfirmation extends React.Component {
         return (
             <div className="modal-child-confirm-delivery">
             <div className="delivery-header-container">
-                <div className="delivery-header">You're confirmed!</div>
+                <div className="delivery-header">You're good to go!</div>
             </div>
-            <div className="delivery-details-container">
-                Delivery added to your 'My Deliveries'
+            <div className="delivery-confirm-body">
+                Delivery request successfully added to 'My Deliveries'.
             </div>
         </div>
         )
