@@ -101,7 +101,13 @@ class Card extends React.Component {
     if (this.state.distance === '') {
       return (<Spinner animation="grow" variant="light" />);
     }
-    return`| ${this.state.distance} miles away`;
+    
+    if (this.state.active) {
+      return`${this.state.distance} miles away`;
+    } else {
+      return`| ${this.state.distance} miles away`;
+    }
+    
   }
 
   render() {
