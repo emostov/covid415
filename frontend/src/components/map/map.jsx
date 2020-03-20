@@ -194,8 +194,6 @@ class Map extends React.Component {
   render() {
     this.updateMarkers();
     this.updatePopups();
-    console.log({ MedicineRedCircle });
-
     return (
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />
