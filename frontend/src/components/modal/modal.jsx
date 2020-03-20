@@ -4,6 +4,7 @@ import React from 'react';
 import TaskUpdateContainer from '../tasks/task_update_container';
 import TaskFormContainer from '../tasks/task_form_container';
 import TaskTakeConfirmation from '../tasks/task_take_confirmation';
+import TaskDetailsContainer from '../tasks/task_details_container';
 import '../../styles/modal.scss';
 
 const Modal = ({modal, closeModal}) => {
@@ -17,6 +18,10 @@ const Modal = ({modal, closeModal}) => {
     switch (modal.modal) {
         case 'status':
             component = <TaskUpdateContainer taskId={modal.taskId}/>;
+            childClass = "modal-child-status"
+            break;
+        case 'details':
+            component = <TaskDetailsContainer taskId={modal.taskId}/>;
             childClass = "modal-child-status"
             break;
         case 'takeTaskConfirmed':

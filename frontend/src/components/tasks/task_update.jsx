@@ -16,7 +16,6 @@ class TaskUpdate extends React.Component {
             status: prevState.status + 1,
             volunteer: this.props.currentUserId
         }), () => this.props.updateTask(this.state)
-                .then(()=>this.setState({ taken: true}))
                 .then(()=>this.props.fetchTasks())
                 .then(()=>this.props.openModal('takeTaskConfirmed'))
         )
