@@ -20,11 +20,11 @@ export const typeIcon = (type) => {
 export const typeIconString = (type) => {
     switch (type.toLowerCase()) {
       case 'medicine':
-        return `<img class="card-type-img" src="${MedicineRedCircle}" alt="medicine-pic" />`;
+        return `<img class="card-type-img-map" src="${MedicineRedCircle}" alt="medicine-pic" />`;
       case 'food':
-        return `<img class="card-type-img" src="${FoodRedCircle}" alt="food-pic" />`;
+        return `<img class="card-type-img-map" src="${FoodRedCircle}" alt="food-pic" />`;
       case 'other':
-        return `<img class="card-type-img" src="${OtherRedCircle}" alt="other-pic" />`;
+        return `<img class="card-type-img-map" src="${OtherRedCircle}" alt="other-pic" />`;
       default:
         return null;
     }
