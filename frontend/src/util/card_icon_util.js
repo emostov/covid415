@@ -13,40 +13,68 @@ import OtherGreenCircle from '../public/other_green_circle.png';
 export const typeIcon = (type, status) => {
     if (status === 0) {
         if (type === 'medicine') {
-            return <img className='card-type-img' src={MedicineRedCircle} alt="medicine-pic"/>;
+            return <img className='card-type-img' src={MedicineRedCircle} alt='medicine-pic'/>;
         } else if (type === 'food') {
-            return <img className='card-type-img' src={FoodRedCircle} alt="food-pic"/>;
+            return <img className='card-type-img' src={FoodRedCircle} alt='food-pic'/>;
         } else if (type === 'other') {
-            return <img className='card-type-img' src={OtherRedCircle} alt="other-pic"/>;
+            return <img className='card-type-img' src={OtherRedCircle} alt='other-pic'/>;
         }
     } else if (status === 1) {
         if (type === 'medicine') {
-            return <img className='card-type-img' src={MedicinePeachCircle} alt="medicine-pic"/>;
+            return <img className='card-type-img' src={MedicinePeachCircle} alt='medicine-pic'/>;
         } else if (type === 'food') {
-            return <img className='card-type-img' src={FoodPeachCircle} alt="food-pic"/>;
+            return <img className='card-type-img' src={FoodPeachCircle} alt='food-pic'/>;
         } else if (type === 'other') {
-            return <img className='card-type-img' src={OtherPeachCircle} alt="other-pic"/>;
+            return <img className='card-type-img' src={OtherPeachCircle} alt='other-pic'/>;
         }
     } else if (status === 2) {
         if (type === 'medicine') {
-            return <img className='card-type-img' src={MedicineGreenCircle} alt="medicine-pic"/>;
+            return <img className='card-type-img' src={MedicineGreenCircle} alt='medicine-pic'/>;
         } else if (type === 'food') {
-            return <img className='card-type-img' src={FoodGreenCircle} alt="food-pic"/>;
+            return <img className='card-type-img' src={FoodGreenCircle} alt='food-pic'/>;
         } else if (type === 'other') {
-            return <img className='card-type-img' src={OtherGreenCircle} alt="other-pic"/>;
+            return <img className='card-type-img' src={OtherGreenCircle} alt='other-pic'/>;
         }
     }
 }
 
-export const typeIconString = (type) => {
-    switch (type.toLowerCase()) {
-      case 'medicine':
-        return `<img class="card-type-img-map" src="${MedicineRedCircle}" alt="medicine-pic" />`;
-      case 'food':
-        return `<img class="card-type-img-map" src="${FoodRedCircle}" alt="food-pic" />`;
-      case 'other':
-        return `<img class="card-type-img-map" src="${OtherRedCircle}" alt="other-pic" />`;
-      default:
-        return null;
+// export const typeIconString = (type) => {
+//     switch (type.toLowerCase()) {
+    //   case 'medicine':
+    //     return `<img class="card-type-img-map" src="${MedicineRedCircle}" alt="medicine-pic" />`;
+    //   case 'food':
+    //     return `<img class="card-type-img-map" src="${FoodRedCircle}" alt="food-pic" />`;
+    //   case 'other':
+    //     return `<img class="card-type-img-map" src="${OtherRedCircle}" alt="other-pic" />`;
+//       default:
+//         return null;
+//     }
+// };
+
+export const typeIconString = (type, status) => {
+    if (status === 0) {
+        if (type === 'medicine') {
+            return `<img class="card-type-img-map" src="${MedicineRedCircle}" alt="medicine-pic" />`;
+        } else if (type === 'food') {
+            return `<img class="card-type-img-map" src="${FoodRedCircle}" alt="food-pic" />`;
+        } else if (type === 'other') {
+            return `<img class="card-type-img-map" src="${OtherRedCircle}" alt="other-pic" />`;
+        }
+    } else if (status === 1) {
+        if (type === 'medicine') {
+            return `<img class="card-type-img-map" src="${MedicinePeachCircle}" alt="medicine-pic" />`;
+        } else if (type === 'food') {
+            return `<img class="card-type-img-map" src="${FoodPeachCircle}" alt="food-pic" />`;
+        } else if (type === 'other') {
+            return `<img class="card-type-img-map" src="${OtherPeachCircle}" alt="other-pic" />`;
+        }
+    } else if (status === 2) {
+        if (type === 'medicine') {
+            return `<img class="card-type-img-map" src="${MedicineGreenCircle}" alt="medicine-pic" />`;
+        } else if (type === 'food') {
+            return `<img class="card-type-img-map" src="${FoodGreenCircle}" alt="food-pic" />`;
+        } else if (type === 'other') {
+            return `<img class="card-type-img-map" src="${OtherGreenCircle}" alt="other-pic" />`;
+        }
     }
 };
