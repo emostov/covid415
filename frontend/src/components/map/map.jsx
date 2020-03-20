@@ -21,7 +21,6 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    console.log(mapBoxPublicKey)
     mapboxgl.accessToken = mapBoxPublicKey;
     // mapboxgl.accessToken = mapboxkeys.public_key;
     // Set the map's max bounds
@@ -105,8 +104,7 @@ class Map extends React.Component {
     geojson.features.forEach((marker) => {
       // create a HTML element for each feature
       const el = document.createElement('div');
-      const { status, volunteerId, type } = marker.properties
-      const { currentUserId } = this.props
+      const { status, type } = marker.properties
       if (status === 0) {
         el.className = 'marker notActive'
       } else if (status === 1) {
@@ -195,8 +193,6 @@ class Map extends React.Component {
   render() {
     this.updateMarkers();
     this.updatePopups();
-    console.log({ MedicineRedCircle });
-
     return (
       < div >
         <div ref={el => this.mapContainer = el} className="mapContainer" />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Form, Row, Col, Button, Card, Container, Alert } from 'react-bootstrap';
+import { Form, Row, Col, Button, Card, Alert } from 'react-bootstrap';
 
 import '../../styles/session_form.scss'
 class SignupForm extends React.Component {
