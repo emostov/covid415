@@ -180,7 +180,7 @@ class Card extends React.Component {
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-plus" icon={faPlus} />
                   <div className={"card-head"}>
-                    {this.props.task.deliveryNeighborhood} - {this.displayMilesAway()}
+                    {this.props.task.deliveryNeighborhood} | {this.displayMilesAway()}
                   </div>
                 </div>
                 <div className="card-footer-container">
