@@ -5,13 +5,15 @@ import { distance } from '@turf/distance'
 import { point } from '@turf/distance'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+// import {  } from '@fortawesome/free-solid-svg-icons';
+import { Spinner } from 'react-bootstrap';
 
 import FoodRedCircle from '../../public/groceries_red_circle.png';
 import MedicineRedCircle from '../../public/medicine_red_circle.png';
 import OtherRedCircle from '../../public/other_red_circle.png';
 import frontendUtil from '../../util/frontend_util';
+
 
 
 import '../../styles/card.scss'
@@ -35,6 +37,14 @@ class Card extends React.Component {
 
   componentDidMount() {
     this.distanceFromCurrentToTask();
+  }
+
+  componentDidUpdate(prevProps) {
+    // Make sure to compare props to prevent infinit loop
+    if (this.props.currentPosition !== prevProps.currentPosition) {
+     // recalculate distance
+      this.distanceFromCurrentToTask();
+    }
   }
 
   clickHandler(e) {
@@ -87,7 +97,7 @@ class Card extends React.Component {
       
   distanceFromCurrentToTask() {
     const { task, currentPosition } = this.props
-    if (this.props.task.deliveryLatLong === undefined) {
+    if (this.props.task === undefined) {
       return null
     }
     
@@ -106,6 +116,13 @@ class Card extends React.Component {
     this.setState({distance: dist})
   }
 
+  displayMilesAway(){
+    if (this.state.distance === '') {
+      return (<Spinner animation="grow" variant="light" />);
+    }
+    return`${this.state.distance} miles away`;
+  }
+
   render() {
     const { openModal, closeModal } = this.props;
     
@@ -121,7 +138,7 @@ class Card extends React.Component {
                 <div className="card-header-container">
                     <FontAwesomeIcon className="fa-minus" icon={faMinus} />
                   <div className={"card-head-active"}>
-                    {`${this.state.distance} miles away`}
+                    {this.displayMilesAway()}
                   </div>
                 </div>
                 <div className="card-box-top-container">
@@ -163,7 +180,7 @@ class Card extends React.Component {
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-plus" icon={faPlus} />
                   <div className={"card-head"}>
-                  { this.props.task.deliveryNeighborhood } - {`${this.state.distance} miles away`}
+                    {this.props.task.deliveryNeighborhood} - {this.displayMilesAway()}
                   </div>
                 </div>
                 <div className="card-footer-container">
