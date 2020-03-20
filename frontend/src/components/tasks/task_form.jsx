@@ -6,12 +6,16 @@ import Food from '../../public/groceries.png';
 import Medicine from '../../public/medicine.png';
 import Other from '../../public/other.png';
 
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import PlacesAutocomplete from 'react-places-autocomplete';
+
 class TaskForm extends React.Component {
     constructor(props) {
         super(props)
 
         this.state=this.props.task
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.update = this.update.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -39,8 +43,9 @@ class TaskForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        this.props.createNewTask(this.state)
-            .then(() => this.props.fetchTasks())
+        debugger;
+        // this.props.createNewTask(this.state)
+        //     .then(() => this.props.fetchTasks())
 
         // if (Object.values(this.state.errors).length !== 0) {
         //     setTimeout(() => this.props.closeModal(), 1000);
@@ -78,10 +83,14 @@ class TaskForm extends React.Component {
 
                     <Form.Group>
                         <Form.Label className='task-form-label'>Where is this being delivered to?</Form.Label>
-                        <Form.Control
+                        <GooglePlacesAutocomplete
                             type='text'
                             placeholder='825 Battery Street, San Francisco, CA 94111'
-                            onChange={this.update('deliveryAddress')}
+                            // value={this.state.deliveryAddress}
+                            // onChange={this.update('deliveryAddress')}
+                            onSelect={({ description }) => (
+                                this.setState({ deliveryAddress: description })
+                            )}
                             className='task-form-input-short'
                         />
                     </Form.Group>
@@ -100,7 +109,7 @@ class TaskForm extends React.Component {
                         <Form.Label className='task-form-label'>Please provide additional delivery instructions</Form.Label>
                         <Form.Control
                             placeholder='Leave it on the front porch'
-                            onChange={this.update('deliveryInstructions')}
+                            onChange={() => this.update('deliveryInstructions')}
                             className='task-form-input-short'
                         />
                     </Form.Group>
