@@ -86,14 +86,24 @@ class TaskForm extends React.Component {
                     <Form.Group>
                         <Form.Label className='task-form-label'>Where is this being delivered to?</Form.Label>
                         <GooglePlacesAutocomplete
-                            type='text'
+                            autocompletionRequest={{
+                                bounds: [
+                                    { lat: 37.6, lng: -122.54},
+                                    { lat: 37.9, lng: -122.34}
+                                ],
+                                componentRestrictions: {
+                                    country: ['us']
+                                }
+                            }}
                             placeholder='825 Battery Street, San Francisco, CA 94111'
-                            // value={this.state.deliveryAddress}
-                            // onChange={this.update('deliveryAddress')}
                             onSelect={({ description }) => (
                                 this.setState({ deliveryAddress: description })
                             )}
-                            className='task-form-input-short'
+                            suggestionsClassNames={{
+                                container: 'suggestion-container',
+                                suggestion: 'suggestion'
+                            }}
+                            // loader={<img src={loader} />}
                         />
                     </Form.Group>
 
