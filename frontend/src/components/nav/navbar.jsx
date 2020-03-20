@@ -75,7 +75,7 @@ class NavBar extends React.Component {
             <Nav
               className="justify-content-end upcase white-txt align-items-end">
               {this.getLinks()}
-            </Nav>
+            </Nav>``
 
           </div>
           {/* </Nav> */}
