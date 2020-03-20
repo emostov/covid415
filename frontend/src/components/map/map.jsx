@@ -21,7 +21,6 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    console.log(mapBoxPublicKey)
     mapboxgl.accessToken = mapBoxPublicKey;
     // mapboxgl.accessToken = mapboxkeys.public_key;
     // Set the map's max bounds
