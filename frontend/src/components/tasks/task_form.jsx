@@ -5,9 +5,8 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import Food from '../../public/groceries.png';
 import Medicine from '../../public/medicine.png';
 import Other from '../../public/other.png';
-
+import keys from '../../config/keys_mapbox';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-import PlacesAutocomplete from 'react-places-autocomplete';
 
 class TaskForm extends React.Component {
     constructor(props) {
@@ -16,6 +15,13 @@ class TaskForm extends React.Component {
         this.state=this.props.task
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)
+    }
+
+    componentDidMount() {
+        const script = document.createElement("script");
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${keys.geocodeKey}&libraries=places`;
+        script.async = true;
+        document.body.appendChild(script);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -43,9 +49,8 @@ class TaskForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        debugger;
-        // this.props.createNewTask(this.state)
-        //     .then(() => this.props.fetchTasks())
+        this.props.createNewTask(this.state)
+            .then(() => this.props.fetchTasks())
 
         // if (Object.values(this.state.errors).length !== 0) {
         //     setTimeout(() => this.props.closeModal(), 1000);

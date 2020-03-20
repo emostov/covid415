@@ -25,5 +25,3 @@ yarn-error.log*
 
 /src/config/keys_geocode.js
 /src/config/keys_mapbox.js
-
-/public/index.html
