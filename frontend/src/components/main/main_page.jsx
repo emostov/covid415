@@ -1,7 +1,7 @@
 import React from 'react';
+
 import SideBarContainer from '../sidebar/sidebar_container'
 import MapContainer from '../map/map_container'
-import geocodeUtil from '../../util/geocode_util'
 import '../../styles/main_page.scss'
 
 

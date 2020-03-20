@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import ActiveSidebar from './active';
 import AvailableSidebar from './available'
 import '../../styles/sidebar.scss';
@@ -40,8 +41,8 @@ export default class SideBar extends Component {
       closeModal, 
       session, 
       userLocation,
-      activeTask,
-      receiveActiveTaskId,
+      // activeTask,
+      // receiveActiveTaskId,
     } = this.props
 
     let available = []
