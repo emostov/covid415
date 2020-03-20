@@ -29,17 +29,18 @@
 
 .task-type-group {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
 }
 .task-form-type {
     width: 70%;
     display: flex;
     justify-content: space-around;
-    margin-bottom: -10px;
+    margin: 5px 0px -15px 0px;
 }
 
 .radio-img {
     border-radius: 4px;
+    background-color: white;
 }
 
 .task-type-label {
@@ -47,6 +48,7 @@
     flex-direction: column;
     justify-content: center;
 }
+
 .task-type-label {
     margin-top: 5px;
     text-align: center;
@@ -66,15 +68,29 @@
 }
 
 [type=radio] + img:hover {
-    box-shadow: 0 0 0 2px rgba(223, 223, 223, 0.973);
+    box-shadow: 0 0 0 4px rgb(185, 185, 185);
 }
 
 [type=radio]:checked + img {
-    box-shadow: 0 0 0 2px $figma-red;
+    box-shadow: 0 0 0 4px $figma-red;
 }
 
 .radio-img {
     width: 100px;
+}
+
+.google-places-autocomplete__input {
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
 }
 
 .task-form-input-long {
@@ -96,4 +112,22 @@
     list-style: none;
     padding: 0px;
     margin: 0px 0px 20px 0px;
+}
+
+.suggestion-container {
+    position: absolute;
+    background-color: white;
+    color: rgb(126, 126, 126);
+    padding: 3px 10px;
+    border-radius: 3px;
+    width: auto;
+}
+
+.suggestion {
+    border-bottom: 1px solid rgba(145, 145, 145, 0.658);
+}
+
+.suggestion:hover {
+    color: black;
+    cursor: pointer;
 }
