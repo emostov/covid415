@@ -78,7 +78,7 @@ class SignupForm extends React.Component {
     return (
               <Card className='session signup'>
                 <Card.Title className='session'>
-                  <strong>Sign up.</strong>
+                  <strong>Help keep the 415 alive. Sign up now!</strong>
                 </Card.Title>
                 {this.renderErrors()}
                 {/*  */}
