@@ -6,7 +6,7 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import Food from '../../public/groceries.png';
 import Medicine from '../../public/medicine.png';
 import Other from '../../public/other.png';
-import keys from '../../config/keys_mapbox';
+import {geocodeKey} from '../../config/keys_front'
 
 class TaskForm extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class TaskForm extends React.Component {
 
     componentDidMount() {
         const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${keys.geocodeKey}&libraries=places`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${geocodeKey}&libraries=places`;
         script.async = true;
         document.body.appendChild(script);
     }
