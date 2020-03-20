@@ -5,6 +5,7 @@ import TaskUpdateContainer from '../tasks/task_update_container';
 import TaskFormContainer from '../tasks/task_form_container';
 import TaskTakeConfirmation from '../tasks/task_take_confirmation';
 import TaskDetailsContainer from '../tasks/task_details_container';
+import CompleteTakeConfirmation from '../tasks/task_complete_confirmation';
 import '../../styles/modal.scss';
 
 const Modal = ({modal, closeModal}) => {
@@ -16,6 +17,10 @@ const Modal = ({modal, closeModal}) => {
     let childClass;
 
     switch (modal.modal) {
+        case 'taskform':
+            component = <TaskFormContainer />;
+            childClass = "modal-child-taskform"
+            break;
         case 'status':
             component = <TaskUpdateContainer taskId={modal.taskId}/>;
             childClass = "modal-child-status"
@@ -28,9 +33,9 @@ const Modal = ({modal, closeModal}) => {
             component = <TaskTakeConfirmation />;
             childClass = "modal-child-taketask"
             break;
-        case 'taskform':
-            component = <TaskFormContainer />;
-            childClass = "modal-child-taskform"
+        case 'completeTaskConfirmed':
+            component = <CompleteTakeConfirmation />;
+            childClass = "modal-child-taketask"
             break;
         default: 
             return null;

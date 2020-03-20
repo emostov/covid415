@@ -19,6 +19,8 @@ class TaskDetails extends React.Component {
                 .then(()=>this.props.fetchTasks())
                 .then(()=>this.props.openModal('completeTaskConfirmed'))
         )
+
+        setTimeout(()=>this.props.closeModal(), 2000);
     }
 
     render() {

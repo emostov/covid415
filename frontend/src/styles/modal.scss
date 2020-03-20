@@ -78,6 +78,17 @@
   overflow: hidden;
 }
 
+@keyframes modal-height {
+  0% {
+    top: 40%;
+    opacity: 0;
+  }
+  100% {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
 .delivery-header-container{
   background-image: linear-gradient(to top right, $figma-red, $figma-grapefruit, $figma-peach );
   height:  auto;
