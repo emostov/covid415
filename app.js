@@ -6,6 +6,7 @@ const path = require('path');
 
 const users = require('./routes/api/users');
 const tasks = require('./routes/api/tasks');
+const google = require('./routes/api/google');
 
 const port = process.env.PORT || 5000;
 
@@ -36,6 +37,7 @@ require('./config/passport')(passport);
 // Setup base routes
 app.use('/api/users', users);
 app.use('/api/tasks', tasks);
+app.use('api/google', google);
 app.get('/', (req, res) => res.send('Hello Wrld'));
 
 
