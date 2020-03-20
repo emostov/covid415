@@ -63,14 +63,29 @@
     color: white;
 }
 
-.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+.popup-avail > .mapboxgl-popup-tip {
     border-top-color: $figma-peach!important;
 }
 
-.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+.popup-avail > .mapboxgl-popup-tip {
     border-bottom-color: $figma-red!important;
 }
 
+.popup-active > .mapboxgl-popup-tip {
+    border-top-color: $figma-peach!important;
+}
+
+.popup-active > .mapboxgl-popup-tip {
+    border-bottom-color: $figma-green!important;
+}
+
+.popup-done > .mapboxgl-popup-tip {
+    border-top-color: $light-gray-bg!important;
+}
+
+.popup-done > .mapboxgl-popup-tip {
+    border-bottom-color: $figma-green!important;
+}
 
 .completed  .mapboxgl-popup {
     width: 150px;
