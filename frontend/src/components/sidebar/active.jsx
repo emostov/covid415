@@ -40,22 +40,11 @@ class ActiveSidebar extends React.Component {
                     ) : (
                         <div className="card-container-demo">
                             <div className="card-demo-content">
-                                Welcome! <br/>
-                                You are currently not logged in. If you would like to be a volunteer 
-                            </div>
-
-                            <br/>
-
-                            <div className="register-or-login">
-                                <Link to="/signup">
-                                    Sign up 
-                                </Link>
-                                <div className="middle-statement">
-                                    or if you're already a volunteer
-                                </div>
-                                <Link to="/login">
-                                    Log In
-                                </Link> 
+                                <div className="head-demo">Hey Neighbor!</div>
+                                <div className="card-demo-text">You must <Link to="/login">log in</Link> to view your deliveries.</div>
+                                <br /><br />
+                                <div className="head-demo">Want to be a volunteer?</div>
+                                <div className="card-demo-text"><Link to="/signup">Sign up now</Link> and help keep the 415 alive.</div>
                             </div>
                         </div>
                     )
