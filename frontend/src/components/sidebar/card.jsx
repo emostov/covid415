@@ -170,7 +170,7 @@ class Card extends React.Component {
                 </div>
                 <div className="card-footer-container">
                   <div className="card-task-type-text">{ this.props.task.type }</div>
-                  <div>{ typeIcon(this.props.task.type) }</div>
+                  <div>{ typeIcon(this.props.task.type.toLowerCase(), this.props.task.status) }</div>
                 </div>
               </div>
             )

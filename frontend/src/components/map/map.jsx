@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 // import mapboxkeys from '../../config/keys_mapbox';
 import { mapBoxPublicKey} from '../../config/keys_front'
 import '../../styles/map.scss'
-import { typeIconString } from '../../util/card_icon_util';
+import { typeIconString, statusPopupClass } from '../../util/card_icon_util';
 import MedicineRedCircle from '../../public/medicine_red_circle.png';
 
 class Map extends React.Component {
@@ -119,12 +119,10 @@ class Map extends React.Component {
         offset: 25,
         closeButton: false,
         closeOnClick: false,
+        className: statusPopupClass(status)
       }).setHTML(
-        // '<h3>' + marker.properties.title + '</h3>'
-        // + '<p>' + 'Volunteer Needed' + '</p>'
-        // `<img class="card-type-img" src="${MedicineRedCircle}" />`
-        type + ' delivery' + `<br />` +
-        typeIconString(type)
+        type + ' delivery' + `<br />` + 
+          typeIconString(type.toLowerCase(), status)
       )
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)

@@ -33,27 +33,59 @@
   width:23.33px;
 }
   
-.mapboxgl-popup-content {
+.popup-avail > .mapboxgl-popup-content {
     height: 90px;
     text-align: center;
     background: linear-gradient(#DA5663 15%, #FECEA8 );
     border-radius: 10px!important;
-}
-
-.mapboxgl-popup-content {
     font-weight: 300;
     text-transform: uppercase;
     color: white;
 }
 
-.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+.popup-active > .mapboxgl-popup-content {
+    height: 90px;
+    text-align: center;
+    background: linear-gradient($figma-green 15%, $figma-peach);
+    border-radius: 10px!important;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: white;
+}
+
+.popup-done > .mapboxgl-popup-content {
+    height: 90px;
+    text-align: center;
+    background: linear-gradient($figma-green 15%, $light-gray-bg );
+    border-radius: 10px!important;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: white;
+}
+
+.popup-avail > .mapboxgl-popup-tip {
     border-top-color: $figma-peach!important;
 }
 
-.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+.popup-avail > .mapboxgl-popup-tip {
     border-bottom-color: $figma-red!important;
 }
 
+.popup-active > .mapboxgl-popup-tip {
+    border-top-color: $figma-peach!important;
+}
+
+.popup-active > .mapboxgl-popup-tip {
+    border-bottom-color: $figma-green!important;
+}
+
+.popup-done > .mapboxgl-popup-tip {
+    border-top-color: $light-gray-bg!important;
+}
+
+.popup-done > .mapboxgl-popup-tip {
+    border-bottom-color: $figma-green!important;
+}
 
 .completed  .mapboxgl-popup {
     width: 150px;
