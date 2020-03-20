@@ -120,8 +120,8 @@ class Map extends React.Component {
         // '<h3>' + marker.properties.title + '</h3>'
         // + '<p>' + 'Volunteer Needed' + '</p>'
             // `<img class="card-type-img" src="${MedicineRedCircle}" />`
-              typeIconString(type) + 
-              '<p>' + type + ' delivery' + '</p>'
+            type + ' delivery' + `<br />` + 
+              typeIconString(type)
       )
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
