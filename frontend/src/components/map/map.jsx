@@ -105,8 +105,7 @@ class Map extends React.Component {
     geojson.features.forEach((marker) => {
       // create a HTML element for each feature
       const el = document.createElement('div');
-      const { status, volunteerId, type } = marker.properties
-      const { currentUserId } = this.props
+      const { status, type } = marker.properties
       if (status === 0) {
         el.className = 'marker notActive'
       } else if (status === 1) {

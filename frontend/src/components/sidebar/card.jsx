@@ -1,12 +1,8 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import * as turf from '@turf/turf'
-import { distance } from '@turf/distance'
-import { point } from '@turf/distance'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-// import {  } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
 
 import frontendUtil from '../../util/frontend_util';

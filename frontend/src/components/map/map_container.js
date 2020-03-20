@@ -8,7 +8,7 @@ import {
 } from '../../reducers/selectors';
 
 const mSTP = (state) => {
-  let currentUserId, currentUserTasks, helpNeededTasks;
+  let currentUserId, currentUserTasks;
   if (state.session.user) {
     currentUserId = state.session.user.id;
     currentUserTasks = selectCurrentUserTask(state);
