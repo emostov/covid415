@@ -105,7 +105,7 @@ class Card extends React.Component {
     if (this.state.distance === '') {
       return (<Spinner animation="grow" variant="light" />);
     }
-    return`${this.state.distance} miles away`;
+    return`| ${this.state.distance} miles away`;
   }
 
   render() {
@@ -165,7 +165,7 @@ class Card extends React.Component {
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-plus" icon={faPlus} />
                   <div className={"card-head"}>
-                    {this.props.task.deliveryNeighborhood} | {this.displayMilesAway()}
+                    {this.props.task.deliveryNeighborhood} {this.displayMilesAway()}
                   </div>
                 </div>
                 <div className="card-footer-container">
