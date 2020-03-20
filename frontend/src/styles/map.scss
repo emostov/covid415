@@ -17,19 +17,24 @@
 }
 
 .active {
-    background-image: url('../public/figma-peach35-marker.png');
+  background-image: url('../public/300figma-peach-marker.png');
 }
 
 .notActive {
-    background-image: url('../public/figma-red35-marker.png')
+  background-image: url('../public/300figma-red-marker.png');
 }
 
 .completed {
-    background-image: url('../public/figma-green35-marker.png')
+  background-image: url('../public/300figma-green-marker.png');
+}
+
+.completed, .notActive, .active {
+  height: 35px;
+  width:23.33px;
 }
 
 .mapboxgl-popup {
-    min-width: 150px;
+  min-width: 150px;
 }
   
 .mapboxgl-popup-content {
