@@ -58,23 +58,11 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar bg="dark" variant="dark" >
-          {/*  */}
           <div className='d-flex justify-content-between w-full align-items-center'>
             <Nav className="mr-auto ">
               <Navbar.Brand href="#">
                 <img className="logo-covid415" src={Logo} alt='' width="200" />
               </Navbar.Brand>
-              {/* <Nav className='align-items-end'>
-                <Nav.Link className='upcase text-center primary-txt' href="#">
-                  Charts
-                </Nav.Link>
-                <Nav.Link className='upcase' href="#features">
-                  FAQ
-                </Nav.Link>
-                <Nav.Link className='upcase' href="#pricing">
-                 About
-                </Nav.Link>
-              </Nav> */}
             </Nav>
 
             {this.props.loggedIn ? (
