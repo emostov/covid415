@@ -9,11 +9,6 @@ class MainPage extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      currentPosition: []
-    }
-
-    this.getCurrentDistance = this.getCurrentDistance.bind(this)
   }
 
   componentDidMount() {
@@ -21,17 +16,9 @@ class MainPage extends React.Component {
     this.props.getUserLocation();
   }
 
-  getCurrentPosition() {
-    navigator.geolocation.getCurrentPosition(position => {
-      const userPos = [position.coords.latitude, position.coords.longitude]
-      this.setState({ currentPosition: userPos })
-    })
-  }
-
   getCurrentDistance() {
     const { tasks } = this.props
     const distances = []
-    this.getCurrentPosition();
     // This is where the API for the map needs to be called to find all the distances
     // between 2 points
     // tasks.map(task => {
@@ -54,8 +41,7 @@ class MainPage extends React.Component {
         <MapContainer />
         <SideBarContainer 
           tasks={tasks} 
-          history={history}
-          currentPosition={this.state.currentPosition}/>
+          history={history}/>
       </div>
     );
   }

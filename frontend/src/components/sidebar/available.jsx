@@ -8,7 +8,16 @@ class AvailableSidebar extends React.Component {
     }
 
     render() {
-        const { currentUserId, history, available, openModal, closeModal, currentPosition, receiveActiveTaskId, activeTask } = this.props
+        const { 
+            currentUserId, 
+            history, 
+            available, 
+            openModal, 
+            closeModal, 
+            currentPosition, 
+            receiveActiveTaskId, 
+            activeTask 
+        } = this.props
 
         return (
             <div className='card-container-available'>

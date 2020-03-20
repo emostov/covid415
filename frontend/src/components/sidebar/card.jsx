@@ -108,7 +108,7 @@ class Card extends React.Component {
 
   render() {
     const { openModal, closeModal } = this.props;
-    // debugger
+    
     return (
       <div onMouseEnter={this.handleCardHover}
         onMouseLeave={this.handleCardMouseLeave}
