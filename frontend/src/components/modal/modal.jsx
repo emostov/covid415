@@ -5,31 +5,46 @@ import TaskUpdateContainer from '../tasks/task_update_container';
 import TaskFormContainer from '../tasks/task_form_container';
 import '../../styles/modal.scss';
 
-const Modal = ({modal, closeModal}) => {
-    if(!modal) {
-        return null
+class Modal extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.close = this.close.bind(this)
     }
 
-    let component;
-
-    switch (modal.modal) {
-        case 'status':
-            component = <TaskUpdateContainer taskId={modal.taskId}/>;
-            break;
-        case 'taskform':
-            component = <TaskFormContainer />;
-            break;
-        default: 
-            return null;
+    close() {
+        this.props.closeModal()
+        // window.location.reload(false)
     }
 
-    return (
-        <div className="modal-background" onClick={closeModal}>
-            <div className={modal.modal ==='status' ? "modal-child-status" : 'modal-child-taskform' } onClick={e => e.stopPropagation()}>
-               { component }
+    render() {
+        const { modal, closeModal } = this.props
+        if (!modal) {
+            return null
+        }
+
+        let component;
+
+        switch (modal.modal) {
+            case 'status':
+                component = <TaskUpdateContainer taskId={modal.taskId} />;
+                break;
+            case 'taskform':
+                component = <TaskFormContainer />;
+                break;
+            default:
+                return null;
+        }
+
+
+        return (
+            <div className="modal-background" onClick={() => this.close()}>
+                <div className={modal.modal === 'status' ? "modal-child-status" : 'modal-child-taskform'} onClick={e => e.stopPropagation()}>
+                    {component}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 const msp = (state) => {
