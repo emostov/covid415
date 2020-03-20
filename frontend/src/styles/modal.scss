@@ -21,6 +21,18 @@
   color: black;
   border-radius: 3px;
   padding: 20px;
+  animation: modal-height .4s;
+}
+
+@keyframes modal-height {
+  0% {
+    top: 40%;
+    opacity: 0;
+  }
+  100% {
+    top: 50%;
+    opacity: 1;
+  }
 }
 
 .modal-child-taketask {
@@ -34,7 +46,7 @@
   color: black;
   border-radius: 3px;
   padding: 20px;
-  transition: 1s ease;
+  animation: modal-height .4s;
 } 
 
 .modal-child-taskform {
