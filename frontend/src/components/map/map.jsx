@@ -3,6 +3,8 @@ import React from 'react';
 import mapboxgl from 'mapbox-gl';
 import mapboxkeys from '../../config/keys_mapbox';
 import '../../styles/map.scss'
+import { typeIconString } from '../../util/card_icon_util';
+import MedicineRedCircle from '../../public/medicine_red_circle.png';
 
 class Map extends React.Component {
   constructor(props) {
@@ -101,7 +103,7 @@ class Map extends React.Component {
     geojson.features.forEach((marker) => {
       // create a HTML element for each feature
       const el = document.createElement('div');
-      const { status, volunteerId } = marker.properties
+      const { status, volunteerId, type } = marker.properties
       const { currentUserId } = this.props
       if (status === 0) {
         el.className = 'marker notActive'
@@ -117,7 +119,8 @@ class Map extends React.Component {
       }).setHTML(
         // '<h3>' + marker.properties.title + '</h3>'
         // + '<p>' + 'Volunteer Needed' + '</p>'
-        marker.properties.type
+            // `<img class="card-type-img" src="${MedicineRedCircle}" />`
+              typeIconString(type)
       )
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
@@ -191,6 +194,7 @@ class Map extends React.Component {
   render() {
     this.updateMarkers();
     this.updatePopups();
+    console.log({MedicineRedCircle});
 
     return (
       < div >

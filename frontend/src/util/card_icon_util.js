@@ -9,9 +9,22 @@ export const typeIcon = (type) => {
       case 'medicine':
         return <img className='card-type-img' src={MedicineRedCircle} alt="medicine-pic"/>;
       case 'food':
-        return <img className='card-type-img' src={FoodRedCircle} alt="medicine-pic"/>;
+        return <img className='card-type-img' src={FoodRedCircle} alt="food-pic"/>;
       case 'other':
-        return <img className='card-type-img' src={OtherRedCircle} alt="medicine-pic"/>;
+        return <img className='card-type-img' src={OtherRedCircle} alt="other-pic"/>;
+      default:
+        return null;
+    }
+};
+
+export const typeIconString = (type) => {
+    switch (type.toLowerCase()) {
+      case 'medicine':
+        return `<img class="card-type-img" src="${MedicineRedCircle}" alt="medicine-pic" />`;
+      case 'food':
+        return `<img class="card-type-img" src="${FoodRedCircle}" alt="food-pic" />`;
+      case 'other':
+        return `<img class="card-type-img" src="${OtherRedCircle}" alt="other-pic" />`;
       default:
         return null;
     }

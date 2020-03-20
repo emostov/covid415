@@ -34,25 +34,13 @@
 }
 
 .mapboxgl-popup {
-  min-width: 150px;
+  
 }
   
 .mapboxgl-popup-content {
-    height: 75px!important;
-    text-align: left;
+    text-align: center;
     background-color: $light-gray-bg;
-    border-radius: 3px!important
-
-}
-
-.mapboxgl-popup-content > h3{
-    font: 20px 'Open Sans', sans-serif;
-    color: $third-gray-txt;
-}
-
-.mapboxgl-popup-content > p{
-    font: 15px 'Open Sans', sans-serif;
-    color: $figma-red;
+    border-radius: 3px!important;
 }
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
