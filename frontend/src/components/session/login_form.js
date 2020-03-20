@@ -107,7 +107,7 @@ class LoginForm extends React.Component {
                   className='session-btn'
                   type="submit"
                   onClick={this.handleSubmit}>
-                  Login
+                  Log in
                 </Button>
                 <Button
                   className='demo-btn'
