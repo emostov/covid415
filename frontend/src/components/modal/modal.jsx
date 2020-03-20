@@ -14,7 +14,6 @@ class Modal extends React.Component {
 
     close() {
         this.props.closeModal()
-        // window.location.reload(false)
     }
 
     render() {

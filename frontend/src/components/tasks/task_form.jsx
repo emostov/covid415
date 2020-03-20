@@ -16,29 +16,6 @@ class TaskForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    useScript() {
-        const script = document.createElement("script");
-        script.className = 'autocomplete'
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${keys.geocodeKey}&libraries=places`;
-        script.async = true;
-        document.body.appendChild(script);
-    }
-
-    componentDidMount() {
-    }
-
-    // componentDidUpdate() {
-    //     const existingScripts = document.getElementsByClassName("autocomplete")
-    //     debugger
-    //     if (existingScripts.length === 0) {
-
-    //         this.useScript()
-    //     } else {
-    //         existingScripts.remove()
-    //         this.useScript()
-    //     }
-    // }
-
     componentWillReceiveProps(nextProps) {
         this.setState({ errors: nextProps.errors })
     }
