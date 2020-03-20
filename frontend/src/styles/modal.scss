@@ -49,6 +49,7 @@
   background-color: $light-gray-bg;
   border-radius: 3px;
   padding-bottom: 40px;
+  overflow: hidden;
 }
 
 .delivery-header-container{
@@ -75,7 +76,7 @@
 }
 
 .delivery-details-container {
-  padding: 10px 0px 40px 35px
+  padding: 10px 35px 40px 35px
 }
 
 .delivery-details-type{
