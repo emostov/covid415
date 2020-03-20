@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
 import Logo from '../../public/COVID415.png';
 import '../../styles/navbar.scss'
@@ -41,19 +42,13 @@ class NavBar extends React.Component {
       return (
         <div>
           <Nav>
-            <Nav.Link
-              className='white-txt border-right-grey'
-              href="#signup">
+            <Link to="/signup" className="nav-link">
               Sign up
-               </Nav.Link>
-            <Nav.Link
-              className='white-txt'
-              href="#login"
-            >
+            </Link>
+            <Link to="/login" className="nav-link">
               Log in
-            </Nav.Link>
+            </Link>
           </Nav>
-
         </div>
       );
     }
@@ -69,7 +64,7 @@ class NavBar extends React.Component {
               <Navbar.Brand href="#">
                 <img className="logo-covid415" src={Logo} alt='' width="200" />
               </Navbar.Brand>
-              <Nav className='align-items-end'>
+              {/* <Nav className='align-items-end'>
                 <Nav.Link className='upcase text-center primary-txt' href="#">
                   Charts
                 </Nav.Link>
@@ -79,7 +74,7 @@ class NavBar extends React.Component {
                 <Nav.Link className='upcase' href="#pricing">
                  About
                 </Nav.Link>
-              </Nav>
+              </Nav> */}
             </Nav>
 
             {this.props.loggedIn ? (
