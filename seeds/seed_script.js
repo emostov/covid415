@@ -37,7 +37,7 @@ const types = ['food', 'medicine', 'other'];
 const seedUsersAndTasks = (n) => {
   User.remove({});
   Task.remove({});
-  console.log(Task.count());
+
   const users = generateUserObjs(n);
   for (let i = 0; i < users.length; i += 1) {
     const r = Math.floor(Math.random() * 1000);
@@ -45,8 +45,8 @@ const seedUsersAndTasks = (n) => {
     const deliverAdd = addresses[r % addresses.length];
     newUser.save()
       .then((savedUser) => {
-        console.log('hi')
-        console.log(savedUser);
+        // console.log('hi')
+        // console.log(savedUser);
         geocodeUtil.parseAddress(deliverAdd)
           .then((gMapsResponse) => {
             const taskObj = {
@@ -59,7 +59,7 @@ const seedUsersAndTasks = (n) => {
               deliveryLatLong: Object.values(gMapsResponse.data.results[0].geometry.location),
               deliveryNeighborhood: gMapsResponse.data.results[0].address_components[2].short_name,
             };
-            console.log(taskObj);
+            // console.log(taskObj);
             const newTask = new Task(taskObj);
             newTask.save()
               .then((t) => console.log(t));
@@ -71,3 +71,5 @@ const seedUsersAndTasks = (n) => {
 };
 
 console.log(seedUsersAndTasks(3));
+
+module.exports = { seedUsersAndTasks };
