@@ -93,8 +93,10 @@ class Card extends React.Component {
 
     let distanceTo = turf.distance(from, to, options)
     const dist = frontendUtil.parseDistance(distanceTo)
-    
-    this.props.receiveTaskDistanceInfo({ distance: dist, task: task })
+    task['distance'] = dist
+    // console.log('card task distance', task);
+    this.props.receiveNewTask(task)
+    // this.props.receiveTaskDistanceInfo({ distance: dist, task: task })
     // this.setState({distance: dist})
   }
 

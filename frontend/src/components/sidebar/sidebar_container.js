@@ -4,8 +4,9 @@ import SideBar from './sidebar';
 import { updateTask } from '../../actions/task_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { receiveActiveTaskId } from '../../actions/active_task_actions';
-import { getUserLocation } from '../../actions/location_actions'
-import { receiveTaskDistanceInfo } from '../../actions/task_distance_actions';
+import { getUserLocation } from '../../actions/location_actions';
+import { receiveNewTask } from '../../actions/task_actions';   
+
 import {
   receiveDisplayAssignedTasks
 } from '../../actions/displayed_tasks_actions';
@@ -22,8 +23,7 @@ const mSTP = state => {
     currentUserId: currentUserId,
     activeTask: state.ui.activeTask,
     session: state.session,
-    userLocation: state.ui.userLocation,
-    taskDistances: state.ui.taskDistanceInfo
+    userLocation: state.ui.userLocation
   }
 };
 
@@ -33,7 +33,7 @@ const mDTP = dispatch => ({
   closeModal: () => dispatch(closeModal()),
   getUserLocation: () => dispatch(getUserLocation()),
   receiveActiveTaskId: (taskId) => dispatch(receiveActiveTaskId(taskId)),
-  receiveTaskDistanceInfo: (data) => dispatch(receiveTaskDistanceInfo(data)),
+  receiveNewTask: (task) => dispatch(receiveNewTask(task)),
   receiveDisplayAssignedTasks:
     (bool) => dispatch(receiveDisplayAssignedTasks(bool)),
 });

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ActiveSidebar from './active';
 import AvailableSidebar from './available'
 import frontendUtil from '../../util/frontend_util'
+
 import '../../styles/sidebar.scss';
 
 export default class SideBar extends Component {
@@ -42,18 +43,19 @@ export default class SideBar extends Component {
       closeModal, 
       session, 
       userLocation,
+      tasks,
+      receiveNewTask
       // activeTask,
       // receiveActiveTaskId,
-      receiveTaskDistanceInfo
     } = this.props
     
     // This is saying if the tasks that need to be sorted arent received yet,
     // pass down the normal tasks
     let sortedTasks;
-    if (Object.keys(this.props.taskDistances).length === 0) {
-      sortedTasks = this.props.tasks
+    if (tasks[0].distance === undefined) {
+      sortedTasks = tasks
     } else { 
-      const sorted = frontendUtil.sortDistances(this.props.taskDistances)
+      const sorted = frontendUtil.sortDistances2(tasks)
       sortedTasks = sorted
     }
 
@@ -103,7 +105,7 @@ export default class SideBar extends Component {
                     activeTask={this.props.activeTask}
                     receiveActiveTaskId={this.props.receiveActiveTaskId}
                     currentPosition={userLocation}
-                    receiveTaskDistanceInfo={receiveTaskDistanceInfo}/>
+                    receiveNewTask={receiveNewTask}/>
                 ) : (
                   <ActiveSidebar
                     session={session}
@@ -116,7 +118,7 @@ export default class SideBar extends Component {
                     activeTask={this.props.activeTask}
                     receiveActiveTaskId={this.props.receiveActiveTaskId}
                     currentPosition={userLocation}
-                    receiveTaskDistanceInfo={receiveTaskDistanceInfo}/>
+                    receiveNewTask={receiveNewTask}/>
                 )
             }
           </div>

@@ -12,7 +12,7 @@ class AvailableSidebar extends React.Component {
             currentPosition, 
             receiveActiveTaskId, 
             activeTask,
-            receiveTaskDistanceInfo 
+            receiveNewTask
         } = this.props
 
         return (
@@ -30,7 +30,7 @@ class AvailableSidebar extends React.Component {
                                     activeTask={activeTask}
                                     receiveActiveTaskId={receiveActiveTaskId}
                                     currentPosition={currentPosition}
-                                    receiveTaskDistanceInfo={receiveTaskDistanceInfo}/>
+                                    receiveNewTask={receiveNewTask}/>
                     })
                 }
             </div>
