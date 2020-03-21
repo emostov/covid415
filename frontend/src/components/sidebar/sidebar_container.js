@@ -11,7 +11,7 @@ import {
 } from '../../actions/displayed_tasks_actions';
 
 const mSTP = state => {
-  let currentUserId;
+  let currentUserId, taskDistances;
   if (state.session.user) {
     currentUserId = state.session.user.id
   } else {
@@ -23,7 +23,7 @@ const mSTP = state => {
     activeTask: state.ui.activeTask,
     session: state.session,
     userLocation: state.ui.userLocation,
-    
+    taskDistances: state.ui.taskDistanceInfo
   }
 };
 

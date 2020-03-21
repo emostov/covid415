@@ -26,21 +26,7 @@ class MainPage extends React.Component {
     document.body.appendChild(script);
   }
 
-  getCurrentDistance() {
-    const { tasks } = this.props
-    const distances = []
-    // This is where the API for the map needs to be called to find all the distances
-    // between 2 points
-    // tasks.map(task => {
-    //   const taskPosition = task.deliveryLatLong;
-    //   const userPosition = this.state.currentPosition;
-
-    //   geocodeUtil.parseDestination(userPosition, taskPosition)
-    // })
-  }
-
   render() {
-    this.getCurrentDistance();
 
     if (this.props.tasks.length === 0) {
       return null

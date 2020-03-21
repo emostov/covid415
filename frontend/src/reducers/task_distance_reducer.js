@@ -1,13 +1,11 @@
 import { RECEIVE_TASK_DISTANCE_INFO } from '../actions/task_distance_actions';
 
-const taskDistanceInfo = (state = { distances: [] }, action) => {
-    Object.freeze(state);
-    let nextState = Object.assign({}, state);
-    debugger
+// const taskDistanceInfo = (state = { distances: [] }, action) => {
+const taskDistanceInfo = (state = [], action) => {
     switch (action.type) {
         case RECEIVE_TASK_DISTANCE_INFO:
-            nextState.distances.push(action.data)
-            return nextState
+            state.push(action.data)
+            return state
         default: 
             return state;
     }
