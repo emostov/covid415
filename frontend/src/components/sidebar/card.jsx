@@ -28,6 +28,7 @@ class Card extends React.Component {
 
   componentDidMount() {
     this.distanceFromCurrentToTask();
+    console.log("this is the props in the card", this.props)
   }
 
   componentDidUpdate(prevProps) {
@@ -35,6 +36,7 @@ class Card extends React.Component {
     if (this.props.currentPosition !== prevProps.currentPosition) {
      // recalculate distance
       this.distanceFromCurrentToTask();
+      console.log("this is the props in the card", this.props)
     }
   }
 
