@@ -23,5 +23,5 @@ export const details = [
   'I have a order waiting at the medical supplies store that needs pickup',
   'Just looking for a friend to paint with, over zoom of course',
   'I am wondering if some able bodied persons would be able to pick up AlienOG',
-  'Not urgent, but would greatly appreciate coffee or fresh bread'
+  'Not urgent, but would greatly appreciate coffee and fresh bread',
 ]
