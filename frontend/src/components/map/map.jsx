@@ -65,13 +65,12 @@ class Map extends React.Component {
   componentDidUpdate(prevProps) {
     // Make sure to compare props to prevent infinit loop
     if (Object.keys(this.props.tasks).length !== Object.keys(prevProps.tasks).length) {
-      this.clearMarkers(this.state.helpNeededMarkers);
+      // this.clearMarkers(this.state.helpNeededMarkers);
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
       const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
       const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
-      console.log('in here')
       this.setState({ userMarkers, helpNeededMarkers })
     }
   }
@@ -143,7 +142,6 @@ class Map extends React.Component {
   // Removes all current markers from map
   clearMarkers(markers) {
     if (!markers) return;
-    // console.log('the markers', markers)
     markers.forEach((marker) => {
       marker.mBMarker.remove();
     })
