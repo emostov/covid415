@@ -53,7 +53,7 @@ class TaskForm extends React.Component {
     return (
       <div className='task-form-container'>
         <Container>
-          <Card.Title className='task-form-title'><strong>Under quarantine? Request a delivery.</strong></Card.Title>
+          <Card.Title className='task-form-title'><strong>Self-isolating? Request a delivery.</strong></Card.Title>
           {this.renderErrors()}
           <Form className='task-form'>
             <Form.Group>

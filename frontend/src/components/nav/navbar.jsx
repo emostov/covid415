@@ -25,13 +25,11 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       const userCircle = (<FontAwesomeIcon className='user-circle mr-1' icon={faUserCircle} />)
       return (
-        <NavDropdown title={userCircle} id="collasible-nav-dropdown" alignRight>
-          <NavDropdown.Item href="" className='text-left'>
-            Settings
-          </NavDropdown.Item>
-          <NavDropdown.Item href="" className='text-left'>
-            Help
-          </NavDropdown.Item>
+        <NavDropdown title={userCircle} id="nav-dropdown" alignRight>
+          <div className='navbar-user'>
+            <div className='navbar-curr-user'>Hi, {this.props.currUserName}</div>
+            <div className='navbar-curr-email'>{this.props.currUserEmail}</div>
+          </div>
           <NavDropdown.Divider />
           <NavDropdown.Item onClick={this.logoutUser} className='text-left log-out' >
             Log out
