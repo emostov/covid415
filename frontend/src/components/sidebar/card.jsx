@@ -5,7 +5,6 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
 
-import geocodeUtil from '../../util/geocode_util'
 import frontendUtil from '../../util/frontend_util';
 import { typeIcon } from '../../util/card_icon_util';
 
@@ -77,26 +76,26 @@ class Card extends React.Component {
     }
   }
       
-  // distanceFromCurrentToTask() {
-  //   const { task, currentPosition } = this.props
-  //   if (this.props.task === undefined) {
-  //     return null
-  //   }
+  distanceFromCurrentToTask() {
+    const { task, currentPosition } = this.props
+    if (this.props.task === undefined) {
+      return null
+    }
     
-  //   if (currentPosition.length === 0) {
-  //     return null
-  //   }
-  //   const {latitude, longitude} = currentPosition.coords;
+    if (currentPosition.length === 0) {
+      return null
+    }
+    const {latitude, longitude} = currentPosition.coords;
     
-  //   let from = turf.point([longitude, latitude])
-  //   let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
-  //   let options = { units: 'miles' }
+    let from = turf.point([longitude, latitude])
+    let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
+    let options = { units: 'miles' }
 
-  //   let distanceTo = turf.distance(from, to, options)
-  //   const dist = frontendUtil.parseDistance(distanceTo)
+    let distanceTo = turf.distance(from, to, options)
+    const dist = frontendUtil.parseDistance(distanceTo)
     
-  //   this.setState({distance: dist})
-  // }
+    this.setState({distance: dist})
+  }
 
   displayMilesAway(){
     if (this.state.distance === '') {
@@ -109,23 +108,6 @@ class Card extends React.Component {
       return`| ${this.state.distance} miles away`;
     }
     
-  }
-
-  distanceFromCurrentToTask() {
-    const { task, currentPosition } = this.props;
-    if (task === undefined) {
-      return null
-    }
-    if (task.deliveryLatLong.length !== 2) {
-      return null
-    }
-    if (currentPosition.length === 0) {
-      return null
-    }
-    return geocodeUtil
-      .parseDestination(currentPosition.coords, task.deliveryLatLong)
-      .then(res => console.log("this is the result", res))
-      .catch(err => console.log("this is the error", err))
   }
 
   render() {
