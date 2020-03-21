@@ -30,6 +30,7 @@ const allTasksUpdate = (tasks, nextState) => {
                 ...nextState[t._id],
                 ...t
             }
+            console.log("this is the updated nextstate", updated)
             nextState[t._id] = updated
         } else {
             nextState[t._id] = t
@@ -57,10 +58,13 @@ const TasksReducer = (state = {}, action) => {
                     ...nextState[action.task._id],
                     ...action.task
                 }
+                console.log("this is the updated nextstate", updated)
                 nextState[action.task._id] = updated
+                console.log("this is the nextState after updated is added", nextState[action.task._id])
             } else {
                 nextState[action.task._id] = action.task.data
             }
+            console.log()
             return nextState
         default:
             return state
