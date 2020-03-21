@@ -5,10 +5,15 @@
     color: white;
     background-color: $figma-green;
     border-radius: 2px;
+    letter-spacing: 0.5px;
 }
 
 .claim-button:focus {
     outline: none;
+}
+
+.cancel-button {
+    letter-spacing: 0.5px;
 }
 
 .cancel-button:focus {
