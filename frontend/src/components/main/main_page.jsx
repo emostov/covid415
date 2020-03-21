@@ -7,10 +7,6 @@ import '../../styles/main_page.scss';
 import keys from '../../config/keys_mapbox';
 
 class MainPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   componentDidMount() {
     this.props.fetchTasks();
