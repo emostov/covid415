@@ -37,18 +37,21 @@ const types = ['food', 'medicine', 'other'];
 const seedUsersAndTasks = (n) => {
   User.remove({});
   Task.remove({});
-
+  const results = [];
   const users = generateUserObjs(n);
   for (let i = 0; i < users.length; i += 1) {
+
     const r = Math.floor(Math.random() * 1000);
     const newUser = new User(users[i]);
     const deliverAdd = addresses[r % addresses.length];
     newUser.save()
       .then((savedUser) => {
-        // console.log('hi')
-        // console.log(savedUser);
+        console.log('hi');
+        console.log(savedUser);
+        results.push(savedUser);
         geocodeUtil.parseAddress(deliverAdd)
           .then((gMapsResponse) => {
+            results.push(gMapsResponse);
             const taskObj = {
               requester: savedUser,
               status: 0,
@@ -61,13 +64,15 @@ const seedUsersAndTasks = (n) => {
             };
             // console.log(taskObj);
             const newTask = new Task(taskObj);
+            results.push(taskObj);
             newTask.save()
-              .then((t) => console.log(t));
+              .then((t) => results.push(t));
           })
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   }
+  return results;
 };
 
 console.log(seedUsersAndTasks(3));
