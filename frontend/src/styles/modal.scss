@@ -10,6 +10,108 @@
   z-index: 10;
 }
 
+.modal-child-welcome {
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 600px; 
+  // background-image: linear-gradient(to bottom right, $figma-red, $figma-grapefruit, $figma-peach );
+  background: rgba(51,58,64,0.8);
+  border-radius: 10px;
+  padding: 10px 0px 0px 0px;
+  overflow: hidden;
+  animation: modal-height 1s;
+}
+
+.welcome-logo {
+  height: 90%;
+  padding-right: 40px;
+}
+
+.modal-welcome-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-welcome-heading {
+  height: 10%;
+  width: 100%;
+  font-weight: 200;
+  font-size: 26px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.modal-welcome-body {
+  background-image: linear-gradient(to top, $figma-peach, $figma-grapefruit, $figma-red );
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.modal-welcome-sub-heading {
+  text-align: center;
+  color:white;
+  font-size: 20px;
+  font-weight: 200;
+  width: 100%;
+  padding-top: 15px;
+}
+
+.gutter {
+  height: 80%;
+}
+
+.modal-welcome-section {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  border-radius: 5px;
+  background-image: linear-gradient(to top, $figma-peach, $figma-grapefruit, $figma-red );
+}
+
+.modal-splash {
+  height: 400px;
+}
+
+.modal-body-header {
+  font-size: 30px;
+  color: white;
+  font-weight: 400;
+}
+
+.deliv-type-container {
+  display: flex;
+  width: 50%;
+  padding: 15px 0px 5px 0px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modal-body-text {
+  font-size: 24px;
+  color: white;
+  font-weight: 200;
+  padding-bottom: 10px;
+}
+
+.modal-body-sub-header {
+  font-size: 18px;
+}
+
 .modal-child-status {
   position: absolute;
   top: 50%;
@@ -182,4 +284,22 @@
   padding: 20px 20px;
   font-size: 23px;
   font-weight: 200;
+}
+
+.welcome-section-1 {
+  width: 50%
+}
+
+.welcome-section-2 {
+  width: 45%
+}
+
+.welcome-deliv-type {
+  height: 30px;
+}
+
+.sample-card {
+  width: 60%;
+  border-radius: 5px;
+  margin-top: 8px;
 }
