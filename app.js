@@ -37,7 +37,7 @@ require('./config/passport')(passport);
 // Setup base routes
 app.use('/api/users', users);
 app.use('/api/tasks', tasks);
-app.use('api/google', google);
+app.use('/api/google', google);
 app.get('/', (req, res) => res.send('Hello Wrld'));
 
 
