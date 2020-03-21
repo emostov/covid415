@@ -43,6 +43,7 @@ class TaskForm extends React.Component {
 
         this.props.createNewTask(this.state)
             .then(() => this.props.fetchTasks())
+            .then((res))
             .then(() => this.props.closeModal())
     }
 
