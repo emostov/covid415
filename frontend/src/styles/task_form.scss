@@ -108,10 +108,14 @@
     background-color: $figma-green;
     border: none;
     letter-spacing: 0.5px;
+    filter: brightness(95%);
 }
 
 .task-form-submit:hover {
-    background-color: rgb(115, 139, 111);
+    // background-color: rgb(115, 139, 111);
+    background-color: $figma-green;
+    filter: brightness(100%);
+    box-shadow: 1.5px 1.5px 8px 2px #6e6e6e73;
 }
 
 .errors-list {
