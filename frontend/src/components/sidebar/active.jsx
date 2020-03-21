@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-
 import Card from './card';
 
 class ActiveSidebar extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         const { 
@@ -22,7 +18,7 @@ class ActiveSidebar extends React.Component {
         } = this.props
 
         const currentUserTasks = active.filter(task => currentUserId === task.volunteer)
-
+        
         return (
             <div className="card-container">
                 {
@@ -63,6 +59,6 @@ class ActiveSidebar extends React.Component {
             
         )
     }
-}
+  }
 
-export default ActiveSidebar;
+  export default ActiveSidebar;

@@ -1,21 +1,20 @@
 import React from 'react';
 
-import SideBarContainer from '../sidebar/sidebar_container'
-import MapContainer from '../map/map_container'
-import '../../styles/main_page.scss'
+import SideBarContainer from '../sidebar/sidebar_container';
+import MapContainer from '../map/map_container';
+import '../../styles/main_page.scss';
 
 import keys from '../../config/keys_mapbox';
 
 class MainPage extends React.Component {
-  constructor(props) {
-    super(props)
-
-  }
 
   componentDidMount() {
-    this.props.fetchTasks()
-    this.props.getUserLocation()
-    this.useScript()
+    this.props.fetchTasks();
+    this.props.getUserLocation();
+    this.useScript();
+    if (!this.props.loggedIn) {
+      this.props.openModal('welcome')
+    };
   }
 
   useScript() {

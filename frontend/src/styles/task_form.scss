@@ -8,6 +8,11 @@
     justify-content: space-between;
     width: 100%;
     padding-bottom: 10px;
+    
+}
+
+.modal-child-taskform, .task-form-container{
+  height: auto;
 }
 
 .task-form-title {
@@ -29,6 +34,7 @@
 
 .task-type-group {
     display: flex;
+    justify-content: space-between;
     // justify-content: center;
 }
 .task-form-type {

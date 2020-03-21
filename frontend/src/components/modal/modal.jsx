@@ -5,7 +5,8 @@ import TaskUpdateContainer from '../tasks/task_update_container';
 import TaskFormContainer from '../tasks/task_form_container';
 import TaskTakeConfirmation from '../tasks/task_take_confirmation';
 import TaskDetailsContainer from '../tasks/task_details_container';
-import CompleteTakeConfirmation from '../tasks/task_complete_confirmation'
+import CompleteTakeConfirmation from '../tasks/task_complete_confirmation';
+import WelcomeModal from './welcome_modal';
 import '../../styles/modal.scss';
 
 class Modal extends React.Component {
@@ -48,6 +49,10 @@ class Modal extends React.Component {
             case 'completeTaskConfirmed':
                 component = <CompleteTakeConfirmation />;
                 childClass = "modal-child-taketask"
+                break;
+            case 'welcome':
+                component = <WelcomeModal />;
+                childClass = "modal-child-welcome"
                 break;
             default: 
                 return null;

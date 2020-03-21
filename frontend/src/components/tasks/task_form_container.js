@@ -14,7 +14,8 @@ const mSTP = (state, ownProps) => {
         errors: {}
     },
     history: ownProps.history,
-    errors: state.errors.task
+    errors: state.errors.task,
+    modalType: 'taskForm'
 }};
 
 const mDTP = dispatch => ({

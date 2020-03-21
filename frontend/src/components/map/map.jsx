@@ -4,7 +4,6 @@ import mapboxgl from 'mapbox-gl';
 import { mapBoxPublicKey } from '../../config/keys_front'
 import '../../styles/map.scss'
 import { typeIconString, statusPopupClass } from '../../util/card_icon_util';
-import MedicineRedCircle from '../../public/medicine_red_circle.png';
 
 class Map extends React.Component {
   constructor(props) {
@@ -22,7 +21,6 @@ class Map extends React.Component {
 
   componentDidMount() {
     mapboxgl.accessToken = mapBoxPublicKey;
-    // mapboxgl.accessToken = mapboxkeys.public_key;
     // Set the map's max bounds
     const bounds = [
       [-122.54, 37.6], // [west, south]
@@ -67,7 +65,6 @@ class Map extends React.Component {
   componentDidUpdate(prevProps) {
     // Make sure to compare props to prevent infinit loop
     if (this.props.tasks !== prevProps.tasks) {
-      // this.clearMarkers(this.state.helpNeededMarkers);
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
@@ -118,8 +115,7 @@ class Map extends React.Component {
         closeOnClick: false,
         className: statusPopupClass(status)
       }).setHTML(
-        type + ' delivery' + `<br />` +
-        typeIconString(type.toLowerCase(), status)
+        `${type} delivery${`<br />`}${typeIconString(type.toLowerCase(), status)}`
       )
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
@@ -164,9 +160,6 @@ class Map extends React.Component {
       this.clearMarkers(userMarkers);
       this.addMarkers(helpNeededMarkers);
     } else {
-      // console.log('updating to show user markers')
-      // console.log('userMarkers length', userMarkers.length)
-      // console.log('helpNeededMarkers length', helpNeededMarkers.length)
       this.clearMarkers(helpNeededMarkers);
       this.addMarkers(userMarkers);
     }
@@ -200,6 +193,5 @@ class Map extends React.Component {
     )
   }
 }
-
 
 export default Map;
