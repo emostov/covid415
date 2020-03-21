@@ -95,7 +95,7 @@ class Card extends React.Component {
     const dist = frontendUtil.parseDistance(distanceTo)
     
     this.props.receiveTaskDistanceInfo({ distance: dist, task: task })
-    this.setState({distance: dist})
+    // this.setState({distance: dist})
   }
 
   displayMilesAway() {

@@ -52,13 +52,10 @@ export default class SideBar extends Component {
     let sortedTasks;
     if (Object.keys(this.props.taskDistances).length === 0) {
       sortedTasks = this.props.tasks
-      console.log("the props length === 0", this.props.taskDistances, this.props)
     } else { 
       const sorted = frontendUtil.sortDistances(this.props.taskDistances)
       sortedTasks = sorted
-      console.log("this is the props sorted", sorted)
     }
-
 
     // Sorted Tasks is received from th above conditional that is waiting for the
     // tasks with distances attached to them from global state
