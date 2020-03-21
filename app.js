@@ -36,18 +36,15 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
-
 // Setup base routes
 app.use('/api/users', users);
 app.use('/api/tasks', tasks);
 app.use('/api/google', google);
-app.get('/', (req, res) => res.send('Hello Wrld'));
+app.get('/', (req, res) => res.send('Light on the back side'));
 app.get('/seed', (req, res) => {
-  User.remove({});
-  Task.remove({});
-  res.send(seedUsersAndTasks(5));
+  res.send(seedUsersAndTasks(10));
+  res.send('seemsToHaveWorked');
 });
-
 
 // Lastly, setup our app to listen
 app.listen(port, () => console.log(`Server is running on port ${port}`));
