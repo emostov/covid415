@@ -48,7 +48,6 @@ class TaskForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    debugger;
     this.props.createNewTask(this.state)
       .then(() => this.props.fetchTasks())
       .then(() => this.props.closeModal())
