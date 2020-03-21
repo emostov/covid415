@@ -34,6 +34,10 @@ class Card extends React.Component {
     // Make sure to compare props to prevent infinit loop
     if (this.props.currentPosition !== prevProps.currentPosition) {
      // recalculate distance
+     console.log('distances in update ',
+       this.props.currentPosition,
+        prevProps.currentPosition
+      )
       this.distanceFromCurrentToTask();
     }
   }
@@ -102,6 +106,7 @@ class Card extends React.Component {
 
   displayMilesAway() {
     const { task } = this.props
+    
     if (task.distance === undefined) {
       return (<Spinner animation="grow" variant="light" />);
     }

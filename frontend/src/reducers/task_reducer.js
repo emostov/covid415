@@ -22,29 +22,45 @@ const convertToTasksObj = (tasks) => {
     return newTasks;
 }
 
+const allTasksUpdate = (tasks, nextState) => {
+    tasks.forEach((t) => {
+        if (nextState[t._id] !== undefined) {
+            // call function that replaces updated fields
+            const updated = {
+                ...nextState[t._id],
+                ...t
+            }
+            console.log('updated', updated)
+            nextState[t._id] = updated
+        } else {
+            nextState[t._id] = t
+        }
+    })
+    return nextState;
+}
+
 const TasksReducer = (state = {}, action) => {
     Object.freeze(state)
     let nextState = Object.assign({}, state)
     // const nextState = state.slice()
     switch (action.type) {
         case RECEIVE_TASKS:
-            // nextState = action.tasks.data
-            nextState = convertToTasksObj(action.tasks.data)
+            if (Object.keys(nextState).length > 0) {
+                nextState = allTasksUpdate(action.tasks.data, nextState);
+            }else {
+                nextState = convertToTasksObj(action.tasks.data)
+            }
             return nextState
         case RECEIVE_NEW_TASK:
-            // debugger
             if (nextState[action.task._id] !== undefined) {
                 // call function that replaces updated fields
-                // debugger
                 const updated = {
                     ...nextState[action.task._id],
                     ...action.task
                 }
-                
-                console.log('reducer update', updated);
-                nextState[action.task.id] = updated
+                console.log('updated', updated)
+                nextState[action.task._id] = updated
             } else {
-                // debugger
                 nextState[action.task._id] = action.task.data
             }
             return nextState
