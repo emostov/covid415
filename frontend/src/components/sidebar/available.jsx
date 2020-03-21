@@ -2,11 +2,6 @@ import React from 'react';
 import Card from './card'
 
 class AvailableSidebar extends React.Component {
-    constructor(props) {
-        super(props)
-
-    }
-
     render() {
         const { 
             currentUserId, 
@@ -38,7 +33,6 @@ class AvailableSidebar extends React.Component {
                 }
             </div>
         )
-
     }
 }
 
