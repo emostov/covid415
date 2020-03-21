@@ -9,8 +9,6 @@ import geocodeUtil from '../../util/geocode_util'
 import frontendUtil from '../../util/frontend_util';
 import { typeIcon } from '../../util/card_icon_util';
 
-
-
 import '../../styles/card.scss'
 
 class Card extends React.Component {
@@ -49,8 +47,10 @@ class Card extends React.Component {
 
   handleModal(e) {
     e.stopPropagation();
-    if (this.props.currentUserId) {
+    if (this.props.currentUserId && this.props.task.status === 0) {
       this.props.openModal('status', this.props.task._id)
+    } else if (this.props.currentUserId && this.props.task.status === 1) {
+        this.props.openModal('details', this.props.task._id)
     } else {
       this.props.history.push('/login')
     }
@@ -102,7 +102,13 @@ class Card extends React.Component {
     if (this.state.distance === '') {
       return (<Spinner animation="grow" variant="light" />);
     }
-    return`| ${this.state.distance} miles away`;
+    
+    if (this.state.active) {
+      return`${this.state.distance} miles away`;
+    } else {
+      return`| ${this.state.distance} miles away`;
+    }
+    
   }
 
   distanceFromCurrentToTask() {

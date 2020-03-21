@@ -3,43 +3,61 @@ import { connect } from 'react-redux';
 import React from 'react';
 import TaskUpdateContainer from '../tasks/task_update_container';
 import TaskFormContainer from '../tasks/task_form_container';
+import TaskTakeConfirmation from '../tasks/task_take_confirmation';
+import TaskDetailsContainer from '../tasks/task_details_container';
+import CompleteTakeConfirmation from '../tasks/task_complete_confirmation'
 import '../../styles/modal.scss';
 
 class Modal extends React.Component {
     constructor(props) {
-        super(props)
-
-        this.close = this.close.bind(this)
+        super(props);
+        this.close = this.close.bind(this);
     }
 
     close() {
-        this.props.closeModal()
+        this.props.closeModal();
     }
 
     render() {
-        const { modal, closeModal } = this.props
-        if (!modal) {
-            return null
+        const { modal, closeModal } = this.props;
+
+        if(!modal) {
+            return null;
         }
 
         let component;
+        let childClass;
 
         switch (modal.modal) {
-            case 'status':
-                component = <TaskUpdateContainer taskId={modal.taskId} />;
-                break;
             case 'taskform':
                 component = <TaskFormContainer />;
+                childClass = "modal-child-taskform"
                 break;
-            default:
+            case 'status':
+                component = <TaskUpdateContainer taskId={modal.taskId}/>;
+                childClass = "modal-child-status"
+                break;
+            case 'details':
+                component = <TaskDetailsContainer taskId={modal.taskId}/>;
+                childClass = "modal-child-status"
+                break;
+            case 'takeTaskConfirmed':
+                component = <TaskTakeConfirmation />;
+                childClass = "modal-child-taketask"
+                break;
+            case 'completeTaskConfirmed':
+                component = <CompleteTakeConfirmation />;
+                childClass = "modal-child-taketask"
+                break;
+            default: 
                 return null;
         }
-
-
+        
+        
         return (
-            <div className="modal-background" onClick={() => this.close()}>
-                <div className={modal.modal === 'status' ? "modal-child-status" : 'modal-child-taskform'} onClick={e => e.stopPropagation()}>
-                    {component}
+            <div className="modal-background" onClick={closeModal}>
+                <div className={childClass} onClick={e => e.stopPropagation()}>
+                { component }
                 </div>
             </div>
         )
