@@ -315,7 +315,7 @@
   background-color: $figma-green;
   border: none;
   color: white;
-  filter: brightness(90%);
+  filter: brightness(95%);
   width: 20%;
   height: 8%;
   border-radius: 5px;
@@ -326,4 +326,14 @@
   bottom: 30px;
   animation-name: card-fade-in;
   animation-duration: 1s;
+}
+
+.continue-button:focus {
+  outline: none;
+}
+
+.continue-button:hover {
+  filter: brightness(100%);
+  box-shadow: 2px 2px 8px 2px #4c515973;
+
 }
