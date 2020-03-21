@@ -11,7 +11,8 @@ class AvailableSidebar extends React.Component {
             closeModal, 
             currentPosition, 
             receiveActiveTaskId, 
-            activeTask 
+            activeTask,
+            receiveNewTask
         } = this.props
 
         return (
@@ -28,7 +29,8 @@ class AvailableSidebar extends React.Component {
                                     history={history}
                                     activeTask={activeTask}
                                     receiveActiveTaskId={receiveActiveTaskId}
-                                    currentPosition={currentPosition}/>
+                                    currentPosition={currentPosition}
+                                    receiveNewTask={receiveNewTask}/>
                     })
                 }
             </div>

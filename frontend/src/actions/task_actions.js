@@ -30,13 +30,13 @@ export const fetchTasks = () => dispatch => {
 };
 
 export const createNewTask = data => dispatch => {
+    debugger
     return APIUtil.createTask(data)
         .then(task => dispatch(receiveNewTask(task)))
         .catch(err => dispatch(receiveErrors(err.response.data)))
 };
 
 export const updateTask = data => dispatch => {
-   console.log(data._id)
     return APIUtil.updateTask(data)
         .then(task => dispatch(receiveNewTask(task)))
         .catch(err => console.log(err))

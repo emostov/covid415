@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import ActiveSidebar from './active';
 import AvailableSidebar from './available'
+import frontendUtil from '../../util/frontend_util'
+
 import '../../styles/sidebar.scss';
 
 export default class SideBar extends Component {
@@ -41,13 +43,27 @@ export default class SideBar extends Component {
       closeModal, 
       session, 
       userLocation,
+      tasks,
+      receiveNewTask
       // activeTask,
       // receiveActiveTaskId,
     } = this.props
+    
+    // This is saying if the tasks that need to be sorted arent received yet,
+    // pass down the normal tasks
+    let sortedTasks;
+    if (tasks[0].distance === undefined) {
+      sortedTasks = tasks
+    } else { 
+      const sorted = frontendUtil.sortDistances2(tasks)
+      sortedTasks = sorted
+    }
 
+    // Sorted Tasks is received from th above conditional that is waiting for the
+    // tasks with distances attached to them from global state
     let available = []
     let active = []
-    this.props.tasks.forEach((task, i) => {
+    sortedTasks.forEach((task, i) => {
       if (task.status === 0) {
         available.push(task)
       } else if (task.status === 1) {
@@ -88,7 +104,8 @@ export default class SideBar extends Component {
                     history={history}
                     activeTask={this.props.activeTask}
                     receiveActiveTaskId={this.props.receiveActiveTaskId}
-                    currentPosition={userLocation}/>
+                    currentPosition={userLocation}
+                    receiveNewTask={receiveNewTask}/>
                 ) : (
                   <ActiveSidebar
                     session={session}
@@ -100,7 +117,8 @@ export default class SideBar extends Component {
                     history={history}
                     activeTask={this.props.activeTask}
                     receiveActiveTaskId={this.props.receiveActiveTaskId}
-                    currentPosition={userLocation}/>
+                    currentPosition={userLocation}
+                    receiveNewTask={receiveNewTask}/>
                 )
             }
           </div>

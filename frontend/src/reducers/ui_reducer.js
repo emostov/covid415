@@ -8,8 +8,8 @@ import dispalyNotAssignedTasks from './display_not_assigned_tasks_reducer'
 const uiReducer = combineReducers({
   modal,
   activeTask,
-  dispalyNotAssignedTasks,
   userLocation,
+  dispalyNotAssignedTasks,
 });
 
 export default uiReducer;
