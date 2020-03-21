@@ -35,7 +35,7 @@ class MainPage extends React.Component {
       <div className="mainpage-container">
         <MapContainer />
         <SideBarContainer 
-          tasks={tasks} 
+          // tasks={tasks} 
           history={history}/>
       </div>
     );

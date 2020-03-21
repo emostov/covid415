@@ -64,7 +64,8 @@ class Map extends React.Component {
 
   componentDidUpdate(prevProps) {
     // Make sure to compare props to prevent infinit loop
-    if (this.props.tasks !== prevProps.tasks) {
+    if (Object.keys(this.props.tasks).length !== Object.keys(prevProps.tasks).length) {
+      // this.clearMarkers(this.state.helpNeededMarkers);
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
@@ -163,6 +164,7 @@ class Map extends React.Component {
       this.clearMarkers(helpNeededMarkers);
       this.addMarkers(userMarkers);
     }
+
   }
 
   updatePopups() {

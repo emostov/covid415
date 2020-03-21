@@ -48,21 +48,9 @@ export default class SideBar extends Component {
       // receiveActiveTaskId,
     } = this.props
     
-    // This is saying if the tasks that need to be sorted arent received yet,
-    // pass down the normal tasks
-    let sortedTasks;
-    if (tasks[0].distance === undefined) {
-      sortedTasks = tasks
-    } else { 
-      const sorted = frontendUtil.sortDistances2(tasks)
-      sortedTasks = sorted
-    }
-
-    // Sorted Tasks is received from th above conditional that is waiting for the
-    // tasks with distances attached to them from global state
     let available = []
     let active = []
-    sortedTasks.forEach((task, i) => {
+    Object.values(tasks).forEach((task) => {
       if (task.status === 0) {
         available.push(task)
       } else if (task.status === 1) {
