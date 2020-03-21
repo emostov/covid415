@@ -1,12 +1,11 @@
 import React from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-import '../../styles/task_form.scss'
 import { Form, Button, Card, Alert, Container } from 'react-bootstrap'
 
 import Food from '../../public/groceries.png';
 import Medicine from '../../public/medicine.png';
 import Other from '../../public/other.png';
-import keys from '../../config/keys_mapbox';
+import '../../styles/task_form.scss'
 
 class TaskForm extends React.Component {
   constructor(props) {

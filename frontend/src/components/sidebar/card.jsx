@@ -134,6 +134,7 @@ class Card extends React.Component {
                     <div className="instructions-body">
                     <a className="card-address-link"
                       target="_blank"
+                      rel="noopener noreferrer"
                       href={`https://www.google.com/maps/dir/?api=1&destination=${this.props.task.deliveryAddress}`}
                       onClick={this.handleDirectionsClick}
                       >
