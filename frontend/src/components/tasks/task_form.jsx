@@ -123,7 +123,7 @@ class TaskForm extends React.Component {
               />
             </Form.Group>
           </Form>
-          <Button className='task-form-submit' onClick={this.handleSubmit}>Request Delivery</Button>
+          <Button variant="secondary" className='task-form-submit' onClick={this.handleSubmit}>Request Delivery</Button>
         </Container>
       </div>
     )
