@@ -7,7 +7,6 @@ export const getTasks = () => {
 }
 
 export const createTask = data => {
-    debugger
     return axios.post('/api/tasks', data)
 }
 

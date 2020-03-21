@@ -34,10 +34,6 @@ class Card extends React.Component {
     // Make sure to compare props to prevent infinit loop
     if (this.props.currentPosition !== prevProps.currentPosition) {
      // recalculate distance
-     console.log('distances in update ',
-       this.props.currentPosition,
-        prevProps.currentPosition
-      )
       this.distanceFromCurrentToTask();
     }
   }
@@ -98,10 +94,7 @@ class Card extends React.Component {
     let distanceTo = turf.distance(from, to, options)
     const dist = frontendUtil.parseDistance(distanceTo)
     task['distance'] = dist
-    // console.log('card task distance', task);
     this.props.receiveNewTask(task)
-    // this.props.receiveTaskDistanceInfo({ distance: dist, task: task })
-    // this.setState({distance: dist})
   }
 
   displayMilesAway() {
