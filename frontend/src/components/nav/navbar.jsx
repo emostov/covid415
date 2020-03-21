@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
@@ -12,6 +12,7 @@ class NavBar extends React.Component {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.requestHelp = this.requestHelp.bind(this);
   }
 
   logoutUser(e) {
@@ -33,7 +34,7 @@ class NavBar extends React.Component {
           </NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item onClick={this.logoutUser} className='text-left log-out' >
-              Log out
+            Log out
           </NavDropdown.Item>
         </NavDropdown>
 
@@ -54,6 +55,10 @@ class NavBar extends React.Component {
     }
   }
 
+  requestHelp() {
+    this.props.openModal('taskform');
+  }
+
   render() {
     return (
       <div>
@@ -66,10 +71,10 @@ class NavBar extends React.Component {
             </Nav>
 
             {this.props.loggedIn ? (
-              <button className='request-help-button' onClick={() => this.props.openModal('taskform')}>Request a Delivery</button>
+              <button className='request-help-button' onClick={() => this.requestHelp()}>Request Help</button>
             ) : (
-              <div></div>
-            )
+                <div></div>
+              )
             }
 
             <Nav
@@ -80,7 +85,6 @@ class NavBar extends React.Component {
           </div>
           {/* </Nav> */}
         </Navbar>
-
 
       </div>
     );
