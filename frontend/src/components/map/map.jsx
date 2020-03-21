@@ -115,8 +115,7 @@ class Map extends React.Component {
         closeOnClick: false,
         className: statusPopupClass(status)
       }).setHTML(
-        type + ' delivery' + `<br />` +
-        typeIconString(type.toLowerCase(), status)
+        `${type} delivery${`<br />`}${typeIconString(type.toLowerCase(), status)}`
       )
       // make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
