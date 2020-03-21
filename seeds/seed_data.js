@@ -133,7 +133,7 @@ const addresses = [
   '672 Geary St, San Francisco, CA 94102',
   '28 6th St, San Francisco, CA 94103',
   '28 6th St, San Francisco, CA 94103',
-  '1222 Harrison St, San Francisco, CA 94103'
+  '1222 Harrison St, San Francisco, CA 94103',
 
 
 
