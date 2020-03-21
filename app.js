@@ -4,8 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
 
-const User = require('./models/User');
-const Task = require('./models/Task');
+
 const users = require('./routes/api/users');
 const tasks = require('./routes/api/tasks');
 const google = require('./routes/api/google');

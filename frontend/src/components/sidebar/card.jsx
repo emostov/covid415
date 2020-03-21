@@ -28,6 +28,9 @@ class Card extends React.Component {
 
   componentDidMount() {
     this.distanceFromCurrentToTask();
+    if (this.props.currentPosition !== null){
+      this.distanceFromCurrentToTask();
+    }
   }
 
   componentDidUpdate(prevProps) {
