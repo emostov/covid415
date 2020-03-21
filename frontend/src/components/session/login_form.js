@@ -106,13 +106,15 @@ class LoginForm extends React.Component {
                 <Button
                   className='session-btn'
                   type="submit"
-                  onClick={this.handleSubmit}>
+                  onClick={this.handleSubmit}
+                  variant='secondary'>
                   Log in
                 </Button>
                 <Button
                   className='demo-btn'
                   type="submit"
-                  onClick={this.demoLogin}>
+                  onClick={this.demoLogin}
+                  variant='secondary'>
                   Just demo for now
                 </Button>
               </Card>
