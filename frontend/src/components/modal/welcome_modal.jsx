@@ -4,10 +4,11 @@ import '../../styles/task_form.scss'
 
 import Logo from '../../public/COVID415.png';
 import SocialDistancing from '../../public/social_distancing.svg'
-import Food from '../../public/groceries.png';
-import Medicine from '../../public/medicine.png';
-import Other from '../../public/other.png';
-import keys from '../../config/keys_mapbox';
+import HayesValley from '../../public/hayes_valley.png';
+import Potrero from '../../public/potrero.png';
+import MedicineRedCircle from '../../public/medicine_red_circle.png';
+import FoodRedCircle from '../../public/groceries_red_circle.png';
+import OtherRedCircle from '../../public/other_red_circle.png';
 
 class WelcomeModal extends React.Component {
     constructor(props) {
@@ -27,11 +28,21 @@ class WelcomeModal extends React.Component {
                             Self-isolating? */}
                         <div className="welcome-section-1">
                             <div className="modal-body-header">Self-isolating?</div>
+                            <div className="modal-body-text">Request a delivery from a local volunteer.</div>
+                            {/* <div className="deliv-type-container">
+                                <img src={FoodRedCircle} className='welcome-deliv-type' />
+                                <img src={MedicineRedCircle} className='welcome-deliv-type' />
+                                <img src={OtherRedCircle} className='welcome-deliv-type' />
+                            </div> */}<br />
+                            <div className="modal-body-header">Want to help?</div>
+                            <div className="modal-body-text">Deliver essentials to your quarantined neighbors.</div>
+                            <img src={HayesValley} className='sample-card' />
+                            <img src={Potrero} className='sample-card' />
+                            <button className="complete-button">Continue </button>
                         </div>
                         <div className="welcome-section-2">
                             <img src={SocialDistancing} className="modal-splash"></img>
                         </div>    
-                        <div className="welcome-section-3"></div>
                             {/* <div className="modal-body-sub-header">Request a delivery from a local volunteer.</div>
                         </div>
                     </div>

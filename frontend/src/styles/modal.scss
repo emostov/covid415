@@ -16,7 +16,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
+  width: 80%;
   height: 600px; 
   // background-image: linear-gradient(to bottom right, $figma-red, $figma-grapefruit, $figma-peach );
   background: rgba(51,58,64,0.8);
@@ -42,6 +42,7 @@
 .modal-welcome-heading {
   height: 10%;
   width: 100%;
+  font-weight: 200;
   font-size: 26px;
   color: white;
   display: flex;
@@ -54,7 +55,7 @@
   background-image: linear-gradient(to top, $figma-peach, $figma-grapefruit, $figma-red );
   height: 100%;
   width: 100%;
-  padding: 30px 15px;
+  padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -90,6 +91,20 @@
   font-size: 30px;
   color: white;
   font-weight: 400;
+}
+
+.deliv-type-container {
+  display: flex;
+  width: 50%;
+  padding: 15px 0px 5px 0px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modal-body-text {
+  font-size: 24px;
+  color: white;
+  font-weight: 200;
 }
 
 .modal-body-sub-header {
@@ -268,4 +283,22 @@
   padding: 20px 20px;
   font-size: 23px;
   font-weight: 200;
+}
+
+.welcome-section-1 {
+  width: 50%
+}
+
+.welcome-section-2 {
+  width: 45%
+}
+
+.welcome-deliv-type {
+  height: 30px;
+}
+
+.sample-card {
+  width: 60%;
+  border-radius: 5px;
+  margin-top: 8px;
 }
