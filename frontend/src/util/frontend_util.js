@@ -3,19 +3,26 @@ module.exports = {
         let multiplier = Math.pow(10, 2);
         return Math.round(num * multiplier) / multiplier;
     },
-    sortDistances: (objectArr) => {
-        const distances = [];
-        for (let i = 0; i < objectArr.length; i++) {
-            distances.push(objectArr[i].distance)
+    sortDistances: (object) => {
+        const tasks = [];
+        const keys = Object.keys(object)
+        const sorted = keys.sort()
+        
+        for(let i = 0; i < keys.length; i++) {
+            object[sorted[i]].task['distance'] = object[sorted[i]].distance
+            tasks.push(object[sorted[i]].task)
         }
-
-        const sorted = distances.sort()
-        return sorted
+        return tasks
     },
-    // sortTasks: (sortedArr, Objects) => {
-    //     for(let i = 0; i < sortedArr.length; i++) {
-    //         sortedArr[i]
-    //     }
-    // }
 }
 
+// const sortDistances = (object) => {
+//     const tasks = [];
+//     const keys = Object.keys(object)
+//     const sorted = keys.sort()
+
+//     for (let i = 0; i < keys.length; i++) {
+//         tasks.push(object[sorted[i]])
+//     }
+//     return tasks
+// }

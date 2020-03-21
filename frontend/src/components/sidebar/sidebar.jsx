@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import ActiveSidebar from './active';
 import AvailableSidebar from './available'
+import frontendUtil from '../../util/frontend_util'
 import '../../styles/sidebar.scss';
 
 export default class SideBar extends Component {
@@ -45,10 +46,25 @@ export default class SideBar extends Component {
       // receiveActiveTaskId,
       receiveTaskDistanceInfo
     } = this.props
+    
+    // This is saying if the tasks that need to be sorted arent received yet,
+    // pass down the normal tasks
+    let sortedTasks;
+    if (Object.keys(this.props.taskDistances).length === 0) {
+      sortedTasks = this.props.tasks
+      console.log("the props length === 0", this.props.taskDistances, this.props)
+    } else { 
+      const sorted = frontendUtil.sortDistances(this.props.taskDistances)
+      sortedTasks = sorted
+      console.log("this is the props sorted", sorted)
+    }
 
+
+    // Sorted Tasks is received from th above conditional that is waiting for the
+    // tasks with distances attached to them from global state
     let available = []
     let active = []
-    this.props.tasks.forEach((task, i) => {
+    sortedTasks.forEach((task, i) => {
       if (task.status === 0) {
         available.push(task)
       } else if (task.status === 1) {

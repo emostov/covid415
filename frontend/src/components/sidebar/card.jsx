@@ -94,19 +94,20 @@ class Card extends React.Component {
     let distanceTo = turf.distance(from, to, options)
     const dist = frontendUtil.parseDistance(distanceTo)
     
-    this.props.receiveTaskDistanceInfo({ distance: dist, task: task._id })
+    this.props.receiveTaskDistanceInfo({ distance: dist, task: task })
     this.setState({distance: dist})
   }
 
-  displayMilesAway(){
-    if (this.state.distance === '') {
+  displayMilesAway() {
+    const { task } = this.props
+    if (task.distance === undefined) {
       return (<Spinner animation="grow" variant="light" />);
     }
 
     if (this.state.active) {
-      return`${this.state.distance} miles away`;
+      return `${task.distance} miles away`;
     } else {
-      return`| ${this.state.distance} miles away`;
+      return `| ${task.distance} miles away`;
     }
   }
 
