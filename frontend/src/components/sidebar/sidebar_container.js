@@ -22,7 +22,8 @@ const mSTP = state => {
     currentUserId: currentUserId,
     activeTask: state.ui.activeTask,
     session: state.session,
-    userLocation: state.ui.userLocation
+    userLocation: state.ui.userLocation,
+    
   }
 };
 
@@ -32,7 +33,7 @@ const mDTP = dispatch => ({
   closeModal: () => dispatch(closeModal()),
   getUserLocation: () => dispatch(getUserLocation()),
   receiveActiveTaskId: (taskId) => dispatch(receiveActiveTaskId(taskId)),
-  receiveTaskDistanceInfo: (data) => dispatch(receiveTaskDistanceInfo),
+  receiveTaskDistanceInfo: (data) => dispatch(receiveTaskDistanceInfo(data)),
   receiveDisplayAssignedTasks:
     (bool) => dispatch(receiveDisplayAssignedTasks(bool)),
 });

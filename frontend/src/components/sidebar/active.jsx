@@ -17,7 +17,8 @@ class ActiveSidebar extends React.Component {
             closeModal, 
             currentPosition, 
             receiveActiveTaskId,
-            activeTask 
+            activeTask,
+            receiveTaskDistanceInfo 
         } = this.props
 
         const currentUserTasks = active.filter(task => currentUserId === task.volunteer)
@@ -41,7 +42,8 @@ class ActiveSidebar extends React.Component {
                                         history={history} 
                                         activeTask={activeTask}
                                         receiveActiveTaskId={receiveActiveTaskId}
-                                        currentPosition={currentPosition}/>
+                                        currentPosition={currentPosition}
+                                        receiveTaskDistanceInfo={receiveTaskDistanceInfo}/>
                                 })
                             }
                         </div>

@@ -43,6 +43,7 @@ export default class SideBar extends Component {
       userLocation,
       // activeTask,
       // receiveActiveTaskId,
+      receiveTaskDistanceInfo
     } = this.props
 
     let available = []
@@ -88,7 +89,8 @@ export default class SideBar extends Component {
                     history={history}
                     activeTask={this.props.activeTask}
                     receiveActiveTaskId={this.props.receiveActiveTaskId}
-                    currentPosition={userLocation}/>
+                    currentPosition={userLocation}
+                    receiveTaskDistanceInfo={receiveTaskDistanceInfo}/>
                 ) : (
                   <ActiveSidebar
                     session={session}
@@ -100,7 +102,8 @@ export default class SideBar extends Component {
                     history={history}
                     activeTask={this.props.activeTask}
                     receiveActiveTaskId={this.props.receiveActiveTaskId}
-                    currentPosition={userLocation}/>
+                    currentPosition={userLocation}
+                    receiveTaskDistanceInfo={receiveTaskDistanceInfo}/>
                 )
             }
           </div>

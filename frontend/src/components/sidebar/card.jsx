@@ -28,7 +28,6 @@ class Card extends React.Component {
 
   componentDidMount() {
     this.distanceFromCurrentToTask();
-    console.log("this is the props in the card", this.props)
   }
 
   componentDidUpdate(prevProps) {
@@ -36,7 +35,6 @@ class Card extends React.Component {
     if (this.props.currentPosition !== prevProps.currentPosition) {
      // recalculate distance
       this.distanceFromCurrentToTask();
-      console.log("this is the props in the card", this.props)
     }
   }
 
@@ -96,6 +94,7 @@ class Card extends React.Component {
     let distanceTo = turf.distance(from, to, options)
     const dist = frontendUtil.parseDistance(distanceTo)
     
+    this.props.receiveTaskDistanceInfo({ distance: dist, task: task._id })
     this.setState({distance: dist})
   }
 
@@ -103,13 +102,12 @@ class Card extends React.Component {
     if (this.state.distance === '') {
       return (<Spinner animation="grow" variant="light" />);
     }
-    
+
     if (this.state.active) {
       return`${this.state.distance} miles away`;
     } else {
       return`| ${this.state.distance} miles away`;
     }
-    
   }
 
   render() {
