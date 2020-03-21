@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import TaskUpdate from './task_update';
+import TaskDetails from './task_details';
 import { fetchTasks, updateTask } from '../../actions/task_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 
@@ -14,8 +14,8 @@ const mSTP = state => {
 const mDTP = dispatch => ({
     fetchTasks: () => dispatch(fetchTasks()),
     updateTask: task => dispatch(updateTask(task)),
-    openModal: modal => dispatch(openModal(modal)),
+    openModal: (modal) => dispatch(openModal(modal)),
     closeModal: () => dispatch(closeModal())
 });
 
-export default connect(mSTP, mDTP)(TaskUpdate);
+export default connect(mSTP, mDTP)(TaskDetails);

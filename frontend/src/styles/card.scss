@@ -5,6 +5,18 @@
     height: calc(100vh - 132px);
     overflow-y: auto;
     background: linear-gradient(#DA5663 15%, #FECEA8 );
+    animation: cards .5s;
+ }
+
+ @keyframes cards {
+   0% {
+     padding: 100px 20px 20px 16px;
+     opacity: 0;
+   }
+   100% {
+      padding: 20px 20px 20px 16px;
+     opacity: 1;
+   }
  }
  
  .card-container-2 {
@@ -12,6 +24,7 @@
    height: calc(100vh - 132px);
    overflow-y: auto;
    background: linear-gradient(#FECEA8 15%, #9FB89B );
+   animation: cards .4s;
  }
 
  .card-header-container {

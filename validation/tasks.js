@@ -4,7 +4,7 @@ const validText = require('./valid-text');
 module.exports = function validateTaskInput(dat) {
   const errors = {};
   const data = { ...dat }; // Clone so we don't manipulate arguments
-
+  
   data.type = validText(data.type) ? data.type : '';
   data.body = validText(data.body) ? data.body : '';
   data.deliveryAddress = validText(data.deliveryAddress) ? data.deliveryAddress : '';
