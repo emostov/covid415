@@ -44,7 +44,7 @@ class TaskForm extends React.Component {
     this.props.createNewTask(this.state)
       .then(() => this.props.fetchTasks())
       .then(() => {
-        if (!this.state.errors.length) {
+        if (this.state.errors.length <= 0) {
           this.props.closeModal();
         }
       })
