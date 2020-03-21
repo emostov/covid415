@@ -34,8 +34,8 @@ class WelcomeModal extends React.Component {
                                 <img src={MedicineRedCircle} className='welcome-deliv-type' />
                                 <img src={OtherRedCircle} className='welcome-deliv-type' />
                             </div> */}<br />
-                            <div className="modal-body-header">Want to help?</div>
-                            <div className="modal-body-text">Deliver essentials to your quarantined neighbors.</div>
+                            <div className="modal-body-header">Want to help your neighbors?</div>
+                            <div className="modal-body-text">Deliver essential items to quarantined people nearby.</div>
                             <img src={HayesValley} className='sample-card' />
                             <img src={Potrero} className='sample-card' />
                             <button className="complete-button">Continue </button>
