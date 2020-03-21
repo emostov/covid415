@@ -9,7 +9,7 @@ const Task = require('./models/Task');
 const users = require('./routes/api/users');
 const tasks = require('./routes/api/tasks');
 const google = require('./routes/api/google');
-const { seedUsersAndTasks } = require('./seeds/seed_script');
+const { seedUsersAndTasks, seedByAddress } = require('./seeds/seed_script');
 
 const port = process.env.PORT || 5000;
 
@@ -42,7 +42,8 @@ app.use('/api/tasks', tasks);
 app.use('/api/google', google);
 app.get('/', (req, res) => res.send('Light on the back side'));
 app.get('/seed', (req, res) => {
-  res.send(seedUsersAndTasks(10));
+  // res.send(seedUsersAndTasks(10));
+  seedByAddress();
   res.send('seemsToHaveWorked');
 });
 

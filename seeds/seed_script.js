@@ -65,8 +65,8 @@ const seedUsersAndTasks = (n) => {
   return results;
 };
 
-seedByAddress = () => {
-  const users = generateUserObjs(n);
+const seedByAddress = () => {
+  const users = generateUserObjs(200);
   const results = [];
   for (let i = 0; i < addresses.length; i += 1) {
     const r = Math.floor(Math.random() * 1000);
@@ -98,7 +98,7 @@ seedByAddress = () => {
       .catch((err) => console.log(err));
   }
   return results;
-}
+};
 
 
-module.exports = { seedUsersAndTasks };
+module.exports = { seedUsersAndTasks, seedByAddress };
