@@ -30,7 +30,6 @@ const allTasksUpdate = (tasks, nextState) => {
                 ...nextState[t._id],
                 ...t
             }
-            console.log('updated', updated)
             nextState[t._id] = updated
         } else {
             nextState[t._id] = t
@@ -58,7 +57,6 @@ const TasksReducer = (state = {}, action) => {
                     ...nextState[action.task._id],
                     ...action.task
                 }
-                console.log('updated', updated)
                 nextState[action.task._id] = updated
             } else {
                 nextState[action.task._id] = action.task.data

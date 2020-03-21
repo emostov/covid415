@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import ActiveSidebar from './active';
 import AvailableSidebar from './available'
 import frontendUtil from '../../util/frontend_util'
-
 import '../../styles/sidebar.scss';
 
 export default class SideBar extends Component {

@@ -30,7 +30,6 @@ export const fetchTasks = () => dispatch => {
 };
 
 export const createNewTask = data => dispatch => {
-    debugger
     return APIUtil.createTask(data)
         .then(task => dispatch(receiveNewTask(task)))
         .catch(err => dispatch(receiveErrors(err.response.data)))
