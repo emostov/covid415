@@ -5,9 +5,22 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import NavBar from './navbar';
 
 // Map in isAuthenticated so we can toggle links displayed based on auth
-const mapStateToProps = state => ({
-  loggedIn: state.session.isAuthenticated
-});
+const mapStateToProps = state => {
+  let currUserName
+  let currUserEmail
+  if (state.session.isAuthenticated) {
+    currUserName = state.session.user.firstName
+    currUserEmail = state.session.user.email
+  } else {
+    currUserName = ''
+    currUserEmail = ''
+  }
+  return {
+    loggedIn: state.session.isAuthenticated,
+    currUserName: currUserName,
+    currUserEmail: currUserEmail
+  }
+};
 
 const mDTP = dispatch => ({
   logout: () => dispatch(logout()),
