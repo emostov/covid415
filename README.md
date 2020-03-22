@@ -37,6 +37,9 @@
 ## Code Highlights
 The Following are code snippets that help build the core functionality for this application.
 
+Using express we made calls to various Google Maps API's in order to facilitate:
+1. Autocomplete Address Search 
+2. Geocoding of address's for Latitude, and Longitude
 ```javascript
 router.post('/',
   passport.authenticate('jwt', { session: false }),
@@ -71,4 +74,46 @@ router.post('/',
     )
       .catch(err => res.json(err));
 });
+```
+
+Here the object ``` const geojson ``` which holds the data, and attributes of our Mapbox API template is allowed 
+access to popups. Its the foundation for the visual connection between our tasks in our side bar and our map.
+Since we are dealing with React architecture, we treated our SideBar Component, and or Map component as our two main features. Both of which branch down from our Main Component, and since we are using redux we are able to give each their own container for access to global state.
+``` javascript
+geojson.features.forEach((marker) => {
+      // create a HTML element for each feature
+      const el = document.createElement('div');
+      const { status, type } = marker.properties
+      if (status === 0) {
+        el.className = 'marker notActive'
+      } else if (status === 1) {
+        el.className = 'marker active'
+      } else if (status === 2) {
+        el.className = 'marker completed'
+      }
+      const popup = new mapboxgl.Popup({
+        offset: 25,
+        closeButton: false,
+        closeOnClick: false,
+        className: statusPopupClass(status)
+      }).setHTML(
+        `${type} delivery${`<br />`}${typeIconString(type.toLowerCase(), status)}`
+      )
+      // make a marker for each feature and add to the map
+      const mapBoxMarker = new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .setPopup(popup)
+      // Add mapBox marker and associated id to array
+      allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
+
+      const markerEl = mapBoxMarker.getElement();
+      markerEl.addEventListener('mouseenter', () => {
+        // Add popup to map 
+        popup.addTo(map);
+      });
+      markerEl.addEventListener('mouseleave', () => {
+        // Remove popup from map
+        popup.remove();
+      });
+    });
 ```
