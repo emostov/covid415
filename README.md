@@ -99,7 +99,12 @@ _As a user under self-isolation, you can request a delivery which will be added 
 Using express we made calls to various Google Maps API's in order to facilitate:
 
 1. Autocomplete Address Search
-2. Geoencoding of address's for Latitude, and Longitude
+
+2. Address formatting for incomplete / mal-formed address input
+
+3. Tagging of neighborhood data against request addresses
+
+4. Geoencoding of address' Latitude and Longitude
 
 ``` javascript
 // routes/api/tasks.js
@@ -180,7 +185,7 @@ geojson.features.forEach((marker) => {
       const markerEl = mapBoxMarker.getElement();
       markerEl.addEventListener('mouseenter', () => {
 
-        // Add popup to map 
+        // Add popup to map
         popup.addTo(map);
       });
       markerEl.addEventListener('mouseleave', () => {
