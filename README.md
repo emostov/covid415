@@ -30,15 +30,18 @@
 
 
 __tl;dr__  [COVID415](http://covid415.herokuapp.com/#/) is a service that matches San Franciscans in self-isolation due to the novel coronavirus 2019-nCoV (also known as COVID-19) pandemic with local volunteers to deliver essentials like food and medicine.
+###### [Jump to Interface Themes](#interfac-themes)
 
 ![home](frontend/public/homepage.png "COVID415")
 
-###### Interface
 
-The site affords users the ability to both post request for volunteer help, as well volunteer to help themselves. Volunteers can take on delivery requests, (which are conveniently sorted by distance away,) view delivery there pending deliver requests, and confirm they have carried out the delivery.
+#### Interface Themes
 
-Visually, the App is centered around a map and a red, yellow, green color theme. Features related to different stages of task completion embrace this intuitive color scheme to endow a sense of urgency for yet to be completed tasks and provide a feeling of accomplishment for completed tasks. For example: red markers indicate tasks that have yet to have a volunteer take them on, yellow markers are pending tasks, and green markers indicate tasks that have been completed. Green markers are only visible to the logged in volunteer.
+The site affords users the ability to both post a request for help from a volunteer, as well as volunteer to help themselves. Volunteers can take on delivery requests (which are conveniently sorted by distance away), view their pending delivery requests, and confirm they have carried out the delivery.
 
+Visually, the App is centered around a map and a red, yellow, green color theme. Features related to different stages of task completion embrace this intuitive color scheme to relay a sense of urgency for yet to be claimed/completed tasks and provide a feeling of accomplishment for completed tasks. For example, red markers indicate tasks that have yet to have a volunteer take them on, yellow markers are pending tasks, and green markers indicate tasks that have been completed. Yellow and green markers are only visible to the logged in volunteer and reference their task portfolio.
+
+---
 
 ### Technologies
 
@@ -58,31 +61,35 @@ Visually, the App is centered around a map and a red, yellow, green color theme.
   * Google Maps Distance Matrix API
   * MapBox
 
+---
+
 ### Features
 
-##### View delivery requests
+#### View delivery requests
 ###### [Jump to Next Feature Highlight](#manage-your-deliveries)
 _An interactive list and map show all delivery requests sorted by distance away. Users can browse requests and accept a request._
 
 ![accept_delivery](frontend/public/accept_delivery.gif "Accept Delivery")
 
-##### Manage your deliveries
+#### Manage your deliveries
 ###### [Jump to Next Feature Highlight](#request-a-delivery)
 _A separate tab allows users to view and manage all the delivery requests that they've accepted._
 
 ![complete_delivery](frontend/public/complete_delivery.gif "Complete Delivery")
 
-##### Request a delivery 
+#### Request a delivery 
 ###### [Jump to Future features ](#future-features)
 _As a user under self-isolation, you can request a delivery which will be added to the list and map._
 
 ![request_task](frontend/public/request_task.gif "Request Task")
 
-##### Future features
+#### Future features
 
 * Direct messaging
 * Notifications
 * Secure payment integrations
+
+---
 
 ## Code Snipets
 
@@ -133,9 +140,10 @@ router.post('/',
 ```
 
 #### MapBox Marker Popups
-###### [Jump to Next Code Snippet](#sorting-distances)
 
-In order to display markers on the map and show popups for each marker on marker hover and on hover of the associated task card in the left sidebar, the MapBox marker and associated popup API where utilized. The markers and popups are given style to indicate respective status based on there associated task's status.
+###### [Jump to Next Code Snippet](#toggling-mapbox-markers-based-on-sidebar-tab)
+
+In order to display markers on the map and show popups for each marker on hover of the marker or the associated task card in the left sidebar, we utilized the MapBox Marker and associated Popup API. The markers and popups are then styled to communicate their respective status in a task's lifecycle (i.e., unmatched->pending delivery->completed).
 
 ``` javascript
 // frontend/components/map/map.jsx
@@ -184,11 +192,26 @@ geojson.features.forEach((marker) => {
     });
 ```
 
+#### Toggling MapBox Markers Based On SideBar Tab
+
+##### Overview
+
+When a user toggles between the "Delivery Requests" and "My Deliveries" tabs the markers on the map change to reflect what tasks are displayed on the sidebar.
+
+__Flow:__
+
+* On componentDidMount() and when tasks change - map the users tasks and available tasks to two sperate arrays of MapBox markers that are stored in component state.
+* Add the markers associated with the current tab to the map based on a boolean in global store that indicates the sidebar tab.
+* When the user clicks to change the tab, update a boolean field in global store from the sidebar component.
+* The map has the active tab slice of state mapped in. In ```componentDidUpdate()``` we check if this slice of state changes and when it does we remove the relevant markers from the map and add the other markers to the map.
+* Upon the dete
+
+
 #### Sorting Distances
 
 ##### Overview
 
-Task's distances from the current user are used to help show tasks that are nearby and motivate task uptake and completion by volunteers.
+In order to motivate task uptake and completion by volunters, tasks are sorted by their relative distance to the current user.
 
 __Current implementation flow:__
 
@@ -199,13 +222,15 @@ __Current implementation flow:__
 
 __Bottleknecks & Future improvements:__
 
-  At the moment all of the above flow takes place within react components. Therefore, the execution of each step is dependent on components mounting, and updating, and in some cases, rendering. For example, we check if task's have distance to sort them in a render method.
+  At the moment all of the above flow takes place within react components. Therefore, the execution of each step is dependent on components mounting, and updating, and in some cases, rendering. For example, we trigger tasks sorts in the render method of each sidebar tab.
 
-  To improve this in future, we plan on decoupling user location, task distance calculations, and task sorting from the components. Broadly speaking, we plan to have an array in state of task ids, that will hold order. Upon recieving a non-null user location trigger distance calculations for each task. When a task with an updated distance is dispatched, a check for the ability to sort the task id array will be triggered. Components rendering ordered tasks can simply reffer to the task id array in state.
+  To improve this in future, we plan on decoupling user location, task distance calculations, and task sorting from the components. Specifically, we plan to have an array in state of task ids that will hold order. Upon recieving a non-null user location, distance calculations for each task will be triggered. When a task with an updated distance is dispatched, a check for the ability to sort the task id array will be triggered. When the number of tasks with a non-null distance field reaches an arbitrary threshold the valid tasks will be sorted and tasks without distance put at the end of the array. Components rendering ordered tasks can simply reffer to the task id array in state.
 
-##### Code
+  There likely would be siginificant performance benefits on the client, as sorting and distance calculations only take place once, instead of being arbitrarly triggered during a components life cycle.
 
-In order to grab the current users position, we used the built in ```navigator.geolocation.getCurrentPosition()```.
+##### Code 
+
+In order to grab the current users position, we used the built-in ```navigator.geolocation.getCurrentPosition()```.
 
 ``` javascript
 // frontend/actions/location_actions.js
@@ -216,8 +241,7 @@ export const getUserLocation = () => (dispatch) => {
 )};
 ```
 
-We wait for our results within a ```componentDidUpdate```.
-While waiting asychronously for our results we use react-bootstrap to have a loading icon. Once received we calculate the distance for each task using the Latitude, and Longitude with the turf.js library, we add it to the task object, and reset it back to global state.
+We wait for our results within a ```componentDidUpdate``` lifecycle method. While waiting asychronously for our results we present a loading icon. Once the results are received, we calculate the distance for each task using difference in Lat/Long via the turf.js library. We then add it to the task object, and dispatch the updated task to global store.
 
 ``` javascript
 // frontend/components/sidebar/card.jsx
@@ -240,7 +264,7 @@ distanceFromCurrentToTask() {
   }
  ```
 
-Then we disptact the next action and send our information to a reducer, update our tasks which allows us to then grab them from global state, sort it, and pass it back down to our sidebar component. 
+Next, we send our information to a reducer, which makes sure to maintain a tasks distance attribute even when recieving updated tasks from the database which do not have a distance field.
 
 ``` javascript
 //fronend/reducers/task_reducer.js
@@ -249,7 +273,6 @@ const convertToTasksObj = (tasks) => {
   tasks.forEach((t) => {
     newTasks[t._id] = t;
   })
-
   return newTasks;
 }
 
