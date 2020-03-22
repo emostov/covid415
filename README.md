@@ -153,6 +153,8 @@ router.post('/',
 
 In order to display markers on the map and show popups for each marker on hover of the marker or the associated task card in the left sidebar, we utilized the MapBox Marker and associated Popup API. The markers and popups are then styled to communicate their respective status in a task's lifecycle (i.e., unmatched->pending delivery->completed).
 
+To accomplish the cross component communication, we have a slice of state that reflects the current task that is being hovered over in the sidebar.
+
 ``` javascript
 // frontend/components/map/map.jsx
 geojson.features.forEach((marker) => {
@@ -198,6 +200,37 @@ geojson.features.forEach((marker) => {
         popup.remove();
       });
     });
+
+    // updatePopuups() is called on each render. It grabs activeTask, which
+    // is a task id stored in global state that changes based upon what task
+    // is being hovered over in the sidebar component.
+    updatePopups() {
+    const { userMarkers, helpNeededMarkers, map } = this.state;
+    const { activeTask } = this.props;
+
+    // Check that all the markers exist before trying to use them
+    if (!(userMarkers && helpNeededMarkers)) return;
+
+    // Combine marker array so we can loop over them in one go. This helps with
+    // edge cases.
+    const allMarkers = userMarkers.concat(helpNeededMarkers);
+    allMarkers.length && allMarkers.forEach((markerObj) => {
+
+      // We store an object tuple that has both the Map Box marker and the id of
+      // its task.
+      const { mBMarker, id } = markerObj;
+
+      // If we find the relevant marker and it is not open, open it by adding 
+      // the popup to the map
+      if (
+        activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
+      ) {
+        mBMarker.getPopup().addTo(map)
+      } else if (mBMarker.getPopup().isOpen()) {
+        mBMarker.getPopup().remove();
+      }
+    })
+  }
 ```
 
 ### Toggling MapBox Markers Based On SideBar Tab
@@ -252,6 +285,7 @@ componentDidMount() {
 
     // Call placeMarkers() to do initial marker generation for both the users
     // allocated tasks, and task that have not been uptaken
+    // N.B. the full function is shown in the popups code snippet section
     this.callPlaceMarkers();
   }
 
@@ -278,18 +312,56 @@ componentDidMount() {
     }
   }
 
+  // When the component updates, we check if there are new tasks. If there are 
+  // new tasks we recreate all the markers
   componentDidUpdate(prevProps) {
-    // Make sure to compare props to prevent infinit loop
+
+    // Make sure to compare props to prevent infinite loop. We check for
+    // a change in the number of tasks as it prevents from false positives
+    // that might result from different ordering so the tasks mapped in.
     if (Object.keys(this.props.tasks).length !== Object.keys(prevProps.tasks).length) {
-      // this.clearMarkers(this.state.helpNeededMarkers);
+
+      // Clear all markers from map
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
+      // Generate new markers and save to state
       const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
       const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
       this.setState({ userMarkers, helpNeededMarkers })
+  }
+
+  // updateMarkers() is called in the maps render method and replaces the
+  // relevant markers based on the slice of state that indicates which tab is
+  // open in the sidebar.
+  updateMarkers() {
+    const { userMarkers, helpNeededMarkers } = this.state;
+    if (this.props.dispalyNotAssignedTasks) {
+      this.clearMarkers(userMarkers);
+      this.addMarkers(helpNeededMarkers);
+    } else {
+      this.clearMarkers(helpNeededMarkers);
+      this.addMarkers(userMarkers);
     }
   }
+
+  // Removes each marker in the passed in array from the map
+  clearMarkers(markers) {
+    if (!markers) return;
+    markers.forEach((marker) => {
+      marker.mBMarker.remove();
+    })
+  }
+
+   // Adds each marker in the passed in array from the map
+  addMarkers(markers) {
+    if (!markers) return;
+    markers.forEach((marker) => {
+      marker.mBMarker.addTo(this.state.map);
+    })
+  }
+
+
 ```
 
 ### Sorting Distances
