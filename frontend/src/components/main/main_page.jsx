@@ -30,12 +30,11 @@ class MainPage extends React.Component {
     if (this.props.tasks.length === 0) {
       return null
     }
-    const { tasks, history } = this.props
+    const { history } = this.props
     return (
       <div className="mainpage-container">
         <MapContainer />
         <SideBarContainer 
-          // tasks={tasks} 
           history={history}/>
       </div>
     );
