@@ -35,9 +35,9 @@ __tl;dr__  [COVID415](http://covid415.herokuapp.com/#/) is a service that matche
 
 ###### Interface
 
-The site affords users the ability to both post request for volunteer help, as well volunteer to help themselves. Volunteers can take on delivery requests, (which are conveniently sorted by distance away,) view delivery there pending deliver requests, and confirm they have carried out the delivery.
+The site affords users the ability to both post a request for help from a volunteer, as well as volunteer to help themselves. Volunteers can take on delivery requests (which are conveniently sorted by distance away), view their pending delivery requests, and confirm they have carried out the delivery.
 
-Visually, the App is centered around a map and a red, yellow, green color theme. Features related to different stages of task completion embrace this intuitive color scheme to endow a sense of urgency for yet to be completed tasks and provide a feeling of accomplishment for completed tasks. For example: red markers indicate tasks that have yet to have a volunteer take them on, yellow markers are pending tasks, and green markers indicate tasks that have been completed. Green markers are only visible to the logged in volunteer.
+Visually, the App is centered around a map and a red, yellow, green color theme. Features related to different stages of task completion embrace this intuitive color scheme to relay a sense of urgency for yet to be claimed/completed tasks and provide a feeling of accomplishment for completed tasks. For example, red markers indicate tasks that have yet to have a volunteer take them on, yellow markers are pending tasks, and green markers indicate tasks that have been completed. Yellow and green markers are only visible to the logged in volunteer and reference their task portfolio.
 
 
 ### Technologies
