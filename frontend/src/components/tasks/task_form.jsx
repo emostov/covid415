@@ -56,7 +56,7 @@ class TaskForm extends React.Component {
           <Card.Title className='task-form-title'><strong>Self-isolating? Request a delivery.</strong></Card.Title>
           {this.renderErrors()}
           <Form className='task-form'>
-            <Form.Group>
+            <Form.Group className='task-form-group'>
               <Form.Label className='task-form-label'>What are you requesting?</Form.Label>
               <div className='task-type-group'>
                 <Form.Group className='task-form-type'>
@@ -79,7 +79,7 @@ class TaskForm extends React.Component {
               </div>
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group className='task-form-group'>
               <Form.Label className='task-form-label'>Where is this being delivered to?</Form.Label>
               <GooglePlacesAutocomplete
                 autocompletionRequest={{
@@ -99,11 +99,11 @@ class TaskForm extends React.Component {
                   container: 'suggestion-container',
                   suggestion: 'suggestion'
                 }}
-              // loader={<img src={loader} />}
+              loader={<div className='task-form-loader'>Loading...</div>}
               />
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group className='task-form-group'>
               <Form.Label className='task-form-label'>Details</Form.Label>
               <Form.Control
                 as='textarea'
@@ -113,7 +113,7 @@ class TaskForm extends React.Component {
               />
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group className='task-form-group'> 
               <Form.Label className='task-form-label'>Please provide additional delivery instructions</Form.Label>
               <Form.Control
                 placeholder='Leave it on the front porch'
@@ -122,7 +122,7 @@ class TaskForm extends React.Component {
               />
             </Form.Group>
           </Form>
-          <Button variant="secondary" className='task-form-submit' onClick={this.handleSubmit}>Request Delivery</Button>
+          <button className='task-form-submit' onClick={this.handleSubmit}>Request Delivery</button>
         </Container>
       </div>
     )
