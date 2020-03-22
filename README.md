@@ -1,17 +1,56 @@
 ![logo](frontend/src/public/COVID415.png)
 # COVID415
 
-[COVID415](http://covid415.herokuapp.com/#/) is a service that matches San Franciscans in self-isolation due to the novel coronavirus 2019-nCoV (also known as COVID-19) pandemic with local volunteers to deliver essentials like food and medicine.
+
+###### [Live Site](http://covid415.herokuapp.com/#)
+
+## Table of Contents
+
+* [Creators](#creators)
+* [Background](#background)
+* [Technologies](#technologies)
+* [Features](#features)
+* [Code Snippets](#code-snippets)
+
+---
+
+## Creators
+
+###### [Jump to Background](#background)
+
+* [Andrew Howell](https://www.linkedin.com/in/andrewhhowell/)
+* [Justin Fang](https://www.linkedin.com/in/justinjfang/)
+* [Tarik Gul](https://www.linkedin.com/in/tarik-gul-6497b21a4/)
+* [Zeke Mostov](https://www.linkedin.com/in/zeke-mostov-62557620/)
+
+---
+
+## Background
+###### [Jump to Technologies](#technologies)
+
+
+__tl;dr__  [COVID415](http://covid415.herokuapp.com/#/) is a service that matches San Franciscans in self-isolation due to the novel coronavirus 2019-nCoV (also known as COVID-19) pandemic with local volunteers to deliver essentials like food and medicine.
 
 ![home](frontend/public/homepage.png "COVID415")
 
-## Technologies used
+###### Interface
+
+The site affords users the ability to both post request for volunteer help, as well volunteer to help themselves. Volunteers can take on delivery requests, (which are conveniently sorted by distance away,) view delivery there pending deliver requests, and confirm they have carried out the delivery.
+
+Visually, the App is centered around a map and a red, yellow, green color theme. Features related to different stages of task completion embrace this intuitive color scheme to endow a sense of urgency for yet to be completed tasks and provide a feeling of accomplishment for completed tasks. For example: red markers indicate tasks that have yet to have a volunteer take them on, yellow markers are pending tasks, and green markers indicate tasks that have been completed. Green markers are only visible to the logged in volunteer.
+
+
+### Technologies
+
 * Front-end:
   * React
   * Redux
+  * Axios
 * Back-end
   * Express
   * MongoDB
+  * JWT
+  * Passport
 * Cloud:
   * Heroku
 * Integrations:
@@ -19,30 +58,46 @@
   * Google Maps Distance Matrix API
   * MapBox
 
-## Features
-* ### **View delivery requests** - an interactive list and map show all delivery requests sorted by distance away. Users can browse requests and accept a request.
+### Features
+
+##### View delivery requests
+###### [Jump to Next Feature Highlight](#manage-your-deliveries)
+_An interactive list and map show all delivery requests sorted by distance away. Users can browse requests and accept a request._
+
 ![accept_delivery](frontend/public/accept_delivery.gif "Accept Delivery")
 
-* ### **Manage your deliveries** - an separate tab allows users to view and manage all the delivery requests that they've accepted.
+##### Manage your deliveries
+###### [Jump to Next Feature Highlight](#request-a-delivery)
+_A separate tab allows users to view and manage all the delivery requests that they've accepted._
+
 ![complete_delivery](frontend/public/complete_delivery.gif "Complete Delivery")
 
-* ### Request a delivery - as a user under self-isolation, you can request a delivery which will be added to the list and map.
+##### Request a delivery 
+###### [Jump to Future features ](#future-features)
+_As a user under self-isolation, you can request a delivery which will be added to the list and map._
+
 ![request_task](frontend/public/request_task.gif "Request Task")
 
-## Future features
-- ### Direct messaging
-- ### Notifications
-- ### Secure payment integrations
+##### Future features
 
-## Code Highlights
+* Direct messaging
+* Notifications
+* Secure payment integrations
+
+# Code Highlights
+
 The Following are code snippets that help build the core functionality for this application.
 
 ### Backend Google Maps API Geocoding
+
 Using express we made calls to various Google Maps API's in order to facilitate:
+
 1. Autocomplete Address Search 
+
 2. Geocoding of address's for Latitude, and Longitude
+
 ``` javascript
-//routes/api/tasks.js
+// routes/api/tasks.js
 router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -79,10 +134,12 @@ router.post('/',
 ```
 
 ### Frontend MapBox API popups
-Here the object ``` const geojson ``` which holds the data, and attributes of our Mapbox API template is allowed 
+
+Here the object, ``` const geojson ```, which holds the data, and attributes of our Mapbox API template is allowed 
 access to popups. Its the foundation for the visual connection between our tasks in our side bar and our map.
 Since we are dealing with React architecture, we treated our SideBar Component, and or Map component as our two main features. Both of which branch down from our Main Component, and since we are using redux we are able to give each their own container for access to global state.
 ``` javascript
+
 // frontend/components/map/map.jsx
 geojson.features.forEach((marker) => {
       // create a HTML element for each feature
