@@ -3,6 +3,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
+import gitHub from '../../public/github-logo.png';
 
 import Logo from '../../public/COVID415.png';
 import '../../styles/navbar.scss'
@@ -64,24 +65,26 @@ class NavBar extends React.Component {
           <div className='d-flex justify-content-between w-full align-items-center'>
             <Nav className="mr-auto ">
               <Navbar.Brand href="#">
-                <img className="logo-covid415" src={Logo} alt='' width="200" />
+                <img className="logo-covid415" src={Logo} alt='covid-logo' width="200" />
               </Navbar.Brand>
             </Nav>
-
             {this.props.loggedIn ? (
               <button className='request-help-button' onClick={() => this.requestHelp()}>Request a Delivery</button>
             ) : (
                 <div></div>
               )
             }
-
             <Nav
               className="justify-content-end upcase white-txt align-items-end">
               {this.getLinks()}
             </Nav>
-
+            <Nav className="github-icon">
+              <a href="https://github.com/emostov/covid415"
+                target="_blank" rel="noopener noreferrer" >
+                <img src={gitHub} className='online-presence-icon' alt="github" />
+              </a>
+            </Nav>
           </div>
-          {/* </Nav> */}
         </Navbar>
 
       </div>
