@@ -98,7 +98,7 @@ _As a user under self-isolation, you can request a delivery which will be added 
 
 ### Backend Google Maps API Geocoding
 
-###### [Jump to Next Code Snippet](#frontend-mapbox-api-popups)
+###### [Jump to Next Code Snippet](#mapbox-marker-popups)
 
 Using express we made calls to various Google Maps API's in order to facilitate:
 
