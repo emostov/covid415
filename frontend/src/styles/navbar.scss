@@ -129,16 +129,19 @@
   font-size: 14px;
 }
 
+.github-icon {
+  border-left: 1px solid $second-gray-bg;
+}
+
 .online-presence-icon {
   height: 27px;
   cursor: pointer;
-  filter: brightness(80%);
   padding-left: 5px;
   vertical-align: middle;
   padding-left: 15px;
   padding-bottom: 2px;
   padding-right: 10px;
-  border-left: 1px solid $second-gray-bg;
+  filter: brightness(80%);
 }
 
 .online-presence-icon:hover {
