@@ -241,13 +241,13 @@ geojson.features.forEach((marker) => {
 
 When a user toggles between the "Delivery Requests" and "My Deliveries" tabs the markers on the map change to reflect what tasks are displayed on the sidebar.
 
-##### Flow:
+##### Flow
 
 * On componentDidMount() and when tasks change - map the users tasks and available tasks to two sperate arrays of MapBox markers that are stored in component state.
 * Add the markers associated with the current tab to the map based on a boolean in global store that indicates the sidebar tab.
 * When the user clicks to change the tab, update a boolean field in global store from the sidebar component.
 * The map has the active tab slice of state mapped in. In ```componentDidUpdate()``` we check if this slice of state changes and when it does we remove the relevant markers from the map and add the other markers to the map.
-* Upon the dete
+* Upon detection of a new task, we re-make all the markers
 
 ```javascript
 // frontend/src/components/map/map.jsx
@@ -374,14 +374,14 @@ componentDidMount() {
 
 In order to motivate task uptake and completion by volunters, tasks are sorted by their relative distance to the current user.
 
-##### Current implementation flow:
+##### Current Implementation Flow
 
 * Wait for current user location.
 * Once user location is received dispatch to state.
 * When a change in user location is detected in componentDidUpdate calculate distance from user for each task and dispatch each task with updated distance to state
 * Upon tasks receiving a non-null distance attribute, trigger a sort of tasks by location
 
-##### Bottleknecks & Future improvements:
+##### Bottleknecks & Future improvements
 
   At the moment all of the above flow takes place within react components. Therefore, the execution of each step is dependent on components mounting, and updating, and in some cases, rendering. For example, we trigger tasks sorts in the render method of each sidebar tab.
 
