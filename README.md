@@ -257,17 +257,15 @@ When a user toggles between the "Delivery Requests" and "My Deliveries" tabs the
 componentDidMount() {
     mapboxgl.accessToken = mapBoxPublicKey;
 
-    // Set the map's max bounds
-    const bounds = [
-      [-122.54, 37.6], // [west, south]
-      [-122.34, 37.9]  // [east, north]
-    ];
+    // Create the map itself
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/dark-v10',
       center: [this.state.lng, this.state.lat],
       zoom: this.state.zoom
     });
+
+    // Add navigation functionality
     map.addControl(new mapboxgl.NavigationControl());
     map.addControl(
       new mapboxgl.GeolocateControl({
@@ -277,7 +275,15 @@ componentDidMount() {
         trackUserLocation: true
       })
     );
+
+     // Set the map's max bounds
+    const bounds = [
+      [-122.54, 37.6], // [west, south]
+      [-122.34, 37.9]  // [east, north]
+    ];
     map.setMaxBounds(bounds);
+
+    // Add map to and what tab is selected to local state
     this.setState({
       map,
       dispalyNotAssignedTasks: this.props.dispalyNotAssignedTasks
@@ -360,8 +366,6 @@ componentDidMount() {
       marker.mBMarker.addTo(this.state.map);
     })
   }
-
-
 ```
 
 ### Sorting Distances
