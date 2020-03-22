@@ -98,7 +98,6 @@ class Map extends React.Component {
           }
         }))
     };
-    // add markers to map
     geojson.features.forEach((marker) => {
       // create a HTML element for each feature
       const el = document.createElement('div');

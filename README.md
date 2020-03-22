@@ -66,19 +66,22 @@ Visually, the App is centered around a map and a red, yellow, green color theme.
 ### Features
 
 #### View delivery requests
+
 ###### [Jump to Next Feature Highlight](#manage-your-deliveries)
 _An interactive list and map show all delivery requests sorted by distance away. Users can browse requests and accept a request._
 
 ![accept_delivery](frontend/public/accept_delivery.gif "Accept Delivery")
 
 #### Manage your deliveries
+
 ###### [Jump to Next Feature Highlight](#request-a-delivery)
 _A separate tab allows users to view and manage all the delivery requests that they've accepted._
 
 ![complete_delivery](frontend/public/complete_delivery.gif "Complete Delivery")
 
 #### Request a delivery 
-###### [Jump to Future features ](#future-features)
+
+###### [Jump to Future Features ](#future-features)
 _As a user under self-isolation, you can request a delivery which will be added to the list and map._
 
 ![request_task](frontend/public/request_task.gif "Request Task")
@@ -93,7 +96,8 @@ _As a user under self-isolation, you can request a delivery which will be added 
 
 ## Code Snipets
 
-##### Backend Google Maps API Geocoding
+### Backend Google Maps API Geocoding
+
 ###### [Jump to Next Code Snippet](#frontend-mapbox-api-popups)
 
 Using express we made calls to various Google Maps API's in order to facilitate:
@@ -143,11 +147,13 @@ router.post('/',
 });
 ```
 
-#### MapBox Marker Popups
+### MapBox Marker Popups
 
 ###### [Jump to Next Code Snippet](#toggling-mapbox-markers-based-on-sidebar-tab)
 
 In order to display markers on the map and show popups for each marker on hover of the marker or the associated task card in the left sidebar, we utilized the MapBox Marker and associated Popup API. The markers and popups are then styled to communicate their respective status in a task's lifecycle (i.e., unmatched->pending delivery->completed).
+
+To accomplish the cross component communication, we have a slice of state that reflects the current task that is being hovered over in the sidebar.
 
 ``` javascript
 // frontend/components/map/map.jsx
@@ -185,7 +191,7 @@ geojson.features.forEach((marker) => {
       const markerEl = mapBoxMarker.getElement();
       markerEl.addEventListener('mouseenter', () => {
 
-        // Add popup to map 
+        // Add popup to map
         popup.addTo(map);
       });
       markerEl.addEventListener('mouseleave', () => {
@@ -194,37 +200,188 @@ geojson.features.forEach((marker) => {
         popup.remove();
       });
     });
+
+    // updatePopuups() is called on each render. It grabs activeTask, which
+    // is a task id stored in global state that changes based upon what task
+    // is being hovered over in the sidebar component.
+    updatePopups() {
+    const { userMarkers, helpNeededMarkers, map } = this.state;
+    const { activeTask } = this.props;
+
+    // Check that all the markers exist before trying to use them
+    if (!(userMarkers && helpNeededMarkers)) return;
+
+    // Combine marker array so we can loop over them in one go. This helps with
+    // edge cases.
+    const allMarkers = userMarkers.concat(helpNeededMarkers);
+    allMarkers.length && allMarkers.forEach((markerObj) => {
+
+      // We store an object tuple that has both the Map Box marker and the id of
+      // its task.
+      const { mBMarker, id } = markerObj;
+
+      // If we find the relevant marker and it is not open, open it by adding 
+      // the popup to the map
+      if (
+        activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
+      ) {
+        mBMarker.getPopup().addTo(map)
+      } else if (mBMarker.getPopup().isOpen()) {
+        mBMarker.getPopup().remove();
+      }
+    })
+  }
 ```
 
-#### Toggling MapBox Markers Based On SideBar Tab
+### Toggling MapBox Markers Based On SideBar Tab
+
+###### [Jump to Next Code Snippet](#sorting-distances)
 
 ##### Overview
 
 When a user toggles between the "Delivery Requests" and "My Deliveries" tabs the markers on the map change to reflect what tasks are displayed on the sidebar.
 
-__Flow:__
+##### Flow
 
 * On componentDidMount() and when tasks change - map the users tasks and available tasks to two sperate arrays of MapBox markers that are stored in component state.
 * Add the markers associated with the current tab to the map based on a boolean in global store that indicates the sidebar tab.
 * When the user clicks to change the tab, update a boolean field in global store from the sidebar component.
 * The map has the active tab slice of state mapped in. In ```componentDidUpdate()``` we check if this slice of state changes and when it does we remove the relevant markers from the map and add the other markers to the map.
-* Upon the dete
+* Upon detection of a new task, we re-make all the markers
 
+```javascript
+// frontend/src/components/map/map.jsx
 
-#### Sorting Distances
+// When the component mounts, set up the map box map with navigation and bounds
+// centered around the bay area
+componentDidMount() {
+    mapboxgl.accessToken = mapBoxPublicKey;
+
+    // Create the map itself
+    const map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: 'mapbox://styles/mapbox/dark-v10',
+      center: [this.state.lng, this.state.lat],
+      zoom: this.state.zoom
+    });
+
+    // Add navigation functionality
+    map.addControl(new mapboxgl.NavigationControl());
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      })
+    );
+
+     // Set the map's max bounds
+    const bounds = [
+      [-122.54, 37.6], // [west, south]
+      [-122.34, 37.9]  // [east, north]
+    ];
+    map.setMaxBounds(bounds);
+
+    // Add map to and what tab is selected to local state
+    this.setState({
+      map,
+      dispalyNotAssignedTasks: this.props.dispalyNotAssignedTasks
+    });
+
+    // Call placeMarkers() to do initial marker generation for both the users
+    // allocated tasks, and task that have not been uptaken
+    // N.B. the full function is shown in the popups code snippet section
+    this.callPlaceMarkers();
+  }
+
+  // Recursively sets a timeout and calls itself if not loaded -essentially a 
+  // recursive while loop
+  callPlaceMarkers() {
+
+    // Before generating markers, check if the map has been setup and if the.
+    // tasks exist.
+    if (this.state.map && this.props.tasks.length) {
+
+      // Generate map markers and then save them to state. Note that the
+      // placeMapMarkers() function name is a misnomer as it just generates the
+      // markers with popups and does not actually place them on the map.
+      const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
+      const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
+      this.setState({ userMarkers, helpNeededMarkers })
+    } else {
+
+      // If the the map or tasks do no exist yet, check again 1/10th of a second
+      setTimeout(() => {
+        this.callPlaceMarkers()
+      }, 1 * 100)
+    }
+  }
+
+  // When the component updates, we check if there are new tasks. If there are 
+  // new tasks we recreate all the markers
+  componentDidUpdate(prevProps) {
+
+    // Make sure to compare props to prevent infinite loop. We check for
+    // a change in the number of tasks as it prevents from false positives
+    // that might result from different ordering so the tasks mapped in.
+    if (Object.keys(this.props.tasks).length !== Object.keys(prevProps.tasks).length) {
+
+      // Clear all markers from map
+      this.clearMarkers(this.state.userMarkers);
+      this.clearMarkers(this.state.helpNeededMarkers);
+
+      // Generate new markers and save to state
+      const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
+      const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
+      this.setState({ userMarkers, helpNeededMarkers })
+  }
+
+  // updateMarkers() is called in the maps render method and replaces the
+  // relevant markers based on the slice of state that indicates which tab is
+  // open in the sidebar.
+  updateMarkers() {
+    const { userMarkers, helpNeededMarkers } = this.state;
+    if (this.props.dispalyNotAssignedTasks) {
+      this.clearMarkers(userMarkers);
+      this.addMarkers(helpNeededMarkers);
+    } else {
+      this.clearMarkers(helpNeededMarkers);
+      this.addMarkers(userMarkers);
+    }
+  }
+
+  // Removes each marker in the passed in array from the map
+  clearMarkers(markers) {
+    if (!markers) return;
+    markers.forEach((marker) => {
+      marker.mBMarker.remove();
+    })
+  }
+
+   // Adds each marker in the passed in array from the map
+  addMarkers(markers) {
+    if (!markers) return;
+    markers.forEach((marker) => {
+      marker.mBMarker.addTo(this.state.map);
+    })
+  }
+```
+
+### Sorting Distances
 
 ##### Overview
 
 In order to motivate task uptake and completion by volunters, tasks are sorted by their relative distance to the current user.
 
-__Current implementation flow:__
+##### Current Implementation Flow
 
 * Wait for current user location.
 * Once user location is received dispatch to state.
 * When a change in user location is detected in componentDidUpdate calculate distance from user for each task and dispatch each task with updated distance to state
 * Upon tasks receiving a non-null distance attribute, trigger a sort of tasks by location
 
-__Bottleknecks & Future improvements:__
+##### Bottleknecks & Future improvements
 
   At the moment all of the above flow takes place within react components. Therefore, the execution of each step is dependent on components mounting, and updating, and in some cases, rendering. For example, we trigger tasks sorts in the render method of each sidebar tab.
 
@@ -232,7 +389,7 @@ __Bottleknecks & Future improvements:__
 
   There likely would be siginificant performance benefits on the client, as sorting and distance calculations only take place once, instead of being arbitrarly triggered during a components life cycle.
 
-##### Code 
+##### Code
 
 In order to grab the current users position, we used the built-in ```navigator.geolocation.getCurrentPosition()```.
 
