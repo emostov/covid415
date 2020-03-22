@@ -135,7 +135,7 @@ router.post('/',
 #### MapBox Marker Popups
 ###### [Jump to Next Code Snippet](#sorting-distances)
 
-In order to display markers on the map and show popups for each marker on marker hover and on hover of the associated task card in the left sidebar, the MapBox marker and associated popup API where utilized. The markers and popups are given style to indicate respective based on there associated tasks status.
+In order to display markers on the map and show popups for each marker on hover of the marker or the associated task card in the left sidebar, we utilized the MapBox Marker and associated Popup API. The markers and popups are then styled to communicate their respective status in a task's lifecycle (i.e., unmatched->pending delivery->completed).
 
 ``` javascript
 // frontend/components/map/map.jsx
@@ -187,22 +187,21 @@ geojson.features.forEach((marker) => {
 #### Sorting Distances
 
 ##### Overview
-
-Task's distances from the current user are used to help show tasks that are nearby and motivate task uptake and completion by volunteers.
+In order to motivate task uptake and completion by volunters, tasks are sorted by their relative distance to the current user.
 
 __Current implementation flow:__
 
 * Wait for current user location.
 * Once user location is received dispatch to state.
-* When a change in user location is detected in componentDidUpdate calculate distance from user for each task
-* Upon tasks receiving a non-null distance attribute, trigger a sort of tasks by location
+* When a change in user location is detected in componentDidUpdate calculate distance from user for each task.
+* Upon tasks receiving a non-null distance attribute, trigger a sort of tasks by location.
 
 __Future improvements:__
-  At the moment all of the above flow takes place within react components. Therefore, the execution of each step is dependent on components mounting, and updating. For example, we check if task's have distance to sort them 
+  At the moment all of the above flow takes place within React components. Therefore, the execution of each step is dependent on components mounting, and updating. For example, we check if task's have distance in order to sort them.
 
 ##### Code
 
-In order to grab the current users position, we used the built in ```navigator.geolocation.getCurrentPosition()```.
+In order to grab the current users position, we used the built-in ```navigator.geolocation.getCurrentPosition()```.
 
 ``` javascript
 // frontend/actions/location_actions.js
@@ -213,8 +212,8 @@ export const getUserLocation = () => (dispatch) => {
 )};
 ```
 
-We wait for our results within a ```componentDidUpdate```.
-While waiting asychronously for our results we use react-bootstrap to have a loading icon. Once received we calculate the distance for each task using the Latitude, and Longitude with the turf.js library, we add it to the task object, and reset it back to global state.
+We wait for our results within a ```componentDidUpdate``` lifecycle method.
+While waiting asychronously for our results we present a loading icon. Once the results are received, we calculate the distance for each task using difference in Lat/Long via the turf.js library. We then add it to the task object, and set the difference back in the global store.
 
 ``` javascript
 // frontend/components/sidebar/card.jsx
@@ -237,7 +236,7 @@ distanceFromCurrentToTask() {
   }
  ```
 
-Then we disptact the next action and send our information to a reducer, update our tasks which allows us to then grab them from global state, sort it, and pass it back down to our sidebar component. 
+Next, we dispatch the next action and send our information to a reducer which updates our tasks and allows us to then grab them from global state, sort, and pass them back down to our SideBar component. 
 
 ``` javascript
 //fronend/reducers/task_reducer.js
