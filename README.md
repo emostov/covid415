@@ -37,10 +37,12 @@
 ## Code Highlights
 The Following are code snippets that help build the core functionality for this application.
 
+### Backend Google Maps API Geocoding
 Using express we made calls to various Google Maps API's in order to facilitate:
 1. Autocomplete Address Search 
 2. Geocoding of address's for Latitude, and Longitude
-```javascript
+``` javascript
+//routes/api/tasks.js
 router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -76,10 +78,12 @@ router.post('/',
 });
 ```
 
+### Frontend MapBox API popups
 Here the object ``` const geojson ``` which holds the data, and attributes of our Mapbox API template is allowed 
 access to popups. Its the foundation for the visual connection between our tasks in our side bar and our map.
 Since we are dealing with React architecture, we treated our SideBar Component, and or Map component as our two main features. Both of which branch down from our Main Component, and since we are using redux we are able to give each their own container for access to global state.
 ``` javascript
+// frontend/components/map/map.jsx
 geojson.features.forEach((marker) => {
       // create a HTML element for each feature
       const el = document.createElement('div');
@@ -116,4 +120,100 @@ geojson.features.forEach((marker) => {
         popup.remove();
       });
     });
+```
+
+### Sorting Distances
+In order to get our Distances sorted for the user by closes task, we added a Util thats natively built into Javascript which using HTML its own built in HTML geolocator.
+``` javascript
+// frontend/actions/location_actions.js
+export const getUserLocation = () => (dispatch) => {
+  navigator.geolocation.getCurrentPosition((pos) => {
+    return  dispatch(receiveUserLocation(pos))
+  }
+)};
+```
+
+We wait for our results within a ```componentDidUpdate```.
+While waiting asychronously for our results we use react-bootstrap to have a loading icon. Once received we calculate the distance for each task using the Latitude, and Longitude with the turf.js library, we add it to the task object, and reset it back to global state. 
+``` javascript
+// frontend/components/sidebar/card.jsx
+distanceFromCurrentToTask() {
+    const { task, currentPosition } = this.props
+    if (this.props.task === undefined) {
+      return null
+    }
+    
+    if (currentPosition.length === 0) {
+      return null
+    }
+    const {latitude, longitude} = currentPosition.coords;
+    
+    let from = turf.point([longitude, latitude])
+    let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
+    let options = { units: 'miles' }
+
+    let distanceTo = turf.distance(from, to, options)
+    const dist = frontendUtil.parseDistance(distanceTo)
+    task['distance'] = dist
+    this.props.receiveNewTask(task)
+  }
+ ```
+Then we disptact the next action and send our information to a reducer, update our tasks which allows us to then grab them from global state, sort it, and pass it back down to our sidebar component. 
+
+``` javascript 
+//fronend/reducers/task_reducer.js
+const convertToTasksObj = (tasks) => {
+  const newTasks = {};
+  tasks.forEach((t) => {
+    newTasks[t._id] = t;
+  })
+
+  return newTasks;
+}
+
+const allTasksUpdate = (tasks, nextState) => {
+  tasks.forEach((t) => {
+    if (nextState[t._id] !== undefined) {
+      // call function that replaces updated fields
+      const updated = {
+        ...nextState[t._id],
+        ...t
+      }
+      nextState[t._id] = updated
+    } else {
+      nextState[t._id] = t
+    }
+  })
+  return nextState;
+}
+
+const TasksReducer = (state = {}, action) => {
+  Object.freeze(state)
+  let nextState = Object.assign({}, state)
+  // const nextState = state.slice()
+  switch (action.type) {
+    case RECEIVE_TASKS:
+      if (Object.keys(nextState).length > 0) {
+        nextState = allTasksUpdate(action.tasks.data, nextState);
+      } else {
+        nextState = convertToTasksObj(action.tasks.data)
+      }
+      return nextState
+    case RECEIVE_NEW_TASK:
+      if (nextState[action.task._id] !== undefined) {
+        // call function that replaces updated fields
+        const updated = {
+          ...nextState[action.task._id],
+          ...action.task
+        }
+
+        nextState[action.task._id] = updated
+      } else {
+        nextState[action.task._id] = action.task.data
+      }
+      return nextState
+    default:
+      return state
+  }
+}
 ```
