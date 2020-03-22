@@ -135,7 +135,7 @@ router.post('/',
 #### MapBox Marker Popups
 ###### [Jump to Next Code Snippet](#sorting-distances)
 
-In order to display markers on the map and show popups for each marker on marker hover and on hover of the associated task card in the left sidebar, the MapBox marker and associated popup API where utilized. The markers and popups are given style to indicate respective based on there associated tasks status.
+In order to display markers on the map and show popups for each marker on marker hover and on hover of the associated task card in the left sidebar, the MapBox marker and associated popup API where utilized. The markers and popups are given style to indicate respective status based on there associated task's status.
 
 ``` javascript
 // frontend/components/map/map.jsx
@@ -194,11 +194,14 @@ __Current implementation flow:__
 
 * Wait for current user location.
 * Once user location is received dispatch to state.
-* When a change in user location is detected in componentDidUpdate calculate distance from user for each task
+* When a change in user location is detected in componentDidUpdate calculate distance from user for each task and dispatch each task with updated distance to state
 * Upon tasks receiving a non-null distance attribute, trigger a sort of tasks by location
 
-__Future improvements:__
-  At the moment all of the above flow takes place within react components. Therefore, the execution of each step is dependent on components mounting, and updating. For example, we check if task's have distance to sort them 
+__Bottleknecks & Future improvements:__
+
+  At the moment all of the above flow takes place within react components. Therefore, the execution of each step is dependent on components mounting, and updating, and in some cases, rendering. For example, we check if task's have distance to sort them in a render method.
+
+  To improve this in future, we plan on decoupling user location, task distance calculations, and task sorting from the components. Broadly speaking, we plan to have an array in state of task ids, that will hold order. Upon recieving a non-null user location trigger distance calculations for each task. When a task with an updated distance is dispatched, a check for the ability to sort the task id array will be triggered. Components rendering ordered tasks can simply reffer to the task id array in state.
 
 ##### Code
 
@@ -269,7 +272,6 @@ const allTasksUpdate = (tasks, nextState) => {
 const TasksReducer = (state = {}, action) => {
   Object.freeze(state)
   let nextState = Object.assign({}, state)
-  // const nextState = state.slice()
   switch (action.type) {
     case RECEIVE_TASKS:
       if (Object.keys(nextState).length > 0) {
@@ -280,12 +282,10 @@ const TasksReducer = (state = {}, action) => {
       return nextState
     case RECEIVE_NEW_TASK:
       if (nextState[action.task._id] !== undefined) {
-        // call function that replaces updated fields
         const updated = {
           ...nextState[action.task._id],
           ...action.task
         }
-
         nextState[action.task._id] = updated
       } else {
         nextState[action.task._id] = action.task.data
