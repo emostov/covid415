@@ -33,3 +33,42 @@
 - ### Direct messaging
 - ### Notifications
 - ### Secure payment integrations
+
+## Code Highlights
+The Following are code snippets that help build the core functionality for this application.
+
+```javascript
+router.post('/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateTaskInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    const unFrozenParser = backendUtil.pullKeys(req.user);
+
+    // Connecting to Google's Geocoding API, and receiving an origins Latitude, and Longitude
+    // Along with their address.
+    // This is used in conjuction with an Google address autocomplete library and API in order to get addresses
+    geocodeUtil.parseAddress(req.body.deliveryAddress).then(
+      (gMapsResponse) => {
+        const newTask = new Task({
+          type: req.body.type,
+          details: req.body.details,
+          requester: unFrozenParser,
+          deliveryAddress: gMapsResponse.data.results[0].formatted_address,
+          deliveryLatLong: Object.values(gMapsResponse.data.results[0].geometry.location),
+          deliveryNeighborhood: gMapsResponse.data.results[0].address_components[2].short_name,
+          deliveryInstructions: req.body.deliveryInstructions,
+        });
+
+        newTask.save()
+          .then((task) => res.json(task))
+          .catch(err => res.json(err))
+      },
+    )
+      .catch(err => res.json(err));
+});
+```
