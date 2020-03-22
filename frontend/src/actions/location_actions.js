@@ -13,10 +13,3 @@ export const getUserLocation = () => (dispatch) => {
   }
 )}
 
-
-// getCurrentPosition() {
-//   navigator.geolocation.getCurrentPosition(position => {
-//     const userPos = [position.coords.latitude, position.coords.longitude]
-//     receiveUserLocation(userPos)
-//   })
-// }
