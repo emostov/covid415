@@ -15,31 +15,10 @@ module.exports = {
         return tasks
     },
     sortDistances2: (stateTasks) => {
-        // const tasks = [];
-        // const keys = Object.keys(object)
-        // const sorted = keys.sort()
         const tasksArray = Object.values(stateTasks);
 
         return tasksArray.sort((a, b) =>
          a.distance > b.distance ? 1 : -1)
-
-        // return sortedTasks;
-
-        // for (let i = 0; i < keys.length; i++) {
-        //     object[sorted[i]].task['distance'] = object[sorted[i]].distance
-        //     tasks.push(object[sorted[i]].task)
-        // }
-        // return tasks
     },
 }
 
-// const sortDistances = (object) => {
-//     const tasks = [];
-//     const keys = Object.keys(object)
-//     const sorted = keys.sort()
-
-//     for (let i = 0; i < keys.length; i++) {
-//         tasks.push(object[sorted[i]])
-//     }
-//     return tasks
-// }
