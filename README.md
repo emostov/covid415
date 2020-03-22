@@ -66,19 +66,22 @@ Visually, the App is centered around a map and a red, yellow, green color theme.
 ### Features
 
 #### View delivery requests
+
 ###### [Jump to Next Feature Highlight](#manage-your-deliveries)
 _An interactive list and map show all delivery requests sorted by distance away. Users can browse requests and accept a request._
 
 ![accept_delivery](frontend/public/accept_delivery.gif "Accept Delivery")
 
 #### Manage your deliveries
+
 ###### [Jump to Next Feature Highlight](#request-a-delivery)
 _A separate tab allows users to view and manage all the delivery requests that they've accepted._
 
 ![complete_delivery](frontend/public/complete_delivery.gif "Complete Delivery")
 
 #### Request a delivery 
-###### [Jump to Future features ](#future-features)
+
+###### [Jump to Future Features ](#future-features)
 _As a user under self-isolation, you can request a delivery which will be added to the list and map._
 
 ![request_task](frontend/public/request_task.gif "Request Task")
@@ -93,7 +96,8 @@ _As a user under self-isolation, you can request a delivery which will be added 
 
 ## Code Snipets
 
-##### Backend Google Maps API Geocoding
+### Backend Google Maps API Geocoding
+
 ###### [Jump to Next Code Snippet](#frontend-mapbox-api-popups)
 
 Using express we made calls to various Google Maps API's in order to facilitate:
@@ -143,7 +147,7 @@ router.post('/',
 });
 ```
 
-#### MapBox Marker Popups
+### MapBox Marker Popups
 
 ###### [Jump to Next Code Snippet](#toggling-mapbox-markers-based-on-sidebar-tab)
 
@@ -196,13 +200,15 @@ geojson.features.forEach((marker) => {
     });
 ```
 
-#### Toggling MapBox Markers Based On SideBar Tab
+### Toggling MapBox Markers Based On SideBar Tab
+
+###### [Jump to Next Code Snippet](#sorting-distances)
 
 ##### Overview
 
 When a user toggles between the "Delivery Requests" and "My Deliveries" tabs the markers on the map change to reflect what tasks are displayed on the sidebar.
 
-__Flow:__
+##### Flow:
 
 * On componentDidMount() and when tasks change - map the users tasks and available tasks to two sperate arrays of MapBox markers that are stored in component state.
 * Add the markers associated with the current tab to the map based on a boolean in global store that indicates the sidebar tab.
@@ -210,8 +216,83 @@ __Flow:__
 * The map has the active tab slice of state mapped in. In ```componentDidUpdate()``` we check if this slice of state changes and when it does we remove the relevant markers from the map and add the other markers to the map.
 * Upon the dete
 
+```javascript
+// frontend/src/components/map/map.jsx
 
-#### Sorting Distances
+// When the component mounts, set up the map box map with navigation and bounds
+// centered around the bay area
+componentDidMount() {
+    mapboxgl.accessToken = mapBoxPublicKey;
+
+    // Set the map's max bounds
+    const bounds = [
+      [-122.54, 37.6], // [west, south]
+      [-122.34, 37.9]  // [east, north]
+    ];
+    const map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: 'mapbox://styles/mapbox/dark-v10',
+      center: [this.state.lng, this.state.lat],
+      zoom: this.state.zoom
+    });
+    map.addControl(new mapboxgl.NavigationControl());
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      })
+    );
+    map.setMaxBounds(bounds);
+    this.setState({
+      map,
+      dispalyNotAssignedTasks: this.props.dispalyNotAssignedTasks
+    });
+
+    // Call placeMarkers() to do initial marker generation for both the users
+    // allocated tasks, and task that have not been uptaken
+    this.callPlaceMarkers();
+  }
+
+  // Recursively sets a timeout and calls itself if not loaded -essentially a 
+  // recursive while loop
+  callPlaceMarkers() {
+
+    // Before generating markers, check if the map has been setup and if the.
+    // tasks exist.
+    if (this.state.map && this.props.tasks.length) {
+
+      // Generate map markers and then save them to state. Note that the
+      // placeMapMarkers() function name is a misnomer as it just generates the
+      // markers with popups and does not actually place them on the map.
+      const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
+      const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
+      this.setState({ userMarkers, helpNeededMarkers })
+    } else {
+
+      // If the the map or tasks do no exist yet, check again 1/10th of a second
+      setTimeout(() => {
+        this.callPlaceMarkers()
+      }, 1 * 100)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // Make sure to compare props to prevent infinit loop
+    if (Object.keys(this.props.tasks).length !== Object.keys(prevProps.tasks).length) {
+      // this.clearMarkers(this.state.helpNeededMarkers);
+      this.clearMarkers(this.state.userMarkers);
+      this.clearMarkers(this.state.helpNeededMarkers);
+
+      const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
+      const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
+      this.setState({ userMarkers, helpNeededMarkers })
+    }
+  }
+```
+
+### Sorting Distances
 
 ##### Overview
 
