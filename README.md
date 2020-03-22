@@ -99,7 +99,6 @@ _As a user under self-isolation, you can request a delivery which will be added 
 Using express we made calls to various Google Maps API's in order to facilitate:
 
 1. Autocomplete Address Search
-
 2. Geoencoding of address's for Latitude, and Longitude
 
 ``` javascript
@@ -213,14 +212,14 @@ __Flow:__
 
 In order to motivate task uptake and completion by volunters, tasks are sorted by their relative distance to the current user.
 
-__Current implementation flow:__
+##### Current implementation flow:
 
 * Wait for current user location.
 * Once user location is received dispatch to state.
 * When a change in user location is detected in componentDidUpdate calculate distance from user for each task and dispatch each task with updated distance to state
 * Upon tasks receiving a non-null distance attribute, trigger a sort of tasks by location
 
-__Bottleknecks & Future improvements:__
+##### Bottleknecks & Future improvements:
 
   At the moment all of the above flow takes place within react components. Therefore, the execution of each step is dependent on components mounting, and updating, and in some cases, rendering. For example, we trigger tasks sorts in the render method of each sidebar tab.
 
@@ -228,7 +227,7 @@ __Bottleknecks & Future improvements:__
 
   There likely would be siginificant performance benefits on the client, as sorting and distance calculations only take place once, instead of being arbitrarly triggered during a components life cycle.
 
-##### Code 
+##### Code
 
 In order to grab the current users position, we used the built-in ```navigator.geolocation.getCurrentPosition()```.
 
