@@ -9,7 +9,6 @@ export const receiveUserLocation = data => {
 
 export const getUserLocation = () => (dispatch) => {
   navigator.geolocation.getCurrentPosition((pos) => {
-    console.log("this is the position from action", pos)
     return  dispatch(receiveUserLocation(pos))
   }
 )}
