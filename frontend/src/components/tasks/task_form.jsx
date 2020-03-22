@@ -1,6 +1,6 @@
 import React from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-import { Form, Button, Card, Alert, Container } from 'react-bootstrap'
+import { Form, Card, Alert, Container } from 'react-bootstrap'
 
 import Food from '../../public/groceries.png';
 import Medicine from '../../public/medicine.png';

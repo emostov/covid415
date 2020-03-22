@@ -26,7 +26,7 @@
 * ### **Manage your deliveries** - an separate tab allows users to view and manage all the delivery requests that they've accepted.
 ![complete_delivery](frontend/public/complete_delivery.gif "Complete Delivery")
 
-* #### Request a delivery - as a user under self-isolation, you can request a delivery which will be added to the list and map.
+* ### Request a delivery - as a user under self-isolation, you can request a delivery which will be added to the list and map.
 ![request_task](frontend/public/request_task.gif "Request Task")
 
 ## Future features
