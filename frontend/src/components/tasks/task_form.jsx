@@ -99,7 +99,7 @@ class TaskForm extends React.Component {
                   container: 'suggestion-container',
                   suggestion: 'suggestion'
                 }}
-              // loader={<img src={loader} />}
+              loader={<div className='task-form-loader'>Loading...</div>}
               />
             </Form.Group>
 
