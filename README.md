@@ -59,6 +59,7 @@ Visually, the App is centered around a map and a red, yellow, green color theme.
 * Integrations:
   * Google Maps Geoencoding API
   * Google Maps Distance Matrix API
+  * Google Maps Place Autocomplete API
   * MapBox
 
 ---
