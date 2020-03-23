@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
+const sslRedirect = require('heroku-ssl-redirect');
+// const http = require('http');
+// const express_enforces_ssl = require('express-enforces-ssl');
 
 
 const users = require('./routes/api/users');
@@ -13,9 +16,11 @@ const { seedUsersAndTasks, seedByAddress } = require('./seeds/seed_script');
 const port = process.env.PORT || 5000;
 
 const app = express();
+// app.enable('trust proxy');
 
 // Load static build folder in production
 if (process.env.NODE_ENV === 'production') {
+  app.use(sslRedirect());
   app.use(express.static('frontend/build'));
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
@@ -29,9 +34,19 @@ mongoose
   .then(() => console.log('Connected to MongoDB successfully'))
   .catch((err) => console.log(err));
 
+
+
 // Setup middlware
+
+// app.use(sslRedirect([
+//   'other',
+//   'development',
+//   'production',
+// ]));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// app.use(express_enforces_ssl());
 app.use(passport.initialize());
 require('./config/passport')(passport);
 

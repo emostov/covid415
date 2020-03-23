@@ -40,6 +40,8 @@
     "body-parser": "^1.19.0",
     "concurrently": "^5.1.0",
     "express": "^4.17.1",
+    "express-enforces-ssl": "^1.1.0",
+    "heroku-ssl-redirect": "0.0.4",
     "jsonwebtoken": "^8.5.1",
     "mapbox-gl": "^1.8.1",
     "mongoose": "^5.9.4",
