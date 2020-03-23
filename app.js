@@ -36,12 +36,12 @@ mongoose
 
 
 // Setup middlware
-// app.use(sslRedirect());
-app.use(sslRedirect([
-  'other',
-  'development',
-  'production',
-]));
+app.use(sslRedirect());
+// app.use(sslRedirect([
+//   'other',
+//   'development',
+//   'production',
+// ]));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -62,5 +62,3 @@ app.get('/seed', (req, res) => {
 
 // Lastly, setup our app to listen
 app.listen(port, () => console.log(`Server is running on port ${port}`));
-
-
