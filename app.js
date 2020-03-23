@@ -20,6 +20,7 @@ const app = express();
 
 // Load static build folder in production
 if (process.env.NODE_ENV === 'production') {
+  app.use(sslRedirect());
   app.use(express.static('frontend/build'));
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
@@ -36,7 +37,7 @@ mongoose
 
 
 // Setup middlware
-app.use(sslRedirect());
+
 // app.use(sslRedirect([
 //   'other',
 //   'development',
