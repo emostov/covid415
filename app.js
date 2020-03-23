@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
-const http = require('http');
-const express_enforces_ssl = require('express-enforces-ssl');
+const sslRedirect = require('heroku-ssl-redirect');
+// const http = require('http');
+// const express_enforces_ssl = require('express-enforces-ssl');
 
 
 const users = require('./routes/api/users');
@@ -15,7 +16,7 @@ const { seedUsersAndTasks, seedByAddress } = require('./seeds/seed_script');
 const port = process.env.PORT || 5000;
 
 const app = express();
-app.enable('trust proxy');
+// app.enable('trust proxy');
 
 // Load static build folder in production
 if (process.env.NODE_ENV === 'production') {
@@ -35,9 +36,16 @@ mongoose
 
 
 // Setup middlware
+// app.use(sslRedirect());
+app.use(sslRedirect([
+  'other',
+  'development',
+  'production',
+]));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express_enforces_ssl());
+
+// app.use(express_enforces_ssl());
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
@@ -53,8 +61,6 @@ app.get('/seed', (req, res) => {
 });
 
 // Lastly, setup our app to listen
-// app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-http.createServer(app).listen(app.get('port'), () => {
-  console.log(`Express server listening on port ${app.get('port')}`);
-});
+
