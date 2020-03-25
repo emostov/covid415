@@ -284,3 +284,293 @@
 .head-demo {
    font-size: 30px;
 }
+
+@media only screen and (max-device-width: 400px) { 
+
+   .card-container-available {
+    padding: 20px 20px 20px 16px;
+    height: calc(100vh - 132px);
+    overflow-y: auto;
+    background: linear-gradient(#DA5663 15%, #FECEA8 );
+    animation: cards .5s;
+ }
+
+ @keyframes cards {
+   0% {
+     padding: 100px 20px 20px 16px;
+     opacity: 0;
+   }
+   100% {
+      padding: 20px 20px 20px 16px;
+     opacity: 1;
+   }
+ }
+ 
+ .card-container-2 {
+   padding: 20px 20px 20px 16px;
+   height: calc(100vh - 132px);
+   overflow-y: auto;
+   background: linear-gradient(#FECEA8 15%, #9FB89B );
+   animation: cards .4s;
+ }
+
+ .card-header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 300;
+ }
+
+ .card-footer-container {
+   margin-top: 15px;
+   margin-left: 50px;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+   align-items: center;
+   text-transform: capitalize;
+   letter-spacing: 1px;
+}
+ 
+ .card-head {
+    font-size: 20px;
+    color: white;
+    font-weight: 200;
+ }
+
+ .fa-plus {
+   font-size: 20px;
+ }
+
+ .fa-minus {
+   font-size: 20px;
+   color: #2A363A
+ }
+ 
+ .card-box {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-right: 20px;
+    // background-color: $light-gray-bg;
+    background-color: #2A363A;
+    opacity: .9;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    height: 150px;
+    width: 360px;
+    transition: height .3s ease;
+    cursor: pointer;
+ }
+
+ .card-task-type-text {
+   font-size: 18px;
+   font-weight: 200;
+   color: white;
+   padding-left: 10px;
+   text-transform: uppercase;
+ }
+ 
+ .card-box:hover {
+    box-shadow: 2px 2px 8px 2px rgb(58, 58, 58);
+ }
+ 
+ .card-box-active {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    background-color:#ffffff; 
+    // background-color: rgb(228, 228, 228);
+    opacity: .9;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    height: 450px;
+    width: 455px;
+    transition: height .3s ease;
+    box-shadow: 2px 2px 8px 3px rgb(204, 204, 204);
+    position: relative;
+ }
+
+ .card-box-top-container {
+   animation-name: card-fade-in;
+   animation-duration: .5s;
+ }
+
+ @keyframes card-fade-in {
+   from {opacity: 0;}
+   to {opacity: 1}
+ }
+ 
+ .card-body {
+     padding: 25px 0px
+ }
+
+ .card-body-active {
+    color: #2A363A;
+ }
+ 
+ .card-head-active {
+    color: #2A363A;
+    font-size: 20px;
+    font-weight: 200;
+ }
+ 
+ .card-address-active {
+    color: #2A363A; 
+ }
+ 
+ .card-box-task-type {
+    color: #2A363A; 
+ }
+ 
+ .card-address-link:hover {
+    color: $figma-red;
+    cursor: pointer;
+    text-decoration: none;
+ }
+ 
+ .instructions-header {
+    color: #2A363A;
+ }
+ 
+ .instructions-body {
+    color: #2A363A;
+    padding-bottom: 15px;
+ }
+ 
+ .card-box-task-type {
+    display: flex;
+    
+ }
+ 
+ .card-box-task-content{
+    margin-left: 6px;
+    padding-bottom: 10px;
+ }
+ 
+ .card-box-type-of-prop {
+    color: #2A363A;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+ }
+ 
+ .card-box-top-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+ 
+ .card-container-demo {
+   padding: 20px 20px 20px 16px;
+   height: calc(100vh - 132px);
+   overflow-y: auto;
+   background: linear-gradient(#DA5663 15%, #FECEA8 );
+   //  border: 1px solid black;
+   //  height: 25%;
+   //  border-radius: 3px;
+   //  background-color: #2A363A;
+   //  opacity: .9;
+ }
+ 
+ .card-demo-content {
+    margin: 10px;
+ }
+ 
+ .register-or-login {
+    margin: 10px;
+    display: flex;
+ }
+ 
+ .middle-statement {
+    padding-left: 5px;
+    padding-right: 5px;
+ }
+ 
+ .fa-external-link-alt {
+    color: #2A363A;;
+    padding-left: 10px;
+    width: 24px!important;
+ } 
+
+.accept-button {
+   background-color: $figma-grapefruit;
+   border: none;
+   color: white;
+   filter: brightness(90%);
+   width: 175px;
+   height: 45px;
+   border-radius: 5px;
+   text-transform: uppercase;
+   font-size: 20px;
+   font-weight: 500;
+   position: absolute;
+   right: 20px;
+   bottom: 30px;
+   animation-name: card-fade-in;
+   animation-duration: 1s;
+}
+
+.accept-button:hover {
+    box-shadow: 2px 2px 8px 3px rgba(197, 197, 197, 0.5);
+    filter: brightness(100%);
+}
+
+.accept-button:focus {
+    outline: none;
+}
+
+.complete-button {
+   background-color: $figma-green;
+   border: none;
+   color: white;
+   filter: brightness(90%);
+   width: 200px;
+   height: 45px;
+   border-radius: 5px;
+   text-transform: uppercase;
+   font-size: 20px;
+   font-weight: 500;
+   position: absolute;
+   right: 20px;
+   bottom: 30px;
+   animation-name: card-fade-in;
+   animation-duration: 1s;
+}
+
+.complete-button:hover {
+    box-shadow: 2px 2px 8px 3px rgba(197, 197, 197, 0.5);
+    filter: brightness(100%);
+}
+
+.complete-button:focus {
+    outline: none;
+}
+
+.card-type-img {
+   width: 50px;
+   margin-left: 10px;
+}
+
+.card-demo-text {
+   font-size: 18px;
+   font-weight: 200;
+}
+
+.card-demo-text > a{
+   font-size: 18px;
+   font-weight: 600;
+   color: white;
+}
+
+.card-demo-text > a:hover{
+   font-size: 18px;
+   font-weight: 600;
+   color: $figma-green;
+   text-decoration: none;
+}
+
+.head-demo {
+   font-size: 30px;
+}
+   
+}
