@@ -1,4 +1,4 @@
-![logo](frontend/src/public/COVID415.png)
+![logo](frontend/public/COVID415-logo-white.png)
 # COVID415
 
 
