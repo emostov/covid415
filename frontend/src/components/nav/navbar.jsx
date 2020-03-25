@@ -74,7 +74,7 @@ class NavBar extends React.Component {
                 <div></div>
               )
             }
-            <div class="icon-login-container">
+            <div className="icon-login-container">
               <Nav
                 className="justify-content-end upcase white-txt align-items-end">
                 {this.getLinks()}
