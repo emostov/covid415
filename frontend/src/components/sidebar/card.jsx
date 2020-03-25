@@ -118,6 +118,7 @@ class Card extends React.Component {
     return (
       <div onMouseEnter={this.handleCardHover}
         onMouseLeave={this.handleCardMouseLeave}
+        className="card-box-container"
       >
         {
           this.state.active
