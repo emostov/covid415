@@ -4,7 +4,6 @@
    width: 500px;
 }
 
-
 .sidebar-inner-container {
    display: flex;
    flex-direction: column;
@@ -91,4 +90,100 @@
 
 .sidebar-container-inner-body {
    height: 95%;
+}
+
+@media only screen and (max-device-width: 400px) {
+
+   .sidebar-container{
+      width: 375px;
+   }
+
+   .sidebar-inner-container {
+      display: flex;
+      flex-direction: column;
+      // margin: 20px;
+      height: 100px;
+   }
+
+   .sidebar-container-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      height: 70px;
+      border-bottom: solid 1px #b3b3b3
+   }
+
+   .sidebar-container-inner-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      height: 80%;
+      width: 100%;
+      transform: translateY(10px);
+   }
+
+   .sidebar-container-header-available {
+      border-right: 1px solid rgb(179, 179, 179);
+      width: 50%;
+      height: 88%;
+      text-align: center;
+      cursor: pointer;
+   }
+
+   .sidebar-container-header-available:hover {
+      color: white;
+   }
+
+   .sidebar-container-header-active {
+      width: 50%;
+      height: 100%;
+      text-align: center;
+      cursor: pointer;
+   }
+
+   .sidebar-container-header-active:hover {
+      color: white;
+   }
+
+   .available-title-name {
+      transform: translateY(10px);
+      font-size: 22px;
+      color: $second-gray-bg
+   }
+
+   .available-title-name-active {
+      transform: translateY(10px);
+      font-size: 22px;
+      color: white;
+      
+   }
+
+   .available-title-name:hover {
+      text-decoration: underline;
+   }
+
+   .active-title-name {
+      transform: translateY(10px);
+      font-size: 22px;
+      color: $second-gray-bg
+   }
+
+   .active-title-name:hover {
+      text-decoration: underline;
+   }
+
+   .active-title-name-active {
+      transform: translateY(10px);
+      font-size: 22px;
+      color: white;
+   }
+
+   .sidebar-container-body {
+      height: 86.5%;
+   }
+
+   .sidebar-container-inner-body {
+      height: 95%;
+   }
+
 }

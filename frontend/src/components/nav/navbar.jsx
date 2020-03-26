@@ -65,7 +65,7 @@ class NavBar extends React.Component {
           <div className='d-flex justify-content-between w-full align-items-center'>
             <Nav className="mr-auto ">
               <Navbar.Brand href="#">
-                <img className="logo-covid415" src={Logo} alt='covid-logo' width="200" />
+                <img className="logo-covid415" src={Logo} alt='covid-logo'/>
               </Navbar.Brand>
             </Nav>
             {this.props.loggedIn ? (
@@ -74,16 +74,18 @@ class NavBar extends React.Component {
                 <div></div>
               )
             }
-            <Nav
-              className="justify-content-end upcase white-txt align-items-end">
-              {this.getLinks()}
-            </Nav>
-            <Nav className="github-icon">
-              <a href="https://github.com/emostov/covid415"
-                target="_blank" rel="noopener noreferrer" >
-                <img src={gitHub} className='online-presence-icon' alt="github" />
-              </a>
-            </Nav>
+            <div className="icon-login-container">
+              <Nav
+                className="justify-content-end upcase white-txt align-items-end">
+                {this.getLinks()}
+              </Nav>
+              <Nav className="github-icon">
+                <a href="https://github.com/emostov/covid415"
+                  target="_blank" rel="noopener noreferrer" >
+                  <img src={gitHub} className='online-presence-icon' alt="github" />
+                </a>
+              </Nav>
+            </div>
           </div>
         </Navbar>
 
