@@ -308,8 +308,14 @@
 
   .navbar-brand {
     margin: 0;
-    margin-right:20%;
-    margin-left: 75%;
+    // margin-right:20%;
+    // margin-left: 75%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .navbar-nav {
+    margin: auto;
   }
 
   .logo-covid415 {
