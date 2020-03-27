@@ -346,13 +346,13 @@
 
 }
 
-@media only screen and (max-device-width: 420px) { 
+@media only screen and (max-device-width: 600px) { 
   .modal-child-welcome {
     color: black;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -60%);
     width: 80%;
     height: 65%; 
     // background-image: linear-gradient(to bottom right, $figma-red, $figma-grapefruit, $figma-peach );
