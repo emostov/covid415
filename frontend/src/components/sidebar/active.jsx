@@ -19,12 +19,7 @@ class ActiveSidebar extends React.Component {
     } = this.props
 
     
-    // const uninqueSet = new Set(active);
-    // const uniqueActive = [...uninqueSet];
 
-    // const u2Active = uniqueActive.filter((t, idx) => {
-    //   return uniqueActive.indexOf(t) === idx
-    // })
 
     const idSet = {}
     const u3 = []
