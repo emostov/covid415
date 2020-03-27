@@ -6,10 +6,11 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import { receiveActiveTaskId } from '../../actions/active_task_actions';
 import { getUserLocation } from '../../actions/location_actions';
 import { receiveNewTask } from '../../actions/task_actions';   
-
 import {
   receiveDisplayAssignedTasks
 } from '../../actions/displayed_tasks_actions';
+
+import { selectCurrenUserActiveTasks, selectHelpNeededTasks} from '../../reducers/selectors'
 
 const mSTP = state => {
   let currentUserId;
@@ -25,6 +26,8 @@ const mSTP = state => {
     session: state.session,
     userLocation: state.ui.userLocation,
     tasks: state.tasks,
+    active: selectCurrenUserActiveTasks(state),
+    available: selectHelpNeededTasks(state),
   }
 };
 

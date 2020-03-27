@@ -155,6 +155,7 @@ class Map extends React.Component {
 
   updateMarkers() {
     const { userMarkers, helpNeededMarkers } = this.state;
+
     if (this.props.dispalyNotAssignedTasks) {
       // display the helped needed markers
       this.clearMarkers(userMarkers);
