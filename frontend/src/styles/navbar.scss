@@ -25,9 +25,9 @@
   border-color: transparent;
 }
 
-.dropdown-item:active {
-  // background-color: white;
-}
+// .dropdown-item:active {
+//   // background-color: white;
+// }
 
 .nav-link:hover {
   color: white!important;
@@ -160,7 +160,6 @@
 @media only screen and (max-device-width: 500px) { 
 
   .upcase {
-    // text-transform: uppercase;
     font-weight: 500;
     letter-spacing: 0.5px;
   }
@@ -184,9 +183,9 @@
     border-color: transparent;
   }
 
-  .dropdown-item:active {
-    // background-color: white;
-  }
+  // .dropdown-item:active {
+  //   // background-color: white;
+  // }
 
   .nav-link:hover {
     color: white!important;
@@ -199,7 +198,6 @@
   .user-circle {
     width: 25px!important;
     height: 25px!important;
-    // color: #ffffff !important;
   }
 
 
