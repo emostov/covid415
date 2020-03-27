@@ -10,6 +10,7 @@ export const selectHelpNeededTasks = (state) => {
 };
 
 export const selectCurrenUserActiveTasks = (state) => {
+  if (!state.session.user) return [];
   const { id } = state.session.user;
   const { tasks } = state;
   return Object.values(tasks).filter((task) =>
