@@ -27,8 +27,7 @@
 }
 
 .welcome-logo {
-  height: 80%;
-  padding-right: 40px;
+  height: 100%;
 }
 
 .modal-welcome-container {
@@ -42,25 +41,28 @@
 .modal-welcome-heading {
   height: 10%;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px
+}
+
+.modal-welcome-header-text {
   font-weight: 200;
   font-size: 1.6vw;
   color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  align-items: center;
-  padding-bottom: 15px;
-  padding-left: 30px;
+  margin-left: 10px;
 }
 
 .modal-welcome-body {
   background-image: linear-gradient(to top, $figma-peach, $figma-grapefruit, $figma-red );
   height: 100%;
   width: 100%;
-  padding: 20px;
+  padding: 2% 5%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .modal-welcome-sub-heading {
@@ -86,13 +88,14 @@
 }
 
 .modal-splash {
-  height: 43vh;
+  height: 80%;
 }
 
 .modal-body-header {
   font-size: 1.8vw;
   color: white;
   font-weight: 400;
+  margin-top: 5%;
 }
 
 
@@ -324,10 +327,11 @@
   height: 8%;
   border-radius: 5px;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 1.5vw;
   font-weight: 500;
   position: absolute;
-  bottom: 30px;
+  bottom: 15%;
+  left: 15%;
   animation-name: card-fade-in;
   animation-duration: 1s;
 }
@@ -376,15 +380,18 @@
   .modal-welcome-heading {
     height: 20%;
     width: 100%;
-    font-weight: 200;
-    font-size: 16px;
-    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
     text-align: center;
     margin-bottom: 5px;
+  }
+
+  .modal-welcome-header-text {
+    font-weight: 200;
+    font-size: 16px;
+    color: white;
   }
   
   .modal-welcome-body {
@@ -393,6 +400,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding: 0px 20px;
     // justify-content: space-around;
   }
   
@@ -415,6 +423,7 @@
 
   .modal-body-header {
     font-size: 5vw;
+    margin-top: 5px;
     color: white;
     font-weight: 400;
   }
@@ -450,6 +459,7 @@
     width: 100%;
     align-items: center;
     z-index: 1;
+    margin-bottom: 20px;
   }
 
   .continue-button {
@@ -464,22 +474,19 @@
     font-size: 20px;
     font-weight: 500;
     position: absolute;
-    // bottom: 30px;
+    bottom: 5%;
     animation-name: card-fade-in;
     animation-duration: 1s;
-  }
-  
-  .continue-button:focus {
-    outline: none;
-  }
-  
-  .continue-button:hover {
-    filter: brightness(100%);
     box-shadow: 2px 2px 8px 2px #4c515973;
   }
 
+  
+  .continue-button:active{
+    filter: brightness(100%);
+  }
+
   .sample-card {
-    display:none;
+    display: none;
   }
   
   
