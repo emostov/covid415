@@ -4,7 +4,7 @@ import Map from './map';
 import { fetchTasks } from '../../actions/task_actions';
 import { receiveActiveTaskId } from '../../actions/active_task_actions';
 import {
-  selectHelpNeededTasks, selectCurrentUserTask
+  selectHelpNeededTasks, selectCurrentUserTask, selectCurrenUserActiveTasks
 } from '../../reducers/selectors';
 
 const mSTP = (state) => {
@@ -24,7 +24,8 @@ const mSTP = (state) => {
     currentUserId,
     currentUserTasks,
     helpNeededTasks: selectHelpNeededTasks(state),
-    dispalyNotAssignedTasks
+    dispalyNotAssignedTasks,
+    activeTasks: selectCurrenUserActiveTasks(state),
 
   })
 };

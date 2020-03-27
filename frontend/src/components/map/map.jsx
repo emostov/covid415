@@ -63,8 +63,21 @@ class Map extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { tasks, helpNeededTasks, activeTask} = this.props;
     // Make sure to compare props to prevent infinit loop
-    if (Object.keys(this.props.tasks).length !== Object.keys(prevProps.tasks).length) {
+    // if (Object.keys(this.props.tasks).length !== Object.keys(prevProps.tasks).length) {
+    if (
+      Object.keys(this.props.tasks).length !== Object.keys(prevProps.tasks).length
+      || (
+        this.props.helpNeededTasks &&
+        Object.keys(this.props.helpNeededTasks).length 
+          !== Object.keys(prevProps.helpNeededTasks).length
+      ) 
+      // || (
+
+      // )
+
+    ) {
       // this.clearMarkers(this.state.helpNeededMarkers);
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
@@ -166,6 +179,8 @@ class Map extends React.Component {
     }
 
   }
+
+
 
   updatePopups() {
     const { userMarkers, helpNeededMarkers, map } = this.state;
