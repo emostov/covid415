@@ -92,10 +92,10 @@
    height: 95%;
 }
 
-@media only screen and (max-device-width: 400px) {
+@media only screen and (max-device-width: 600px) {
 
    .sidebar-container{
-      width: 375px;
+      width: 100%;
    }
 
    .sidebar-inner-container {
