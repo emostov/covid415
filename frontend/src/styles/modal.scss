@@ -354,7 +354,7 @@
     left: 50%;
     transform: translate(-50%, -60%);
     width: 80%;
-    height: 65%; 
+    height: 75%; 
     // background-image: linear-gradient(to bottom right, $figma-red, $figma-grapefruit, $figma-peach );
     background: rgba(51,58,64,0.8);
     border-radius: 10px;
@@ -409,7 +409,7 @@
     text-align: center;
     color:white;
     font-size: 20px;
-    font-weight: 200;
+    font-weight: 300;
     width: 100%;
   }
   
@@ -442,7 +442,7 @@
   }
 
   .modal-splash {
-    height: 50%;
+    height: 70%;
     
     // display:none;
   }
@@ -461,7 +461,6 @@
     width: 100%;
     align-items: center;
     z-index: 1;
-    margin-bottom: 2%;
   }
 
   .continue-button {
