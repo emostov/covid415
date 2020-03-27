@@ -18,9 +18,25 @@ class ActiveSidebar extends React.Component {
       receiveNewTask
     } = this.props
 
-    let currentUserTasks = active.filter(task => currentUserId === task.volunteer)
-    currentUserTasks = frontendUtil.sortDistances2(currentUserTasks);
+    
 
+
+    const idSet = {}
+    const u3 = []
+    active.forEach((task) => {
+      if(idSet[task._id] === undefined && task.volunteer === currentUserId){
+        idSet[task._id] = true;
+        u3.push(task)
+      }
+    })
+
+    // let userTasksUnsorted = u3.filter(task => {
+    //   if (currentUserId === task.volunteer){
+    //     return true;
+    //   }
+    //   return false;
+    // })
+    let currentUserTasks = frontendUtil.sortDistances2(u3);
     return (
       <div className="card-container">
         {
@@ -29,6 +45,7 @@ class ActiveSidebar extends React.Component {
             (
               <div className='card-container-2'>
                 {
+                  
                   currentUserTasks.map((task, i) => {
                     return <Card
                       key={`card-active-${i}`}
