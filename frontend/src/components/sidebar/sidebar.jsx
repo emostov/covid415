@@ -43,23 +43,24 @@ export default class SideBar extends Component {
       userLocation,
       tasks,
       receiveNewTask,
-      active
+      active,
+      available
       // activeTask,
       // receiveActiveTaskId,
     } = this.props
     
-    let available = []
+    // let available = []
     // let active = []
-    Object.values(tasks).forEach((task) => {
-      if (task.status === 0) {
-        available.push(task)
-      }
+    // Object.values(tasks).forEach((task) => {
+    //   if (task.status === 0) {
+    //     available.push(task)
+    //   }
       //  else if (task.status === 1) {
-      //   console.log('task pre push', task)
+
       //   active.push(task)
       // }
-    })
-    console.log('----')
+    // })
+
 
     return (
       <div className='sidebar-container'>

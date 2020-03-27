@@ -10,7 +10,7 @@ import {
   receiveDisplayAssignedTasks
 } from '../../actions/displayed_tasks_actions';
 
-import { selectCurrenUserActiveTasks} from '../../reducers/selectors'
+import { selectCurrenUserActiveTasks, selectHelpNeededTasks} from '../../reducers/selectors'
 
 const mSTP = state => {
   let currentUserId;
@@ -26,7 +26,8 @@ const mSTP = state => {
     session: state.session,
     userLocation: state.ui.userLocation,
     tasks: state.tasks,
-    active: selectCurrenUserActiveTasks(state)
+    active: selectCurrenUserActiveTasks(state),
+    available: selectHelpNeededTasks(state),
   }
 };
 

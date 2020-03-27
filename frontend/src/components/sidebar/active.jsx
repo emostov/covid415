@@ -21,10 +21,7 @@ class ActiveSidebar extends React.Component {
     
 
     let userTasksUnsorted = active.filter(task => currentUserId === task.volunteer)
-    console.log('pre sort', userTasksUnsorted);
     let currentUserTasks = frontendUtil.sortDistances2(userTasksUnsorted);
-
-    console.log('post sort', currentUserTasks);
     return (
       <div className="card-container">
         {
