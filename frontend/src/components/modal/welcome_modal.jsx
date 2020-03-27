@@ -17,7 +17,6 @@ class WelcomeModal extends React.Component {
                         <div className="welcome-section-1">
                             <div className="modal-body-header">Self-isolating?</div>
                             <div className="modal-body-text">Request a delivery from a local volunteer.</div>
-                            <br />
                             <div className="modal-body-header">Want to help your neighbors?</div>
                             <div className="modal-body-text">Deliver essential items to quarantined people nearby.</div>
                             <img src={HayesValley} className='sample-card' alt="hayes-card" />
