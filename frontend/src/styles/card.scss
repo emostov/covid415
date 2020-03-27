@@ -1,5 +1,7 @@
 @import './theme.scss';
 
+// @media only screen and (max-device-width: 400px) { 
+
 .card-container-available {
     padding: 20px 20px 20px 16px;
     height: calc(100vh - 132px);
@@ -285,10 +287,10 @@
    font-size: 30px;
 }
 
-@media only screen and (max-device-width: 400px) { 
+@media only screen and (max-device-width: 600px) { 
 
    .card-box-container {
-      width: 345px;
+      width: 100%;
    }
 
    .card-container-available {
@@ -357,14 +359,14 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    padding-right: 20px;
+   //  padding-right: 20px;
     // background-color: $light-gray-bg;
     background-color: #2A363A;
     opacity: .9;
     margin-bottom: 10px;
     border-radius: 3px;
     height: 150px;
-    width: 345px;
+    width: 100%;
     transition: height .3s ease;
     cursor: pointer;
  }
