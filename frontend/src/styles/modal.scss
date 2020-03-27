@@ -32,7 +32,7 @@
 }
 
 .modal-welcome-container {
-  height: 100%;
+  height: 50%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -308,10 +308,7 @@
 }
 
 .sample-card {
-  // width: 60%;
-  height: 19%;
-  border-radius: 5px;
-  margin-top: 8px;
+  display: none;
 }
 
 .continue-button {
@@ -339,4 +336,119 @@
   filter: brightness(100%);
   box-shadow: 2px 2px 8px 2px #4c515973;
 
+}
+
+@media only screen and (max-device-width: 420px) { 
+  .modal-child-welcome {
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 65%; 
+    // background-image: linear-gradient(to bottom right, $figma-red, $figma-grapefruit, $figma-peach );
+    background: rgba(51,58,64,0.8);
+    border-radius: 10px;
+    padding: 10px 0px 0px 0px;
+    overflow: hidden;
+    animation: modal-height 1s;
+  }
+  
+  .welcome-logo {
+    height: 50%;
+    padding: 0px;
+    margin-bottom: 5px;
+  }
+  
+  .modal-welcome-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .modal-welcome-heading {
+    height: 10%;
+    width: 100%;
+    font-weight: 200;
+    font-size: 2.3vw;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+  }
+  
+  .modal-welcome-body {
+    background-image: linear-gradient(to top, $figma-peach, $figma-grapefruit, $figma-red );
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-around;
+  }
+  
+  .modal-welcome-sub-heading {
+    text-align: center;
+    color:white;
+    font-size: 20px;
+    font-weight: 200;
+    width: 100%;
+  }
+  
+  .modal-welcome-section {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    border-radius: 5px;
+    background-image: linear-gradient(to top, $figma-peach, $figma-grapefruit, $figma-red );
+  }
+
+  .modal-splash {
+    // height: 40%;
+    display:none;
+  }
+
+  .welcome-section-1 {
+    // width: 50%;
+    z-index: 2;
+  }
+  
+  .welcome-section-2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .continue-button {
+    background-color: $figma-green;
+    border: none;
+    color: white;
+    filter: brightness(95%);
+    width: 70%;
+    // height: 8%;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    // bottom: 30px;
+    animation-name: card-fade-in;
+    animation-duration: 1s;
+  }
+  
+  .continue-button:focus {
+    outline: none;
+  }
+  
+  .continue-button:hover {
+    filter: brightness(100%);
+    box-shadow: 2px 2px 8px 2px #4c515973;
+  }
+  
 }
