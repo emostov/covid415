@@ -149,20 +149,16 @@ class Map extends React.Component {
       });
       markerEl.addEventListener('mouseleave', () => {
         // Remove popup from map
-        // receiveActiveTaskId(null);
         const { activeTask } = this.props;
         if (popup.isOpen() && (!activeTask || activeTask.taskId !== taskId)) {
-          console.log('hi')
           popup.remove();
         }
-
       });
 
       markerEl.addEventListener('click', (e) => {
         e.stopPropagation()
         const isOpen = popup.isOpen();
         const { activeTask } = this.props;
-        console.log(popup)
         popup.addTo(map);
         // if popup is open and is the active task id 
         if (isOpen && activeTask && (activeTask.taskId === taskId)) {
