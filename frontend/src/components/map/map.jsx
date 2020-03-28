@@ -151,28 +151,35 @@ class Map extends React.Component {
         // Remove popup from map
         // receiveActiveTaskId(null);
         const { activeTask } = this.props;
-        if (!activeTask || activeTask.taskId !== taskId) {
-          popup.remove();
+        if (popup.isOpen() && (!activeTask || activeTask.taskId !== taskId)) {
+          console.log('hi')
+          // popup.remove();
         }
 
       });
 
-      markerEl.addEventListener('click', () => {
+      markerEl.addEventListener('click', (e) => {
+        e.stopPropagation()
         const isOpen = popup.isOpen();
         const { activeTask } = this.props;
-
+        console.log(popup)
+        popup.addTo(map);
         // if popup is open and is the active task id 
         if (isOpen && activeTask && (activeTask.taskId === taskId)) {
           // make it not the active taskid & close
+          console.log('removiing')
           receiveActiveTaskId(null);
-          popup.remove()
-        } else if ((isOpen && ( !activeTask || (activeTask.taskId !== taskId)) ) ) {
+          // popup.remove()
+        } else
+         if ((isOpen && (!activeTask || (activeTask.taskId !== taskId)))) {
           // if popup is open but not active task id
           // keep it open and make it the active task id
           receiveActiveTaskId(taskId);
-        } else if (!isOpen) {
           popup.addTo(map);
+        } else {
           receiveActiveTaskId(taskId);
+          popup.addTo(map);
+          
         }
       });
 
@@ -185,7 +192,7 @@ class Map extends React.Component {
   clearMarkers(markers) {
     if (!markers) return;
     markers.forEach((marker) => {
-      marker.mBMarker.remove();
+      // marker.mBMarker.remove();
     })
   }
 
@@ -216,16 +223,19 @@ class Map extends React.Component {
     if (!(userMarkers && helpNeededMarkers)) return;
 
     const allMarkers = userMarkers.concat(helpNeededMarkers);
-    allMarkers.length && allMarkers.forEach((markerObj) => {
-      const { mBMarker, id } = markerObj;
-      if (
-        activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
-      ) {
-        mBMarker.getPopup().addTo(map)
-      } else if (mBMarker.getPopup().isOpen()) {
-        mBMarker.getPopup().remove();
-      }
-    })
+    // allMarkers.length && allMarkers.forEach((markerObj) => {
+    //   const { mBMarker, id } = markerObj;
+    //   if (
+    //     activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
+    //   ) {
+    //     mBMarker.getPopup().addTo(map)
+    //   } else if (
+    //     mBMarker.getPopup().isOpen() && activeTask && activeTask.taskId !== id
+    //     ) {
+    //       console.log('remove in loop')
+    //     mBMarker.getPopup().remove();
+    //   }
+    // })
   }
 
   render() {
