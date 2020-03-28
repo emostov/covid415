@@ -28,6 +28,7 @@ class TaskUpdate extends React.Component {
 
     return (
       <div className="modal-child-confirm-delivery">
+        <div className="close-x" onClick={this.props.closeModal}>&times;</div>
         <div className="delivery-header-container">
           <div className="delivery-header">Thanks for helping out.</div>
         </div>

@@ -26,6 +26,7 @@ class TaskDetails extends React.Component {
     const { task } = this.props
     return (
       <div className="modal-child-confirm-delivery">
+        <div className="close-x" onClick={this.props.closeModal}>&times;</div>
         <div className="delivery-header-container-pending">
           <div className="delivery-header">{task.requester.firstName} is counting on you.</div>
         </div>
