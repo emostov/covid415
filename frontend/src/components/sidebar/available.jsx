@@ -19,7 +19,7 @@ class AvailableSidebar extends React.Component {
     let sortedTasks = frontendUtil.sortDistances2(available)
 
     return (
-      <div className='card-container-available'>
+      <div className='card-container-available' id='card-container'>
         {
           sortedTasks.map((task, i) => {
             return <Card

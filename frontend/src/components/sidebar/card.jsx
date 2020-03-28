@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
+import ReactDOM from 'react-dom';
 
 import frontendUtil from '../../util/frontend_util';
 import { typeIcon } from '../../util/card_icon_util';
@@ -18,7 +19,7 @@ class Card extends React.Component {
       active: false,
       distance: ''
     }
-    this.myRef = React.createRef()  
+    this.myRef = React.createRef()
     this.clickHandler = this.clickHandler.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.handleCardHover = this.handleCardHover.bind(this);
@@ -62,9 +63,22 @@ class Card extends React.Component {
 
   isCurrentTask() {
     const { task, activeTask } = this.props;
-    if (activeTask && task._id === activeTask.taskId){
+    if (activeTask && task._id === activeTask.taskId) {
       // scroll to current task if active
-      // window.scrollTo(0, this.myRef.offsetTop)
+      // const container = document.getElementById('card-container');
+      // console.log('suucc', container)
+      // container.scrollTo(0, this.myRef.offsetTop);
+
+      this.myRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+
+      // var el = document.getElementById(task._id);
+      // console.log(el.offsetTop)
+      // el.scrollTop = 100;
+      // console.log(el.offsetTop)
+
       return true;
     }
     return false;
@@ -127,11 +141,13 @@ class Card extends React.Component {
   }
 
   render() {
+    const { task } = this.props
     return (
       <div onMouseEnter={this.handleCardHover}
         onMouseLeave={this.handleCardMouseLeave}
         className="card-box-container"
-        ref={(ref) => this.myRef = ref}
+        ref={this.myRef}
+        id={task._id}
       >
         {
           this.state.active || this.isCurrentTask()
