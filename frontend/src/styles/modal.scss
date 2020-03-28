@@ -238,6 +238,14 @@
   letter-spacing: 0.5px;
 }
 
+.delivery-details-memo{
+  color: $second-gray-txt;
+  font-size: 19px; 
+  padding-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .delivery-details-confirmation {
   color: black;
   font-weight: 500;
@@ -552,6 +560,14 @@
     color: black;
     font-size: 4vw;
     letter-spacing: 0.5px;
+  }
+
+  .delivery-details-memo{
+    color: $second-gray-txt;
+    font-size: 4vw;
+    padding-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   .claim-button {

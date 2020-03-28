@@ -99,7 +99,7 @@
     opacity: .9;
     margin-bottom: 10px;
     border-radius: 3px;
-    height: 450px;
+    height: 400px;
     width: 455px;
     transition: height .3s ease;
     box-shadow: 2px 2px 8px 3px rgb(204, 204, 204);
@@ -392,7 +392,7 @@
     opacity: .9;
     margin-bottom: 10px;
     border-radius: 3px;
-    height: 450px;
+    height: 400px;
     width: 345px;
     transition: height .3s ease;
     box-shadow: 2px 2px 8px 3px rgb(204, 204, 204);
@@ -585,5 +585,11 @@
 .head-demo {
    font-size: 30px;
 }
+.fa-external-link-alt {
+   color: #2A363A;;
+   padding-left: 10px;
+   width: 24px!important;
+} 
+
    
 }
