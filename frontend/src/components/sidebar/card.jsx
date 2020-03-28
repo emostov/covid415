@@ -22,8 +22,8 @@ class Card extends React.Component {
     this.myRef = React.createRef()
     this.clickHandler = this.clickHandler.bind(this);
     this.handleModal = this.handleModal.bind(this);
-    this.handleCardHover = this.handleCardHover.bind(this);
-    this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
+    // this.handleCardHover = this.handleCardHover.bind(this);
+    // this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
     this.distanceFromCurrentToTask = this.distanceFromCurrentToTask.bind(this)
   }
 
@@ -84,22 +84,22 @@ class Card extends React.Component {
     e.stopPropagation();
   }
 
-  handleCardHover(e) {
-    // e.stopPropagation();
-    // const { activeTask, task } = this.props;
-    // if (!activeTask || activeTask.taskId !== task._id) {
-    //   this.props.receiveActiveTaskId(task._id);
-    // }
-  }
+  // handleCardHover(e) {
+  //   // e.stopPropagation();
+  //   // const { activeTask, task } = this.props;
+  //   // if (!activeTask || activeTask.taskId !== task._id) {
+  //   //   this.props.receiveActiveTaskId(task._id);
+  //   // }
+  // }
 
-  // On mouse leave set activeTask to null
-  handleCardMouseLeave(e) {
-    e.stopPropagation();
-    const { activeTask, task } = this.props;
-    if (activeTask && activeTask.taskId === task._id) {
-      this.props.receiveActiveTaskId(null);
-    }
-  }
+  // // On mouse leave set activeTask to null
+  // handleCardMouseLeave(e) {
+  //   // e.stopPropagation();
+  //   // const { activeTask, task } = this.props;
+  //   // if (activeTask && activeTask.taskId === task._id) {
+  //   //   this.props.receiveActiveTaskId(null);
+  //   // }
+  // }
 
   distanceFromCurrentToTask() {
     const { task, currentPosition } = this.props
@@ -139,8 +139,9 @@ class Card extends React.Component {
   render() {
     const { task } = this.props
     return (
-      <div onMouseEnter={this.handleCardHover}
-        onMouseLeave={this.handleCardMouseLeave}
+      <div 
+      // onMouseEnter={this.handleCardHover}
+      //   onMouseLeave={this.handleCardMouseLeave}
         className="card-box-container"
         ref={this.myRef}
         id={task._id}

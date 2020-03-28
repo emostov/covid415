@@ -239,7 +239,6 @@ class Map extends React.Component {
       }
     })
     }, 1)
-
   }
 
   render() {
