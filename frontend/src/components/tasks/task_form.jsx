@@ -107,7 +107,7 @@ class TaskForm extends React.Component {
               <Form.Label className='task-form-label'>Details</Form.Label>
               <Form.Control
                 as='textarea'
-                placeholder='Please bring me some fuji apples and Sour Diesel'
+                placeholder='Please bring me some canned food and whole milk.'
                 onChange={this.update('details')}
                 className='task-form-input-long'
               />
