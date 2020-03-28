@@ -223,19 +223,25 @@ class Map extends React.Component {
     if (!(userMarkers && helpNeededMarkers)) return;
 
     const allMarkers = userMarkers.concat(helpNeededMarkers);
-    // allMarkers.length && allMarkers.forEach((markerObj) => {
-    //   const { mBMarker, id } = markerObj;
-    //   if (
-    //     activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
-    //   ) {
-    //     mBMarker.getPopup().addTo(map)
-    //   } else if (
-    //     mBMarker.getPopup().isOpen() && activeTask && activeTask.taskId !== id
-    //     ) {
-    //       console.log('remove in loop')
-    //     mBMarker.getPopup().remove();
-    //   }
-    // })
+
+    // Use set timeout to makesure if activeTask was set somewhere else it 
+    // has time to propagate
+    setTimeout(()=> {
+    allMarkers.length && allMarkers.forEach((markerObj) => {
+      const { mBMarker, id } = markerObj;
+      if (
+        activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
+      ) {
+        mBMarker.getPopup().addTo(map)
+      } else if (
+        mBMarker.getPopup().isOpen() && activeTask && activeTask.taskId !== id
+        ) {
+          console.log('remove in loop')
+        mBMarker.getPopup().remove();
+      }
+    })
+    }, 1)
+
   }
 
   render() {
