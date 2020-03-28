@@ -62,14 +62,14 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar bg="dark" variant="dark" >
-          <div className='d-flex justify-content-between w-full align-items-center'>
+          <div className='d-flex flex-row justify-content-between w-full align-items-center'>
             <Nav className="mr-auto ">
               <Navbar.Brand href="#">
                 <img className="logo-covid415" src={Logo} alt='covid-logo'/>
               </Navbar.Brand>
             </Nav>
             {this.props.loggedIn ? (
-              <button className='request-help-button' onClick={() => this.requestHelp()}>Request a Delivery</button>
+              <button className='request-help-button' onClick={() => this.requestHelp()}>Request Delivery</button>
             ) : (
                 <div></div>
               )

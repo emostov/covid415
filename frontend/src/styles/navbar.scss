@@ -215,18 +215,21 @@
   }
 
   .request-help-button {
-    height: 28px;
-    color: $figma-grapefruit;
-    font-size: 18px;
+    color: white;
+    font-size: 11px;
+    height: fit-content;
     letter-spacing: 0.7px;
     font-weight: 500;
     border: none;
-    background-color: rgba(255, 255, 255, 0);
-    margin-left: 10px;
+    background-color: $figma-red;
+    border-radius: 5px;
+    filter: brightness(95%);
+    margin: 0px 10px 0px 15px
   }
 
   .request-help-button:hover {
-    color: white;
+    filter: brightness(100%);
+    box-shadow: 2px 2px 8px 3px rgba(197, 197, 197, 0.5);
   }
 
   .request-help-button:focus {
