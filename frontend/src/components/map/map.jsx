@@ -21,6 +21,7 @@ class Map extends React.Component {
 
   componentDidMount() {
     mapboxgl.accessToken = mapBoxPublicKey;
+
     // Set the map's max bounds
     const bounds = [
       [-122.54, 37.6], // [west, south]
@@ -48,6 +49,7 @@ class Map extends React.Component {
     });
     this.callPlaceMarkers();
   }
+
   // Recursively sets a timeout and calls itself if not loaded
   // Essentially a recursive while loop
   callPlaceMarkers() {
@@ -82,10 +84,10 @@ class Map extends React.Component {
       )
 
     ) {
-      // this.clearMarkers(this.state.helpNeededMarkers);
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
+      // Remake markers so all are up to date with current tasks
       const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
       const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
       this.setState({ userMarkers, helpNeededMarkers })
@@ -116,7 +118,8 @@ class Map extends React.Component {
         }))
     };
     geojson.features.forEach((marker) => {
-      // create a HTML element for each feature
+
+      // Create a HTML element for each feature
       const el = document.createElement('div');
       const { status, type, taskId } = marker.properties
       if (status === 0) {
@@ -134,48 +137,50 @@ class Map extends React.Component {
       }).setHTML(
         `${type} delivery${`<br />`}${typeIconString(type.toLowerCase(), status)}`
       )
-      // make a marker for each feature and add to the map
+
+      // Make a marker for each feature and add to the map
       const mapBoxMarker = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(popup)
+
       // Add mapBox marker and associated id to array
       allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
 
       const { receiveActiveTaskId } = this.props;
       const markerEl = mapBoxMarker.getElement();
       markerEl.addEventListener('mouseenter', () => {
+
         // Add popup to map 
         popup.addTo(map);
       });
       markerEl.addEventListener('mouseleave', () => {
+
         // Remove popup from map
-        // receiveActiveTaskId(null);
         const { activeTask } = this.props;
-        if (!activeTask || activeTask.taskId !== taskId) {
+        if (popup.isOpen() && (!activeTask || activeTask.taskId !== taskId)) {
           popup.remove();
         }
-
       });
-
-      markerEl.addEventListener('click', () => {
+      markerEl.addEventListener('click', (e) => {
+        e.stopPropagation()
         const isOpen = popup.isOpen();
         const { activeTask } = this.props;
+        popup.addTo(map);
 
         // if popup is open and is the active task id 
         if (isOpen && activeTask && (activeTask.taskId === taskId)) {
-          // make it not the active taskid & close
+
+          // make it not the active taskid & close via popupdate which looks
+          // at active task id
           receiveActiveTaskId(null);
-          popup.remove()
-        } else if ((isOpen && ( !activeTask || (activeTask.taskId !== taskId)) ) ) {
-          // if popup is open but not active task id
-          // keep it open and make it the active task id
+        } else {
           receiveActiveTaskId(taskId);
-        } else if (!isOpen) {
-          popup.addTo(map);
-          receiveActiveTaskId(taskId);
+
+          // Not critical, but smooths animation because otherwise we rely on 
+          // update popups which has an update time out
+          popup.addTo(map); 
         }
       });
-
     });
 
     return allMarkers;
@@ -200,7 +205,8 @@ class Map extends React.Component {
     const { userMarkers, helpNeededMarkers } = this.state;
 
     if (this.props.dispalyNotAssignedTasks) {
-      // display the helped needed markers
+
+      // Display the helped needed markers
       this.clearMarkers(userMarkers);
       this.addMarkers(helpNeededMarkers);
     } else {
@@ -216,16 +222,24 @@ class Map extends React.Component {
     if (!(userMarkers && helpNeededMarkers)) return;
 
     const allMarkers = userMarkers.concat(helpNeededMarkers);
+
+    // Use set timeout to makesure if activeTask was set somewhere else it 
+    // has time to propagate
+    setTimeout(()=> {
     allMarkers.length && allMarkers.forEach((markerObj) => {
       const { mBMarker, id } = markerObj;
       if (
         activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
       ) {
         mBMarker.getPopup().addTo(map)
-      } else if (mBMarker.getPopup().isOpen()) {
+      } else if (
+        mBMarker.getPopup().isOpen() && activeTask && activeTask.taskId !== id
+        ) {
         mBMarker.getPopup().remove();
       }
     })
+    }, 1)
+
   }
 
   render() {
