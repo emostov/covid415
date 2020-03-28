@@ -40,6 +40,10 @@ module.exports = function validateRegisterInput(dat) {
     errors.phoneNumber = 'Phone Number field is required';
   }
 
+  if (!Validator.isMobilePhone(data.phoneNumber, 'en-US')) {
+    errors.phoneNumber = 'Invalid Phone Number'
+  }
+
   if (Validator.isEmpty(data.password)) {
     errors.password = 'Password field is required';
   }
