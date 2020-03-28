@@ -168,10 +168,6 @@
     color: #ffffff !important;
   }
 
-  .border-right-grey {
-    // border-right: 1px solid $third-gray-txt;
-  }
-
   .nv-dp {
     background-color: $first-gray-bg;
   }
@@ -182,10 +178,6 @@
     margin: 0;
     border-color: transparent;
   }
-
-  // .dropdown-item:active {
-  //   // background-color: white;
-  // }
 
   .nav-link:hover {
     color: white!important;
@@ -309,8 +301,6 @@
 
   .navbar-brand {
     margin: 0;
-    // margin-right:20%;
-    // margin-left: 75%;
     display: flex;
     justify-content: space-around;
   }
