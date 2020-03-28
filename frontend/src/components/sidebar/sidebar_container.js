@@ -9,8 +9,8 @@ import { receiveNewTask } from '../../actions/task_actions';
 import {
   receiveDisplayAssignedTasks
 } from '../../actions/displayed_tasks_actions';
-
 import { selectCurrenUserActiveTasks, selectHelpNeededTasks} from '../../reducers/selectors'
+
 
 const mSTP = state => {
   let currentUserId;

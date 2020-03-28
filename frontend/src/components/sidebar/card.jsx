@@ -28,7 +28,7 @@ class Card extends React.Component {
 
   componentDidMount() {
     this.distanceFromCurrentToTask();
-    if (this.props.currentPosition !== null){
+    if (this.props.currentPosition !== null) {
       this.distanceFromCurrentToTask();
     }
   }
@@ -36,7 +36,7 @@ class Card extends React.Component {
   componentDidUpdate(prevProps) {
     // Make sure to compare props to prevent infinit loop
     if (this.props.currentPosition !== prevProps.currentPosition) {
-     // recalculate distance
+      // recalculate distance
       this.distanceFromCurrentToTask();
     }
   }
@@ -52,10 +52,15 @@ class Card extends React.Component {
     if (this.props.currentUserId && this.props.task.status === 0) {
       this.props.openModal('status', this.props.task._id)
     } else if (this.props.currentUserId && this.props.task.status === 1) {
-        this.props.openModal('details', this.props.task._id)
+      this.props.openModal('details', this.props.task._id)
     } else {
       this.props.history.push('/login')
     }
+  }
+
+  isCurrentTask() {
+    const { task, activeTask } = this.props;
+    return activeTask && task._id === activeTask.taskId
   }
 
   handleDirectionsClick(e) {
@@ -78,18 +83,18 @@ class Card extends React.Component {
       this.props.receiveActiveTaskId(null);
     }
   }
-      
+
   distanceFromCurrentToTask() {
     const { task, currentPosition } = this.props
     if (this.props.task === undefined) {
       return null
     }
-    
+
     if (currentPosition.length === 0) {
       return null
     }
-    const {latitude, longitude} = currentPosition.coords;
-    
+    const { latitude, longitude } = currentPosition.coords;
+
     let from = turf.point([longitude, latitude])
     let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
     let options = { units: 'miles' }
@@ -102,7 +107,7 @@ class Card extends React.Component {
 
   displayMilesAway() {
     const { task } = this.props
-    
+
     if (task.distance === undefined) {
       return (<Spinner animation="grow" variant="light" />);
     }
@@ -121,12 +126,12 @@ class Card extends React.Component {
         className="card-box-container"
       >
         {
-          this.state.active
+          this.state.active || this.isCurrentTask()
             ?
             (
               <div className="card-box-active" onClick={this.clickHandler}>
                 <div className="card-header-container">
-                    <FontAwesomeIcon className="fa-minus" icon={faMinus} />
+                  <FontAwesomeIcon className="fa-minus" icon={faMinus} />
                   <div className={"card-head-active"}>
                     {this.displayMilesAway()}
                   </div>
@@ -134,38 +139,38 @@ class Card extends React.Component {
                 <div className="card-box-top-container">
                   <div className="card-box-type-of-prop">Deliver to:
                   </div>
-                  <div className="card-box-type-of-prop">{ this.props.task.deliveryNeighborhood }
-                    </div>
-                    <div className="instructions-body">
+                  <div className="card-box-type-of-prop">{this.props.task.deliveryNeighborhood}
+                  </div>
+                  <div className="instructions-body">
                     <a className="card-address-link"
                       target="_blank"
                       rel="noopener noreferrer"
                       href={`https://www.google.com/maps/dir/?api=1&destination=${this.props.task.deliveryAddress}`}
                       onClick={this.handleDirectionsClick}
-                      >
-                        { this.props.task.deliveryAddress }
-                        <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
+                    >
+                      {this.props.task.deliveryAddress}
+                      <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
                     </a>
-                    </div>
-                    <div className="card-box-type-of-prop">
-                        Type:
-                    </div>
-                    <div className="instructions-body">
-                      {this.props.task.type}
-                    </div>
-                    <div className="card-box-type-of-prop">
-                        Details:
-                    </div>
-                    <div className="instructions-body">
-                      {this.props.task.details}
-                    </div>
-                </div>
-                  { this.props.cardType === 'available' ? 
-                    <button onClick={this.handleModal} className="accept-button">I Can Help</button>
-                    :
-                    <button onClick={this.handleModal} className="complete-button">Delivery Details</button>
-                  }
                   </div>
+                  <div className="card-box-type-of-prop">
+                    Type:
+                    </div>
+                  <div className="instructions-body">
+                    {this.props.task.type}
+                  </div>
+                  <div className="card-box-type-of-prop">
+                    Details:
+                    </div>
+                  <div className="instructions-body">
+                    {this.props.task.details}
+                  </div>
+                </div>
+                {this.props.cardType === 'available' ?
+                  <button onClick={this.handleModal} className="accept-button">I Can Help</button>
+                  :
+                  <button onClick={this.handleModal} className="complete-button">Delivery Details</button>
+                }
+              </div>
             ) : (
               <div className="card-box" onClick={this.clickHandler}>
                 <div className="card-header-container">
@@ -175,8 +180,8 @@ class Card extends React.Component {
                   </div>
                 </div>
                 <div className="card-footer-container">
-                  <div className="card-task-type-text">{ this.props.task.type }</div>
-                  <div>{ typeIcon(this.props.task.type.toLowerCase(), this.props.task.status) }</div>
+                  <div className="card-task-type-text">{this.props.task.type}</div>
+                  <div>{typeIcon(this.props.task.type.toLowerCase(), this.props.task.status)}</div>
                 </div>
               </div>
             )
