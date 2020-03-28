@@ -2,36 +2,58 @@ const firstNames = [
   'Amanda', 'Dianna', 'Gianna', 'Jack', 'Tyrell', 'Sue', 'Jen', 'Hal', 'Jesus',
   'Kevin', 'Nina', 'Rose', 'Kai', 'Kaiwan', 'Fin', 'Tabatha', 'Victor', 'Moses',
   'Mads', 'Mikkel', 'Magnus', 'Raphie', 'Ariella', 'Keith', 'Emily', 'Daisy',
-  'Hillary', 'Jim',
+  'Hillary', 'Jim', 'Jasper', 'Erica', 'Tony', 'Gladia', 'Samantha', 'Olivia',
+  'Riquel', 'Victor', 'Bethany', 'Andrew', 'Tarik', 'Justin', 'Dilan', 'Octavia',
+  'Jane', ' Louisa', ' J.K.', 'Toni', 'Virginia', 'Margaret', 'Mary', 'Charlotte',
+  'DaeShim', 'Cho', 'Chon', 'HeeWon', 'Jeong', 'Joo Mi', 'Moon', 'Shin', 'Soo'
+  'Sun',
 ];
 
 const lastNames = [
   'Garcia', 'Juarez', 'Fineman', 'Goldman', 'Braudy',
   'Jung', 'Lee', 'Tran', 'Ha', 'Grobchinsky', 'Chomsky', 'Bak', 'Hernandez',
-  'Peterson', 'Braunsmans', 'Sagan',
+  'Peterson', 'Braunsmans', 'Sagan', 'Philips', 'Rogers', 'Carters', 'Reed',
+  'Church', 'Price', 'Williams', 'Murray', 'Bell', 'Morgan', 'Davies',
+  'Gordon', 'Lincoln', 'Wheeler', 'Black', 'Lovelace', 'Austen', 'Rowling',
+  'Alcott', 'Bronte', 'Shelley', 'Atwood', 'Hepburn', 'Dee', 'Andrews',
+  'Burstyn', 'Ahn', 'An', 'Bae', 'Baik', 'Jee', 'Jeon', 'Kil', 'Kwan', 'Min',
+  'Heo', 'Chon', 'Yee', 'Roe', 'Pyon', 'Rim', 'Sheem', 'Sin', 'Sohn',
 ];
 
 const deliveryInstructions = [
   'Call me once out front', 'Text when you arrive',
-  'Please throw it over the fence', 'Leaveo on porch',
+  'Please throw it over the fence', 'Leave on porch',
   'Please do not call and just leave outside', 'Check if the lights are on',
+  'Text to confirm', 'Lets sort it out over the phone', 'Call',
+  'Knock on my door three times', 'Just ring doorbell',
+  'Ring Doorbell and leave in front', 'Ring Doorbell, dogs are loud by friendly',
+  'Please wait outside and I will come out to pick up',
 ];
 
 const phoneNumbers = [
-  '4154171991', '4159752020',
-]
+  '4154171991', '4159752020', '4152981943', '4159225150', '4157711066',
+  '4159567878', '4152212299', '4158299886', '4155671220', '4159860637',
+  '4156731288', '4155675799',
+];
 
 const details = [
   'I need a full list of groceries, I will text details once confirmed',
   'My medication needs to be picked up thanks :)',
   'I have a order waiting at the medical supplies store that needs pickup',
   'Just looking for a friend to paint with, over zoom of course',
-  'I am wondering if some able bodied persons would be able to pick up AlienOG',
+  'I am wondering if some able bodied persons would be able to pick up cat food',
   'Not urgent, but would greatly appreciate coffee or fresh bread',
   'I need fresh towels. 2 bathe towels. Max 25$.',
   'Anybody have books? I am running out and can barely move.',
   'What is the meaning of life? I need fresh fruit too',
-  'What about a pet salmander? You just some groceries',
+  'What about a pet salmander? I actually need just some groceries',
+  'My parrot is sick and he needs an emergency vet visist at the pet hospital on Noriega.',
+  'I have two terriers who would really appreciate a walk',
+  'Need some groceries. Can text the details.',
+  'My bathroom sink pipe burst. Out of cash and but really needs a repair',
+  'I need some Rxs picked up from the Walgreens on California Street',
+  'Need some general supplies', 'Just looking for someone to talk too :/',
+  'I am looking for help setting up internet',
 ];
 
 const addresses = [
@@ -64,7 +86,7 @@ const addresses = [
   // '4798 Mission St, San Francisco, CA 94112',
   // '3951 Alemany Blvd, San Francisco, CA 94132',
   // 'Horne Ave, San Francisco, CA 94124',
-  // '150 Executive Park Blvd #2800, San Francisco, CA 94134',
+  '150 Executive Park Blvd #2800, San Francisco, CA 94134',
   '696 Monterey Blvd, San Francisco, CA 94127',
   '5999 Mission St, Daly City, CA 94014',
   '2499 San Bruno Ave, San Francisco, CA 94134',
@@ -100,15 +122,15 @@ const addresses = [
   '50 Cutler Ave, San Francisco, CA 94116',
   '3132 Vicente St, San Francisco, CA 94116',
   // '2218 48th Ave, San Francisco, CA 94116',
-  // '3045 Santiago St, San Francisco, CA 94116',
+  '3045 Santiago St, San Francisco, CA 94116',
   // '3350 Taraval St, San Francisco, CA 94116',
   '2800 Taraval St, San Francisco, CA 94116',
-  '2234 40th Ave, San Francisco, CA 94116',
-  // '1895 41st Ave, San Francisco, CA 94122',
+  // '2234 40th Ave, San Francisco, CA 94116',
+  '1895 41st Ave, San Francisco, CA 94122',
   // '1984 Great Hwy, San Francisco, CA 94116',
-  // '1775 44th Ave, San Francisco, CA 94122',
+  '1775 44th Ave, San Francisco, CA 94122',
   // '3655 Lawton St, San Francisco, CA 94122',
-  // '4033 Judah St, San Francisco, CA 94122',
+  '4033 Judah St, San Francisco, CA 94122',
   // '3030 Judah St, San Francisco, CA 94122',
   // '2323 Irving St, San Francisco, CA 94122',
   '4401 Cabrillo St, San Francisco, CA 94121',
