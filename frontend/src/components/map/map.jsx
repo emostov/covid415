@@ -67,7 +67,7 @@ class Map extends React.Component {
 
     if (
       (
-        Object.keys(this.props.tasks).length 
+        Object.keys(this.props.tasks).length
         !== Object.keys(prevProps.tasks).length
       )
       || (
@@ -140,19 +140,42 @@ class Map extends React.Component {
         .setPopup(popup)
       // Add mapBox marker and associated id to array
       allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
-      
+
       const { receiveActiveTaskId } = this.props;
       const markerEl = mapBoxMarker.getElement();
       markerEl.addEventListener('mouseenter', () => {
         // Add popup to map 
-        receiveActiveTaskId(taskId);
         popup.addTo(map);
       });
       markerEl.addEventListener('mouseleave', () => {
         // Remove popup from map
-        receiveActiveTaskId(null);
-        popup.remove();
+        // receiveActiveTaskId(null);
+        const { activeTask } = this.props;
+        if (!activeTask || activeTask.taskId !== taskId) {
+          popup.remove();
+        }
+
       });
+
+      markerEl.addEventListener('click', () => {
+        const isOpen = popup.isOpen();
+        const { activeTask } = this.props;
+
+        // if popup is open and is the active task id 
+        if (isOpen && activeTask && (activeTask.taskId === taskId)) {
+          // make it not the active taskid & close
+          receiveActiveTaskId(null);
+          popup.remove()
+        } else if ((isOpen && ( !activeTask || (activeTask.taskId !== taskId)) ) ) {
+          // if popup is open but not active task id
+          // keep it open and make it the active task id
+          receiveActiveTaskId(taskId);
+        } else if (!isOpen) {
+          popup.addTo(map);
+          receiveActiveTaskId(taskId);
+        }
+      });
+
     });
 
     return allMarkers;
