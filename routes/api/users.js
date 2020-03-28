@@ -32,13 +32,14 @@ router.post('/register', (req, res) => {
         return res.status(400).json(errors);
       }
       const {
-        firstName, lastName, email, password,
+        firstName, lastName, email, phoneNumber, password,
       } = req.body;
 
       const newUser = new User({
         firstName,
         lastName,
         email,
+        phoneNumber,
         password,
       });
 
