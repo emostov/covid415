@@ -59,26 +59,13 @@ class Card extends React.Component {
     }
   }
 
-
-
   isCurrentTask() {
     const { task, activeTask } = this.props;
     if (activeTask && task._id === activeTask.taskId) {
-      // scroll to current task if active
-      // const container = document.getElementById('card-container');
-      // console.log('suucc', container)
-      // container.scrollTo(0, this.myRef.offsetTop);
-
       this.myRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
       });
-
-      // var el = document.getElementById(task._id);
-      // console.log(el.offsetTop)
-      // el.scrollTop = 100;
-      // console.log(el.offsetTop)
-
       return true;
     }
     return false;
