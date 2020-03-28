@@ -32,24 +32,10 @@ class TaskUpdate extends React.Component {
           <div className="delivery-header">Thanks for helping out.</div>
         </div>
         <div className="delivery-details-container">
-          <div className="delivery-details-type">Recipient name:</div>
-          <span className="delivery-details-text">{task.requester.firstName}</span>
-          <div className="delivery-details-type">Contact:</div>
-          <span className="delivery-details-text">{task.requester.email}</span>
-          <div className="delivery-details-type">Delivery details:</div>
+          <div className="delivery-details-type">Requested delivery:</div>
           <span className="delivery-details-text">{task.details}</span>
-          <div className="delivery-details-type">Deliver to:</div>
-          <a className="card-address-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`https://www.google.com/maps/dir/?api=1&destination=${this.props.task.deliveryAddress}`}
-            onClick={this.handleDirectionsClick}
-          >
-            {this.props.task.deliveryAddress}
-            <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
-          </a>
-          <div className="delivery-details-type">Delivery instructions:</div>
-          <span className="delivery-details-text">{task.deliveryInstructions}</span>
+          <div className="delivery-details-memo">Contact information:</div>
+          <span className="delivery-details-text">Recipient name, address, and contact info will be shared after accepting the delivery.</span>
         </div>
         <div className="button-container">
           <button className='claim-button' onClick={() => this.handleClaim()}>Confirm</button>

@@ -32,9 +32,10 @@ class TaskDetails extends React.Component {
         <div className="delivery-details-container">
           <div className="delivery-details-type">Recipient name:</div>
           <span className="delivery-details-text">{task.requester.firstName}</span>
-          <div className="delivery-details-type">Contact:</div>
-          <span className="delivery-details-text">{task.requester.email}</span>
-          <div className="delivery-details-type">Delivery details:</div>
+          <div className="delivery-details-type">Phone number:</div>
+          <span className="delivery-details-text">	
+            <a href={`tel:${task.requester.phoneNumber}`}>{task.requester.phoneNumber}</a></span>
+          <div className="delivery-details-type">Delivery details</div>
           <span className="delivery-details-text">{task.details}</span>
           <div className="delivery-details-type">Deliver to:</div>
           <a className="card-address-link"
@@ -50,7 +51,7 @@ class TaskDetails extends React.Component {
           <span className="delivery-details-text">{task.deliveryInstructions}</span>
         </div>
         <div className="button-container">
-          <button className='claim-button-done' onClick={() => this.handleClaim()}>Confirm Delivery Complete</button>
+          <button className='claim-button-done' onClick={() => this.handleClaim()}>Delivery Complete</button>
         </div>
       </div>
     )

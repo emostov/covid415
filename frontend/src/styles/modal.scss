@@ -238,6 +238,14 @@
   letter-spacing: 0.5px;
 }
 
+.delivery-details-memo{
+  color: $second-gray-txt;
+  font-size: 19px; 
+  padding-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .delivery-details-confirmation {
   color: black;
   font-weight: 500;
@@ -554,6 +562,14 @@
     letter-spacing: 0.5px;
   }
 
+  .delivery-details-memo{
+    color: $second-gray-txt;
+    font-size: 4vw;
+    padding-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
   .claim-button {
     background-color: $figma-grapefruit;
     color: white;
@@ -571,7 +587,7 @@
     color: white;
     filter: brightness(90%);
     width: 80%;
-    height: 10vh;
+    height: 7vh;
     border-radius: 10px;
     text-transform: uppercase;
     font-size: 2.5vh;
