@@ -109,7 +109,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      height: 70px;
+      height: 15vh;
       border-bottom: solid 1px #b3b3b3
    }
 
@@ -147,13 +147,13 @@
 
    .available-title-name {
       transform: translateY(10px);
-      font-size: 22px;
+      font-size: 3.3vh;
       color: $second-gray-bg
    }
 
    .available-title-name-active {
       transform: translateY(10px);
-      font-size: 22px;
+      font-size: 3.3vh;
       color: white;
       
    }
@@ -164,7 +164,7 @@
 
    .active-title-name {
       transform: translateY(10px);
-      font-size: 22px;
+      font-size: 3.3vh;
       color: $second-gray-bg
    }
 
@@ -174,7 +174,7 @@
 
    .active-title-name-active {
       transform: translateY(10px);
-      font-size: 22px;
+      font-size: 3.3vh;
       color: white;
    }
 
