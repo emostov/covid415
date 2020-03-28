@@ -80,7 +80,7 @@ export default class SideBar extends Component {
               </div>
             </div>
           </div>
-          <div className="sidebar-container-inner-body">
+          <div className="sidebar-container-inner-body" id='scroll-container'>
             {
               this.state.available
                 ?

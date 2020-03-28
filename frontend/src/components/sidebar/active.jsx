@@ -43,7 +43,7 @@ class ActiveSidebar extends React.Component {
           this.props.session.isAuthenticated
             ?
             (
-              <div className='card-container-2'>
+              <div className='card-container-2' id='card-container'>
                 {
                   
                   currentUserTasks.map((task, i) => {
