@@ -431,6 +431,12 @@
     color: #2A363A; 
  }
  
+ .card-address-link{
+   font-size: 1.5vh;
+   cursor: pointer;
+   text-decoration: none;
+}
+ 
  .card-address-link:hover {
     color: $figma-red;
     cursor: pointer;
