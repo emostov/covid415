@@ -136,7 +136,8 @@ class Card extends React.Component {
                 <div className="card-box-top-container">
                   <div className="card-box-type-of-prop">Deliver to:
                   </div>
-                  <div className="card-box-type-of-prop">{this.props.task.deliveryNeighborhood}
+                  <div className="card-box-type-of-prop neighborhood">{this.props.task.deliveryNeighborhood}
+                  <br />
                   </div>
                   <div className="card-box-type-of-prop">
                     Type:

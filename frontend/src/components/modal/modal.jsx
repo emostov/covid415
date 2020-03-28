@@ -62,7 +62,6 @@ class Modal extends React.Component {
         return (
             <div className="modal-background" onClick={closeModal}>
                 <div className={childClass} onClick={e => e.stopPropagation()}>
-                <div className="close-x" onClick={closeModal}>&times;</div>
                 { component }
                 </div>
             </div>
