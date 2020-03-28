@@ -18,7 +18,7 @@ class Card extends React.Component {
       active: false,
       distance: ''
     }
-
+    this.myRef = React.createRef()  
     this.clickHandler = this.clickHandler.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.handleCardHover = this.handleCardHover.bind(this);
@@ -58,9 +58,16 @@ class Card extends React.Component {
     }
   }
 
+
+
   isCurrentTask() {
     const { task, activeTask } = this.props;
-    return activeTask && task._id === activeTask.taskId
+    if (activeTask && task._id === activeTask.taskId){
+      // scroll to current task if active
+      // window.scrollTo(0, this.myRef.offsetTop)
+      return true;
+    }
+    return false;
   }
 
   handleDirectionsClick(e) {
@@ -124,6 +131,7 @@ class Card extends React.Component {
       <div onMouseEnter={this.handleCardHover}
         onMouseLeave={this.handleCardMouseLeave}
         className="card-box-container"
+        ref={(ref) => this.myRef = ref}
       >
         {
           this.state.active || this.isCurrentTask()
