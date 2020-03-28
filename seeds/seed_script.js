@@ -9,6 +9,7 @@ const {
   deliveryInstructions,
   details,
   addresses,
+  phoneNumbers,
 } = require('./seed_data.js');
 
 const generateUserObjs = (n) => {
@@ -21,6 +22,7 @@ const generateUserObjs = (n) => {
       lastName: lastNames[r % lastNames.length],
       email: `randEmail${i + r}@gmail.com`,
       password: 'password',
+      phoneNumber: phoneNumbers[r % phoneNumbers.length],
     };
 
     users.push(newUser);
