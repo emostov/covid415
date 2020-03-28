@@ -295,7 +295,7 @@
 
    .card-container-available {
    //  padding: 20px 20px 20px 16px;
-    height: 100%;
+    height: 100vh;
     overflow-y: auto;
     background: linear-gradient(#DA5663 15%, #FECEA8 );
     animation: cards .4s;
@@ -314,7 +314,7 @@
  
  .card-container-2 {
    // padding: 20px 20px 20px 16px;
-   height: 100%;
+   height: 100vh;
    overflow-y: auto;
    background: linear-gradient(#FECEA8 15%, #9FB89B );
    animation: cards .4s;
