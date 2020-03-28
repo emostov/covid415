@@ -64,8 +64,7 @@ class Map extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { tasks, helpNeededTasks, activeTasks } = this.props;
-    // Make sure to compare props to prevent infinit loop
-    // if (Object.keys(this.props.tasks).length !== Object.keys(prevProps.tasks).length) {
+
     if (
       (
         Object.keys(this.props.tasks).length 
@@ -119,7 +118,7 @@ class Map extends React.Component {
     geojson.features.forEach((marker) => {
       // create a HTML element for each feature
       const el = document.createElement('div');
-      const { status, type } = marker.properties
+      const { status, type, taskId } = marker.properties
       if (status === 0) {
         el.className = 'marker notActive'
       } else if (status === 1) {
@@ -141,14 +140,17 @@ class Map extends React.Component {
         .setPopup(popup)
       // Add mapBox marker and associated id to array
       allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
-
+      
+      const { receiveActiveTaskId } = this.props;
       const markerEl = mapBoxMarker.getElement();
       markerEl.addEventListener('mouseenter', () => {
         // Add popup to map 
+        receiveActiveTaskId(taskId);
         popup.addTo(map);
       });
       markerEl.addEventListener('mouseleave', () => {
         // Remove popup from map
+        receiveActiveTaskId(null);
         popup.remove();
       });
     });
