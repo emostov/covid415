@@ -60,7 +60,6 @@ class Card extends React.Component {
 
   isCurrentTask() {
     const { task, activeTask } = this.props;
-    console.log(activeTask, task._id)
     return activeTask && task._id === activeTask.taskId
   }
 
