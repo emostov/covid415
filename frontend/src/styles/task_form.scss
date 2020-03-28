@@ -25,7 +25,6 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        // margin-top: -20px;
     }
 
     .task-form-group {
@@ -193,11 +192,6 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        // margin-top: -20px;
-    }
-
-    .task-form-group {
-        // margin-bottom: 25px;
     }
 
     .task-form-label {
@@ -236,14 +230,14 @@
     }
 
     [type=radio] { 
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
     }
 
     [type=radio] + img {
-    cursor: pointer;
+        cursor: pointer;
     }
 
     [type=radio] + img:hover {
@@ -293,7 +287,6 @@
     }
 
     .task-form-submit:hover, .task-form-submit:focus, .task-form-submit:active{
-        // background-color: rgb(115, 139, 111);
         background-color: $figma-green;
         filter: brightness(100%);
         box-shadow: 1.5px 1.5px 8px 2px #6e6e6e73;
