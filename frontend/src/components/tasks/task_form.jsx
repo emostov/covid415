@@ -52,6 +52,7 @@ class TaskForm extends React.Component {
   render() {
     return (
       <div className='task-form-container'>
+        <div className="close-x" onClick={this.props.closeModal}>&times;</div>
         <Container>
           <Card.Title className='task-form-title'><strong>Self-isolating? Request a delivery.</strong></Card.Title>
           {this.renderErrors()}
