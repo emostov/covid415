@@ -152,17 +152,6 @@ class Card extends React.Component {
                   </div>
                   <div className="card-box-type-of-prop">{this.props.task.deliveryNeighborhood}
                   </div>
-                  <div className="instructions-body">
-                    <a className="card-address-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={`https://www.google.com/maps/dir/?api=1&destination=${this.props.task.deliveryAddress}`}
-                      onClick={this.handleDirectionsClick}
-                    >
-                      {this.props.task.deliveryAddress}
-                      <FontAwesomeIcon className="directions-external-link" icon={faExternalLinkAlt} />
-                    </a>
-                  </div>
                   <div className="card-box-type-of-prop">
                     Type:
                     </div>
