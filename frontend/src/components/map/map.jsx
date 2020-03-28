@@ -153,7 +153,7 @@ class Map extends React.Component {
         const { activeTask } = this.props;
         if (popup.isOpen() && (!activeTask || activeTask.taskId !== taskId)) {
           console.log('hi')
-          // popup.remove();
+          popup.remove();
         }
 
       });
@@ -192,7 +192,7 @@ class Map extends React.Component {
   clearMarkers(markers) {
     if (!markers) return;
     markers.forEach((marker) => {
-      // marker.mBMarker.remove();
+      marker.mBMarker.remove();
     })
   }
 
@@ -236,7 +236,6 @@ class Map extends React.Component {
       } else if (
         mBMarker.getPopup().isOpen() && activeTask && activeTask.taskId !== id
         ) {
-          console.log('remove in loop')
         mBMarker.getPopup().remove();
       }
     })
