@@ -33,7 +33,8 @@ class TaskDetails extends React.Component {
           <div className="delivery-details-type">Recipient name:</div>
           <span className="delivery-details-text">{task.requester.firstName}</span>
           <div className="delivery-details-type">Phone number:</div>
-          <span className="delivery-details-text">{task.requester.phoneNumber}</span>
+          <span className="delivery-details-text">	
+            <a href={`tel:${task.requester.phoneNumber}`}>{task.requester.phoneNumber}</a></span>
           <div className="delivery-details-type">Delivery details</div>
           <span className="delivery-details-text">{task.details}</span>
           <div className="delivery-details-type">Deliver to:</div>
