@@ -59,7 +59,7 @@ class ActiveSidebar extends React.Component {
                       receiveActiveTaskId={receiveActiveTaskId}
                       currentPosition={currentPosition}
                       receiveNewTask={receiveNewTask}
-                      activeTask={activeTask} />
+                       />
                   })
                 }
               </div>
