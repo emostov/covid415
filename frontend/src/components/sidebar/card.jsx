@@ -43,7 +43,8 @@ class Card extends React.Component {
   clickHandler(e) {
     e.preventDefault();
     const { activeTask, task } = this.props;
-    let curActive = this.state.active;
+    // const curActive = this.state.active;
+    const curActive = this.isCurrentTask();
     if (!curActive && (!activeTask || activeTask.taskId !== task._id)){
 
       // Set to active task bc getting clicked on for first time
@@ -74,6 +75,7 @@ class Card extends React.Component {
         behavior: 'smooth',
         block: 'center',
       });
+      // this.setState({active: true})
       return true;
     }
     return false;
@@ -107,7 +109,8 @@ class Card extends React.Component {
     if (task.distance === undefined) {
       return (<Spinner animation="grow" variant="light" />);
     }
-    if (this.state.active) {
+    // if (this.state.active) {
+    if (this.isCurrentTask()) {
       return `${task.distance} miles away`;
     } else {
       return `| ${task.distance} miles away`;
@@ -123,7 +126,8 @@ class Card extends React.Component {
         id={task._id}
       >
         {
-          this.state.active || this.isCurrentTask()
+          // this.state.active || 
+          this.isCurrentTask()
             ?
             (
               <div className="card-box-active" onClick={this.clickHandler}>
