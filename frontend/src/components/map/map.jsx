@@ -69,12 +69,12 @@ class Map extends React.Component {
 
     if (
       (
-        Object.keys(this.props.tasks).length
+        Object.keys(tasks).length
         !== Object.keys(prevProps.tasks).length
       )
       || (
         this.props.helpNeededTasks &&
-        Object.keys(this.props.helpNeededTasks).length
+        Object.keys(helpNeededTasks).length
         !== Object.keys(prevProps.helpNeededTasks).length
       )
       || (
