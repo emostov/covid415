@@ -5,7 +5,7 @@ const firstNames = [
   'Hillary', 'Jim', 'Jasper', 'Erica', 'Tony', 'Gladia', 'Samantha', 'Olivia',
   'Riquel', 'Victor', 'Bethany', 'Andrew', 'Tarik', 'Justin', 'Dilan', 'Octavia',
   'Jane', ' Louisa', ' J.K.', 'Toni', 'Virginia', 'Margaret', 'Mary', 'Charlotte',
-  'DaeShim', 'Cho', 'Chon', 'HeeWon', 'Jeong', 'Joo Mi', 'Moon', 'Shin', 'Soo'
+  'DaeShim', 'Cho', 'Chon', 'HeeWon', 'Jeong', 'Joo Mi', 'Moon', 'Shin', 'Soo',
   'Sun',
 ];
 
