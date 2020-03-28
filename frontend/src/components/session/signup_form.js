@@ -123,7 +123,8 @@ class SignupForm extends React.Component {
                       <Col>
                         <Form.Label>Phone Number</Form.Label>
                         <Form.Control 
-                          placeholder="Phone Number"
+                          type="tel"
+                          placeholder="XXX-XXX-XXXX"
                           value={this.state.phoneNumber}
                           onChange={this.update('phoneNumber')}
                         />

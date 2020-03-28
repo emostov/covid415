@@ -20,5 +20,11 @@ module.exports = {
         return tasksArray.sort((a, b) =>
          a.distance > b.distance ? 1 : -1)
     },
+    parsePhoneNumber: (num) => {
+        const areaCode = num.slice(0, 3)
+        const prefix = num.slice(3, 6)
+
+        return `${areaCode}-${prefix}-XXXX`
+    }
 }
 
