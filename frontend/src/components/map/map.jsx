@@ -84,8 +84,7 @@ class Map extends React.Component {
       )
 
     ) {
-      // Remove all popups first
-      this.removeAllPopups();
+      // this.removeAllPopups();
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
@@ -204,6 +203,7 @@ class Map extends React.Component {
   }
 
   updateMarkers() {
+    // this.removeAllPopups();
     const { userMarkers, helpNeededMarkers } = this.state;
     if (this.props.dispalyNotAssignedTasks) {
 
