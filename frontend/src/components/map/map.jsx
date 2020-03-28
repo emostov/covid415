@@ -163,19 +163,17 @@ class Map extends React.Component {
         // if popup is open and is the active task id 
         if (isOpen && activeTask && (activeTask.taskId === taskId)) {
           // make it not the active taskid & close
-          console.log('removiing')
           receiveActiveTaskId(null);
-          // popup.remove()
-        } else
-         if ((isOpen && (!activeTask || (activeTask.taskId !== taskId)))) {
+        } else {
+        //  if ((isOpen && (!activeTask || (activeTask.taskId !== taskId)))) {
           // if popup is open but not active task id
           // keep it open and make it the active task id
           receiveActiveTaskId(taskId);
           popup.addTo(map);
-        } else {
-          receiveActiveTaskId(taskId);
-          popup.addTo(map);
-          
+        // } else {
+        //   receiveActiveTaskId(taskId);
+        //   popup.addTo(map);
+      
         }
       });
 
