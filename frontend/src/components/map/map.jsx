@@ -165,18 +165,12 @@ class Map extends React.Component {
           // make it not the active taskid & close
           receiveActiveTaskId(null);
         } else {
-        //  if ((isOpen && (!activeTask || (activeTask.taskId !== taskId)))) {
-          // if popup is open but not active task id
-          // keep it open and make it the active task id
           receiveActiveTaskId(taskId);
-          popup.addTo(map);
-        // } else {
-        //   receiveActiveTaskId(taskId);
-        //   popup.addTo(map);
-      
+          // Not critical, but smooths animation because otherwise we rely on 
+          // update popups which has an update time out
+          popup.addTo(map); 
         }
       });
-
     });
 
     return allMarkers;
