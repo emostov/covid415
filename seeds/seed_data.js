@@ -17,6 +17,10 @@ const deliveryInstructions = [
   'Please do not call and just leave outside', 'Check if the lights are on',
 ];
 
+const phoneNumbers = [
+  '4154171991', '4159752020',
+]
+
 const details = [
   'I need a full list of groceries, I will text details once confirmed',
   'My medication needs to be picked up thanks :)',
@@ -136,4 +140,6 @@ module.exports = {
   lastNames,
   details,
   deliveryInstructions,
-}
+  phoneNumbers,
+};
+
