@@ -124,7 +124,6 @@ class SignupForm extends React.Component {
                         <Form.Label>Phone Number</Form.Label>
                         <Form.Control 
                           type="tel"
-                          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                           placeholder="XXX-XXX-XXXX"
                           value={this.state.phoneNumber}
                           onChange={this.update('phoneNumber')}
