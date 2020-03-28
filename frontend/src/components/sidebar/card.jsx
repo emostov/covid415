@@ -44,7 +44,16 @@ class Card extends React.Component {
 
   clickHandler(e) {
     e.preventDefault();
+    const { activeTask, task } = this.props;
     let curActive = this.state.active;
+    if (!curActive && (!activeTask || activeTask.taskId !== task._id)){
+      // Set to active task bc getting clicked on for first time
+      this.props.receiveActiveTaskId(task._id);
+    } else if (curActive && activeTask.taskId !== task._id) {
+      // The task is open and is the current active task so make it not
+      this.props.receiveActiveTaskId(null);
+    }
+    
     this.setState({ active: !curActive })
   }
 
@@ -76,11 +85,11 @@ class Card extends React.Component {
   }
 
   handleCardHover(e) {
-    e.stopPropagation();
-    const { activeTask, task } = this.props;
-    if (!activeTask || activeTask.taskId !== task._id) {
-      this.props.receiveActiveTaskId(task._id);
-    }
+    // e.stopPropagation();
+    // const { activeTask, task } = this.props;
+    // if (!activeTask || activeTask.taskId !== task._id) {
+    //   this.props.receiveActiveTaskId(task._id);
+    // }
   }
 
   // On mouse leave set activeTask to null
