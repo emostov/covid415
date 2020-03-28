@@ -8,7 +8,7 @@
    display: flex;
    flex-direction: column;
    // margin: 20px;
-   height: 100
+   height: 100%;
 }
 
 .sidebar-container-header {
@@ -101,8 +101,7 @@
    .sidebar-inner-container {
       display: flex;
       flex-direction: column;
-      // margin: 20px;
-      height: 100px;
+      height: 100%;  
    }
 
    .sidebar-container-header {
@@ -147,13 +146,13 @@
 
    .available-title-name {
       transform: translateY(10px);
-      font-size: 3.3vh;
+      font-size: 2.5vh;
       color: $second-gray-bg
    }
 
    .available-title-name-active {
       transform: translateY(10px);
-      font-size: 3.3vh;
+      font-size: 2.5vh;
       color: white;
       
    }
@@ -164,7 +163,7 @@
 
    .active-title-name {
       transform: translateY(10px);
-      font-size: 3.3vh;
+      font-size: 2.5vh;
       color: $second-gray-bg
    }
 
@@ -174,7 +173,7 @@
 
    .active-title-name-active {
       transform: translateY(10px);
-      font-size: 3.3vh;
+      font-size: 2.5vh;
       color: white;
    }
 
