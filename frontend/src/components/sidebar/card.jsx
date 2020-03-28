@@ -69,7 +69,7 @@ class Card extends React.Component {
 
   isCurrentTask() {
     const { task, activeTask } = this.props;
-    if (activeTask && task._id === activeTask.taskId) {
+    if (this.myRef.current && activeTask && task._id === activeTask.taskId) {
       this.myRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
