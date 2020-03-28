@@ -2,8 +2,8 @@ import React from 'react';
 
 import Logo from '../../public/COVID415.png';
 import SocialDistancing from '../../public/social_distancing.svg'
-import HayesValley from '../../public/hayes_valley.png';
-import Potrero from '../../public/potrero.png';
+// import HayesValley from '../../public/hayes_valley.png';
+// import Potrero from '../../public/potrero.png';
 
 class WelcomeModal extends React.Component {
     render() {

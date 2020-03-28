@@ -507,11 +507,6 @@
     display: none;
   }
 
-  .modal-child-confirm-delivery {
-    width: 100%;
-    height: auto;
-  }
-
   .modal-child-status {
     position: absolute;
     top: 50%;
@@ -601,6 +596,40 @@
     text-transform: uppercase;
     font-size: 2.5vh;
     border: none;
+  }
+
+  .modal-child-confirm-delivery {
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto; 
+    background-color: $light-gray-bg;
+    border-radius: 3px;
+    padding-bottom: 20%;
+    overflow: hidden;
+  }
+
+  .modal-child-taketask {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    height: auto; 
+    background-color: rgba(255, 255, 255, 0.95);
+    color: black;
+    border-radius: 3px;
+    padding: 20px;
+    animation: modal-height .4s;
+  } 
+
+  .delivery-confirm-body {
+    padding: 20px 20px;
+    font-size: 4.5vw;
+    font-weight: 200;
   }
   
 }
