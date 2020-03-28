@@ -88,10 +88,10 @@ router.post('/login', (req, res) => {
           if (isMatch) {
             // Add any fields of the user we want in payload
             const {
-              id, email, firstName, lastName,
+              id, email, firstName, phoneNumber, lastName,
             } = user;
             const payload = {
-              id, email, firstName, lastName,
+              id, email, firstName, phoneNumber, lastName,
             };
 
             jwt.sign(

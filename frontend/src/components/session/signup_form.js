@@ -10,6 +10,7 @@ class SignupForm extends React.Component {
       email: '',
       firstName: '',
       lastName: '',
+      phoneNumber: '',
       password: '',
       password2: '',
       errors: {}
@@ -36,11 +37,12 @@ class SignupForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { email, firstName, lastName, password, password2 } = this.state
+    const { email, firstName, lastName, phoneNumber, password, password2 } = this.state
     const user = {
       email,
       firstName,
       lastName,
+      phoneNumber,
       password,
       password2,
     };
@@ -93,7 +95,7 @@ class SignupForm extends React.Component {
                     />
                     <Form.Text className="text-muted">
                       We'll never share your email with anyone else.
-                </Form.Text>
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group>
@@ -116,7 +118,18 @@ class SignupForm extends React.Component {
                       </Col>
                     </Row>
                   </Form.Group>
-
+                  <Form.Group>
+                    <Row>
+                      <Col>
+                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Control 
+                          placeholder="Phone Number"
+                          value={this.state.phoneNumber}
+                          onChange={this.update('phoneNumber')}
+                        />
+                      </Col>
+                    </Row>
+                  </Form.Group>
                   {/* <Form.Group controlId="formBasicPassword"> */}
                     <Row>
                       <Col>
