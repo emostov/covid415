@@ -20,7 +20,7 @@ class TaskUpdate extends React.Component {
       .then(() => this.props.openModal('takeTaskConfirmed'))
     )
 
-    // setTimeout(() => this.props.closeModal(), 2000);
+    setTimeout(() => this.props.closeModal(), 2000);
   }
 
   render() {
