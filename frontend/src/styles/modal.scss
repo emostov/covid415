@@ -311,6 +311,15 @@
   height: 30px;
 }
 
+.close-x {
+  position: absolute;
+  top: 1%;
+  right: 3%;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+}
+
 .sample-card {
   // width: 60%;
   height: 19%;
@@ -645,6 +654,15 @@
     border-radius: 4px;
     padding: 20px;
     animation: modal-height .4s;
+  }
+
+  .close-x {
+    position: absolute;
+    top: 1%;
+    right: 3%;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
   }
   
 }
