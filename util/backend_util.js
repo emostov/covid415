@@ -25,6 +25,7 @@ module.exports = {
       "firstName": obj.firstName,
       "lastName": obj.lastName,
       "email": obj.email,
+      "phoneNumber": obj.phoneNumber,
       "date": obj.date
     }
   }
