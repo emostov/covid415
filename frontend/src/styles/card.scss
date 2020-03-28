@@ -295,7 +295,7 @@
 
    .card-container-available {
    //  padding: 20px 20px 20px 16px;
-   height: calc(100vh - 132px);
+    height: 100%;
     overflow-y: auto;
     background: linear-gradient(#DA5663 15%, #FECEA8 );
     animation: cards .5s;
