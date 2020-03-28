@@ -108,8 +108,8 @@
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      height: 15vh;
-      border-bottom: solid 1px #b3b3b3
+      border-bottom: solid 1px #b3b3b3;
+      height: 15%;
    }
 
    .sidebar-container-inner-header {
@@ -182,7 +182,7 @@
    }
 
    .sidebar-container-inner-body {
-      height: 95%;
+      height: 85%;
    }
 
 }
