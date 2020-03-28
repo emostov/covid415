@@ -69,12 +69,12 @@ class Map extends React.Component {
 
     if (
       (
-        Object.keys(this.props.tasks).length
+        Object.keys(tasks).length
         !== Object.keys(prevProps.tasks).length
       )
       || (
         this.props.helpNeededTasks &&
-        Object.keys(this.props.helpNeededTasks).length
+        Object.keys(helpNeededTasks).length
         !== Object.keys(prevProps.helpNeededTasks).length
       )
       || (
@@ -203,7 +203,6 @@ class Map extends React.Component {
 
   updateMarkers() {
     const { userMarkers, helpNeededMarkers } = this.state;
-
     if (this.props.dispalyNotAssignedTasks) {
 
       // Display the helped needed markers
@@ -213,14 +212,12 @@ class Map extends React.Component {
       this.clearMarkers(helpNeededMarkers);
       this.addMarkers(userMarkers);
     }
-
   }
 
   updatePopups() {
     const { userMarkers, helpNeededMarkers, map } = this.state;
     const { activeTask } = this.props;
     if (!(userMarkers && helpNeededMarkers)) return;
-
     const allMarkers = userMarkers.concat(helpNeededMarkers);
 
     // Use set timeout to makesure if activeTask was set somewhere else it 
@@ -239,7 +236,6 @@ class Map extends React.Component {
       }
     })
     }, 1)
-
   }
 
   render() {

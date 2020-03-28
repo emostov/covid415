@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
-import ReactDOM from 'react-dom';
 
 import frontendUtil from '../../util/frontend_util';
 import { typeIcon } from '../../util/card_icon_util';
@@ -14,7 +13,6 @@ import '../../styles/card.scss'
 class Card extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = {
       active: false,
       distance: ''
@@ -22,8 +20,6 @@ class Card extends React.Component {
     this.myRef = React.createRef()
     this.clickHandler = this.clickHandler.bind(this);
     this.handleModal = this.handleModal.bind(this);
-    this.handleCardHover = this.handleCardHover.bind(this);
-    this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
     this.distanceFromCurrentToTask = this.distanceFromCurrentToTask.bind(this)
   }
 
@@ -35,8 +31,10 @@ class Card extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+
     // Make sure to compare props to prevent infinit loop
     if (this.props.currentPosition !== prevProps.currentPosition) {
+
       // recalculate distance
       this.distanceFromCurrentToTask();
     }
@@ -47,13 +45,14 @@ class Card extends React.Component {
     const { activeTask, task } = this.props;
     let curActive = this.state.active;
     if (!curActive && (!activeTask || activeTask.taskId !== task._id)){
+
       // Set to active task bc getting clicked on for first time
       this.props.receiveActiveTaskId(task._id);
-    } else if (curActive && activeTask.taskId !== task._id) {
+    } else if (curActive && activeTask.taskId === task._id) {
+
       // The task is open and is the current active task so make it not
       this.props.receiveActiveTaskId(null);
     }
-    
     this.setState({ active: !curActive })
   }
 
@@ -84,29 +83,11 @@ class Card extends React.Component {
     e.stopPropagation();
   }
 
-  handleCardHover(e) {
-    // e.stopPropagation();
-    // const { activeTask, task } = this.props;
-    // if (!activeTask || activeTask.taskId !== task._id) {
-    //   this.props.receiveActiveTaskId(task._id);
-    // }
-  }
-
-  // On mouse leave set activeTask to null
-  handleCardMouseLeave(e) {
-    e.stopPropagation();
-    const { activeTask, task } = this.props;
-    if (activeTask && activeTask.taskId === task._id) {
-      this.props.receiveActiveTaskId(null);
-    }
-  }
-
   distanceFromCurrentToTask() {
     const { task, currentPosition } = this.props
     if (this.props.task === undefined) {
       return null
     }
-
     if (currentPosition.length === 0) {
       return null
     }
@@ -115,7 +96,6 @@ class Card extends React.Component {
     let from = turf.point([longitude, latitude])
     let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
     let options = { units: 'miles' }
-
     let distanceTo = turf.distance(from, to, options)
     const dist = frontendUtil.parseDistance(distanceTo)
     task['distance'] = dist
@@ -124,11 +104,9 @@ class Card extends React.Component {
 
   displayMilesAway() {
     const { task } = this.props
-
     if (task.distance === undefined) {
       return (<Spinner animation="grow" variant="light" />);
     }
-
     if (this.state.active) {
       return `${task.distance} miles away`;
     } else {
@@ -139,8 +117,7 @@ class Card extends React.Component {
   render() {
     const { task } = this.props
     return (
-      <div onMouseEnter={this.handleCardHover}
-        onMouseLeave={this.handleCardMouseLeave}
+      <div 
         className="card-box-container"
         ref={this.myRef}
         id={task._id}
