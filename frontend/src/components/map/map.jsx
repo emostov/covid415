@@ -84,6 +84,8 @@ class Map extends React.Component {
       )
 
     ) {
+      // Remove all popups first
+      this.removeAllPopups();
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
@@ -178,7 +180,7 @@ class Map extends React.Component {
 
           // Not critical, but smooths animation because otherwise we rely on 
           // update popups which has an update time out
-          popup.addTo(map); 
+          popup.addTo(map);
         }
       });
     });
@@ -222,20 +224,33 @@ class Map extends React.Component {
 
     // Use set timeout to makesure if activeTask was set somewhere else it 
     // has time to propagate
-    setTimeout(()=> {
-    allMarkers.length && allMarkers.forEach((markerObj) => {
-      const { mBMarker, id } = markerObj;
-      if (
-        activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
-      ) {
-        mBMarker.getPopup().addTo(map)
-      } else if (
-        mBMarker.getPopup().isOpen() && activeTask && activeTask.taskId !== id
+    setTimeout(() => {
+      allMarkers.length && allMarkers.forEach((markerObj) => {
+        const { mBMarker, id } = markerObj;
+        if (
+          activeTask && activeTask.taskId === id && !mBMarker.getPopup().isOpen()
         ) {
-        mBMarker.getPopup().remove();
-      }
-    })
+          mBMarker.getPopup().addTo(map)
+        } else if (
+          mBMarker.getPopup().isOpen() && activeTask && activeTask.taskId !== id
+        ) {
+          mBMarker.getPopup().remove();
+        }
+      })
     }, 1)
+  }
+
+
+  removeAllPopups() {
+    const { userMarkers, helpNeededMarkers } = this.state;
+    if (!(userMarkers && helpNeededMarkers)) return;
+    const allMarkers = userMarkers.concat(helpNeededMarkers);
+
+    allMarkers.length && allMarkers.forEach((markerObj) => {
+      console.log('removing popup')
+      const { mBMarker } = markerObj;
+      mBMarker.getPopup().remove();
+    })
   }
 
   render() {
