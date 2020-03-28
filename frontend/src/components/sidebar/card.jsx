@@ -13,7 +13,6 @@ import '../../styles/card.scss'
 class Card extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = {
       active: false,
       distance: ''
@@ -49,12 +48,11 @@ class Card extends React.Component {
 
       // Set to active task bc getting clicked on for first time
       this.props.receiveActiveTaskId(task._id);
-    } else if (curActive && activeTask.taskId !== task._id) {
+    } else if (curActive && activeTask.taskId === task._id) {
 
       // The task is open and is the current active task so make it not
       this.props.receiveActiveTaskId(null);
     }
-    
     this.setState({ active: !curActive })
   }
 
@@ -90,7 +88,6 @@ class Card extends React.Component {
     if (this.props.task === undefined) {
       return null
     }
-
     if (currentPosition.length === 0) {
       return null
     }
@@ -99,7 +96,6 @@ class Card extends React.Component {
     let from = turf.point([longitude, latitude])
     let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
     let options = { units: 'miles' }
-
     let distanceTo = turf.distance(from, to, options)
     const dist = frontendUtil.parseDistance(distanceTo)
     task['distance'] = dist
@@ -108,11 +104,9 @@ class Card extends React.Component {
 
   displayMilesAway() {
     const { task } = this.props
-
     if (task.distance === undefined) {
       return (<Spinner animation="grow" variant="light" />);
     }
-
     if (this.state.active) {
       return `${task.distance} miles away`;
     } else {
