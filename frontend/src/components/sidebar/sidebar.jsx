@@ -33,32 +33,31 @@ export default class SideBar extends Component {
 
 
   render() {
-    const { 
-      currentUserId, 
-      history, 
-      updateTask, 
-      openModal, 
-      closeModal, 
-      session, 
+    const {
+      currentUserId,
+      history,
+      updateTask,
+      openModal,
+      closeModal,
+      session,
       userLocation,
       tasks,
       receiveNewTask,
       active,
-      available
-      // activeTask,
-      // receiveActiveTaskId,
+      available,
+      activeTask,
     } = this.props
-    
+
     // let available = []
     // let active = []
     // Object.values(tasks).forEach((task) => {
     //   if (task.status === 0) {
     //     available.push(task)
     //   }
-      //  else if (task.status === 1) {
+    //  else if (task.status === 1) {
 
-      //   active.push(task)
-      // }
+    //   active.push(task)
+    // }
     // })
 
 
@@ -93,10 +92,10 @@ export default class SideBar extends Component {
                     closeModal={closeModal}
                     currentUserId={currentUserId}
                     history={history}
-                    activeTask={this.props.activeTask}
+                    activeTask={activeTask}
                     receiveActiveTaskId={this.props.receiveActiveTaskId}
                     currentPosition={userLocation}
-                    receiveNewTask={receiveNewTask}/>
+                    receiveNewTask={receiveNewTask} />
                 ) : (
                   <ActiveSidebar
                     session={session}
@@ -106,10 +105,10 @@ export default class SideBar extends Component {
                     closeModal={closeModal}
                     currentUserId={currentUserId}
                     history={history}
-                    activeTask={this.props.activeTask}
+                    activeTask={activeTask}
                     receiveActiveTaskId={this.props.receiveActiveTaskId}
                     currentPosition={userLocation}
-                    receiveNewTask={receiveNewTask}/>
+                    receiveNewTask={receiveNewTask} />
                 )
             }
           </div>
