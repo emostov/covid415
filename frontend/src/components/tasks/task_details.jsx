@@ -53,6 +53,7 @@ class TaskDetails extends React.Component {
         </div>
         <div className="button-container">
           <button className='claim-button-done' onClick={() => this.handleClaim()}>Delivery Complete</button>
+          <button className='cancel-button done' onClick={() => this.handleClaim()}>Cancel</button>
         </div>
       </div>
     )

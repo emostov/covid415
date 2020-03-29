@@ -1,6 +1,7 @@
-import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import React from 'react';
+
+import { closeModal } from '../../actions/modal_actions';
 import TaskUpdateContainer from '../tasks/task_update_container';
 import TaskFormContainer from '../tasks/task_form_container';
 import TaskTakeConfirmation from '../tasks/task_take_confirmation';
