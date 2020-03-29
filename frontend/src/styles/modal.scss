@@ -275,8 +275,8 @@
   background-color: $figma-green;
   color: white;
   filter: brightness(90%);
-  width: 450px;
-  height: 50px;
+  width: 40%;
+  height: 70px;
   border-radius: 10px;
   text-transform: uppercase;
   font-size: 20px;
@@ -293,6 +293,10 @@
   text-transform: uppercase;
   font-size: 20px;
   border: none;
+}
+
+.cancel-button.done {
+  height: 70px;
 }
 
 .delivery-confirm-body {
@@ -586,8 +590,8 @@
     background-color: $figma-green;
     color: white;
     filter: brightness(90%);
-    width: 80%;
-    height: 7vh;
+    width: 40%;
+    height: 10vh;
     border-radius: 10px;
     text-transform: uppercase;
     font-size: 2.5vh;
@@ -604,6 +608,10 @@
     text-transform: uppercase;
     font-size: 2.5vh;
     border: none;
+  }
+
+  .cancel-button.done {
+    height: 10vh;
   }
 
   .modal-child-confirm-delivery {
