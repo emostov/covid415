@@ -218,10 +218,10 @@ class Map extends React.Component {
 
   updatePopups() {
     const { userMarkers, helpNeededMarkers, map } = this.state;
-    const { activeTask } = this.props;
+    const { activeTask, dispalyNotAssignedTasks } = this.props;
     if (!(userMarkers && helpNeededMarkers)) return;
-    const allMarkers = userMarkers.concat(helpNeededMarkers);
-
+    // const allMarkers = userMarkers.concat(helpNeededMarkers);
+    const allMarkers = dispalyNotAssignedTasks ? helpNeededMarkers : userMarkers
     // Use set timeout to makesure if activeTask was set somewhere else it 
     // has time to propagate
     setTimeout(() => {
@@ -247,9 +247,12 @@ class Map extends React.Component {
     const allMarkers = userMarkers.concat(helpNeededMarkers);
 
     allMarkers.length && allMarkers.forEach((markerObj) => {
-      console.log('removing popup')
+   
       const { mBMarker } = markerObj;
-      mBMarker.getPopup().remove();
+      if (mBMarker.getPopup().isOpen()){
+        console.log('removing popup')
+        mBMarker.getPopup().remove();
+      }
     })
   }
 
