@@ -84,7 +84,7 @@ class Map extends React.Component {
       )
 
     ) {
-      // this.removeAllPopups();
+      this.removeAllPopups();
       this.clearMarkers(this.state.userMarkers);
       this.clearMarkers(this.state.helpNeededMarkers);
 
