@@ -59,15 +59,17 @@ class Card extends React.Component {
 
   handleModal(e) {
     e.stopPropagation();
-    const { currentUserId, task, receiveActiveTaskId } = this.props;
-    if (currentUserId && this.props.task.status === 0) {
-      this.props.openModal('status', this.props.task._id)
-      this.props.receiveActiveTaskId(null)
-    } else if (this.props.currentUserId && this.props.task.status === 1) {
-      this.props.openModal('details', this.props.task._id)
+    const {
+      currentUserId, task, receiveActiveTaskId, history, openModal,
+    } = this.props;
+    if (currentUserId && task.status === 0) {
+      openModal('status', task._id)
+    } else if (currentUserId && task.status === 1) {
+      openModal('details', task._id)
     } else {
-      this.props.history.push('/login')
+      history.push('/login')
     }
+    receiveActiveTaskId(null)
   }
 
   isCurrentTask() {
