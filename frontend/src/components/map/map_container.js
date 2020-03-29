@@ -26,7 +26,6 @@ const mSTP = (state) => {
     helpNeededTasks: selectHelpNeededTasks(state),
     dispalyNotAssignedTasks,
     activeTasks: selectCurrenUserActiveTasks(state),
-
   })
 };
 
