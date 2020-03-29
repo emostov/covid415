@@ -19,12 +19,12 @@ class TaskDetails extends React.Component {
       .then(() => this.props.fetchTasks())
       .then(() => this.props.openModal('completeTaskConfirmed'))
     )
-    setTimeout(() => this.props.closeModal(), 2000);
+    setTimeout(() => this.props.closeModal(), 2 * 1000);
   }
 
   handleCancel() {
     const task = this.state;
-    const { updateTask, fetchTasks } = this.props;
+    const { updateTask, fetchTasks, closeModal } = this.props;
     const updatedTask = {
       ...task,
       volunteer: null,
@@ -32,8 +32,16 @@ class TaskDetails extends React.Component {
     }
     updateTask(updatedTask)
       .then(() => fetchTasks())
-      .then(() => alert('You have removed a task. The task is now no longer your duty.'))
-    console.log(updatedTask);
+      .then(() => {
+        closeModal();
+        setTimeout(() => {
+          alert('You have removed a task. That task is no longer your duty.');
+        }, 1)
+      })
+
+
+
+    // console.log(updatedTask);
   }
 
   render() {
@@ -66,9 +74,9 @@ class TaskDetails extends React.Component {
           <span className="delivery-details-text">{task.deliveryInstructions}</span>
         </div>
         <div className="button-container">
-          <button className='claim-button-done' 
+          <button className='claim-button-done'
             onClick={() => this.handleClaim()}>Delivery Complete</button>
-          <button className='cancel-button done' 
+          <button className='cancel-button done'
             onClick={() => this.handleCancel()}>Remove Task</button>
         </div>
       </div>
