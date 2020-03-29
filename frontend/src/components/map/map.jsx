@@ -168,10 +168,10 @@ class Map extends React.Component {
         const { activeTask } = this.props;
         popup.addTo(map);
 
-        // if popup is open and is the active task id 
+        // If popup is open and is the active task id 
         if (isOpen && activeTask && (activeTask.taskId === taskId)) {
 
-          // make it not the active taskid & close via popupdate which looks
+          // Make it not the active taskid & close via popupdate which looks
           // at active task id
           receiveActiveTaskId(null);
         } else {
@@ -220,8 +220,8 @@ class Map extends React.Component {
     const { userMarkers, helpNeededMarkers, map } = this.state;
     const { activeTask, dispalyNotAssignedTasks } = this.props;
     if (!(userMarkers && helpNeededMarkers)) return;
-    // const allMarkers = userMarkers.concat(helpNeededMarkers);
     const allMarkers = dispalyNotAssignedTasks ? helpNeededMarkers : userMarkers
+
     // Use set timeout to makesure if activeTask was set somewhere else it 
     // has time to propagate
     setTimeout(() => {
@@ -245,12 +245,9 @@ class Map extends React.Component {
     const { userMarkers, helpNeededMarkers } = this.state;
     if (!(userMarkers && helpNeededMarkers)) return;
     const allMarkers = userMarkers.concat(helpNeededMarkers);
-
     allMarkers.length && allMarkers.forEach((markerObj) => {
-   
       const { mBMarker } = markerObj;
       if (mBMarker.getPopup().isOpen()){
-        console.log('removing popup')
         mBMarker.getPopup().remove();
       }
     })
