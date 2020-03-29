@@ -35,7 +35,7 @@ class TaskDetails extends React.Component {
       .then(() => {
         closeModal();
         setTimeout(() => {
-          alert('You have removed a task. That task is no longer your duty.');
+          alert('Successfully removed from your deliveries.');
         }, 1)
       })
 
@@ -77,7 +77,7 @@ class TaskDetails extends React.Component {
           <button className='claim-button-done'
             onClick={() => this.handleClaim()}>Delivery Complete</button>
           <button className='cancel-button done'
-            onClick={() => this.handleCancel()}>Remove Task</button>
+            onClick={() => this.handleCancel()}>Cancel Delivery</button>
         </div>
       </div>
     )

@@ -60,8 +60,8 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <div>
-        <Navbar bg="dark" variant="dark" >
+      <header>
+        <Navbar bg="dark" variant="dark" sticky="top">
           <div className='d-flex flex-row justify-content-between w-full align-items-center'>
             <Nav className="mr-auto ">
               <Navbar.Brand href="#">
@@ -89,7 +89,7 @@ class NavBar extends React.Component {
           </div>
         </Navbar>
 
-      </div>
+      </header>
     );
   }
 }
