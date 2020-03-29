@@ -45,7 +45,7 @@ class Card extends React.Component {
     const { activeTask, task } = this.props;
     // const curActive = this.state.active;
     const curActive = this.isCurrentTask();
-    if (!curActive && (!activeTask || activeTask.taskId !== task._id)){
+    if (!curActive && (!activeTask || activeTask.taskId !== task._id)) {
 
       // Set to active task bc getting clicked on for first time
       this.props.receiveActiveTaskId(task._id);
@@ -59,8 +59,10 @@ class Card extends React.Component {
 
   handleModal(e) {
     e.stopPropagation();
-    if (this.props.currentUserId && this.props.task.status === 0) {
+    const { currentUserId, task, receiveActiveTaskId } = this.props;
+    if (currentUserId && this.props.task.status === 0) {
       this.props.openModal('status', this.props.task._id)
+      this.props.receiveActiveTaskId(null)
     } else if (this.props.currentUserId && this.props.task.status === 1) {
       this.props.openModal('details', this.props.task._id)
     } else {
@@ -120,7 +122,7 @@ class Card extends React.Component {
   render() {
     const { task } = this.props
     return (
-      <div 
+      <div
         className="card-box-container"
         ref={this.myRef}
         id={task._id}
@@ -141,7 +143,7 @@ class Card extends React.Component {
                   <div className="card-box-type-of-prop">Deliver to:
                   </div>
                   <div className="card-box-type-of-prop neighborhood">{this.props.task.deliveryNeighborhood}
-                  <br />
+                    <br />
                   </div>
                   <div className="card-box-type-of-prop">
                     Type:

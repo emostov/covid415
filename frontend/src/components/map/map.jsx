@@ -203,7 +203,7 @@ class Map extends React.Component {
   }
 
   updateMarkers() {
-    // this.removeAllPopups();
+    this.removeAllPopups();
     const { userMarkers, helpNeededMarkers } = this.state;
     if (this.props.dispalyNotAssignedTasks) {
 
