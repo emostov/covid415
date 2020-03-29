@@ -96,7 +96,7 @@ _As a user under self-isolation, you can request a delivery which will be added 
 ---
 
 ## Code Snipets
- __N.B__ significant changes have been made to the codebase, which some of these code snippets do not reflect.
+ __N.B.__ Significant changes have been made to the codebase since this README was written and some of these code snippets do not reflect those changes.
 
 ### Backend Google Maps API Geocoding
 
