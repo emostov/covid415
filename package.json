@@ -1,7 +1,7 @@
 {
   "name": "covid415",
   "version": "1.0.0",
-  "description": "a",
+  "description": "Request or offer help in SF during the pandemic.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
