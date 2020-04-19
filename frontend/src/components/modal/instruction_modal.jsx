@@ -1,11 +1,15 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+import { openModal } from '../../actions/modal_actions';
+
+
 import Logo from '../../public/COVID415.png';
 import SocialDistancing from '../../public/social_distancing.svg'
-// import HayesValley from '../../public/hayes_valley.png';
-// import Potrero from '../../public/potrero.png';
+import HayesValley from '../../public/hayes_valley.png';
+import Potrero from '../../public/potrero.png';
 
-class WelcomeModal extends React.Component {
+class InstructionModal extends React.Component {
     render() {
         return (
             <div className="modal-welcome-container">
@@ -15,13 +19,13 @@ class WelcomeModal extends React.Component {
                 </div>
                 <div className="modal-welcome-body">
                         <div className="welcome-section-1">
-                            <div className="modal-body-header">Self-isolating?</div>
-                            <div className="modal-body-text">Request a delivery from a local volunteer.</div>
-                            <div className="modal-body-header">Want to help your neighbors?</div>
-                            <div className="modal-body-text">Deliver essential items to quarantined people nearby.</div>
-                            {/* <img src={HayesValley} className='sample-card' alt="hayes-card" /> */}
+                            {/* <div className="modal-body-header">Self-isolating?</div>
+                            <div className="modal-body-text">Request a delivery from a local volunteer.</div> */}
+                            <div className="modal-body-header">How to help your neighbor:</div>
+                            <div className="modal-body-text">View and claim a delivery request nearby.</div>
+                            <img src={HayesValley} className='sample-card' alt="hayes-card" />
                             {/* <img src={Potrero} className='sample-card' alt="potrero-card"  /> */}
-                            <button className="continue-button" onClick={() => this.props.openModal("instruction")}>Continue </button>
+                            <button className="continue-button" onClick={() => this.props.openModal("instruction2")}>Continue </button>
                         </div>
                         <div className="welcome-section-2">
                             <img src={SocialDistancing} className="modal-splash" alt="social-distancing" />
@@ -32,4 +36,9 @@ class WelcomeModal extends React.Component {
     }
 };
 
-export default WelcomeModal;
+
+const mDTP = dispatch => ({
+    openModal: modal => dispatch(openModal(modal))
+});
+
+export default connect(null, mDTP)(InstructionModal);

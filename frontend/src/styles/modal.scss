@@ -339,8 +339,7 @@
 }
 
 .sample-card {
-  // width: 60%;
-  height: 19%;
+  width: 90%;
   border-radius: 5px;
   margin-top: 8px;
 }
@@ -470,7 +469,7 @@
   }
 
   .modal-splash {
-    height: 70%;
+    height: 50%;
     
     // display:none;
   }
@@ -515,7 +514,10 @@
   }
 
   .sample-card {
-    display: none;
+    // display: none;
+    // height: 70%;
+    width: 100%;
+    margin-top: 25px;
   }
 
   .modal-child-status {

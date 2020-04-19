@@ -8,6 +8,8 @@ import TaskTakeConfirmation from '../tasks/task_take_confirmation';
 import TaskDetailsContainer from '../tasks/task_details_container';
 import CompleteTakeConfirmation from '../tasks/task_complete_confirmation';
 import WelcomeModalContainer from './welcome_modal_container';
+import InstructionModal from './instruction_modal';
+import InstructionModal2 from './instruction_modal2';
 import '../../styles/modal.scss';
 
 class Modal extends React.Component {
@@ -53,6 +55,14 @@ class Modal extends React.Component {
                 break;
             case 'welcome':
                 component = <WelcomeModalContainer />;
+                childClass = "modal-child-welcome"
+                break;
+            case 'instruction':
+                component = <InstructionModal />;
+                childClass = "modal-child-welcome"
+                break;
+            case 'instruction2':
+                component = <InstructionModal2 />;
                 childClass = "modal-child-welcome"
                 break;
             default: 
