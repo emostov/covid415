@@ -19,15 +19,12 @@ class InstructionModal extends React.Component {
                 </div>
                 <div className="modal-welcome-body">
                         <div className="welcome-section-1">
-                            {/* <div className="modal-body-header">Self-isolating?</div>
-                            <div className="modal-body-text">Request a delivery from a local volunteer.</div> */}
                             <div className="modal-body-header">How to help your neighbor:</div>
                             <div className="modal-body-text">View and claim a delivery request nearby.</div>
                             <img src={HayesValley} className='sample-card' alt="hayes-card" />
-                            {/* <img src={Potrero} className='sample-card' alt="potrero-card"  /> */}
                             <button className="continue-button" onClick={() => this.props.openModal("instruction2")}>Continue </button>
                         </div>
-                        <div className="welcome-section-2">
+                        <div className="welcome-section-2 nomobile">
                             <img src={SocialDistancing} className="modal-splash" alt="social-distancing" />
                         </div>    
                 </div>

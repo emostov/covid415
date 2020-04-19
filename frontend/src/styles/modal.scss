@@ -470,8 +470,6 @@
 
   .modal-splash {
     height: 70%;
-    
-    // display:none;
   }
 
   .welcome-section-1 {
@@ -488,6 +486,10 @@
     width: 100%;
     align-items: center;
     z-index: 1;
+  }
+
+  .nomobile {
+    display: none;
   }
 
   .continue-button {

@@ -26,7 +26,7 @@ class InstructionModal2 extends React.Component {
                             
                             <button className="continue-button" onClick={() => this.props.closeModal()}>Continue </button>
                         </div>
-                        <div className="welcome-section-2">
+                        <div className="welcome-section-2 nomobile">
                             <img src={DeliveryForm} className="modal-splash" alt="delivery-form" />
                         </div>    
                 </div>
