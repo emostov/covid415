@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
+import { openModal, closeModal } from '../../actions/modal_actions';
 import WelcomeModal from './welcome_modal';
 
 const mDTP = dispatch => ({
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    openModal: modal => dispatch(openModal(modal))
 });
 
 export default connect(null, mDTP)(WelcomeModal);
