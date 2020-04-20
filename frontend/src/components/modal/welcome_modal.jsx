@@ -25,7 +25,8 @@ class WelcomeModal extends React.Component {
                         </div>
                         <div className="welcome-section-2">
                             <img src={SocialDistancing} className="modal-splash" alt="social-distancing" />
-                        </div>    
+                            <div className="prototype-note">Please note: COVID-415 is currently in prototype. All requests are for demonstration purposes only.</div>
+                        </div>
                 </div>
             </div>
         )
