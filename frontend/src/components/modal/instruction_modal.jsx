@@ -35,7 +35,6 @@ class InstructionModal extends React.Component {
 
 
 const mDTP = dispatch => ({
-    // openModal: modal => dispatch(openModal(modal))
     closeModal: () => dispatch(closeModal())
 });
 

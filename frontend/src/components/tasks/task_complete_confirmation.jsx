@@ -1,20 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import '../../styles/task_update.scss'
+import { closeModal } from '../../actions/modal_actions';
 
-class CompleteTakeConfirmation extends React.Component {
-    render() {
-        return (
-            <div className="modal-child-confirm-delivery">
-            <div className="delivery-header-container-pending">
-                <div className="delivery-header">Delivery complete!</div>
-            </div>
-            <div className="delivery-confirm-body">
-                Thanks for helping keep the 415 alive.
-            </div>
+const CompleteTakeConfirmation = props => {
+    return (
+        <div className="modal-child-confirm-delivery">
+        <div className="close-x" onClick={props.closeModal}>&times;</div>
+        <div className="delivery-header-container-pending">
+            <div className="delivery-header">Delivery complete!</div>
         </div>
-        )
-    }
+        <div className="delivery-confirm-body">
+            Thanks for helping keep the 415 alive.
+        </div>
+    </div>
+    )
 }
 
-export default CompleteTakeConfirmation;
+const mDTP = dispatch => ({
+    closeModal: () => dispatch(closeModal())
+});
+
+export default connect(null, mDTP)(CompleteTakeConfirmation);
