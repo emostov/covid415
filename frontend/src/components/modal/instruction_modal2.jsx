@@ -13,7 +13,7 @@ class InstructionModal2 extends React.Component {
             <div className="modal-welcome-container">
                 <div className="modal-welcome-heading">
                     <img src={ Logo } className='welcome-logo' alt="welcome-logo" />
-                    <div className ='modal-welcome-header-text'>Neighbors helping neighbors affected by COVID-19 in San Francisco.</div>
+                    <div className ='modal-welcome-header-text'>Welcome, neighbor! Read below to learn how COVID-415 works.</div>
                 </div>
                 <div className="modal-welcome-body">
                         <div className="welcome-section-1">

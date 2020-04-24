@@ -11,17 +11,20 @@ class WelcomeModal extends React.Component {
             <div className="modal-welcome-container">
                 <div className="modal-welcome-heading">
                     <img src={ Logo } className='welcome-logo' alt="welcome-logo" />
-                    <div className ='modal-welcome-header-text'>Neighbors helping neighbors affected by COVID-19 in San Francisco.</div>
+                    <div className ='modal-welcome-header-text'>Welcome, neighbor! Read below to learn how COVID-415 works.</div>
                 </div>
                 <div className="modal-welcome-body">
                         <div className="welcome-section-1">
-                            <div className="modal-body-header">Self-isolating?</div>
+                            <div className="modal-body-header">Self-isolating and need something?</div>
                             <div className="modal-body-text">Request a delivery from a local volunteer.</div>
                             <div className="modal-body-header">Want to help your neighbors?</div>
-                            <div className="modal-body-text">Deliver essential items to quarantined people nearby.</div>
+                            <div className="modal-body-text">Sign up and deliver essential items to quarantined people nearby.</div>
                             {/* <img src={HayesValley} className='sample-card' alt="hayes-card" /> */}
                             {/* <img src={Potrero} className='sample-card' alt="potrero-card"  /> */}
-                            <button className="continue-button" onClick={() => this.props.openModal("instruction")}>Continue </button>
+                            <div className="modal-buttons">
+                                <button className="modal-button volunteer" onClick={() => this.props.openModal("instruction")}>Become a Volunteer</button>
+                                <button className="modal-button delivery" onClick={() => this.props.openModal("instruction2")}>Request a Delivery</button>
+                            </div>
                         </div>
                         <div className="welcome-section-2">
                             <img src={SocialDistancing} className="modal-splash" alt="social-distancing" />
