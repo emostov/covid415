@@ -1,7 +1,6 @@
 import React from 'react';
 import * as turf from '@turf/turf'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
 
@@ -113,7 +112,6 @@ class Card extends React.Component {
     if (task.distance === undefined) {
       return (<Spinner animation="grow" variant="light" />);
     }
-    // if (this.state.active) {
     if (this.isCurrentTask()) {
       return `${task.distance} miles away`;
     } else {
@@ -130,7 +128,6 @@ class Card extends React.Component {
         id={task._id}
       >
         {
-          // this.state.active || 
           this.isCurrentTask()
             ?
             (

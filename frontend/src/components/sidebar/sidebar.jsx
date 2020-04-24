@@ -41,25 +41,11 @@ export default class SideBar extends Component {
       closeModal,
       session,
       userLocation,
-      tasks,
       receiveNewTask,
       active,
       available,
       activeTask,
     } = this.props
-
-    // let available = []
-    // let active = []
-    // Object.values(tasks).forEach((task) => {
-    //   if (task.status === 0) {
-    //     available.push(task)
-    //   }
-    //  else if (task.status === 1) {
-
-    //   active.push(task)
-    // }
-    // })
-
 
     return (
       <div className='sidebar-container'>

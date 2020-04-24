@@ -5,9 +5,6 @@ import { closeModal } from '../../actions/modal_actions';
 
 
 import Logo from '../../public/COVID415.png';
-import SocialDistancing from '../../public/social_distancing.svg'
-import HayesValley from '../../public/hayes_valley.png';
-import Potrero from '../../public/potrero.png';
 import TaskList from '../../public/tasklist.png'
 
 class InstructionModal extends React.Component {
