@@ -7,6 +7,7 @@ const passport = require('passport');
 
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
+const { whitelist } = require('validator');
 const keys = require('../../config/keys');
 const User = require('../../models/User');
 
@@ -39,7 +40,7 @@ router.post('/register', (req, res) => {
         firstName,
         lastName,
         email,
-        phoneNumber,
+        phoneNumber: whitelist(phoneNumber, '0123456789'),
         password,
       });
 
