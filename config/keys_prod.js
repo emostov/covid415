@@ -4,5 +4,6 @@ module.exports = {
   distanceMatrixKey: process.env.DISTANCE_MATRIX_KEY,
   mapBoxPublicKey: process.env.MAP_BOX_PUBLIC_KEY,
   twilioAccountSid: process.env.TWILIO_ACCOUNTT_SID,
-  twilioAuthToken: process.env.TWILIO_AUTH_TOKEN
+  twilioAuthToken: process.env.TWILIO_AUTH_TOKEN,
+  twilioPhoneNumber: process.env.TWILIO_PHONE_NUMBER
 };

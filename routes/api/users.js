@@ -19,7 +19,7 @@ router.get('/test', (req, res) => res.json({ msg: 'This is the users route' }));
 router.post('/register', (req, res) => {
   // This will do all validations, including matching passwords
   const { errors, isValid } = validateRegisterInput(req.body);
-
+  
   if (!isValid) {
     return res.status(400).json(errors);
   }

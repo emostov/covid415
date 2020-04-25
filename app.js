@@ -10,6 +10,7 @@ const sslRedirect = require('heroku-ssl-redirect');
 const users = require('./routes/api/users');
 const tasks = require('./routes/api/tasks');
 const google = require('./routes/api/google');
+const messages = require('./routes/api/messages');
 const { seedUsersAndTasks, seedByAddress } = require('./seeds/seed_script');
 
 const port = process.env.PORT || 5000;
@@ -44,6 +45,7 @@ require('./config/passport')(passport);
 app.use('/api/users', users);
 app.use('/api/tasks', tasks);
 app.use('/api/google', google);
+app.use('/api/messages', messages);
 app.get('/', (req, res) => res.send('Light on the back side'));
 app.get('/seed', (req, res) => {
   // res.send(seedUsersAndTasks(10));
