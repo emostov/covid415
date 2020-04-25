@@ -9,7 +9,5 @@ const sendText = (volunteerName, number) => {
             to: `+1${number}`
         })
         .then(msg => console.log(msg.status))
-        .err(err => console.log(err));
+        .catch(err => console.log(err));
 };
-
-sendText("Andrew", "4156606052")
