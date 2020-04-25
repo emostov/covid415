@@ -17,8 +17,8 @@ router.post('/',
     client.messages
         .create({
             from: twilioPhoneNumber,
-            to: `+1${req.body.number}`,
-            body: `Good news! Your neighbor ${req.body.name} has agreed to deliver your items. They have your contact info and will follow up soon.\n\nStay safe!\n ❤️ COVID415 team`
+            to: `+1${req.body.phoneNumber}`,
+            body: `Good news! Your neighbor ${req.body.volunteerName} has agreed to deliver your items. They have your contact info and will follow up soon.\n\nStay safe!\n ❤️ COVID415 team`
         })
         .then(() => {
             res.send({ success: true });

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../../styles/task_update.scss'
-
 class TaskUpdate extends React.Component {
   constructor(props) {
     super(props);
