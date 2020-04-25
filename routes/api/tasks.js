@@ -12,7 +12,7 @@ const router = express.Router();
 router.get('/test', (req, res) => res.json({ msg: 'This is the tasks route' }));
 
 router.get('/', (req, res) => {
-  // debugger
+  
   Task.find()
     .sort({ createdAt: -1 })
     .then((tasks) => res.json(tasks))
@@ -44,7 +44,7 @@ router.post('/',
 
         newTask.save()
           .then((task) => res.json(task))
-          .catch(err => res.json(err))
+          .catch(err => res.json(console.log(err)))
       },
     )
       .catch(err => res.json(err))
@@ -64,12 +64,7 @@ router.patch('/:id',
       details,
       deliveryInstructions,
       status,
-      // deliveryAddress,
-      // deliveryLatLong,
-      // requester,
       volunteer,
-      // createdAt,
-      // updatedAt,
     } = req.body;
     
     Task.findById(req.params.id)

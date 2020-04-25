@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form, Row, Col, Button, Card, Alert } from 'react-bootstrap';
 
-import '../../styles/session_form.scss'
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
@@ -144,7 +143,7 @@ class SignupForm extends React.Component {
                       </Col>
                       <Col>
                         <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control type="password2"
+                        <Form.Control type="password"
                           placeholder="Confirm Password"
                           onChange={this.update('password2')}
                         />
