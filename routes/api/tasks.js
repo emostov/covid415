@@ -44,7 +44,7 @@ router.post('/',
 
         newTask.save()
           .then((task) => res.json(task))
-          .catch(err => res.json(err))
+          .catch(err => res.json(console.log(err)))
       },
     )
       .catch(err => res.json(err))

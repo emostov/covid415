@@ -17,8 +17,8 @@ class Card extends React.Component {
       distance: ''
     }
     this.myRef = React.createRef()
-    this.clickHandler = this.clickHandler.bind(this);
-    this.handleModal = this.handleModal.bind(this);
+    this.handleActiveToggle = this.handleActiveToggle.bind(this);
+    this.handleContinueClick = this.handleContinueClick.bind(this);
     this.distanceFromCurrentToTask = this.distanceFromCurrentToTask.bind(this)
   }
 
@@ -39,7 +39,7 @@ class Card extends React.Component {
     }
   }
 
-  clickHandler(e) {
+  handleActiveToggle(e) {
     e.preventDefault();
     const { activeTask, task } = this.props;
     // const curActive = this.state.active;
@@ -56,7 +56,7 @@ class Card extends React.Component {
     this.setState({ active: !curActive })
   }
 
-  handleModal(e) {
+  handleContinueClick(e) {
     e.stopPropagation();
     const {
       currentUserId, task, receiveActiveTaskId, history, openModal,
@@ -131,7 +131,7 @@ class Card extends React.Component {
           this.isCurrentTask()
             ?
             (
-              <div className="card-box-active" onClick={this.clickHandler}>
+              <div className="card-box-active" onClick={this.handleActiveToggle}>
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-minus" icon={faMinus} />
                   <div className={"card-head-active"}>
@@ -158,13 +158,13 @@ class Card extends React.Component {
                   </div>
                 </div>
                 {this.props.cardType === 'available' ?
-                  <button onClick={this.handleModal} className="accept-button">I Can Help</button>
+                  <button onClick={this.handleContinueClick} className="accept-button">I Can Help</button>
                   :
-                  <button onClick={this.handleModal} className="complete-button">Delivery Details</button>
+                  <button onClick={this.handleContinueClick} className="complete-button">Delivery Details</button>
                 }
               </div>
             ) : (
-              <div className="card-box" onClick={this.clickHandler}>
+              <div className="card-box" onClick={this.handleActiveToggle}>
                 <div className="card-header-container">
                   <FontAwesomeIcon className="fa-plus" icon={faPlus} />
                   <div className={"card-head"}>

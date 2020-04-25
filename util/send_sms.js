@@ -11,3 +11,5 @@ const sendText = (volunteerName, number) => {
         .then(msg => console.log(msg.status))
         .catch(err => console.log(err));
 };
+
+module.exports = sendText;
