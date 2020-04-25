@@ -7,7 +7,7 @@ const mSTP = state => {
     let taskId = state.ui.modal.taskId;
     return {
         task: Object.values(state.tasks).filter(task => task._id === taskId)[0],
-        currentUserId: state.session.user.id
+        currentUser: state.session.user
     }
 };
 

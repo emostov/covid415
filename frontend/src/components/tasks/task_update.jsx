@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { sendSMS } from '../../util/sms_util';
+
 class TaskUpdate extends React.Component {
   constructor(props) {
     super(props);
@@ -10,10 +12,16 @@ class TaskUpdate extends React.Component {
   handleClaim() {
     this.setState(prevState => ({
       status: prevState.status + 1,
-      volunteer: this.props.currentUserId
+      volunteer: this.props.currentUser.id
     }), () => this.props.updateTask(this.state)
+      .then(() =>
+        sendSMS({
+          phoneNumber: this.props.task.requester.phoneNumber,
+          volunteerName: this.props.currentUser.firstName,
+      }))
       .then(() => this.props.fetchTasks())
       .then(() => this.props.openModal('takeTaskConfirmed'))
+      .catch(err => console.log(err))
     )
   }
 

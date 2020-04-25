@@ -64,12 +64,7 @@ router.patch('/:id',
       details,
       deliveryInstructions,
       status,
-      // deliveryAddress,
-      // deliveryLatLong,
-      // requester,
       volunteer,
-      // createdAt,
-      // updatedAt,
     } = req.body;
     
     Task.findById(req.params.id)
