@@ -82,7 +82,6 @@ class SignupForm extends React.Component {
                   <strong>Help keep the 415 alive. Sign up now!</strong>
                 </Card.Title>
                 {this.renderErrors()}
-                {/*  */}
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -130,7 +129,6 @@ class SignupForm extends React.Component {
                       </Col>
                     </Row>
                   </Form.Group>
-                  {/* <Form.Group controlId="formBasicPassword"> */}
                     <Row>
                       <Col>
                         <Form.Label>Password</Form.Label>
