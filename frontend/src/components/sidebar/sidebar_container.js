@@ -26,8 +26,8 @@ const mSTP = state => {
     session: state.session,
     userLocation: state.ui.userLocation,
     tasks: state.tasks,
-    active: selectCurrenUserActiveTasks(state),
-    available: selectHelpNeededTasks(state),
+    currentUserTasks: selectCurrenUserActiveTasks(state),
+    helpNeededTasks: selectHelpNeededTasks(state),
   }
 };
 
