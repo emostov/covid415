@@ -1,38 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import ActiveSidebar from './active';
 import AvailableSidebar from './available'
 import '../../styles/sidebar.scss';
 
-export default class SideBar extends Component {
-  constructor(props) {
-    super(props)
+export const Sidebar = props => {
 
-    this.state = {
-      available: true,
-    }
+  const [available, setAvailable] = useState(true);
 
-    this.clickHandler = this.clickHandler.bind(this)
-  }
-
-  clickHandler(field) {
-    const { receiveDisplayAssignedTasks } = this.props
-    if (field === 'available' && this.state.available === true) {
+  function clickHandler(field) {
+    const { receiveDisplayAssignedTasks } = props
+    if (field === 'available' && available === true) {
       return null
     } else if (field === 'available') {
-      this.setState({ available: true });
+      setAvailable(true);
       receiveDisplayAssignedTasks(true);
     }
-    if (field === 'active' && this.state.available === true) {
-      this.setState({ available: false });
+    if (field === 'active' && available === true) {
+      setAvailable(false);
       receiveDisplayAssignedTasks(false);
     } else {
       return null
     }
   }
-
-
-  render() {
     const {
       currentUserId,
       history,
@@ -42,10 +32,10 @@ export default class SideBar extends Component {
       session,
       userLocation,
       receiveNewTask,
-      active,
-      available,
+      currentUserTasks,
+      helpNeededTasks,
       activeTask,
-    } = this.props
+    } = props
 
     return (
       <div className='sidebar-container'>
@@ -53,46 +43,45 @@ export default class SideBar extends Component {
           <div className="sidebar-container-header">
             <div className="sidebar-container-inner-header">
               <div className="sidebar-container-header-available"
-                onClick={e => { e.preventDefault(); this.clickHandler('available') }}>
-                <div className={this.state.available ? "available-title-name-active" : "available-title-name"}>
+                onClick={e => { e.preventDefault(); clickHandler('available') }}>
+                <div className={available ? "available-title-name-active" : "available-title-name"}>
                   Delivery Requests
                 </div>
               </div>
               <div className="sidebar-container-header-active"
-                onClick={e => { e.preventDefault(); this.clickHandler('active') }}>
-                <div className={this.state.available ? "active-title-name" : "active-title-name-active"}>
+                onClick={e => { e.preventDefault(); clickHandler('active') }}>
+                <div className={available ? "active-title-name" : "active-title-name-active"}>
                   My Deliveries
-                </div>
+ </div>
               </div>
             </div>
           </div>
           <div className="sidebar-container-inner-body" id='scroll-container'>
             {
-              this.state.available
-                ?
+              available ?
                 (
                   <AvailableSidebar
-                    available={available}
+                    available={helpNeededTasks}
                     updateTask={updateTask}
                     openModal={openModal}
                     closeModal={closeModal}
                     currentUserId={currentUserId}
                     history={history}
                     activeTask={activeTask}
-                    receiveActiveTaskId={this.props.receiveActiveTaskId}
+                    receiveActiveTaskId={props.receiveActiveTaskId}
                     currentPosition={userLocation}
                     receiveNewTask={receiveNewTask} />
                 ) : (
                   <ActiveSidebar
                     session={session}
-                    active={active}
+                    active={currentUserTasks}
                     updateTask={updateTask}
                     openModal={openModal}
                     closeModal={closeModal}
                     currentUserId={currentUserId}
                     history={history}
                     activeTask={activeTask}
-                    receiveActiveTaskId={this.props.receiveActiveTaskId}
+                    receiveActiveTaskId={props.receiveActiveTaskId}
                     currentPosition={userLocation}
                     receiveNewTask={receiveNewTask} />
                 )
@@ -101,5 +90,6 @@ export default class SideBar extends Component {
         </div>
       </div>
     )
-  }
-}
+};
+
+export default Sidebar;
