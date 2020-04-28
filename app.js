@@ -48,7 +48,6 @@ app.use('/api/google', google);
 app.use('/api/messages', messages);
 app.get('/', (req, res) => res.send('Light on the back side'));
 app.get('/seed', (req, res) => {
-  // res.send(seedUsersAndTasks(10));
   seedByAddress();
   res.send('seemsToHaveWorked');
 });

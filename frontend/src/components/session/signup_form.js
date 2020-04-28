@@ -46,7 +46,6 @@ class SignupForm extends React.Component {
       password2,
     };
 
-    // clarify this.props.history
     this.props.signup(user, this.props.history);
   }
 
@@ -147,7 +146,6 @@ class SignupForm extends React.Component {
                         />
                       </Col>
                     </Row>
-                  {/* </Form.Group> */}
 
                   <Form.Group controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="I agree to be a good neighbor" />
