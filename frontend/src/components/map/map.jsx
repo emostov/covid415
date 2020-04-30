@@ -15,7 +15,7 @@ class Map extends React.Component {
       zoom: 11,
       map: '',
       allMarkers: [],
-      dispalyNotAssignedTasks: true,
+      displayNotAssignedTasks: true,
     }
   }
 
@@ -45,7 +45,7 @@ class Map extends React.Component {
     map.setMaxBounds(bounds);
     this.setState({
       map,
-      dispalyNotAssignedTasks: this.props.dispalyNotAssignedTasks
+      displayNotAssignedTasks: this.props.displayNotAssignedTasks
     });
     this.callPlaceMarkers();
   }
@@ -205,7 +205,7 @@ class Map extends React.Component {
   updateMarkers() {
     this.removeAllPopups();
     const { userMarkers, helpNeededMarkers } = this.state;
-    if (this.props.dispalyNotAssignedTasks) {
+    if (this.props.displayNotAssignedTasks) {
 
       // Display the helped needed markers
       this.clearMarkers(userMarkers);
@@ -218,9 +218,9 @@ class Map extends React.Component {
 
   updatePopups() {
     const { userMarkers, helpNeededMarkers, map } = this.state;
-    const { activeTask, dispalyNotAssignedTasks } = this.props;
+    const { activeTask, displayNotAssignedTasks } = this.props;
     if (!(userMarkers && helpNeededMarkers)) return;
-    const allMarkers = dispalyNotAssignedTasks ? helpNeededMarkers : userMarkers
+    const allMarkers = displayNotAssignedTasks ? helpNeededMarkers : userMarkers
 
     // Use set timeout to makesure if activeTask was set somewhere else it 
     // has time to propagate

@@ -17,14 +17,14 @@ const mSTP = (state) => {
     currentUserTasks = undefined;
   }
 
-  const { activeTask, dispalyNotAssignedTasks } = state.ui;
+  const { activeTask, displayNotAssignedTasks } = state.ui;
   return ({
     tasks: Object.values(state.tasks),
     activeTask,
     currentUserId,
     currentUserTasks,
     helpNeededTasks: selectHelpNeededTasks(state),
-    dispalyNotAssignedTasks,
+    displayNotAssignedTasks,
     activeTasks: selectCurrenUserActiveTasks(state),
   })
 };
