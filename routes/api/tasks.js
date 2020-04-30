@@ -48,7 +48,8 @@ router.post('/',
       },
     )
       .catch(err => res.json(err))
-  });
+  }
+);
 
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
@@ -80,7 +81,8 @@ router.patch('/:id',
           // eslint-disable-next-line no-console
           .catch((err) => res.json(err));
       });
-  });
+  }
+);
 
 
 module.exports = router;
