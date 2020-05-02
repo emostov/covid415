@@ -30,8 +30,8 @@ router.post('/',
 
     const unFrozenParser = backendUtil.pullKeys(req.user);
 
-    geocodeUtil.parseAddress(req.body.deliveryAddress).then(
-      (gMapsResponse) => {
+    geocodeUtil.parseAddress(req.body.deliveryAddress)
+    .then((gMapsResponse) => {
         const newTask = new Task({
           type: req.body.type,
           details: req.body.details,
@@ -45,9 +45,8 @@ router.post('/',
         newTask.save()
           .then((task) => res.json(task))
           .catch(err => res.json(console.log(err)))
-      },
-    )
-      .catch(err => res.json(err))
+    })
+    .catch(err => res.json(err))
   }
 );
 
@@ -78,7 +77,6 @@ router.patch('/:id',
 
         task.save()
           .then((savedTask) => res.json(savedTask))
-          // eslint-disable-next-line no-console
           .catch((err) => res.json(err));
       });
   }
