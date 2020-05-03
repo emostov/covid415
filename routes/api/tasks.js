@@ -27,7 +27,7 @@ router.post('/',
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
+    
     const unFrozenParser = backendUtil.pullKeys(req.user);
 
     //call Google Maps
