@@ -1,7 +1,5 @@
 import { RECEIVE_TASKS, RECEIVE_NEW_TASK } from '../actions/task_actions';
 
-
-
 const convertToTasksObj = (tasks) => {
   const newTasks = {};
   tasks.forEach((t) => {
