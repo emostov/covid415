@@ -30,11 +30,10 @@ router.post('/',
 
     const unFrozenParser = backendUtil.pullKeys(req.user);
 
-    let newTask;
     //call Google Maps
     geocodeUtil.parseAddress(req.body.deliveryAddress)
     .then(gMapsResponse => {
-      newTask = new Task({
+      const newTask = new Task({
         type: req.body.type,
         details: req.body.details,
         requester: unFrozenParser,
