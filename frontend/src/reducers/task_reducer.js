@@ -30,7 +30,7 @@ const allTasksUpdate = (tasks, nextState) => {
 const TasksReducer = (state = {}, action) => {
   Object.freeze(state)
   let nextState = Object.assign({}, state)
-  // const nextState = state.slice()
+  
   switch (action.type) {
     case RECEIVE_TASKS:
       if (Object.keys(nextState).length > 0) {
