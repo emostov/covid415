@@ -27,25 +27,25 @@ router.post('/',
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
+    
     const unFrozenParser = backendUtil.pullKeys(req.user);
 
+    //call Google Maps
     geocodeUtil.parseAddress(req.body.deliveryAddress)
-    .then((gMapsResponse) => {
-        const newTask = new Task({
-          type: req.body.type,
-          details: req.body.details,
-          requester: unFrozenParser,
-          deliveryAddress: gMapsResponse.data.results[0].formatted_address,
-          deliveryLatLong: Object.values(gMapsResponse.data.results[0].geometry.location),
-          deliveryNeighborhood: gMapsResponse.data.results[0].address_components[2].short_name,
-          deliveryInstructions: req.body.deliveryInstructions,
-        });
+    .then(gMapsResponse => {
+      const newTask = new Task({
+        type: req.body.type,
+        details: req.body.details,
+        requester: unFrozenParser,
+        deliveryAddress: gMapsResponse.data.results[0].formatted_address,
+        deliveryLatLong: Object.values(gMapsResponse.data.results[0].geometry.location),
+        deliveryNeighborhood: gMapsResponse.data.results[0].address_components[2].short_name,
+        deliveryInstructions: req.body.deliveryInstructions,
+      });
 
-        newTask.save()
-          .then((task) => res.json(task))
-          .catch(err => res.json(console.log(err)))
+      newTask.save();
     })
+    .then((task) => res.json(task))
     .catch(err => res.json(err))
   }
 );

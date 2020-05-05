@@ -18,6 +18,7 @@ const mSTP = (state) => {
   }
 
   const { activeTask, displayNotAssignedTasks } = state.ui;
+
   return ({
     tasks: Object.values(state.tasks),
     activeTask,
