@@ -78,7 +78,7 @@ class Card extends React.Component {
         behavior: 'smooth',
         block: 'center',
       });
-      // this.setState({active: true})
+      
       return true;
     }
     return false;
