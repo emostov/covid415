@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import jwt_decode from 'jwt-decode';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import mapboxgl from 'mapbox-gl';
 
 import Root from './components/root';
@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore({});
   }
 
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  window.fetchTasks = fetchTasks;
-  window.updateTask = updateTask;
-  window.receiveDisplayAssignedTasks = receiveDisplayAssignedTasks;
+  // window.getState = store.getState;
+  // window.dispatch = store.dispatch;
+  // window.fetchTasks = fetchTasks;
+  // window.updateTask = updateTask;
+  // window.receiveDisplayAssignedTasks = receiveDisplayAssignedTasks;
 
   window.task = {
     "deliveryLatLong": [
