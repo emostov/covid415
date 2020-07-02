@@ -93,4 +93,52 @@ class NavBar extends React.Component {
   }
 }
 
+const NavBar = (props) => {
+
+  const logoutUser = () => {
+    const { logout } = props;
+
+    logout();
+  }
+
+  const getLinks = () => {
+    const { loggedIn, currUserName, currUserEmail } = props;
+    if (loggedIn) {
+      const userCircle = (<FontAwesomeIcon className='user-circle mr-1' icon={faUserCircle} />)
+      return (
+        <NavDropdown title={userCircle} id="nav-dropdown" alignRight>
+          <div className='navbar-user'>
+            <div className='navbar-curr-user'>Hi, {currUserName}</div>
+            <div className='navbar-curr-email'>{currUserEmail}</div>
+          </div>
+          <NavDropdown.Divider />
+          <NavDropdown.Item onClick={this.logoutUser} className='text-left log-out' >
+            Log out
+                    </NavDropdown.Item>
+        </NavDropdown>
+
+      );
+    } else {
+      return (
+        <div>
+          <Nav>
+            <Link to="/signup" className="nav-link">
+              Sign up
+                        </Link>
+            <Link to="/login" className="nav-link">
+              Log in
+                        </Link>
+          </Nav>
+        </div>
+      );
+    }
+  }
+
+  const requestHelp = () => {
+    const { openModal } = props;
+
+    openModal('taskform');
+  }
+}
+
 export default NavBar;
