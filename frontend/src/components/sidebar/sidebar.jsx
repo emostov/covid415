@@ -52,7 +52,7 @@ export const Sidebar = props => {
                 onClick={e => { e.preventDefault(); clickHandler('active') }}>
                 <div className={available ? "active-title-name" : "active-title-name-active"}>
                   My Deliveries
- </div>
+                </div>
               </div>
             </div>
           </div>
