@@ -68,7 +68,7 @@ class NavBar extends React.Component {
               </Navbar.Brand>
             </Nav>
             {this.props.loggedIn ? (
-              <button className='request-help-button' onClick={() => requestHelp()}>Request Delivery</button>
+              <button className='request-help-button' onClick={() => this.requestHelp()}>Request Delivery</button>
             ) : (
                 <div></div>
               )
@@ -76,7 +76,7 @@ class NavBar extends React.Component {
             <div className="icon-login-container">
               <Nav
                 className="justify-content-end upcase white-txt align-items-end">
-                {getLinks()}
+                {this.getLinks()}
               </Nav>
               <Nav className="github-icon">
                 <a href="https://github.com/emostov/covid415"
@@ -93,56 +93,86 @@ class NavBar extends React.Component {
   }
 }
 
-const NavBar = (props) => {
+// const NavBar = (props) => {
 
-  const logoutUser = () => {
-    const { logout } = props;
+//   const logoutUser = () => {
+//     const { logout } = props;
 
-    logout();
-  }
+//     logout();
+//   };
 
-  const getLinks = () => {
-    const { loggedIn, currUserName, currUserEmail } = props;
-    if (loggedIn) {
-      const userCircle = (<FontAwesomeIcon className='user-circle mr-1' icon={faUserCircle} />)
-      return (
-        <NavDropdown title={userCircle} id="nav-dropdown" alignRight>
-          <div className='navbar-user'>
-            <div className='navbar-curr-user'>Hi, {currUserName}</div>
-            <div className='navbar-curr-email'>{currUserEmail}</div>
-          </div>
-          <NavDropdown.Divider />
-          <NavDropdown.Item onClick={logoutUser()} className='text-left log-out' >
-            Log out
-          </NavDropdown.Item>
-        </NavDropdown>
+//   const getLinks = () => {
+//     const { loggedIn, currUserName, currUserEmail } = props;
+//     if (loggedIn) {
+//       const userCircle = (<FontAwesomeIcon className='user-circle mr-1' icon={faUserCircle} />)
+//       return (
+//         <NavDropdown title={userCircle} id="nav-dropdown" alignRight>
+//           <div className='navbar-user'>
+//             <div className='navbar-curr-user'>Hi, {currUserName}</div>
+//             <div className='navbar-curr-email'>{currUserEmail}</div>
+//           </div>
+//           <NavDropdown.Divider />
+//           <NavDropdown.Item onClick={logoutUser()} className='text-left log-out' >
+//             Log out
+//           </NavDropdown.Item>
+//         </NavDropdown>
 
-      );
-    } else {
-      return (
-        <div>
-          <Nav>
-            <Link to="/signup" className="nav-link">
-              Sign up
-                        </Link>
-            <Link to="/login" className="nav-link">
-              Log in
-                        </Link>
-          </Nav>
-        </div>
-      );
-    }
-  }
+//       );
+//     } else {
+//       return (
+//         <div>
+//           <Nav>
+//             <Link to="/signup" className="nav-link">
+//               Sign up
+//             </Link>
+//             <Link to="/login" className="nav-link">
+//               Log in
+//             </Link>
+//           </Nav>
+//         </div>
+//       );
+//     }
+//   };
 
-  const requestHelp = () => {
-    const { openModal } = props;
+//   const requestHelp = () => {
+//     const { openModal } = props;
 
-    openModal('taskform');
-  }
+//     openModal('taskform');
+//   };
 
-  return (
+//   const { loggedIn } = props;
 
-  )
-}
+//   return (
+//     <header>
+//       <Navbar bg="dark" variant="dark" sticky="top">
+//         <div className='d-flex flex-row justify-content-between w-full align-items-center'>
+//           <Nav className="mr-auto ">
+//             <Navbar.Brand href="#">
+//               <img className="logo-covid415" src={Logo} alt='covid-logo' />
+//             </Navbar.Brand>
+//           </Nav>
+//           {loggedIn ? (
+//               <button className='request-help-button' onClick={() => requestHelp()}>Request Delivery</button>
+//             ) : (
+//               <div></div>
+//             )
+//           }
+//           <div className="icon-login-container">
+//             <Nav
+//               className="justify-content-end upcase white-txt align-items-end">
+//               {getLinks()}
+//             </Nav>
+//             <Nav className="github-icon">
+//               <a href="https://github.com/emostov/covid415"
+//                 target="_blank" rel="noopener noreferrer" >
+//                 <img src={gitHub} className='online-presence-icon' alt="github" />
+//               </a>
+//             </Nav>
+//           </div>
+//         </div>
+//       </Navbar>
+//     </header>
+//   );
+// }
 
 export default NavBar;
