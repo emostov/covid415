@@ -112,9 +112,9 @@ const NavBar = (props) => {
             <div className='navbar-curr-email'>{currUserEmail}</div>
           </div>
           <NavDropdown.Divider />
-          <NavDropdown.Item onClick={this.logoutUser} className='text-left log-out' >
+          <NavDropdown.Item onClick={logoutUser()} className='text-left log-out' >
             Log out
-                    </NavDropdown.Item>
+          </NavDropdown.Item>
         </NavDropdown>
 
       );
