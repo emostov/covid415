@@ -64,11 +64,11 @@ class NavBar extends React.Component {
           <div className='d-flex flex-row justify-content-between w-full align-items-center'>
             <Nav className="mr-auto ">
               <Navbar.Brand href="#">
-                <img className="logo-covid415" src={Logo} alt='covid-logo'/>
+                <img className="logo-covid415" src={Logo} alt='covid-logo' />
               </Navbar.Brand>
             </Nav>
             {this.props.loggedIn ? (
-              <button className='request-help-button' onClick={() => this.requestHelp()}>Request Delivery</button>
+              <button className='request-help-button' onClick={() => requestHelp()}>Request Delivery</button>
             ) : (
                 <div></div>
               )
@@ -76,7 +76,7 @@ class NavBar extends React.Component {
             <div className="icon-login-container">
               <Nav
                 className="justify-content-end upcase white-txt align-items-end">
-                {this.getLinks()}
+                {getLinks()}
               </Nav>
               <Nav className="github-icon">
                 <a href="https://github.com/emostov/covid415"
@@ -139,6 +139,10 @@ const NavBar = (props) => {
 
     openModal('taskform');
   }
+
+  return (
+
+  )
 }
 
 export default NavBar;
