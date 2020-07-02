@@ -1,12 +1,12 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import gitHub from '../../public/github-logo.png';
 
 import Logo from '../../public/COVID415.png';
-import '../../styles/navbar.scss'
+import '../../styles/navbar.scss';
 
 class NavBar extends React.Component {
   constructor(props) {
