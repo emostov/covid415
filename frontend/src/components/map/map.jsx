@@ -13,6 +13,7 @@ const Map = (props) => {
     activeTasks,
     receiveActiveTaskId,
     displayNotAssignedTasks,
+    currentUserId,
     currentUserTasks
   } = props;
 
@@ -250,6 +251,13 @@ const Map = (props) => {
       setHelpNeededMarkers(newHelpNeededMarkers);
     }
   }, [tasks, helpNeededTasks, activeTasks]);
+
+  useEffect(() => {
+    if(currentUserId === undefined) {
+      clearMarkers(userMarkers);
+      setUserMarkers(null);
+    }
+  }, [currentUserId])
 
 
   updateMarkers();
