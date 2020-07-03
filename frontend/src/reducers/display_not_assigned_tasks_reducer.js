@@ -3,7 +3,7 @@ import {
 } from '../actions/displayed_tasks_actions';
 
 
-const dispalyNotAssignedTasks = (state = true, action) => {
+const displayNotAssignedTasks = (state = true, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_DISPLAY_NOT_ASSIGNED_TASKS:
@@ -13,4 +13,4 @@ const dispalyNotAssignedTasks = (state = true, action) => {
   }
 }
 
-export default dispalyNotAssignedTasks;
+export default displayNotAssignedTasks;
