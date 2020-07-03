@@ -1,5 +1,5 @@
-import React from 'react';
-import * as turf from '@turf/turf'
+import React, { useState, useEffect, useRef } from 'react';
+import * as turf from '@turf/turf';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
@@ -7,181 +7,170 @@ import { Spinner } from 'react-bootstrap';
 import frontendUtil from '../../util/frontend_util';
 import { typeIcon } from '../../util/card_icon_util';
 
-import '../../styles/card.scss'
+import '../../styles/card.scss';
 
-class Card extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      active: false,
-      distance: ''
+const Card = props => {
+  const [active, setActive] = useState(false);
+  const [distance, setDistance] = useState('');
+
+  const myRef = useRef();
+
+  const {
+    currentPosition,
+    activeTask,
+    currentUserId,
+    task,
+    receiveActiveTaskId,
+    history,
+    openModal,
+    receiveNewTask,
+    cardType
+  } = props;
+
+  const isCurrentTask = () => {
+    if (myRef.current && activeTask && task._id === activeTask.taskId) {
+      myRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+
+      return true;
     }
-    this.myRef = React.createRef()
-    this.handleActiveToggle = this.handleActiveToggle.bind(this);
-    this.handleContinueClick = this.handleContinueClick.bind(this);
-    this.distanceFromCurrentToTask = this.distanceFromCurrentToTask.bind(this)
-  }
+    return false
+  };
 
-  componentDidMount() {
-    this.distanceFromCurrentToTask();
-    if (this.props.currentPosition !== null) {
-      this.distanceFromCurrentToTask();
-    }
-  }
+  const handleActiveToggle = () => {
 
-  componentDidUpdate(prevProps) {
+    const curActive = isCurrentTask();
 
-    // Make sure to compare props to prevent infinit loop
-    if (this.props.currentPosition !== prevProps.currentPosition) {
-
-      // recalculate distance
-      this.distanceFromCurrentToTask();
-    }
-  }
-
-  handleActiveToggle(e) {
-    e.preventDefault();
-    const { activeTask, task } = this.props;
-    // const curActive = this.state.active;
-    const curActive = this.isCurrentTask();
     if (!curActive && (!activeTask || activeTask.taskId !== task._id)) {
 
       // Set to active task bc getting clicked on for first time
-      this.props.receiveActiveTaskId(task._id);
+      receiveActiveTaskId(task._id);
     } else if (curActive && activeTask.taskId === task._id) {
 
       // The task is open and is the current active task so make it not
-      this.props.receiveActiveTaskId(null);
+      receiveActiveTaskId(null);
     }
-    this.setState({ active: !curActive })
+
+    //might be meaningless code and we can get rid of the state in this component
+    setActive(!curActive);
   }
 
-  handleContinueClick(e) {
-    e.stopPropagation();
-    const {
-      currentUserId, task, receiveActiveTaskId, history, openModal,
-    } = this.props;
+  const handleContinueClick = () => {
+
     if (currentUserId && task.status === 0) {
-      openModal('status', task._id)
+      openModal('status', task._id);
     } else if (currentUserId && task.status === 1) {
-      openModal('details', task._id)
+      openModal('details', task._id);
     } else {
-      history.push('/login')
+      history.push('/login');
     }
+
     receiveActiveTaskId(null)
-  }
+  };
 
-  isCurrentTask() {
-    const { task, activeTask } = this.props;
-    if (this.myRef.current && activeTask && task._id === activeTask.taskId) {
-      this.myRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-      });
-      
-      return true;
-    }
-    return false;
-  }
+  const distanceFromCurrentToTask = () => {
+    if (task === undefined) return null;
+    if (currentPosition.length === 0) return null;
 
-  handleDirectionsClick(e) {
-    e.stopPropagation();
-  }
-
-  distanceFromCurrentToTask() {
-    const { task, currentPosition } = this.props
-    if (this.props.task === undefined) {
-      return null
-    }
-    if (currentPosition.length === 0) {
-      return null
-    }
     const { latitude, longitude } = currentPosition.coords;
 
-    let from = turf.point([longitude, latitude])
-    let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]])
-    let options = { units: 'miles' }
-    let distanceTo = turf.distance(from, to, options)
-    const dist = frontendUtil.parseDistance(distanceTo)
-    task['distance'] = dist
-    this.props.receiveNewTask(task)
-  }
+    let from = turf.point([longitude, latitude]);
+    let to = turf.point([task.deliveryLatLong[1], task.deliveryLatLong[0]]);
+    let options = { units: 'miles' };
+    let distanceTo = turf.distance(from, to, options);
+    const dist = frontendUtil.parseDistance(distanceTo);
+    task['distance'] = dist;
+    receiveNewTask(task);
+  };
 
-  displayMilesAway() {
-    const { task } = this.props
+  const displayMilesAway = () => {
     if (task.distance === undefined) {
       return (<Spinner animation="grow" variant="light" />);
     }
-    if (this.isCurrentTask()) {
+
+    if (isCurrentTask()) {
       return `${task.distance} miles away`;
     } else {
       return `| ${task.distance} miles away`;
     }
-  }
+  };
 
-  render() {
-    const { task } = this.props
-    return (
-      <div
-        className="card-box-container"
-        ref={this.myRef}
-        id={task._id}
-      >
-        {
-          this.isCurrentTask()
-            ?
-            (
-              <div className="card-box-active" onClick={this.handleActiveToggle}>
-                <div className="card-header-container">
-                  <FontAwesomeIcon className="fa-minus" icon={faMinus} />
-                  <div className={"card-head-active"}>
-                    {this.displayMilesAway()}
-                  </div>
-                </div>
-                <div className="card-box-top-container">
-                  <div className="card-box-type-of-prop">Deliver to:
-                  </div>
-                  <div className="card-box-type-of-prop neighborhood">{this.props.task.deliveryNeighborhood}
-                    <br />
-                  </div>
-                  <div className="card-box-type-of-prop">
-                    Type:
-                    </div>
-                  <div className="instructions-body">
-                    {this.props.task.type}
-                  </div>
-                  <div className="card-box-type-of-prop">
-                    Details:
-                    </div>
-                  <div className="instructions-body">
-                    {this.props.task.details}
-                  </div>
-                </div>
-                {this.props.cardType === 'available' ?
-                  <button onClick={this.handleContinueClick} className="accept-button">I Can Help</button>
-                  :
-                  <button onClick={this.handleContinueClick} className="complete-button">Delivery Details</button>
-                }
-              </div>
-            ) : (
-              <div className="card-box" onClick={this.handleActiveToggle}>
-                <div className="card-header-container">
-                  <FontAwesomeIcon className="fa-plus" icon={faPlus} />
-                  <div className={"card-head"}>
-                    {this.props.task.deliveryNeighborhood} {this.displayMilesAway()}
-                  </div>
-                </div>
-                <div className="card-footer-container">
-                  <div className="card-task-type-text">{this.props.task.type}</div>
-                  <div>{typeIcon(this.props.task.type.toLowerCase(), this.props.task.status)}</div>
+  // Equivalent to ComponentDidMount
+  useEffect(() => {
+    // distanceFromCurrentToTask();
+    if (currentPosition !== null) {
+      distanceFromCurrentToTask();
+    }
+  }, []);
+
+  // Equivalent to ComponentDidupdate
+  useEffect(() => {
+    distanceFromCurrentToTask();
+  }, [currentPosition]);
+
+  return (
+    <div
+      className="card-box-container"
+      ref={myRef}
+      id={task._id}
+    >
+      {
+        isCurrentTask()
+          ?
+          (
+            <div className="card-box-active" onClick={() => handleActiveToggle()}>
+              <div className="card-header-container">
+                <FontAwesomeIcon className="fa-minus" icon={faMinus} />
+                <div className={"card-head-active"}>
+                  {displayMilesAway()}
                 </div>
               </div>
-            )
-        }
-      </div>
+              <div className="card-box-top-container">
+                <div className="card-box-type-of-prop">
+                  Deliver to:
+                </div>
+                <div className="card-box-type-of-prop neighborhood">{task.deliveryNeighborhood}
+                  <br />
+                </div>
+                <div className="card-box-type-of-prop">
+                  Type:
+                </div>
+                <div className="instructions-body">
+                  {task.type}
+                </div>
+                <div className="card-box-type-of-prop">
+                  Details:
+                </div>
+                <div className="instructions-body">
+                  {task.details}
+                </div>
+              </div>
+              {cardType === 'available' ?
+                <button onClick={() => handleContinueClick()} className="accept-button">I Can Help</button>
+                :
+                <button onClick={() => handleContinueClick()} className="complete-button">Delivery Details</button>
+              }
+            </div>
+          ) : (
+            <div className="card-box" onClick={() => handleActiveToggle()}>
+              <div className="card-header-container">
+                <FontAwesomeIcon className="fa-plus" icon={faPlus} />
+                <div className={"card-head"}>
+                  {task.deliveryNeighborhood} {displayMilesAway()}
+                </div>
+              </div>
+              <div className="card-footer-container">
+                <div className="card-task-type-text">{task.type}</div>
+                <div>{typeIcon(task.type.toLowerCase(), task.status)}</div>
+              </div>
+            </div>
+          )
+      }
+    </div>
 
-    )
-  }
+  )
 }
 
 export default Card;

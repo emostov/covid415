@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import jwt_decode from 'jwt-decode';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import mapboxgl from 'mapbox-gl';
 

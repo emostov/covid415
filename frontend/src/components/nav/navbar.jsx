@@ -1,37 +1,33 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import gitHub from '../../public/github-logo.png';
 
 import Logo from '../../public/COVID415.png';
-import '../../styles/navbar.scss'
+import '../../styles/navbar.scss';
 
-class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.logoutUser = this.logoutUser.bind(this);
-    this.getLinks = this.getLinks.bind(this);
-    this.requestHelp = this.requestHelp.bind(this);
-  }
+const NavBar = (props) => {
 
-  logoutUser(e) {
-    e.preventDefault();
-    this.props.logout();
-  }
-  // Selectively render links dependent on whether the user is logged in
-  getLinks() {
-    if (this.props.loggedIn) {
+  const logoutUser = () => {
+    const { logout } = props;
+
+    logout();
+  };
+
+  const getLinks = () => {
+    const { loggedIn, currUserName, currUserEmail } = props;
+    if (loggedIn) {
       const userCircle = (<FontAwesomeIcon className='user-circle mr-1' icon={faUserCircle} />)
       return (
         <NavDropdown title={userCircle} id="nav-dropdown" alignRight>
           <div className='navbar-user'>
-            <div className='navbar-curr-user'>Hi, {this.props.currUserName}</div>
-            <div className='navbar-curr-email'>{this.props.currUserEmail}</div>
+            <div className='navbar-curr-user'>Hi, {currUserName}</div>
+            <div className='navbar-curr-email'>{currUserEmail}</div>
           </div>
           <NavDropdown.Divider />
-          <NavDropdown.Item onClick={this.logoutUser} className='text-left log-out' >
+          <NavDropdown.Item onClick={() => logoutUser()} className='text-left log-out' >
             Log out
           </NavDropdown.Item>
         </NavDropdown>
@@ -51,46 +47,47 @@ class NavBar extends React.Component {
         </div>
       );
     }
-  }
+  };
 
-  requestHelp() {
-    this.props.openModal('taskform');
-  }
+  const requestHelp = () => {
+    const { openModal } = props;
 
-  render() {
-    return (
-      <header>
-        <Navbar bg="dark" variant="dark" sticky="top">
-          <div className='d-flex flex-row justify-content-between w-full align-items-center'>
-            <Nav className="mr-auto ">
-              <Navbar.Brand href="#">
-                <img className="logo-covid415" src={Logo} alt='covid-logo'/>
-              </Navbar.Brand>
-            </Nav>
-            {this.props.loggedIn ? (
-              <button className='request-help-button' onClick={() => this.requestHelp()}>Request Delivery</button>
+    openModal('taskform');
+  };
+
+  const { loggedIn } = props;
+
+  return (
+    <header>
+      <Navbar bg="dark" variant="dark" sticky="top">
+        <div className='d-flex flex-row justify-content-between w-full align-items-center'>
+          <Nav className="mr-auto ">
+            <Navbar.Brand href="#">
+              <img className="logo-covid415" src={Logo} alt='covid-logo' />
+            </Navbar.Brand>
+          </Nav>
+          {loggedIn ? (
+              <button className='request-help-button' onClick={() => requestHelp()}>Request Delivery</button>
             ) : (
-                <div></div>
-              )
-            }
-            <div className="icon-login-container">
-              <Nav
-                className="justify-content-end upcase white-txt align-items-end">
-                {this.getLinks()}
-              </Nav>
-              <Nav className="github-icon">
-                <a href="https://github.com/emostov/covid415"
-                  target="_blank" rel="noopener noreferrer" >
-                  <img src={gitHub} className='online-presence-icon' alt="github" />
-                </a>
-              </Nav>
-            </div>
+              <div></div>
+            )
+          }
+          <div className="icon-login-container">
+            <Nav
+              className="justify-content-end upcase white-txt align-items-end">
+              {getLinks()}
+            </Nav>
+            <Nav className="github-icon">
+              <a href="https://github.com/emostov/covid415"
+                target="_blank" rel="noopener noreferrer" >
+                <img src={gitHub} className='online-presence-icon' alt="github" />
+              </a>
+            </Nav>
           </div>
-        </Navbar>
-
-      </header>
-    );
-  }
+        </div>
+      </Navbar>
+    </header>
+  );
 }
 
 export default NavBar;

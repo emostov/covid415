@@ -1,103 +1,49 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 
 import { mapBoxPublicKey } from '../../config/keys_front'
 import '../../styles/map.scss'
 import { typeIconString, statusPopupClass } from '../../util/card_icon_util';
 
-class Map extends React.Component {
-  constructor(props) {
-    super(props)
+const Map = (props) => {
+  const {
+    tasks,
+    helpNeededTasks,
+    activeTask,
+    activeTasks,
+    receiveActiveTaskId,
+    displayNotAssignedTasks,
+    currentUserId,
+    currentUserTasks
+  } = props;
 
-    this.state = {
-      lng: -122.44,
-      lat: 37.76,
-      zoom: 11,
-      map: '',
-      allMarkers: [],
-      displayNotAssignedTasks: true,
-    }
-  }
+  const lng = -122.44;
+  const lat = 37.76;
+  const zoom = 11;
 
-  componentDidMount() {
-    mapboxgl.accessToken = mapBoxPublicKey;
+  const [map, setMap] = useState(null);
+  const [userMarkers, setUserMarkers] = useState(null);
+  const [helpNeededMarkers, setHelpNeededMarkers] = useState(null);
 
-    // Set the map's max bounds
-    const bounds = [
-      [-122.54, 37.6], // [west, south]
-      [-122.34, 37.9]  // [east, north]
-    ];
-    const map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/dark-v10',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom
-    });
-    map.addControl(new mapboxgl.NavigationControl());
-    map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        trackUserLocation: true
-      })
-    );
-    map.setMaxBounds(bounds);
-    this.setState({
-      map,
-      displayNotAssignedTasks: this.props.displayNotAssignedTasks
-    });
-    this.callPlaceMarkers();
-  }
+  const mapContainer = useRef(null);
 
-  // Recursively sets a timeout and calls itself if not loaded
-  // Essentially a recursive while loop
-  callPlaceMarkers() {
-    if (this.state.map && this.props.tasks.length) {
-      const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
-      const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
-      this.setState({ userMarkers, helpNeededMarkers })
+  const callPlaceMarkers = () => {
+    if (map && tasks.length) {
+      const userMarkers = placeMapMarkers(currentUserTasks);
+      const newHelpNeededMarkers = placeMapMarkers(helpNeededTasks);
+
+      setUserMarkers(userMarkers);
+      setHelpNeededMarkers(newHelpNeededMarkers);
     } else {
       setTimeout(() => {
-        this.callPlaceMarkers()
-      }, 1 * 100)
+        callPlaceMarkers()
+      }, 1 * 100);
     }
-  }
+  };
 
-  componentDidUpdate(prevProps) {
-    const { tasks, helpNeededTasks, activeTasks } = this.props;
-
-    if (
-      (
-        Object.keys(tasks).length
-        !== Object.keys(prevProps.tasks).length
-      )
-      || (
-        this.props.helpNeededTasks &&
-        Object.keys(helpNeededTasks).length
-        !== Object.keys(prevProps.helpNeededTasks).length
-      )
-      || (
-        this.props.activeTasks &&
-        Object.keys(activeTasks).length
-        !== Object.keys(prevProps.activeTasks).length
-      )
-
-    ) {
-      this.removeAllPopups();
-      this.clearMarkers(this.state.userMarkers);
-      this.clearMarkers(this.state.helpNeededMarkers);
-
-      // Remake markers so all are up to date with current tasks
-      const userMarkers = this.placeMapMarkers(this.props.currentUserTasks);
-      const helpNeededMarkers = this.placeMapMarkers(this.props.helpNeededTasks);
-      this.setState({ userMarkers, helpNeededMarkers })
-    }
-  }
-
-  placeMapMarkers(tasks) {
+  const placeMapMarkers = (tasks) => {
     if (!tasks) return;
-    const { map } = this.state
+
     const allMarkers = [];
     const geojson = {
       type: 'FeatureCollection',
@@ -118,17 +64,18 @@ class Map extends React.Component {
           }
         }))
     };
+
     geojson.features.forEach((marker) => {
 
       // Create a HTML element for each feature
       const el = document.createElement('div');
-      const { status, type, taskId } = marker.properties
+      const { status, type, taskId } = marker.properties;
       if (status === 0) {
-        el.className = 'marker notActive'
+        el.className = 'marker notActive';
       } else if (status === 1) {
-        el.className = 'marker active'
+        el.className = 'marker active';
       } else if (status === 2) {
-        el.className = 'marker completed'
+        el.className = 'marker completed';
       }
       const popup = new mapboxgl.Popup({
         offset: 25,
@@ -147,7 +94,6 @@ class Map extends React.Component {
       // Add mapBox marker and associated id to array
       allMarkers.push({ mBMarker: mapBoxMarker, id: marker.properties.taskId });
 
-      const { receiveActiveTaskId } = this.props;
       const markerEl = mapBoxMarker.getElement();
       markerEl.addEventListener('mouseenter', () => {
 
@@ -157,7 +103,6 @@ class Map extends React.Component {
       markerEl.addEventListener('mouseleave', () => {
 
         // Remove popup from map
-        const { activeTask } = this.props;
         if (popup.isOpen() && (!activeTask || activeTask.taskId !== taskId)) {
           popup.remove();
         }
@@ -165,7 +110,6 @@ class Map extends React.Component {
       markerEl.addEventListener('click', (e) => {
         e.stopPropagation()
         const isOpen = popup.isOpen();
-        const { activeTask } = this.props;
         popup.addTo(map);
 
         // If popup is open and is the active task id 
@@ -187,40 +131,35 @@ class Map extends React.Component {
     return allMarkers;
   }
 
-  // Removes all current markers from map
-  clearMarkers(markers) {
+  const clearMarkers = (markers) => {
     if (!markers) return;
     markers.forEach((marker) => {
       marker.mBMarker.remove();
-    })
-  }
+    });
+  };
 
-  addMarkers(markers) {
+  const addMarkers = (markers) => {
     if (!markers) return;
     markers.forEach((marker) => {
-      marker.mBMarker.addTo(this.state.map);
-    })
-  }
+      marker.mBMarker.addTo(map);
+    });
+  };
 
-  updateMarkers() {
-    this.removeAllPopups();
-    const { userMarkers, helpNeededMarkers } = this.state;
-    if (this.props.displayNotAssignedTasks) {
-
+  const updateMarkers = () => {
+    removeAllPopups();
+    if (displayNotAssignedTasks) {
       // Display the helped needed markers
-      this.clearMarkers(userMarkers);
-      this.addMarkers(helpNeededMarkers);
+      clearMarkers(userMarkers);
+      addMarkers(helpNeededMarkers);
     } else {
-      this.clearMarkers(helpNeededMarkers);
-      this.addMarkers(userMarkers);
+      clearMarkers(helpNeededMarkers);
+      addMarkers(userMarkers);
     }
-  }
+  };
 
-  updatePopups() {
-    const { userMarkers, helpNeededMarkers, map } = this.state;
-    const { activeTask, displayNotAssignedTasks } = this.props;
+  const updatePopups = () => {
     if (!(userMarkers && helpNeededMarkers)) return;
-    const allMarkers = displayNotAssignedTasks ? helpNeededMarkers : userMarkers
+    const allMarkers = displayNotAssignedTasks ? helpNeededMarkers : userMarkers;
 
     // Use set timeout to makesure if activeTask was set somewhere else it 
     // has time to propagate
@@ -240,28 +179,95 @@ class Map extends React.Component {
     }, 1)
   }
 
-
-  removeAllPopups() {
-    const { userMarkers, helpNeededMarkers } = this.state;
+  const removeAllPopups = () => {
     if (!(userMarkers && helpNeededMarkers)) return;
     const allMarkers = userMarkers.concat(helpNeededMarkers);
     allMarkers.length && allMarkers.forEach((markerObj) => {
       const { mBMarker } = markerObj;
-      if (mBMarker.getPopup().isOpen()){
+      if (mBMarker.getPopup().isOpen()) {
         mBMarker.getPopup().remove();
       }
-    })
-  }
+    });
+  };
 
-  render() {
-    this.updateMarkers();
-    this.updatePopups();
-    return (
-      < div >
-        <div ref={el => this.mapContainer = el} className="mapContainer" />
-      </div >
-    )
-  }
+  useEffect(() => {
+    mapboxgl.accessToken = mapBoxPublicKey;
+
+    // Set the map's max bounds
+    const bounds = [
+      [-122.54, 37.6], // [west, south]
+      [-122.34, 37.9]  // [east, north]
+    ];
+    const initializeMap = ({ setMap, mapContainer }) => {
+      const map = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/dark-v10',
+        center: [lng, lat],
+        zoom: zoom
+      });
+      map.addControl(new mapboxgl.NavigationControl());
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+          trackUserLocation: true
+        })
+      );
+      map.setMaxBounds(bounds);
+      setMap(map)
+    }
+    if (!map) initializeMap({ setMap, mapContainer });
+    callPlaceMarkers();
+  }, [map]);
+
+  useEffect(() => {
+    if (
+      (
+        Object.keys(tasks).length
+        !== Object.keys(tasks).length
+      )
+      || (
+        helpNeededTasks &&
+        Object.keys(helpNeededTasks).length
+        !== Object.keys(helpNeededTasks).length
+      )
+      || (
+        activeTasks &&
+        Object.keys(activeTasks).length
+        !== Object.keys(activeTasks).length
+      )
+
+    ) {
+      removeAllPopups();
+      clearMarkers(userMarkers);
+      clearMarkers(helpNeededMarkers);
+
+      // Remake markers so all are up to date with current tasks
+      const userMarkers = placeMapMarkers(currentUserTasks);
+      const newHelpNeededMarkers = placeMapMarkers(helpNeededTasks);
+
+      setUserMarkers(userMarkers);
+      setHelpNeededMarkers(newHelpNeededMarkers);
+    }
+  }, [tasks, helpNeededTasks, activeTasks]);
+
+  useEffect(() => {
+    if(currentUserId === undefined) {
+      clearMarkers(userMarkers);
+      setUserMarkers(null);
+    }
+  }, [currentUserId])
+
+
+  updateMarkers();
+  updatePopups();
+
+  return (
+    < div >
+      <div ref={el => mapContainer.current = el} className="mapContainer" />
+    </div >
+  );
 }
 
 export default Map;
