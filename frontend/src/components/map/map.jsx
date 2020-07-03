@@ -27,13 +27,12 @@ const Map = (props) => {
   const mapContainer = useRef(null);
 
   const callPlaceMarkers = () => {
-
     if (map && tasks.length) {
       const userMarkers = placeMapMarkers(currentUserTasks);
-      const helpNeededMarkers = placeMapMarkers(helpNeededTasks);
+      const newHelpNeededMarkers = placeMapMarkers(helpNeededTasks);
 
       setUserMarkers(userMarkers);
-      setHelpNeededMarkers(helpNeededMarkers);
+      setHelpNeededMarkers(newHelpNeededMarkers);
     } else {
       setTimeout(() => {
         callPlaceMarkers()
@@ -147,7 +146,6 @@ const Map = (props) => {
 
   const updateMarkers = () => {
     removeAllPopups();
-    debugger
     if (displayNotAssignedTasks) {
       // Display the helped needed markers
       clearMarkers(userMarkers);
@@ -216,6 +214,7 @@ const Map = (props) => {
         })
       );
       map.setMaxBounds(bounds);
+      setMap(map)
     }
     if (!map) initializeMap({ setMap, mapContainer });
     callPlaceMarkers();
@@ -245,17 +244,17 @@ const Map = (props) => {
 
       // Remake markers so all are up to date with current tasks
       const userMarkers = placeMapMarkers(currentUserTasks);
-      const helpNeededMarkers = placeMapMarkers(helpNeededTasks);
+      const newHelpNeededMarkers = placeMapMarkers(helpNeededTasks);
 
       setUserMarkers(userMarkers);
-      setHelpNeededMarkers(helpNeededMarkers);
+      setHelpNeededMarkers(newHelpNeededMarkers);
     }
   }, [tasks, helpNeededTasks, activeTasks]);
 
 
   updateMarkers();
   updatePopups();
-  debugger
+
   return (
     < div >
       <div ref={el => mapContainer.current = el} className="mapContainer" />
