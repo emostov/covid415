@@ -1,124 +1,109 @@
-import React from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 
 import '../../styles/session_form.scss'
 
-class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
+const LoginForm = (props) => {
+  const { currentUser, history, login, errors } = props;
 
-    this.state = {
+  const [filterInput, setFilterInput] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
       email: '',
-      password: '',
-      errors: {}
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
-    this.demoLogin = this.demoLogin.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push('/');
+      password: ''
     }
+  );
 
-    // Set or clear errors
-    this.setState({ errors: nextProps.errors })
-  }
+  useEffect(() => {
+    if (currentUser === true) {
+      history.push('/');
+    }
+  }, [currentUser]);
 
-  // Handle field updates (called in the render method)
-  update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
-  }
+  const update = (e) => {
+    const { name, value } = e.target;
+    setFilterInput({ [name]: value });
+  };
 
-  // Handle form submission
-  handleSubmit(e) {
-    e.preventDefault();
+  const handleSubmit = () => {
 
     let user = {
-      email: this.state.email,
-      password: this.state.password
+      ...filterInput
     };
 
-    this.props.login(user);
-  }
+    login(user);
+  };
 
-  demoLogin(e) {
-    e.preventDefault();
+  const demoLogin = () => {
 
     let user = {
       email: 'rayleensharp@gmail.com',
-      password: 'password',
+      password: 'password'
     };
 
-    this.props.login(user);
+    login(user);
   }
 
-  // Render the session errors if there are any
-  renderErrors() {
+  const renderErrors = () => {
+    // By default wll return an empty <ul>
     return (
       <ul className='errors-list'>
-        {Object.keys(this.state.errors).map((error, i) => (
+        {Object.keys(errors).map((error, i) => (
           <li key={`error-${i}`}>
             <Alert variant='warning'>
-              {this.state.errors[error]}
+              {errors[error]}
             </Alert>
           </li>
         ))}
       </ul>
     );
-  }
+  };
 
-  render() {
-    return (
-              <Card className=' login session'>
-                <Card.Title className='session'>
-                  <strong>Welcome back, neighbor.</strong>
-                </Card.Title>
-                {this.renderErrors()}
-                {/*  */}
-                <Form onSubmit={this.handleSubmit}>
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="Enter email"
-                      value={this.state.email}
-                      onChange={this.update('email')}
-                    />
-                  </Form.Group>
-
-                  <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Password"
-                      value={this.state.password}
-                      onChange={this.update('password')}
-                    />
-                  </Form.Group>
-                </Form>
-                <Button
-                  className='session-btn'
-                  type="submit"
-                  onClick={this.handleSubmit}
-                  variant='secondary'>
-                  Log in
+  return (
+    <Card className=' login session'>
+      <Card.Title className='session'>
+        <strong>Welcome back, neighbor.</strong>
+      </Card.Title>
+      {renderErrors()}
+      <Form onSubmit={() => handleSubmit()}>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            name='email'
+            type="email"
+            placeholder="Enter email"
+            value={filterInput.email}
+            onChange={e => update(e)}
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            name='password'
+            type="password"
+            placeholder="Password"
+            value={filterInput.password}
+            onChange={e => update(e)}
+          />
+        </Form.Group>
+      </Form>
+      <Button
+        className='session-btn'
+        type="submit"
+        onClick={() => handleSubmit()}
+        variant='secondary'>
+        Log in
                 </Button>
-                <Button
-                  className='demo-btn'
-                  type="submit"
-                  onClick={this.demoLogin}
-                  variant='secondary'>
-                  Just demo for now
-                </Button>
-              </Card>
-    );
-  }
+      <Button
+        className='demo-btn'
+        type="submit"
+        onClick={() => demoLogin()}
+        variant='secondary'>
+        Just demo for now
+            </Button>
+    </Card>
+  );
 }
 
 export default withRouter(LoginForm);
