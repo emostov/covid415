@@ -199,27 +199,27 @@ const Map = (props) => {
       [-122.54, 37.6], // [west, south]
       [-122.34, 37.9]  // [east, north]
     ];
-    const map = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/dark-v10',
-      center: [lng, lat],
-      zoom: zoom
-    });
-    map.addControl(new mapboxgl.NavigationControl());
-    map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        trackUserLocation: true
-      })
-    );
-    map.setMaxBounds(bounds);
-
-    setMap(map);
-
+    const initializeMap = ({ setMap, mapContainer }) => {
+      const map = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/dark-v10',
+        center: [lng, lat],
+        zoom: zoom
+      });
+      map.addControl(new mapboxgl.NavigationControl());
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+          trackUserLocation: true
+        })
+      );
+      map.setMaxBounds(bounds);
+    }
+    if (!map) initializeMap({ setMap, mapContainer });
     callPlaceMarkers();
-  }, []);
+  }, [map]);
 
   useEffect(() => {
     if (
