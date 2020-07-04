@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+/* eslint no-console: ["error", { allow: ["log", "warn", "error"] }] */
 const express = require('express');
 const passport = require('passport');
 
