@@ -52,7 +52,7 @@
     "react-places-autocomplete": "^7.2.1",
     "redux-devtools-extension": "^2.13.8",
     "twilio": "^3.42.2",
-    "validator": "^12.2.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
