@@ -51,7 +51,7 @@
     "react-google-places-autocomplete": "^1.6.2",
     "react-places-autocomplete": "^7.2.1",
     "redux-devtools-extension": "^2.13.8",
-    "twilio": "^3.42.2",
+    "twilio": "^3.84.1",
     "validator": "^13.7.0"
   },
   "devDependencies": {
